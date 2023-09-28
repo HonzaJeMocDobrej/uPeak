@@ -1,0 +1,116 @@
+.tMenu {
+    position: fixed;
+    left: 24rem;
+    width: calc(100% - 24rem);
+    height: 7rem;
+    border-bottom: 2px solid rgba(51, 51, 51, 0.09);
+    display: flex;
+
+    .langCont {
+        height: 100%;
+        width: fit-content;
+        display: flex;
+        padding-left: 3rem;
+        align-items: center;
+
+        .langSwitch {
+            width: 4rem;
+            height: 2rem;
+            border-radius: 2rem;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFF;
+            font-family: Open Sans;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 200ms;
+            user-select: none;
+
+            &:hover {
+                background: #09F;
+            }
+
+            &:active {
+                transform: scale(.95);
+            }
+        }
+    }
+
+    .profCont {
+        width: 85%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 4rem;
+        padding-right: 4rem;
+
+        .dark-lightSwitch {
+            width: 4rem;
+            height: 2rem;
+            border-radius: 2rem;
+            background: #66C2FF;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: 300ms;
+            
+
+            img {
+                height: 1.75rem;
+                padding-left: .5rem;
+                transition: 500ms;
+            }
+
+        }
+        
+        .profile {
+            display: flex;
+            gap: 1.5rem;
+            
+            img {
+                height: 5rem;
+            }
+
+            p {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                color: #333;
+                font-family: Open Sans;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 93.682%; /* 22.484px */
+            }
+
+            span {
+                color: #09F;
+                font-family: Open Sans;
+                font-weight: 600;
+                line-height: 93.682%;
+            }
+        }
+    }
+
+    .bellCont {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 3rem;
+
+        img {
+            height: 2rem;
+            transition: 300ms;
+            user-select: none;
+            cursor: pointer;
+
+            &:active {
+                transform: scale(.95);
+            }
+        }
+    }
+}

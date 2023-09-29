@@ -3,6 +3,7 @@ import ClockSvg from '../assets/icons/clock.svg'
 import checkSvg from '../assets/icons/check.svg'
 import plusSvg from '../assets/icons/plusCircle.svg'
 import userSvg from '../assets/icons/userCircle.svg'
+import honzak from '../assets/img/honzak.png'
 import '../styles/styles.css'
 
 function LeftMenu() {
@@ -10,7 +11,8 @@ function LeftMenu() {
     <>
         <nav className="lMenu">
             <div className="nameCont">
-                <h1>u<span className='blackSpan'>Peak<div className="underline"></div></span></h1>
+                <h1 className='fullHeading'>u<span className='blackSpan'>Peak<div className="underline"></div></span></h1>
+                <h1 className="shortHeading">u<span className='blackSpan'>P<div className="underline"></div></span></h1>
             </div>
             <ul className="itemsCont">
                 <li className='selected'>
@@ -30,7 +32,8 @@ function LeftMenu() {
                     <p>Pomodoro</p>
                 </li>
                 <li>
-                    <img src={userSvg} alt="" />
+                    <img className='profilePic' src={userSvg} alt="" />
+                    <img className='honzak' src={honzak} alt="" />
                     <p>Profile</p>
                 </li>
             </ul>

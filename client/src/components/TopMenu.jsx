@@ -12,6 +12,12 @@ function TopMenu() {
     const [switchIsToggle, setSwitchIsToggle] = useState(false)
     const [svg, setSvg] = useState(sun)
 
+    const [isCz, setIsCz] = useState(false)
+
+    const langClick = () => {
+        setIsCz(prevState => !prevState)
+    }
+
     const switchClick = () => {
         setSwitchIsToggle(prevState => !prevState)
         if (switchIsToggle === false) {
@@ -35,7 +41,7 @@ function TopMenu() {
     <>
     <nav className="tMenu">
         <div className="langCont">
-            <div className="langSwitch">EN</div>
+            <div onClick={langClick} className="langSwitch">{isCz ? 'CZ' : 'EN'}</div>
         </div>
         <div className="profCont">
             <div onClick={switchClick} style={switchIsToggle ? {background: '#4D4D4D'} : {background: '#66C2FF'}} className="dark-lightSwitch">

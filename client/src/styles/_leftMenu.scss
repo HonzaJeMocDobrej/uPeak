@@ -6,7 +6,15 @@
     border-right: 2px solid rgba(51, 51, 51, 0.09);
     position: fixed;
 
-    h1 {
+    @media (max-width: 1000px) {
+        width: 8rem;
+    }
+
+    @media (max-width: 480px) {
+        width: 4rem;
+    }
+
+    .fullHeading {
         margin-top: 0;
         color: #333;
         font-family: Poppins;
@@ -14,6 +22,10 @@
         font-weight: 500;
         color: #09F;
         margin-bottom: 0;
+
+        @media (max-width: 1000px) {
+            display: none;
+        }
 
         .blackSpan {
             color: #333;
@@ -31,9 +43,53 @@
         }
     }
 
+    .shortHeading {
+        margin-top: 0;
+        color: #333;
+        font-family: Poppins;
+        font-size: 4rem;
+        font-weight: 500;
+        color: #09F;
+        margin-bottom: 0;
+        display: none;
+
+        @media (max-width: 1000px) {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        @media (max-width: 480px) {
+            font-size: 2.5rem;
+        }
+
+        .blackSpan {
+            color: #333;
+            position: relative;
+
+            .underline {
+                position: absolute;
+                height: 3.5px;
+                width: 97%;
+                left: 3%;
+                top: 5rem;
+                border-radius: 8px;
+                background-color: #09F;
+                
+                @media (max-width: 480px) {
+                    top: 3rem;
+                }
+            }
+        }
+    }
+
     .nameCont {
         padding-top: 4rem;
         padding-left: 5rem;
+
+        @media (max-width: 1000px) {
+            padding-left: 0;
+        }
     }
 
     .itemsCont {
@@ -43,6 +99,24 @@
 
         img {
             width: 2.5rem;
+
+            @media (max-width: 480px) {
+                width: 2rem;
+            }
+        }
+
+        .profilePic {
+            @media (max-width: 750px) {
+                display: none;
+            }
+        }
+
+        .honzak {
+            display: none;
+
+            @media (max-width: 750px) {
+                display: block;
+            }
         }
         
         li {
@@ -54,12 +128,22 @@
             border-radius: .5rem;
             transition: .3s;
 
+            @media (max-width: 1000px) {
+                padding-left: 0;
+                width: 100%;
+                justify-content: center;
+            }
+
             p {
                 padding-left: 1rem;
                 color: #333;
                 font-family: Open Sans;
                 font-size: 1.5rem;
                 font-weight: 400;
+
+                @media (max-width: 1000px) {
+                    display: none;
+                }
             }
 
             &:hover {
@@ -70,6 +154,10 @@
 
             &:not(:first-child) {
                 margin-top: .5rem;
+
+                @media (max-width: 480px) {
+                    margin-top: .0rem;
+                }
             }
 
             &:active {

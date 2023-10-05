@@ -161,10 +161,6 @@
 .lMenu .itemsCont li:active {
   transform: scale(0.95);
 }
-.lMenu .itemsCont .selected p {
-  color: #09F;
-  font-weight: 700;
-}
 
 .tMenu {
   position: fixed;

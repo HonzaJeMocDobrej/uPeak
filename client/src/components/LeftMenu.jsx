@@ -1,12 +1,38 @@
-import progressSvg from '../assets/icons/trophyFill.svg'
-import ClockSvg from '../assets/icons/clock.svg'
+/* eslint-disable react/prop-types */
+import trophyFill from '../assets/icons/trophyFill.svg'
+import checkFillSvg from '../assets/icons/checkFill.svg'
+import plusFillSvg from '../assets/icons/plusCircleFill.svg'
+import clockFillSvg from '../assets/icons/clockFill.svg'
+import userFillSvg from '../assets/icons/userCircleFill.svg'
+
+import trophy from '../assets/icons/trophy.svg'
 import checkSvg from '../assets/icons/check.svg'
 import plusSvg from '../assets/icons/plusCircle.svg'
+import clockSvg from '../assets/icons/clock.svg'
 import userSvg from '../assets/icons/userCircle.svg'
+
 import honzak from '../assets/img/honzak.png'
+
 import '../styles/styles.css'
 
-function LeftMenu() {
+import { useNavigate } from 'react-router-dom'
+
+
+function LeftMenu(props) {
+
+    let navigate = useNavigate()
+
+    const univNavigate = (path) => {
+        navigate(path)
+    }
+
+    const selectedStyle = {
+        'color': '#09F',
+        'fontWeight': 700,
+      }
+
+    const {active} = props
+
   return (
     <>
         <nav className="lMenu">
@@ -15,26 +41,26 @@ function LeftMenu() {
                 <h1 className="shortHeading">u<span className='blackSpan'>P<div className="underline"></div></span></h1>
             </div>
             <ul className="itemsCont">
-                <li className='selected'>
-                    <img src={progressSvg} alt="" />
-                    <p>Progress</p>
+                <li onMouseUp={() => univNavigate('/')} className='selected'>
+                    <img src={active ==='progress' ? trophyFill : trophy} alt="" />
+                    <p style={active === 'progress' ? selectedStyle : null}>Progress</p>
                 </li>
-                <li>
-                    <img src={checkSvg} alt="" />
-                    <p>To-Do</p>
+                <li onMouseUp={() => univNavigate('/todo')}>
+                    <img src={active === 'todo' ? checkFillSvg : checkSvg} alt="" />
+                    <p style={active === 'todo' ? selectedStyle : null}>To-Do</p>
                 </li>
-                <li>
-                    <img src={plusSvg} alt="" />
-                    <p>Notes</p> 
+                <li onMouseUp={() => univNavigate('/notes')}>
+                    <img src={active === 'notes' ? plusFillSvg : plusSvg} alt="" />
+                    <p style={active === 'notes' ? selectedStyle : null}>Notes</p> 
                 </li>
-                <li>
-                    <img src={ClockSvg} alt="" />
-                    <p>Pomodoro</p>
+                <li onMouseUp={() => univNavigate('/pomodoro')}>
+                    <img src={active === 'pomodoro' ? clockFillSvg : clockSvg} alt="" />
+                    <p style={active === 'pomodoro' ? selectedStyle : null}>Pomodoro</p>
                 </li>
-                <li>
-                    <img className='profilePic' src={userSvg} alt="" />
+                <li onMouseUp={() => univNavigate('/profile')}>
+                    <img className='profilePic' src={active === 'profile' ? userFillSvg : userSvg} alt="" />
                     <img className='honzak' src={honzak} alt="" />
-                    <p>Profile</p>
+                    <p style={active === 'profile' ? selectedStyle : null}>Profile</p>
                 </li>
             </ul>
         </nav>

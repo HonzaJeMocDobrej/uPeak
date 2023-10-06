@@ -31,7 +31,7 @@ function LeftMenu(props) {
         'fontWeight': 700,
       }
 
-    const {active} = props
+    const {active, isEnglish} = props
 
   return (
     <>
@@ -43,7 +43,7 @@ function LeftMenu(props) {
             <ul className="itemsCont">
                 <li onMouseUp={() => univNavigate('/')} className='selected'>
                     <img src={active ==='progress' ? trophyFill : trophy} alt="" />
-                    <p style={active === 'progress' ? selectedStyle : null}>Progress</p>
+                    <p style={active === 'progress' ? selectedStyle : null}>{isEnglish ? 'Progress' : 'Progres'}</p>
                 </li>
                 <li onMouseUp={() => univNavigate('/todo')}>
                     <img src={active === 'todo' ? checkFillSvg : checkSvg} alt="" />
@@ -51,7 +51,7 @@ function LeftMenu(props) {
                 </li>
                 <li onMouseUp={() => univNavigate('/notes')}>
                     <img src={active === 'notes' ? plusFillSvg : plusSvg} alt="" />
-                    <p style={active === 'notes' ? selectedStyle : null}>Notes</p> 
+                    <p style={active === 'notes' ? selectedStyle : null}>{isEnglish ? 'Notes' : 'Poznámky'}</p> 
                 </li>
                 <li onMouseUp={() => univNavigate('/pomodoro')}>
                     <img src={active === 'pomodoro' ? clockFillSvg : clockSvg} alt="" />
@@ -60,7 +60,7 @@ function LeftMenu(props) {
                 <li onMouseUp={() => univNavigate('/profile')}>
                     <img className='profilePic' src={active === 'profile' ? userFillSvg : userSvg} alt="" />
                     <img className='honzak' src={honzak} alt="" />
-                    <p style={active === 'profile' ? selectedStyle : null}>Profile</p>
+                    <p style={active === 'profile' ? selectedStyle : null}>{isEnglish ? 'Profile' : 'Profil'}</p>
                 </li>
             </ul>
         </nav>

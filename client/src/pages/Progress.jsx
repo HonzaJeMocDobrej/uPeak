@@ -6,15 +6,20 @@ import '../styles/styles.css'
 
 function Progress(props) {
 
-  const {active} = props
+    const {active, isEnglish, setIsEnglish} = props
 
 return (
   <>
   <div className="menuCont">
       <LeftMenu
           active={active}
+          isEnglish={isEnglish}
+          setIsEnglish={setIsEnglish}
       />
-      <TopMenu />
+      <TopMenu
+        isEnglish={isEnglish}
+        setIsEnglish={setIsEnglish}
+      />
   </div>
   </>
 )

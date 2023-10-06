@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import sun from '../assets/icons/sun.svg'
 import moon from '../assets/icons/moon.svg'
 import notific from '../assets/icons/notific.svg'
@@ -6,16 +7,16 @@ import honzak from '../assets/img/honzak.png'
 import '../styles/styles.css'
 import { useState } from 'react'
 
-function TopMenu() {
-
+function TopMenu(props) {
+    
     const [switchStyle, setSwitchStyle] = useState({})
     const [switchIsToggle, setSwitchIsToggle] = useState(false)
     const [svg, setSvg] = useState(sun)
-
-    const [isCz, setIsCz] = useState(false)
+    
+    const {isEnglish, setIsEnglish} = props
 
     const langClick = () => {
-        setIsCz(prevState => !prevState)
+        setIsEnglish(!isEnglish)
     }
 
     const switchClick = () => {
@@ -37,11 +38,12 @@ function TopMenu() {
         }
     }
 
+
   return (
     <>
     <nav className="tMenu">
         <div className="langCont">
-            <div onClick={langClick} className="langSwitch">{isCz ? 'CZ' : 'EN'}</div>
+            <div onClick={langClick} className="langSwitch">{isEnglish ? 'EN' : 'CZ'}</div>
         </div>
         <div className="profCont">
             <div onClick={switchClick} style={switchIsToggle ? {background: '#4D4D4D'} : {background: '#66C2FF'}} className="dark-lightSwitch">
@@ -50,7 +52,7 @@ function TopMenu() {
             <div className="profile">
                 <img src={honzak} alt="" />
                 <p>
-                    Hello 
+                    {isEnglish ? 'Hello' : 'Ahoj'} 
                     <br /><span>Honzak</span>
                 </p>
             </div>

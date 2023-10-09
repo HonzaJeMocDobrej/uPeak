@@ -174,3 +174,35 @@
     }
 
 }
+
+.lBlack {
+    background-color: #333;
+    border-right: 2px solid rgba(255, 255, 255, 0.22);
+    z-index: 1;
+
+    .fullHeading{
+        .blackSpan {
+            color: white;
+        }
+    }
+
+    .shortHeading {
+        .blackSpan {
+            color: white;
+        }
+    }
+    .itemsCont {
+        li {
+            p {
+                color: white;
+            }
+            
+            &:hover {
+                background-color: rgba(#f4f4f4, 0.1);
+            }
+
+        }
+    }
+
+
+}

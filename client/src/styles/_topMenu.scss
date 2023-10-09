@@ -166,3 +166,26 @@
         }
     }
 }
+
+.tBlack {
+    background-color: #333;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.22);
+
+    .langCont {
+        .langSwitch {
+            background-color: #FFF;
+            color: #333;
+        }
+    }
+
+    .profCont {
+
+        .profile {
+            
+            p {
+                color: #FFF;
+            }
+        }
+    }
+    
+}

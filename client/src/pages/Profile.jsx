@@ -6,20 +6,26 @@ import '../styles/styles.css'
 
 function Profile(props) {
 
-    const {active, isEnglish, setIsEnglish} = props
+    const {active, isEnglish, setIsEnglish, isBlack, setIsBlack, switchStyle, setSwitchStyle} = props
 
   return (
     <>
-    <div className="menuCont">
+    <div className={`menuCont ${isBlack ? 'menuBlack' : null}`}>
         <LeftMenu
             active={active}
             isEnglish={isEnglish}
             setIsEnglish={setIsEnglish}
+            isBlack={isBlack}
         />
         <TopMenu
           isEnglish={isEnglish}
           setIsEnglish={setIsEnglish}
+          isBlack={isBlack}
+          setIsBlack={setIsBlack}
+          switchStyle={switchStyle}
+          setSwitchStyle={setSwitchStyle}
         />
+        <main className={`mainStuff ${isBlack ? 'mainBlack' : null}`}></main>
     </div>
     </>
   )

@@ -10,17 +10,64 @@ import { useState } from 'react'
 
 function Path() {
 
-  const [isEnglish, setIsEnglish] = useState(true)  
+  const [isEnglish, setIsEnglish] = useState(true)
+  const [isBlack, setIsBlack] = useState(false)
+  const [switchStyle, setSwitchStyle] = useState({})  
 
   return (
     <>
         <Router>
             <Routes>
-                <Route path='/' element={<Progress active='progress' isEnglish={isEnglish} setIsEnglish={setIsEnglish} />} />
-                <Route path='/todo' element={<ToDo active='todo' isEnglish={isEnglish} setIsEnglish={setIsEnglish} />} />
-                <Route path='/notes' element={<Notes active='notes' isEnglish={isEnglish} setIsEnglish={setIsEnglish} />} />
-                <Route path='/pomodoro' element={<Pomodoro active='pomodoro' isEnglish={isEnglish} setIsEnglish={setIsEnglish} />} />
-                <Route path='/profile' element={<Profile active='profile' isEnglish={isEnglish} setIsEnglish={setIsEnglish} />} />
+                <Route path='/' element={
+                  <Progress
+                   active='progress'
+                   isEnglish={isEnglish}
+                   setIsEnglish={setIsEnglish}
+                   isBlack={isBlack}
+                   setIsBlack={setIsBlack}
+                   switchStyle={switchStyle} 
+                   setSwitchStyle={setSwitchStyle}/>
+                } />
+                <Route path='/todo' element={
+                  <ToDo
+                   active='todo'
+                   isEnglish={isEnglish}
+                   setIsEnglish={setIsEnglish}
+                   isBlack={isBlack}
+                   setIsBlack={setIsBlack}
+                   switchStyle={switchStyle} 
+                   setSwitchStyle={setSwitchStyle}/>
+                } />
+                <Route path='/notes' element={
+                  <Notes
+                   active='notes'
+                   isEnglish={isEnglish}
+                   setIsEnglish={setIsEnglish}
+                   isBlack={isBlack}
+                   setIsBlack={setIsBlack}
+                   switchStyle={switchStyle} 
+                   setSwitchStyle={setSwitchStyle} />
+                } />
+                <Route path='/pomodoro' element={
+                  <Pomodoro
+                   active='pomodoro'
+                   isEnglish={isEnglish}
+                   setIsEnglish={setIsEnglish}
+                   isBlack={isBlack}
+                   setIsBlack={setIsBlack}
+                   switchStyle={switchStyle} 
+                   setSwitchStyle={setSwitchStyle}/>
+                } />
+                <Route path='/profile' element={
+                  <Profile
+                   active='profile'
+                   isEnglish={isEnglish}
+                   setIsEnglish={setIsEnglish}
+                   isBlack={isBlack}
+                   setIsBlack={setIsBlack}
+                   switchStyle={switchStyle} 
+                   setSwitchStyle={setSwitchStyle}/>
+                } />
             </Routes>
         </Router>
     </>

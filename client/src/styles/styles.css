@@ -372,6 +372,100 @@
   background-color: #333;
 }
 
+.login {
+  display: flex;
+  height: 100vh;
+}
+.login .lLogin {
+  height: 100%;
+  width: clamp(30rem, 45vw, 50rem);
+  background-color: aqua;
+  background-image: url(../assets/img/blueBg.png);
+  background-position: center;
+  background-size: cover;
+}
+.login .lLogin .fullHeading {
+  margin-top: 3.75rem;
+  font-family: Poppins;
+  font-size: 4rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 0;
+  text-align: center;
+}
+.login .lLogin .fullHeading .blackSpan {
+  color: white;
+  position: relative;
+}
+.login .lLogin .fullHeading .blackSpan .underline {
+  position: absolute;
+  height: 3.5px;
+  width: 97%;
+  left: 3%;
+  top: 5rem;
+  border-radius: 8px;
+  background-color: #333;
+}
+.login .rLogin {
+  display: flex;
+  align-items: center;
+}
+.login .rLogin .signUp {
+  height: 40rem;
+  width: 38rem;
+  margin-left: 18.75rem;
+  border-radius: 12px;
+  border: 1px solid #CCC;
+  background: #FFF;
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15));
+}
+.login .rLogin .signUp h2 {
+  color: #333;
+  font-family: Poppins;
+  font-size: 2rem;
+  margin-left: 2.75rem;
+  font-weight: 500;
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+.login .rLogin .signUp p {
+  color: #333;
+  font-family: Poppins;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-left: 4.25rem;
+  margin-bottom: 0;
+}
+.login .rLogin .signUp p:nth-child(2) {
+  margin-top: 1.5rem;
+}
+.login .rLogin .signUp input {
+  border-radius: 12px;
+  border: 1px solid #CCC;
+  background: #FFF;
+  width: 25rem;
+  height: 3rem;
+  margin-left: 4.75rem;
+  color: #999;
+  font-family: Poppins;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding-left: 1rem;
+}
+.login .rLogin .signUp button {
+  width: 26.25rem;
+  height: 3rem;
+  background-color: #09F;
+  border-radius: 12px;
+  color: #FFF;
+  font-family: Poppins;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-left: 4.75rem;
+  border: 0;
+  margin-top: 2rem;
+}
+
 html, body {
   margin: 0;
   padding: 0;

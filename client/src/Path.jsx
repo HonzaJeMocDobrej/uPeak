@@ -1,5 +1,5 @@
 // import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 
 import Progress from './pages/Progress'
 import ToDo from './pages/ToDo'
@@ -19,7 +19,10 @@ function Path() {
     <>
         <Router>
             <Routes>
-              <Route path='/' element={<Login />}></Route>
+              <Route path='/' element={<Navigate to='/login' />}>
+                
+              </Route>
+              <Route path='/login' element={<Login />}></Route>
                 <Route path='/progress' element={
                   <Progress
                    active='progress'

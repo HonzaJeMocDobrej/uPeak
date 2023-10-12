@@ -1,55 +1,101 @@
 .login {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
+
+    @media (max-width: 1320px) {
+        flex-direction: column;
+    }
 
     .lLogin {
-        height: 100%;
+        min-height: 100vh;
         width: clamp(30rem, 45vw, 50rem);
         background-color: aqua;
         background-image: url(../assets/img/blueBg.png);
         background-position: center;
         background-size: cover;
+
+        @media (max-width: 1760px) {
+            width: clamp(30rem, 30vw, 40rem);
+        }
+
+        @media (max-width: 1320px) {
+            display: none;
+        }
         
+        
+    }
+
+    .media1300 {
+        display: none;
+
         .fullHeading {
-            margin-top: 3.75rem;
-            font-family: Poppins;
-            font-size: 4rem;
-            font-weight: 500;
-            color: #333;
-            margin-bottom: 0;
-            text-align: center;
-            // padding-right: 1rem;
-    
             .blackSpan {
-                color: white;
-                position: relative;
-    
-                .underline {
-                    position: absolute;
-                    height: 3.5px;
-                    width: 97%;
-                    left: 3%;
-                    top: 5rem;
-                    border-radius: 8px;
-                    background-color: #333;    
-                }
+                color: #0099FF;
             }
+
+            .underline {
+                background-color: #0099FF;
+            }
+        }
+
+        @media (max-width: 1320px) {
+            display: block;
         }
     }
 
     .rLogin {
         display: flex;
-        align-items: center;
+        justify-content: center;
+        flex-direction: column;
         // justify-content: center;
+        padding-left: 18.75rem;
 
-        .signUp {
+        @media (max-width: 1500px) {
+            padding-left: 10rem;
+        }
+
+        @media (max-width: 1320px) {
+            width: 100%;
+            padding-left: 0;
+        }
+
+
+        .centerD {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            @media (max-width: 1320px) {
+                margin-top: 5rem;
+            }
+
+
+            .signUp {
             height: 40rem;
             width: 38rem;
-            margin-left: 18.75rem;
             border-radius: 12px;
             border: 1px solid #CCC;
             background: #FFF;
+            position: relative;
             filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15));
+
+            @media (max-width: 1320px) {
+                height: 30rem;
+                width: 29rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            @media (max-width: 550px) {
+                width: 100%;
+                border-left: 0;
+                border-right: 0;
+            }
+
+            
 
             h2 {
                 color: #333;
@@ -59,6 +105,11 @@
                 font-weight: 500;
                 margin-top: 2rem;
                 margin-bottom: 0;
+
+                @media (max-width: 1320px) {
+                    font-size: 1.5rem;
+                    margin-left: 0rem;
+                }
             }
 
             p {
@@ -68,9 +119,17 @@
                 font-weight: 500;
                 margin-left: 4.25rem;
                 margin-bottom: 0;
-
+                
                 &:nth-child(2) {
                     margin-top: 1.5rem;
+
+                    @media (max-width: 1320px) {
+                        margin-top: 0rem;
+                    }
+                }
+
+                @media (max-width: 1320px) {
+                    display: none;;
                 }
             }
 
@@ -82,17 +141,25 @@
                 height: 3rem;
                 margin-left: 4.75rem;
 
-                color: #999;
+                color: #808080;
                 font-family: Poppins;
                 font-size: 1.2rem;
                 font-weight: 500;
                 padding-left: 1rem;
+
+                @media (max-width: 1320px) {
+                    font-size: .9rem;
+                    height: 2.5rem;
+                    width: 17.5rem;
+                    margin-left: 0rem;
+                    margin-top: 1.5rem;
+                }
             }
 
             button {
                 width: 26.25rem;
                 height: 3rem;
-                background-color: #09F;
+                background-color: #0099FF;
                 border-radius: 12px;
                 color: #FFF;
                 font-family: Poppins;
@@ -101,7 +168,92 @@
                 margin-left: 4.75rem;
                 border: 0;
                 margin-top: 2rem;
+                cursor: pointer;
+                transition: 700ms;
+                
+                &:hover {
+                    background-color: white;
+                    color: #0099FF;
+                    border: solid 2px #0099FF;
+                    transition: 400ms background-color, color;
+                }
+                
+                &:active {
+                    transform: scale(.95);
+                    transition: 150ms;
+                }
+
+                @media (max-width: 1320px) {
+                    font-size: .9rem;
+                    height: 2.5rem;
+                    width: 18.75rem;
+                    margin-left: 0rem;
+                    margin-top: 1.5rem;
+                }
             }
+            
+        }
+    }
+
+    .accountInfo {
+        margin: auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        // bottom: 0rem;
+        margin-top: 2rem;
+        color: #999;
+        font-family: Open Sans;
+        font-size: 1.2rem;
+        font-weight: 400;
+        align-items: center;
+
+        @media (max-width: 1320px) {
+            font-size: .9rem;
+            margin-top: 1.5rem;
+            padding-bottom: 1rem;
+        }
+        
+        pre {
+            margin: 0;
+            color: #333;
+            font-family: Open Sans;
+            font-size: 1.2rem;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            cursor: pointer;
+
+            @media (max-width: 1320px) {
+            font-size: .9rem;
+        }
+        }
+    }
+}
+}
+
+.fullHeading {
+    margin-top: 3.75rem;
+    font-family: Poppins;
+    font-size: 4rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 0;
+    text-align: center;
+    // padding-right: 1rem;
+
+    .blackSpan {
+        color: white;
+        position: relative;
+
+        .underline {
+            position: absolute;
+            height: 3.5px;
+            width: 97%;
+            left: 3%;
+            top: 5rem;
+            border-radius: 8px;
+            background-color: #333;    
         }
     }
 }

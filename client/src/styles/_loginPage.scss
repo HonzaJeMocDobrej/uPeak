@@ -10,7 +10,8 @@
         min-height: 100vh;
         width: clamp(30rem, 45vw, 50rem);
         background-color: aqua;
-        background-image: url(../assets/img/blueBg.png);
+        background-image: url(../assets/img/subtle-prism.svg);
+        /* background by SVGBackgrounds.com */
         background-position: center;
         background-size: cover;
 
@@ -21,8 +22,36 @@
         @media (max-width: 1320px) {
             display: none;
         }
-        
-        
+    }
+
+    .diffBg {
+        background-image: url(../assets/img/radiant-gradient.svg);
+    }
+
+    .fullHeading {
+        margin-top: 3.75rem;
+        font-family: Poppins;
+        font-size: 4rem;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 0;
+        text-align: center;
+        // padding-right: 1rem;
+    
+        .blackSpan {
+            color: white;
+            position: relative;
+    
+            .underline {
+                position: absolute;
+                height: 3.5px;
+                width: 97%;
+                left: 3%;
+                top: 5rem;
+                border-radius: 8px;
+                background-color: white;    
+            }
+        }
     }
 
     .media1300 {
@@ -93,6 +122,7 @@
                 width: 100%;
                 border-left: 0;
                 border-right: 0;
+                border-radius: 0;
             }
 
             
@@ -191,7 +221,40 @@
                     margin-top: 1.5rem;
                 }
             }
+
+            .signInB {
+                background-color: white;
+                color: #0099FF;
+                border: solid 2px #0099FF;
+                transition: 700ms background-color, color ease-out;
+
+                &:hover {
+                    background-color: #09F;
+                    color: white;
+                    border: none;
+                    transition: 400ms background-color, color ease-in;
+                }
+            }
             
+        }
+
+        .signIn {
+            height:27rem;
+
+            @media (max-width: 1320px) {
+                height: 21rem;
+                width: 29rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            @media (max-width: 550px) {
+                width: 100%;
+                border-left: 0;
+                border-right: 0;
+                border-radius: 0;
+            }
         }
     }
 
@@ -232,28 +295,3 @@
 }
 }
 
-.fullHeading {
-    margin-top: 3.75rem;
-    font-family: Poppins;
-    font-size: 4rem;
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 0;
-    text-align: center;
-    // padding-right: 1rem;
-
-    .blackSpan {
-        color: white;
-        position: relative;
-
-        .underline {
-            position: absolute;
-            height: 3.5px;
-            width: 97%;
-            left: 3%;
-            top: 5rem;
-            border-radius: 8px;
-            background-color: #333;    
-        }
-    }
-}

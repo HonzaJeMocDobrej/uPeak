@@ -21,7 +21,7 @@
   font-family: Poppins;
   font-size: 4rem;
   font-weight: 500;
-  color: #09F;
+  color: #333;
   margin-bottom: 0;
 }
 @media (max-width: 1000px) {
@@ -30,7 +30,7 @@
   }
 }
 .lMenu .fullHeading .blackSpan {
-  color: #333;
+  color: #09F;
   position: relative;
 }
 .lMenu .fullHeading .blackSpan .underline {
@@ -48,7 +48,7 @@
   font-family: Poppins;
   font-size: 4rem;
   font-weight: 500;
-  color: #09F;
+  color: #333;
   margin-bottom: 0;
   display: none;
 }
@@ -65,7 +65,7 @@
   }
 }
 .lMenu .shortHeading .blackSpan {
-  color: #333;
+  color: #09F;
   position: relative;
 }
 .lMenu .shortHeading .blackSpan .underline {
@@ -167,11 +167,14 @@
   border-right: 2px solid rgba(255, 255, 255, 0.22);
   z-index: 1;
 }
-.lBlack .fullHeading .blackSpan {
+.lBlack .fullHeading {
+  color: white;
+}
+.lBlack .shortHeading {
   color: white;
 }
 .lBlack .shortHeading .blackSpan {
-  color: white;
+  color: #09F;
 }
 .lBlack .itemsCont li p {
   color: white;
@@ -385,7 +388,8 @@
   min-height: 100vh;
   width: clamp(30rem, 45vw, 50rem);
   background-color: aqua;
-  background-image: url(../assets/img/blueBg.png);
+  background-image: url(../assets/img/subtle-prism.svg);
+  /* background by SVGBackgrounds.com */
   background-position: center;
   background-size: cover;
 }
@@ -398,6 +402,31 @@
   .login .lLogin {
     display: none;
   }
+}
+.login .diffBg {
+  background-image: url(../assets/img/radiant-gradient.svg);
+}
+.login .fullHeading {
+  margin-top: 3.75rem;
+  font-family: Poppins;
+  font-size: 4rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 0;
+  text-align: center;
+}
+.login .fullHeading .blackSpan {
+  color: white;
+  position: relative;
+}
+.login .fullHeading .blackSpan .underline {
+  position: absolute;
+  height: 3.5px;
+  width: 97%;
+  left: 3%;
+  top: 5rem;
+  border-radius: 8px;
+  background-color: white;
 }
 .login .media1300 {
   display: none;
@@ -465,6 +494,7 @@
     width: 100%;
     border-left: 0;
     border-right: 0;
+    border-radius: 0;
   }
 }
 .login .rLogin .centerD .signUp h2 {
@@ -559,6 +589,38 @@
     margin-top: 1.5rem;
   }
 }
+.login .rLogin .centerD .signUp .signInB {
+  background-color: white;
+  color: #0099FF;
+  border: solid 2px #0099FF;
+  transition: 700ms background-color, color ease-out;
+}
+.login .rLogin .centerD .signUp .signInB:hover {
+  background-color: #09F;
+  color: white;
+  border: none;
+  transition: 400ms background-color, color ease-in;
+}
+.login .rLogin .centerD .signIn {
+  height: 27rem;
+}
+@media (max-width: 1320px) {
+  .login .rLogin .centerD .signIn {
+    height: 21rem;
+    width: 29rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media (max-width: 550px) {
+  .login .rLogin .centerD .signIn {
+    width: 100%;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+  }
+}
 .login .rLogin .accountInfo {
   margin: auto;
   width: 100%;
@@ -592,29 +654,6 @@
   .login .rLogin .accountInfo pre {
     font-size: 0.9rem;
   }
-}
-
-.fullHeading {
-  margin-top: 3.75rem;
-  font-family: Poppins;
-  font-size: 4rem;
-  font-weight: 500;
-  color: #333;
-  margin-bottom: 0;
-  text-align: center;
-}
-.fullHeading .blackSpan {
-  color: white;
-  position: relative;
-}
-.fullHeading .blackSpan .underline {
-  position: absolute;
-  height: 3.5px;
-  width: 97%;
-  left: 3%;
-  top: 5rem;
-  border-radius: 8px;
-  background-color: #333;
 }
 
 html, body {

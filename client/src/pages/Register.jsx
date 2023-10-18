@@ -1,17 +1,17 @@
 import { useNavigate } from "react-router-dom"
 
-function Login() {
+function Register() {
 
   let navigate = useNavigate()
 
-  const signUpClick = () => {
-    navigate('/signup')
+  const signInClick = () => {
+    navigate('/signin')
   }
 
   return (
     <>
     <div className="login">
-        <div className="lLogin diffBg">
+        <div className="lLogin">
             <h1 className='fullHeading'>u<span className='blackSpan'>Peak<div className="underline"></div></span></h1>
         </div>
         <div className="media1300">
@@ -19,15 +19,19 @@ function Login() {
         </div>
         <div className="rLogin">
           <div className="centerD">
-            <div className="signUp signIn">
-                <h2>Sign in</h2>
+            <div className="signUp">
+                <h2>Sign up</h2>
                 <p className="inputH">Username</p>
                 <input placeholder='Your Username' type="text" />
                 <p className="inputH">Password</p>
                 <input placeholder='Your Password' type="text" />
-                <button className="signInB">Sign In</button>
+                <p className="inputH">Repeat Password</p>
+                <input placeholder='Your Password Again' type="text" />
+                <p className="inputH">Country</p>
+                <input placeholder='Country' type="text" />
+                <button>Sign Up</button>
             </div>
-            <p className='accountInfo'>Do not have an account yet? <pre onClick={signUpClick}> Sign up</pre></p>
+            <p className='accountInfo'>Already have an account? <pre onClick={signInClick}> Sign in</pre></p>
           </div>
         </div>
     </div>
@@ -35,4 +39,4 @@ function Login() {
   )
 }
 
-export default Login
+export default Register

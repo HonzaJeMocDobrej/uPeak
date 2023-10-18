@@ -7,6 +7,7 @@ import Notes from './pages/Notes'
 import Pomodoro from './pages/Pomodoro'
 import Profile from './pages/Profile'
 import { useState } from 'react'
+import Register from './pages/Register'
 import Login from './pages/Login'
 
 function Path() {
@@ -19,10 +20,11 @@ function Path() {
     <>
         <Router>
             <Routes>
-              <Route path='/' element={<Navigate to='/login' />}>
+              <Route path='/' element={<Navigate to='/signin' />}>
                 
               </Route>
-              <Route path='/login' element={<Login />}></Route>
+              <Route path='/signin' element={<Login />}></Route>
+              <Route path='/signup' element={<Register />}></Route>
                 <Route path='/progress' element={
                   <Progress
                    active='progress'

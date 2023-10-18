@@ -47,7 +47,7 @@ function LeftMenu(props) {
                 <h1 className="shortHeading">u<span className='blackSpan'>P<div className="underline"></div></span></h1>
             </div>
             <ul className="itemsCont">
-                <li onMouseUp={() => univNavigate('/')} className='selected'>
+                <li onMouseUp={() => univNavigate('/progress')} className='selected'>
                     <img src={active ==='progress' ? trophyFill : (isBlack === true ? trophyWhiteSvg : trophy)} alt="" />
                     <p style={active === 'progress' ? selectedStyle : null}>{isEnglish ? 'Progress' : 'Progres'}</p>
                 </li>

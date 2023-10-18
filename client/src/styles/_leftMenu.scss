@@ -20,7 +20,7 @@
         font-family: Poppins;
         font-size: 4rem;
         font-weight: 500;
-        color: #09F;
+        color: #333;
         margin-bottom: 0;
 
         @media (max-width: 1000px) {
@@ -28,7 +28,7 @@
         }
 
         .blackSpan {
-            color: #333;
+            color: #09F;
             position: relative;
 
             .underline {
@@ -49,7 +49,7 @@
         font-family: Poppins;
         font-size: 4rem;
         font-weight: 500;
-        color: #09F;
+        color: #333;
         margin-bottom: 0;
         display: none;
 
@@ -64,7 +64,7 @@
         }
 
         .blackSpan {
-            color: #333;
+            color: #09F;
             position: relative;
 
             .underline {
@@ -181,14 +181,19 @@
     z-index: 1;
 
     .fullHeading{
+
+        color: white;
+
         .blackSpan {
-            color: white;
+            // color: white;
         }
     }
 
     .shortHeading {
+        color: white;
+
         .blackSpan {
-            color: white;
+            color: #09F;
         }
     }
     .itemsCont {

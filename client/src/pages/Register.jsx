@@ -1,12 +1,36 @@
+/* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom"
 
-function Register() {
+function Register(props) {
+
+  const {regData, setRegData} = props
 
   let navigate = useNavigate()
 
   const signInClick = () => {
     navigate('/signin')
   }
+
+  const univInpChange = (e, obj) => {
+    const {value} = e.target
+    setRegData(prevState => {
+      return {
+        ...prevState, [obj]: value 
+      }
+    })
+  }
+
+  const submit = () => {
+    console.log(regData);
+    setRegData({
+        user: '',
+        pass: '',
+        repPass: '',
+        country: ''
+      })
+  }
+
+
 
   return (
     <>
@@ -22,14 +46,14 @@ function Register() {
             <div className="signUp">
                 <h2>Sign up</h2>
                 <p className="inputH">Username</p>
-                <input placeholder='Your Username' type="text" />
+                <input onChange={() => univInpChange(event, "user")} value={regData.user} placeholder='Your Username' type="text" />
                 <p className="inputH">Password</p>
-                <input placeholder='Your Password' type="text" />
+                <input onChange={() => univInpChange(event, "pass")} value={regData.pass} placeholder='Your Password' type="text" />
                 <p className="inputH">Repeat Password</p>
-                <input placeholder='Your Password Again' type="text" />
+                <input onChange={() => univInpChange(event, "repPass")} value={regData.repPass} placeholder='Your Password Again' type="text" />
                 <p className="inputH">Country</p>
-                <input placeholder='Country' type="text" />
-                <button>Sign Up</button>
+                <input onChange={() => univInpChange(event, "country")} value={regData.country} placeholder='Country' type="text" />
+                <button onClick={submit}>Sign Up</button>
             </div>
             <p className='accountInfo'>Already have an account? <pre onClick={signInClick}> Sign in</pre></p>
           </div>

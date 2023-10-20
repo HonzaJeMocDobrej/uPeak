@@ -15,6 +15,12 @@ function Path() {
   const [isEnglish, setIsEnglish] = useState(true)
   const [isBlack, setIsBlack] = useState(false)
   const [switchStyle, setSwitchStyle] = useState({})  
+  const [regData, setRegData] = useState({
+    user: null,
+    pass: null,
+    repPass: null,
+    country: null
+  })
 
   return (
     <>
@@ -24,7 +30,12 @@ function Path() {
                 
               </Route>
               <Route path='/signin' element={<Login />}></Route>
-              <Route path='/signup' element={<Register />}></Route>
+              <Route path='/signup' element={<Register
+                regData={regData}
+                setRegData={setRegData}
+              />}>
+
+              </Route>
                 <Route path='/progress' element={
                   <Progress
                    active='progress'

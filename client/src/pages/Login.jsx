@@ -1,11 +1,32 @@
+/* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom"
 
-function Login() {
+function Login(props) {
+
+  const {logData, setLogData} = props; 
 
   let navigate = useNavigate()
+  
 
   const signUpClick = () => {
     navigate('/signup')
+  }
+
+  const univInpChange = (e, obj) => {
+    const {value} = e.target
+    setLogData(prevState => {
+      return {
+        ...prevState, [obj]: value 
+      }
+    })
+  }
+
+  const submit = () => {
+    console.log(logData);
+    setLogData({
+        user: '',
+        pass: '',
+      })
   }
 
   return (
@@ -22,10 +43,10 @@ function Login() {
             <div className="signUp signIn">
                 <h2>Sign in</h2>
                 <p className="inputH">Username</p>
-                <input placeholder='Your Username' type="text" />
+                <input onChange={() => univInpChange(event, "user")} value={logData.user} placeholder='Your Username' type="text" />
                 <p className="inputH">Password</p>
-                <input placeholder='Your Password' type="text" />
-                <button className="signInB">Sign In</button>
+                <input onChange={() => univInpChange(event, "pass")} value={logData.pass} placeholder='Your Password' type="text" />
+                <button onClick={submit} className="signInB">Sign In</button>
             </div>
             <p className='accountInfo'>Do not have an account yet? <pre onClick={signUpClick}> Sign up</pre></p>
           </div>

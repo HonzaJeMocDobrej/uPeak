@@ -177,6 +177,11 @@
                 font-weight: 500;
                 padding-left: 1rem;
 
+                &:focus {
+                    outline: #0099FF 2px solid;
+                    // border: none;
+                }
+
                 @media (max-width: 1320px) {
                     font-size: .9rem;
                     height: 2.5rem;

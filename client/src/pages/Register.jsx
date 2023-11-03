@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom"
 
+import axios from "axios"
+
 function Register(props) {
 
   const {regData, setRegData} = props
@@ -27,6 +29,10 @@ function Register(props) {
         pass: '',
         repPass: '',
         country: ''
+      })
+      axios.get("http://worldtimeapi.org/api/timezone/Europe/Prague")
+      .then((res) => {
+        console.log(res.data);
       })
   }
 

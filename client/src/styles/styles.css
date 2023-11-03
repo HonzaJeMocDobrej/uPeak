@@ -546,6 +546,9 @@
   font-weight: 500;
   padding-left: 1rem;
 }
+.login .rLogin .centerD .signUp input:focus {
+  outline: #0099FF 2px solid;
+}
 @media (max-width: 1320px) {
   .login .rLogin .centerD .signUp input {
     font-size: 0.9rem;

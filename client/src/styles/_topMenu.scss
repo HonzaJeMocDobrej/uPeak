@@ -4,7 +4,10 @@
     width: calc(100% - 24rem);
     height: 7rem;
     border-bottom: 2px solid rgba(51, 51, 51, 0.09);
+    border-left: 2px solid rgba(51, 51, 51, 0.09);
     display: flex;
+    z-index: 2;
+    background-color: #FFF;
 
     @media (max-width: 1000px) {
         width: calc(100% - 8rem);

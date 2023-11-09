@@ -1,0 +1,186 @@
+main {
+    .conts {
+        display: flex;
+
+        @media (max-width: 1200px) {
+            flex-direction: column;
+        }
+
+        .selectPageCont, .selectTypeCont {
+            display: flex;
+            height: fit-content;
+            width: 25%;
+
+            @media (max-width: 1000px) {
+                width: fit-content;                
+            }
+        }
+
+        .selectPageCont {
+            margin-left: 4rem;
+            margin-top: 4rem;
+            align-items: flex-end;
+
+            @media (max-width: 480px) {
+                margin-left: 1.5rem;
+                margin-top: 3.5rem;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+                margin: 0;
+                color: #333;
+                text-align: center;
+                font-family: Poppins;
+                font-weight: 700;
+                line-height: normal;
+                cursor: pointer;
+
+                @media (max-width: 1000px) {
+                    font-size: 2rem;                
+                }
+
+                @media (max-width: 480px) {
+                    font-size: 1.5rem;
+                }
+            }
+
+            &::before {
+                content: url('../assets/icons/dropdown.svg');
+                display: inline-block;
+                margin-bottom: .5rem;
+                transform: scale(.5);
+            }
+            
+        }
+
+        .selectTypeCont {
+            margin-left: 4rem;
+            margin-top: 4.75rem;
+            align-items: flex-end;
+            justify-content: flex-end;
+
+            @media (max-width: 1200px) {
+                order: 2;
+                margin-top: 1rem;
+                justify-content: flex-start;
+            }
+
+            @media (max-width: 480px) {
+                margin-left: 1.5rem;
+                margin-top: .5rem;
+            }
+
+            h3 {
+                padding-right: 4.5rem;
+                font-size: 1.75rem;
+                margin: 0;
+                color: #333;
+                text-align: center;
+                font-family: Poppins;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                cursor: pointer;
+
+                @media (max-width: 1000px) {
+                    font-size: 1.25rem;                
+                }
+
+                @media (max-width: 480px) {
+                    font-size: 1rem;
+                }
+            }
+
+            &::before {
+                content: url('../assets/icons/dropdown.svg');
+                display: inline-block;
+                margin-bottom: .25rem;
+                transform: scale(.5);
+            }
+        }
+
+        .counterCont {
+            // background-color: aqua;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            @media (max-width: 1200px) {
+                order: 3;
+                width: 100%;
+            }
+
+            .counter {
+                height: 18rem;
+                width: 18rem;
+                border-radius: 100%;
+                margin-top: 10rem;
+
+                @media (max-width: 1200px) {
+                    margin-top: 2rem;
+                }
+
+                @media (max-width: 1000px) {
+                    height: 14rem;
+                    width: 14rem;                
+                }
+
+                @media (max-width: 480px) {
+                    height: 9rem;
+                    width: 9rem;
+                    margin-top: 5rem;
+                }
+                
+                background: linear-gradient(.12turn, rgba($color: #FFA800, $alpha: 1.0), rgba($color: #FFA800, $alpha: 0));
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .counterInside {
+                    height: 91%;
+                    width: 91%;
+                    border-radius: 100%;
+                    
+                    background: #FFF;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: #FFA800;
+                    font-family: Poppins;
+                    font-size: 7rem;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: normal;
+
+                    @media (max-width: 1000px) {
+                        font-size: 5.5rem;               
+                    }
+
+                    @media (max-width: 480px) {
+                        font-size: 3.5rem;
+                    }
+                }
+            }
+
+            h2 {
+                color: #FFA800;
+                text-align: center;
+                font-family: Open Sans;
+                font-size: 2.5rem;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+
+                @media (max-width: 1000px) {
+                    font-size: 2rem;                
+                }
+
+                @media (max-width: 480px) {
+                    font-size: 1.25rem;
+                }
+            }
+        }
+    } 
+}

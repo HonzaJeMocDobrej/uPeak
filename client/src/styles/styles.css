@@ -21,7 +21,6 @@ main .conts .selectPageCont, main .conts .selectTypeCont {
 main .conts .selectPageCont {
   margin-left: 4rem;
   margin-top: 4rem;
-  align-items: flex-end;
 }
 @media (max-width: 480px) {
   main .conts .selectPageCont {
@@ -29,7 +28,16 @@ main .conts .selectPageCont {
     margin-top: 3.5rem;
   }
 }
-main .conts .selectPageCont h2 {
+main .conts .selectPageCont .h2Cont {
+  position: relative;
+  display: flex;
+  align-items: end;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+main .conts .selectPageCont .h2Cont h2 {
   font-size: 2.5rem;
   margin: 0;
   color: #333;
@@ -37,23 +45,87 @@ main .conts .selectPageCont h2 {
   font-family: Poppins;
   font-weight: 700;
   line-height: normal;
-  cursor: pointer;
+  position: relative;
 }
 @media (max-width: 1000px) {
-  main .conts .selectPageCont h2 {
+  main .conts .selectPageCont .h2Cont h2 {
     font-size: 2rem;
   }
 }
 @media (max-width: 480px) {
-  main .conts .selectPageCont h2 {
+  main .conts .selectPageCont .h2Cont h2 {
     font-size: 1.5rem;
   }
 }
-main .conts .selectPageCont::before {
+main .conts .selectPageCont .h2Cont::before {
   content: url("../assets/icons/dropdown.svg");
   display: inline-block;
   margin-bottom: 0.5rem;
   transform: scale(0.5);
+}
+main .conts .selectPageCont .h2Cont ul {
+  position: absolute;
+  top: 4rem;
+  list-style-type: none;
+  padding: 0 0 0;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: Open Sans;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  z-index: 2;
+}
+@media (max-width: 1000px) {
+  main .conts .selectPageCont .h2Cont ul {
+    top: 2rem;
+  }
+}
+main .conts .selectPageCont .h2Cont ul li {
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #999;
+  cursor: pointer;
+}
+main .conts .selectPageCont .h2Cont ul li:not(.selectedLi) {
+  background-color: #FFF;
+}
+main .conts .selectPageCont .h2Cont ul li:hover:not(.selectedLi) {
+  background-color: #FCFCFC;
+}
+main .conts .selectPageCont .h2Cont ul li:nth-child(1) {
+  border-radius: 1rem 1rem 0 0;
+  border-top: 1px solid #CCC;
+  border-left: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+}
+main .conts .selectPageCont .h2Cont ul li:nth-child(2) {
+  border: 1px solid #CCC;
+}
+main .conts .selectPageCont .h2Cont ul li:nth-child(3) {
+  border-radius: 0 0 1rem 1rem;
+  border-bottom: 1px solid #CCC;
+  border-left: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+}
+main .conts .selectPageCont .h2Cont ul .selectedLi {
+  background-color: #0099FF;
+  color: white;
+}
+main .conts .selectPageCont .rotate:before {
+  transition: 0.25s;
+  transform: rotate(180deg) scale(0.5);
+}
+main .conts .selectPageCont .goBack:before {
+  transition: 0.25s;
+  transform: rotate(0deg) scale(0.5);
 }
 main .conts .selectTypeCont {
   margin-left: 4rem;
@@ -74,7 +146,13 @@ main .conts .selectTypeCont {
     margin-top: 0.5rem;
   }
 }
-main .conts .selectTypeCont h3 {
+main .conts .selectTypeCont .h3Cont {
+  position: relative;
+  display: flex;
+  align-items: end;
+  cursor: pointer;
+}
+main .conts .selectTypeCont .h3Cont h3 {
   padding-right: 4.5rem;
   font-size: 1.75rem;
   margin: 0;
@@ -87,20 +165,98 @@ main .conts .selectTypeCont h3 {
   cursor: pointer;
 }
 @media (max-width: 1000px) {
-  main .conts .selectTypeCont h3 {
+  main .conts .selectTypeCont .h3Cont h3 {
     font-size: 1.25rem;
   }
 }
 @media (max-width: 480px) {
-  main .conts .selectTypeCont h3 {
+  main .conts .selectTypeCont .h3Cont h3 {
     font-size: 1rem;
   }
 }
-main .conts .selectTypeCont::before {
+main .conts .selectTypeCont .h3Cont::before {
   content: url("../assets/icons/dropdown.svg");
   display: inline-block;
   margin-bottom: 0.25rem;
   transform: scale(0.5);
+}
+main .conts .selectTypeCont .h3Cont ul {
+  position: absolute;
+  top: 2.5rem;
+  list-style-type: none;
+  padding: 0 0 0;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: Open Sans;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% - 4.5rem);
+  z-index: 1;
+}
+@media (max-width: 1000px) {
+  main .conts .selectTypeCont .h3Cont ul {
+    top: 1.5rem;
+    font-size: 0.75rem;
+  }
+}
+main .conts .selectTypeCont .h3Cont ul li {
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #999;
+  cursor: pointer;
+}
+@media (max-width: 1000px) {
+  main .conts .selectTypeCont .h3Cont ul li {
+    height: 2rem;
+  }
+}
+main .conts .selectTypeCont .h3Cont ul li:not(.selectedLi) {
+  background-color: #FFF;
+}
+main .conts .selectTypeCont .h3Cont ul li:hover:not(.selectedLi) {
+  background-color: #FCFCFC;
+}
+main .conts .selectTypeCont .h3Cont ul li:nth-child(1) {
+  border-radius: 1rem 1rem 0 0;
+  border-top: 1px solid #CCC;
+  border-left: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+}
+@media (max-width: 1000px) {
+  main .conts .selectTypeCont .h3Cont ul li:nth-child(1) {
+    border-radius: 0.75rem 0.75rem 0 0;
+  }
+}
+main .conts .selectTypeCont .h3Cont ul li:nth-child(2) {
+  border-radius: 0 0 1rem 1rem;
+  border-bottom: 1px solid #CCC;
+  border-top: 1px solid #CCC;
+  border-left: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+}
+@media (max-width: 1000px) {
+  main .conts .selectTypeCont .h3Cont ul li:nth-child(2) {
+    border-radius: 0 0 0.75rem 0.75rem;
+  }
+}
+main .conts .selectTypeCont .h3Cont ul .selectedLi {
+  background-color: #0099FF;
+  color: white;
+}
+main .conts .selectTypeCont .rotate:before {
+  transition: 0.25s;
+  transform: rotate(180deg) scale(0.5);
+}
+main .conts .selectTypeCont .goBack:before {
+  transition: 0.25s;
+  transform: rotate(0deg) scale(0.5);
 }
 main .conts .counterCont {
   width: 50%;
@@ -185,6 +341,33 @@ main .conts .counterCont h2 {
   main .conts .counterCont h2 {
     font-size: 1.25rem;
   }
+}
+
+.mainBlack .h2Cont h2 {
+  color: white !important;
+}
+.mainBlack .h2Cont::before {
+  filter: invert(100%) sepia(55%) saturate(386%) hue-rotate(218deg) brightness(120%) contrast(100%);
+}
+.mainBlack .h2Cont ul li:not(.selectedLi) {
+  background-color: #333 !important;
+  color: #FFF !important;
+}
+.mainBlack .h2Cont ul li:hover:not(.selectedLi) {
+  background-color: rgb(77, 77, 77) !important;
+}
+.mainBlack .h3Cont h3 {
+  color: white !important;
+}
+.mainBlack .h3Cont::before {
+  filter: invert(100%) sepia(55%) saturate(386%) hue-rotate(218deg) brightness(120%) contrast(100%);
+}
+.mainBlack .h3Cont ul li:not(.selectedLi) {
+  background-color: #333 !important;
+  color: #FFF !important;
+}
+.mainBlack .h3Cont ul li:hover:not(.selectedLi) {
+  background-color: rgb(77, 77, 77) !important;
 }
 
 .lMenu {
@@ -547,6 +730,7 @@ main .conts .counterCont h2 {
 .tBlack {
   background-color: #333;
   border-bottom: 2px solid rgba(255, 255, 255, 0.22);
+  border-left: 2px solid rgba(255, 255, 255, 0.22);
 }
 .tBlack .langCont .langSwitch {
   background-color: #FFF;

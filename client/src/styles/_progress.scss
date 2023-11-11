@@ -19,14 +19,20 @@ main {
         .selectPageCont {
             margin-left: 4rem;
             margin-top: 4rem;
-            align-items: flex-end;
 
             @media (max-width: 480px) {
                 margin-left: 1.5rem;
                 margin-top: 3.5rem;
             }
 
-            h2 {
+            .h2Cont {
+                position: relative;
+                display: flex;
+                align-items: end;
+                cursor: pointer;
+                user-select: none;
+                
+                h2 {
                 font-size: 2.5rem;
                 margin: 0;
                 color: #333;
@@ -34,8 +40,8 @@ main {
                 font-family: Poppins;
                 font-weight: 700;
                 line-height: normal;
-                cursor: pointer;
-
+                position: relative;
+                
                 @media (max-width: 1000px) {
                     font-size: 2rem;                
                 }
@@ -44,7 +50,7 @@ main {
                     font-size: 1.5rem;
                 }
             }
-
+            
             &::before {
                 content: url('../assets/icons/dropdown.svg');
                 display: inline-block;
@@ -52,8 +58,85 @@ main {
                 transform: scale(.5);
             }
             
-        }
+            ul {
+                position: absolute;
+                top: 4rem; 
+                list-style-type: none;
+                padding: 0 0 0;
+                margin-left: .3rem;
+                margin-right: .3rem;
+                text-align: center;
+                font-size: 1rem;
+                font-weight: 600;
+                font-family: Open Sans;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                z-index: 2;
 
+                @media (max-width: 1000px) {
+                    top: 2rem;                
+                }
+
+                li {
+                    height: 2.5rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    color: #999;
+                    cursor: pointer;
+
+                    &:not(.selectedLi) {
+                        background-color: #FFF;
+                    }
+
+                    &:hover:not(.selectedLi) {
+                        background-color: #FCFCFC;
+                    }
+
+                    &:nth-child(1){
+                        border-radius: 1rem 1rem 0 0;
+                        border-top: 1px solid #CCC;
+                        border-left: 1px solid #CCC;
+                        border-right: 1px solid #CCC;
+                    }
+
+                    &:nth-child(2){
+                        border: 1px solid #CCC;
+                    }
+
+                    &:nth-child(3){
+                        border-radius: 0 0 1rem 1rem;
+                        border-bottom: 1px solid #CCC;
+                        border-left: 1px solid #CCC;
+                        border-right: 1px solid #CCC;
+                    }
+                }
+                
+                .selectedLi {
+                    background-color: #0099FF;
+                    color: white;
+                }
+            }
+            
+        }
+            .rotate{
+                &:before {
+                    transition: .25s;
+                    transform: rotate(180deg) scale(.5);
+                }
+            }  
+
+            .goBack {
+                &:before {
+                    transition: .25s;
+                    transform: rotate(0deg) scale(.5);
+                }
+            }
+        }
+        
         .selectTypeCont {
             margin-left: 4rem;
             margin-top: 4.75rem;
@@ -71,7 +154,13 @@ main {
                 margin-top: .5rem;
             }
 
-            h3 {
+            .h3Cont {
+                position: relative;
+                display: flex;
+                align-items: end;
+                cursor: pointer;
+                
+                h3 {
                 padding-right: 4.5rem;
                 font-size: 1.75rem;
                 margin: 0;
@@ -86,10 +175,11 @@ main {
                 @media (max-width: 1000px) {
                     font-size: 1.25rem;                
                 }
-
+                
                 @media (max-width: 480px) {
                     font-size: 1rem;
                 }
+               
             }
 
             &::before {
@@ -98,6 +188,96 @@ main {
                 margin-bottom: .25rem;
                 transform: scale(.5);
             }
+
+            ul {
+                position: absolute;
+                top: 2.5rem; 
+                list-style-type: none;
+                padding: 0 0 0;
+                margin-left: .3rem;
+                margin-right: .3rem;
+                text-align: center;
+                font-size: 1rem;
+                font-weight: 600;
+                font-family: Open Sans;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: calc(100% - 4.5rem);
+                z-index: 1;
+
+                @media (max-width: 1000px) {
+                    top: 1.5rem;
+                    font-size: .75rem;                
+                }
+
+                li {
+                    height: 2.5rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    color: #999;
+                    cursor: pointer;
+
+                    @media (max-width: 1000px) {
+                        height: 2rem;
+                    }
+
+                    &:not(.selectedLi) {
+                        background-color: #FFF;
+                    }
+
+                    &:hover:not(.selectedLi) {
+                        background-color: #FCFCFC;
+                    }
+
+                    &:nth-child(1){
+                        border-radius: 1rem 1rem 0 0;
+                        border-top: 1px solid #CCC;
+                        border-left: 1px solid #CCC;
+                        border-right: 1px solid #CCC;
+
+                        @media (max-width: 1000px) {
+                            border-radius: .75rem .75rem 0 0;
+                        }
+                    }
+
+                    &:nth-child(2){
+                        border-radius: 0 0 1rem 1rem;
+                        border-bottom: 1px solid #CCC;
+                        border-top: 1px solid #CCC;
+                        border-left: 1px solid #CCC;
+                        border-right: 1px solid #CCC;
+
+                        @media (max-width: 1000px) {
+                            border-radius: 0 0 .75rem .75rem;
+                        }
+                    }
+                }
+                
+                .selectedLi {
+                    background-color: #0099FF;
+                    color: white;
+                }
+            }
+            
+        }
+
+        .rotate{
+            &:before {
+                transition: .25s;
+                transform: rotate(180deg) scale(.5);
+            }
+        }  
+
+        .goBack {
+            &:before {
+                transition: .25s;
+                transform: rotate(0deg) scale(.5);
+            }
+        }
+            
         }
 
         .counterCont {
@@ -183,4 +363,54 @@ main {
             }
         }
     } 
+}
+
+.mainBlack {
+    .h2Cont {
+        h2 {
+            color: white !important;
+        }
+
+        &::before {
+            filter: invert(100%) sepia(55%) saturate(386%) hue-rotate(218deg) brightness(120%) contrast(100%);
+        }
+
+        ul {
+            li {
+                &:not(.selectedLi) {
+                    background-color: #333 !important;
+                    color: #FFF !important;
+                }
+
+                &:hover:not(.selectedLi) {
+                    background-color: rgb(77, 77, 77) !important;
+                }
+            }
+            
+        }
+    }
+
+    .h3Cont {
+        h3 {
+            color: white !important;
+        }
+
+        &::before {
+            filter: invert(100%) sepia(55%) saturate(386%) hue-rotate(218deg) brightness(120%) contrast(100%);
+        }
+
+        ul {
+            li {
+                &:not(.selectedLi) {
+                    background-color: #333 !important;
+                    color: #FFF !important;
+                }
+
+                &:hover:not(.selectedLi) {
+                    background-color: rgb(77, 77, 77) !important;
+                }
+            }
+            
+        }
+    }
 }

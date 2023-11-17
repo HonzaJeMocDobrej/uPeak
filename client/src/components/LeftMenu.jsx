@@ -22,12 +22,15 @@ import honzak from '../assets/img/honzak.png'
 import '../styles/styles.css'
 
 import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
 
 
 function LeftMenu(props) {
 
     const {active, isEnglish, isBlack} = props
+
+    const [height, setHeight] = useState(window.innerHeight)
 
     let navigate = useNavigate()
 
@@ -40,6 +43,14 @@ function LeftMenu(props) {
         'fontWeight': 700,
       }
 
+      useEffect(() => {
+        const handleResize = () => {
+                // console.log(`changed, height: ${height}`);
+                setHeight(window.innerHeight)
+        }
+          window.addEventListener('resize', handleResize)
+        }, )
+
   return (
     <>
         <nav className={`lMenu ${isBlack ? 'lBlack' : null}`}>
@@ -47,7 +58,7 @@ function LeftMenu(props) {
                 <h1 className='fullHeading'>u<span className='blackSpan'>Peak<div className="underline"></div></span></h1>
                 <h1 className="shortHeading">u<span className='blackSpan'>P<div className="underline"></div></span></h1>
             </div>
-            <ul className="itemsCont">
+            <ul style={height <= 650 ? {height: `${height / 10}%`} : null } className="itemsCont">
                 <li onMouseUp={() => univNavigate('/progress')} className='selected'>
                     <img src={active ==='progress' ? trophyFill : (isBlack === true ? trophyWhiteSvg : trophy)} alt="" />
                     <p style={active === 'progress' ? selectedStyle : null}>{isEnglish ? 'Progress' : 'Progres'}</p>

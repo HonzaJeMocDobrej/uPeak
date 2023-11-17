@@ -6,7 +6,7 @@ import ToDo from './pages/ToDo'
 import Notes from './pages/Notes'
 import Pomodoro from './pages/Pomodoro'
 import Profile from './pages/Profile'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Register from './pages/Register'
 import Login from './pages/Login'
 
@@ -25,6 +25,10 @@ function Path() {
     user: null,
     pass: null,
   })
+
+  useEffect(() => {
+    isBlack ? document.body.classList.add('bodyScroll') : document.body.classList.remove('bodyScroll')
+  }, [isBlack])
 
   return (
     <>

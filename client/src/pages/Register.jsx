@@ -1,5 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom"
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+import dropdown from '../assets/icons/dropdownFill.svg'
 
 import axios from "axios"
 
@@ -36,6 +39,24 @@ function Register(props) {
       })
   }
 
+  const options = [
+    { value: 'one', label: 'One' },
+    { value: 'two', label: 'Two', className: 'myOptionClassName' },
+    {
+     type: 'group', name: 'group1', items: [
+       { value: 'three', label: 'Three', className: 'myOptionClassName' },
+       { value: 'four', label: 'Four' }
+     ]
+    },
+    {
+     type: 'group', name: 'group2', items: [
+       { value: 'five', label: 'Five' },
+       { value: 'six', label: 'Six' }
+     ]
+    }
+  ];
+  // const defaultOption = options[0];
+
 
 
   return (
@@ -58,7 +79,19 @@ function Register(props) {
                 <p className="inputH">Repeat Password</p>
                 <input onChange={() => univInpChange(event, "repPass")} value={regData.repPass} placeholder='Your Password Again' type="text" />
                 <p className="inputH">Country</p>
-                <input onChange={() => univInpChange(event, "country")} value={regData.country} placeholder='Country' type="text" />
+                {/* <input onChange={() => univInpChange(event, "country")} value={regData.country} placeholder='Country' type="text" /> */}
+                <Dropdown 
+                  options={options}
+                  onChange={null} 
+                  placeholder="Country" 
+                  placeholderClassName='dropdownPlaceholder'
+                  className="dropdownRoot"
+                  controlClassName="dropdownShown"
+                  menuClassName='dropdownMenu' 
+                  // arrowClassName='arrow'
+                  arrowClosed={<img src={dropdown} className="arrow" />}
+                  arrowOpen={<img src={dropdown} className="arrow rotate" />}
+                  />
                 <button onClick={submit}>Sign Up</button>
             </div>
             <p className='accountInfo'>Already have an account? <pre onClick={signInClick}> Sign in</pre></p>

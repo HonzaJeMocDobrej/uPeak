@@ -895,6 +895,8 @@ main .conts .counterCont h2 {
   justify-content: center;
   flex-direction: column;
   padding-left: 18.75rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 @media (max-width: 1500px) {
   .login .rLogin {
@@ -1105,6 +1107,75 @@ main .conts .counterCont h2 {
   .login .rLogin .accountInfo pre {
     font-size: 0.9rem;
   }
+}
+
+.dropdownRoot {
+  display: flex;
+}
+.dropdownRoot .dropdownShown {
+  height: 51.6px;
+  padding-left: 1rem;
+  width: 419.6px;
+  margin-left: 4.75rem;
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  border: 1px solid #CCC;
+  background: #FFF;
+  color: #808080;
+  font-family: Poppins;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.dropdownRoot .dropdownShown .arrow {
+  position: absolute;
+  right: 1.5rem;
+  margin-top: -0.125rem;
+  transition: 250ms;
+}
+
+.rotate {
+  transform: rotate(180deg);
+  transition: 250ms;
+}
+
+.dropdownMenu {
+  width: 419.6px !important;
+  margin-left: 4.75rem;
+  border-radius: 12px;
+  border: 1px solid #CCC;
+  background: #FFF;
+  color: #b6b6b6;
+  font-family: Poppins;
+  font-size: 1rem;
+  font-weight: 500;
+  /* Chrome, Edge, and Safari */
+}
+.dropdownMenu {
+  scrollbar-width: thin;
+  scrollbar-color: #b8e3ff #ffffff;
+}
+.dropdownMenu::-webkit-scrollbar {
+  width: 12px;
+}
+.dropdownMenu::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+.dropdownMenu::-webkit-scrollbar-thumb {
+  background-color: #b8e3ff;
+  border-radius: 12px;
+  border: 3px solid #ffffff;
+}
+.dropdownMenu .Dropdown-option {
+  padding: 0.5rem 1rem;
+}
+.dropdownMenu .Dropdown-title {
+  padding: 0.5rem 1.5rem !important;
+}
+
+.dropdownPlaceholder {
+  color: #b6b6b6;
 }
 
 html, body {

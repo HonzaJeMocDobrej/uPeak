@@ -320,6 +320,14 @@
         font-size: 1.2rem;
         font-weight: 500;
         cursor: pointer;
+
+        @media (max-width: 1320px) {
+            font-size: .9rem;
+            height: 43.3333px;
+            width: 299.333px;
+            margin-left: 0rem;
+            margin-top: 1.5rem;
+        }
     
         .arrow {
             position: absolute;
@@ -327,13 +335,13 @@
             margin-top: -.125rem;
             transition: 250ms;
         }
+        .rotate {
+            transform: rotate(180deg);
+            transition: 250ms;
+        }
     }
 }
 
-.rotate {
-    transform: rotate(180deg);
-    transition: 250ms;
-}
 
 .dropdownMenu {
     // padding-left: 1rem;
@@ -346,6 +354,14 @@
     font-family: Poppins;
     font-size: 1rem;
     font-weight: 500;
+
+    @media (max-width: 1320px) {
+        font-size: .9rem;
+        width: 299.333px !important;
+        margin-left: 0rem;
+        margin-top: 1.5rem;
+    }
+
     & {
         scrollbar-width: thin;
         scrollbar-color: #b8e3ff #ffffff;

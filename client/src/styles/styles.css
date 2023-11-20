@@ -1128,14 +1128,22 @@ main .conts .counterCont h2 {
   font-weight: 500;
   cursor: pointer;
 }
+@media (max-width: 1320px) {
+  .dropdownRoot .dropdownShown {
+    font-size: 0.9rem;
+    height: 43.3333px;
+    width: 299.333px;
+    margin-left: 0rem;
+    margin-top: 1.5rem;
+  }
+}
 .dropdownRoot .dropdownShown .arrow {
   position: absolute;
   right: 1.5rem;
   margin-top: -0.125rem;
   transition: 250ms;
 }
-
-.rotate {
+.dropdownRoot .dropdownShown .rotate {
   transform: rotate(180deg);
   transition: 250ms;
 }
@@ -1151,6 +1159,14 @@ main .conts .counterCont h2 {
   font-size: 1rem;
   font-weight: 500;
   /* Chrome, Edge, and Safari */
+}
+@media (max-width: 1320px) {
+  .dropdownMenu {
+    font-size: 0.9rem;
+    width: 299.333px !important;
+    margin-left: 0rem;
+    margin-top: 1.5rem;
+  }
 }
 .dropdownMenu {
   scrollbar-width: thin;

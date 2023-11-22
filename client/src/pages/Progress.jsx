@@ -49,7 +49,7 @@ return (
         setSwitchStyle={setSwitchStyle}
       />
       <main className={`mainStuff ${isBlack ? 'mainBlack' : null}`}>
-        <div className="conts">
+        <div className="progressConts">
           <div className="selectPageCont">
             <div onClick={toggleDropdownPage} className={`h2Cont ${isPageOpen ? 'rotate' : 'goBack'}`}>
               <h2>{page}</h2>

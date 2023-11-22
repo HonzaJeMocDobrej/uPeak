@@ -1,34 +1,34 @@
-main .conts {
+main .progressConts {
   display: flex;
 }
 @media (max-width: 1200px) {
-  main .conts {
+  main .progressConts {
     flex-direction: column;
   }
 }
-main .conts .selectPageCont, main .conts .selectTypeCont {
+main .progressConts .selectPageCont, main .progressConts .selectTypeCont {
   display: flex;
   height: -moz-fit-content;
   height: fit-content;
   width: 25%;
 }
 @media (max-width: 1000px) {
-  main .conts .selectPageCont, main .conts .selectTypeCont {
+  main .progressConts .selectPageCont, main .progressConts .selectTypeCont {
     width: -moz-fit-content;
     width: fit-content;
   }
 }
-main .conts .selectPageCont {
+main .progressConts .selectPageCont {
   margin-left: 4rem;
   margin-top: 4rem;
 }
 @media (max-width: 480px) {
-  main .conts .selectPageCont {
+  main .progressConts .selectPageCont {
     margin-left: 1.5rem;
     margin-top: 3.5rem;
   }
 }
-main .conts .selectPageCont .h2Cont {
+main .progressConts .selectPageCont .h2Cont {
   position: relative;
   display: flex;
   align-items: end;
@@ -37,7 +37,7 @@ main .conts .selectPageCont .h2Cont {
      -moz-user-select: none;
           user-select: none;
 }
-main .conts .selectPageCont .h2Cont h2 {
+main .progressConts .selectPageCont .h2Cont h2 {
   font-size: 2.5rem;
   margin: 0;
   color: #333;
@@ -48,22 +48,22 @@ main .conts .selectPageCont .h2Cont h2 {
   position: relative;
 }
 @media (max-width: 1000px) {
-  main .conts .selectPageCont .h2Cont h2 {
+  main .progressConts .selectPageCont .h2Cont h2 {
     font-size: 2rem;
   }
 }
 @media (max-width: 480px) {
-  main .conts .selectPageCont .h2Cont h2 {
+  main .progressConts .selectPageCont .h2Cont h2 {
     font-size: 1.5rem;
   }
 }
-main .conts .selectPageCont .h2Cont::before {
+main .progressConts .selectPageCont .h2Cont::before {
   content: url("../assets/icons/dropdown.svg");
   display: inline-block;
   margin-bottom: 0.5rem;
   transform: scale(0.5);
 }
-main .conts .selectPageCont .h2Cont ul {
+main .progressConts .selectPageCont .h2Cont ul {
   position: absolute;
   top: 4rem;
   list-style-type: none;
@@ -81,11 +81,11 @@ main .conts .selectPageCont .h2Cont ul {
   z-index: 2;
 }
 @media (max-width: 1000px) {
-  main .conts .selectPageCont .h2Cont ul {
+  main .progressConts .selectPageCont .h2Cont ul {
     top: 2rem;
   }
 }
-main .conts .selectPageCont .h2Cont ul li {
+main .progressConts .selectPageCont .h2Cont ul li {
   height: 2.5rem;
   display: flex;
   align-items: center;
@@ -94,65 +94,65 @@ main .conts .selectPageCont .h2Cont ul li {
   color: #999;
   cursor: pointer;
 }
-main .conts .selectPageCont .h2Cont ul li:not(.selectedLi) {
+main .progressConts .selectPageCont .h2Cont ul li:not(.selectedLi) {
   background-color: #FFF;
 }
-main .conts .selectPageCont .h2Cont ul li:hover:not(.selectedLi) {
+main .progressConts .selectPageCont .h2Cont ul li:hover:not(.selectedLi) {
   background-color: #FCFCFC;
 }
-main .conts .selectPageCont .h2Cont ul li:nth-child(1) {
+main .progressConts .selectPageCont .h2Cont ul li:nth-child(1) {
   border-radius: 1rem 1rem 0 0;
   border-top: 1px solid #CCC;
   border-left: 1px solid #CCC;
   border-right: 1px solid #CCC;
 }
-main .conts .selectPageCont .h2Cont ul li:nth-child(2) {
+main .progressConts .selectPageCont .h2Cont ul li:nth-child(2) {
   border: 1px solid #CCC;
 }
-main .conts .selectPageCont .h2Cont ul li:nth-child(3) {
+main .progressConts .selectPageCont .h2Cont ul li:nth-child(3) {
   border-radius: 0 0 1rem 1rem;
   border-bottom: 1px solid #CCC;
   border-left: 1px solid #CCC;
   border-right: 1px solid #CCC;
 }
-main .conts .selectPageCont .h2Cont ul .selectedLi {
+main .progressConts .selectPageCont .h2Cont ul .selectedLi {
   background-color: #0099FF;
   color: white;
 }
-main .conts .selectPageCont .rotate:before {
+main .progressConts .selectPageCont .rotate:before {
   transition: 0.25s;
   transform: rotate(180deg) scale(0.5);
 }
-main .conts .selectPageCont .goBack:before {
+main .progressConts .selectPageCont .goBack:before {
   transition: 0.25s;
   transform: rotate(0deg) scale(0.5);
 }
-main .conts .selectTypeCont {
+main .progressConts .selectTypeCont {
   margin-left: 4rem;
   margin-top: 4.75rem;
   align-items: flex-end;
   justify-content: flex-end;
 }
 @media (max-width: 1200px) {
-  main .conts .selectTypeCont {
+  main .progressConts .selectTypeCont {
     order: 2;
     margin-top: 1rem;
     justify-content: flex-start;
   }
 }
 @media (max-width: 480px) {
-  main .conts .selectTypeCont {
+  main .progressConts .selectTypeCont {
     margin-left: 1.5rem;
     margin-top: 0.5rem;
   }
 }
-main .conts .selectTypeCont .h3Cont {
+main .progressConts .selectTypeCont .h3Cont {
   position: relative;
   display: flex;
   align-items: end;
   cursor: pointer;
 }
-main .conts .selectTypeCont .h3Cont h3 {
+main .progressConts .selectTypeCont .h3Cont h3 {
   padding-right: 4.5rem;
   font-size: 1.75rem;
   margin: 0;
@@ -165,22 +165,22 @@ main .conts .selectTypeCont .h3Cont h3 {
   cursor: pointer;
 }
 @media (max-width: 1000px) {
-  main .conts .selectTypeCont .h3Cont h3 {
+  main .progressConts .selectTypeCont .h3Cont h3 {
     font-size: 1.25rem;
   }
 }
 @media (max-width: 480px) {
-  main .conts .selectTypeCont .h3Cont h3 {
+  main .progressConts .selectTypeCont .h3Cont h3 {
     font-size: 1rem;
   }
 }
-main .conts .selectTypeCont .h3Cont::before {
+main .progressConts .selectTypeCont .h3Cont::before {
   content: url("../assets/icons/dropdown.svg");
   display: inline-block;
   margin-bottom: 0.25rem;
   transform: scale(0.5);
 }
-main .conts .selectTypeCont .h3Cont ul {
+main .progressConts .selectTypeCont .h3Cont ul {
   position: absolute;
   top: 2.5rem;
   list-style-type: none;
@@ -198,12 +198,12 @@ main .conts .selectTypeCont .h3Cont ul {
   z-index: 1;
 }
 @media (max-width: 1000px) {
-  main .conts .selectTypeCont .h3Cont ul {
+  main .progressConts .selectTypeCont .h3Cont ul {
     top: 1.5rem;
     font-size: 0.75rem;
   }
 }
-main .conts .selectTypeCont .h3Cont ul li {
+main .progressConts .selectTypeCont .h3Cont ul li {
   height: 2.5rem;
   display: flex;
   align-items: center;
@@ -213,28 +213,28 @@ main .conts .selectTypeCont .h3Cont ul li {
   cursor: pointer;
 }
 @media (max-width: 1000px) {
-  main .conts .selectTypeCont .h3Cont ul li {
+  main .progressConts .selectTypeCont .h3Cont ul li {
     height: 2rem;
   }
 }
-main .conts .selectTypeCont .h3Cont ul li:not(.selectedLi) {
+main .progressConts .selectTypeCont .h3Cont ul li:not(.selectedLi) {
   background-color: #FFF;
 }
-main .conts .selectTypeCont .h3Cont ul li:hover:not(.selectedLi) {
+main .progressConts .selectTypeCont .h3Cont ul li:hover:not(.selectedLi) {
   background-color: #FCFCFC;
 }
-main .conts .selectTypeCont .h3Cont ul li:nth-child(1) {
+main .progressConts .selectTypeCont .h3Cont ul li:nth-child(1) {
   border-radius: 1rem 1rem 0 0;
   border-top: 1px solid #CCC;
   border-left: 1px solid #CCC;
   border-right: 1px solid #CCC;
 }
 @media (max-width: 1000px) {
-  main .conts .selectTypeCont .h3Cont ul li:nth-child(1) {
+  main .progressConts .selectTypeCont .h3Cont ul li:nth-child(1) {
     border-radius: 0.75rem 0.75rem 0 0;
   }
 }
-main .conts .selectTypeCont .h3Cont ul li:nth-child(2) {
+main .progressConts .selectTypeCont .h3Cont ul li:nth-child(2) {
   border-radius: 0 0 1rem 1rem;
   border-bottom: 1px solid #CCC;
   border-top: 1px solid #CCC;
@@ -242,35 +242,35 @@ main .conts .selectTypeCont .h3Cont ul li:nth-child(2) {
   border-right: 1px solid #CCC;
 }
 @media (max-width: 1000px) {
-  main .conts .selectTypeCont .h3Cont ul li:nth-child(2) {
+  main .progressConts .selectTypeCont .h3Cont ul li:nth-child(2) {
     border-radius: 0 0 0.75rem 0.75rem;
   }
 }
-main .conts .selectTypeCont .h3Cont ul .selectedLi {
+main .progressConts .selectTypeCont .h3Cont ul .selectedLi {
   background-color: #0099FF;
   color: white;
 }
-main .conts .selectTypeCont .rotate:before {
+main .progressConts .selectTypeCont .rotate:before {
   transition: 0.25s;
   transform: rotate(180deg) scale(0.5);
 }
-main .conts .selectTypeCont .goBack:before {
+main .progressConts .selectTypeCont .goBack:before {
   transition: 0.25s;
   transform: rotate(0deg) scale(0.5);
 }
-main .conts .counterCont {
+main .progressConts .counterCont {
   width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 @media (max-width: 1200px) {
-  main .conts .counterCont {
+  main .progressConts .counterCont {
     order: 3;
     width: 100%;
   }
 }
-main .conts .counterCont .counter {
+main .progressConts .counterCont .counter {
   height: 18rem;
   width: 18rem;
   border-radius: 100%;
@@ -281,24 +281,24 @@ main .conts .counterCont .counter {
   align-items: center;
 }
 @media (max-width: 1200px) {
-  main .conts .counterCont .counter {
+  main .progressConts .counterCont .counter {
     margin-top: 2rem;
   }
 }
 @media (max-width: 1000px) {
-  main .conts .counterCont .counter {
+  main .progressConts .counterCont .counter {
     height: 14rem;
     width: 14rem;
   }
 }
 @media (max-width: 480px) {
-  main .conts .counterCont .counter {
+  main .progressConts .counterCont .counter {
     height: 9rem;
     width: 9rem;
     margin-top: 5rem;
   }
 }
-main .conts .counterCont .counter .counterInside {
+main .progressConts .counterCont .counter .counterInside {
   height: 91%;
   width: 91%;
   border-radius: 100%;
@@ -314,16 +314,16 @@ main .conts .counterCont .counter .counterInside {
   line-height: normal;
 }
 @media (max-width: 1000px) {
-  main .conts .counterCont .counter .counterInside {
+  main .progressConts .counterCont .counter .counterInside {
     font-size: 5.5rem;
   }
 }
 @media (max-width: 480px) {
-  main .conts .counterCont .counter .counterInside {
+  main .progressConts .counterCont .counter .counterInside {
     font-size: 3.5rem;
   }
 }
-main .conts .counterCont h2 {
+main .progressConts .counterCont h2 {
   color: #FFA800;
   text-align: center;
   font-family: Open Sans;
@@ -333,12 +333,12 @@ main .conts .counterCont h2 {
   line-height: normal;
 }
 @media (max-width: 1000px) {
-  main .conts .counterCont h2 {
+  main .progressConts .counterCont h2 {
     font-size: 2rem;
   }
 }
 @media (max-width: 480px) {
-  main .conts .counterCont h2 {
+  main .progressConts .counterCont h2 {
     font-size: 1.25rem;
   }
 }
@@ -1192,6 +1192,146 @@ main .conts .counterCont h2 {
 
 .dropdownPlaceholder {
   color: #b6b6b6;
+}
+
+main .todoConts .topCont {
+  display: flex;
+  align-items: flex-end;
+  margin-left: 4rem;
+  margin-top: 3rem;
+  gap: 30%;
+}
+main .todoConts .topCont .ctaGroupTodo {
+  margin-bottom: 0.2rem;
+}
+main .todoConts .topCont .dayTimeCont {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.7rem;
+}
+main .todoConts .topCont .dayTimeCont h4 {
+  margin: 0 0 0.2rem 0;
+  color: #666;
+  font-family: Open Sans;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 93.682%; /* 1.40525rem */
+}
+main .todoConts .topCont .dayTimeCont .h2Cont {
+  position: relative;
+  display: flex;
+  align-items: end;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+main .todoConts .topCont .dayTimeCont .h2Cont h2 {
+  font-size: 2rem;
+  margin: 0;
+  color: #333;
+  text-align: center;
+  font-family: Poppins;
+  line-height: normal;
+  position: relative;
+  color: #333;
+  font-weight: 600;
+  line-height: 93.682%; /* 2.81044rem */
+}
+@media (max-width: 1000px) {
+  main .todoConts .topCont .dayTimeCont .h2Cont h2 {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 480px) {
+  main .todoConts .topCont .dayTimeCont .h2Cont h2 {
+    font-size: 1.5rem;
+  }
+}
+main .todoConts .topCont .dayTimeCont .h2Cont::before {
+  content: url("../assets/icons/dropdown.svg");
+  display: inline-block;
+  transform: scale(0.5);
+}
+main .todoConts .topCont .dayTimeCont .h2Cont ul {
+  position: absolute;
+  top: 4rem;
+  list-style-type: none;
+  padding: 0 0 0;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: Open Sans;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  z-index: 2;
+}
+@media (max-width: 1000px) {
+  main .todoConts .topCont .dayTimeCont .h2Cont ul {
+    top: 2rem;
+  }
+}
+main .todoConts .topCont .dayTimeCont .h2Cont ul li {
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #999;
+  cursor: pointer;
+}
+main .todoConts .topCont .dayTimeCont .h2Cont ul li:not(.selectedLi) {
+  background-color: #fff;
+}
+main .todoConts .topCont .dayTimeCont .h2Cont ul li:hover:not(.selectedLi) {
+  background-color: #fcfcfc;
+}
+main .todoConts .topCont .dayTimeCont .h2Cont ul li:nth-child(1) {
+  border-radius: 1rem 1rem 0 0;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+main .todoConts .topCont .dayTimeCont .h2Cont ul li:nth-child(2) {
+  border: 1px solid #ccc;
+}
+main .todoConts .topCont .dayTimeCont .h2Cont ul li:nth-child(3) {
+  border-radius: 0 0 1rem 1rem;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+main .todoConts .topCont .dayTimeCont .h2Cont .selectedLi {
+  background-color: #0099ff;
+  color: white;
+}
+main .todoConts .topCont .dayTimeCont .rotate:before {
+  transition: 0.25s;
+  transform: rotate(180deg) scale(0.5);
+}
+main .todoConts .topCont .dayTimeCont .goBack:before {
+  transition: 0.25s;
+  transform: rotate(0deg) scale(0.5);
+}
+main .todoConts .ctaGroupTodo {
+  margin-bottom: 0.2rem;
+  color: #CCC;
+  font-family: Open Sans;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 93.682%; /* 1.40525rem */
+}
+main .todoConts .groupHeadline {
+  color: #FF3D00;
+  font-family: Poppins;
+  font-size: 2rem;
+  line-height: 93.682%; /* 2.34206rem */
+  font-weight: 600;
+  margin-left: 5.5rem;
 }
 
 html, body {

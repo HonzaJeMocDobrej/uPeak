@@ -3,13 +3,15 @@ main {
 
     .topCont {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       margin-left: 4rem;
-      margin-top: 3rem;
       gap: 30%;
+      height: 2.5rem;
+      margin-top: 2.8rem;
 
       .ctaGroupTodo {
         margin-bottom: 0.2rem;
+        
       }
 
       .dayTimeCont {
@@ -144,7 +146,43 @@ main {
         font-family: Open Sans;
         font-size: 1rem;
         font-weight: 600;
-        line-height: 93.682%; /* 1.40525rem */
+        line-height: 93.682%;
+        width: fit-content;
+        
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        height: 100%;
+
+        &::before {
+          background-image: url(../assets/icons/BluePlus.svg);
+          background-repeat: no-repeat;
+          background-size: 1rem;
+          display: inline-block;
+          width: 1rem; 
+          height: 1rem;
+          content:"";
+        }
+
+        &:hover {
+          background-color: rgb(234, 247, 255);
+          transition: 250ms;
+          cursor: pointer;
+        }
+
+        
+      }
+
+      .leftCtaGroupTodo {
+        margin-left: 5.5rem;
+        &:nth-child(2) {
+          margin-top: 2rem;
+        }
+        &:nth-child(4) {
+          margin-top: 0;
+        }
+        height: 2.5rem;
+        
       }
 
       .groupHeadline {
@@ -154,6 +192,8 @@ main {
         line-height: 93.682%; /* 2.34206rem */
         font-weight: 600;
         margin-left: 5.5rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
       }
   }
 }

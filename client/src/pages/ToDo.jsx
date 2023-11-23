@@ -85,9 +85,9 @@ function ToDo(props) {
                 Create Group
               </div>
             </div>
-            <div className="ctaGroupTodo">Add Group</div>
+            <div className="ctaGroupTodo leftCtaGroupTodo">Add Group</div>
             <h2 className="groupHeadline">General</h2>
-            <h2 className="ctaGroupTodo">Add To-Do</h2>
+            <h2 className="ctaGroupTodo leftCtaGroupTodo">Add To-Do</h2>
           </div>
         </main>
       </div>

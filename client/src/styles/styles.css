@@ -1196,10 +1196,11 @@ main .progressConts .counterCont h2 {
 
 main .todoConts .topCont {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   margin-left: 4rem;
-  margin-top: 3rem;
   gap: 30%;
+  height: 2.5rem;
+  margin-top: 2.8rem;
 }
 main .todoConts .topCont .ctaGroupTodo {
   margin-bottom: 0.2rem;
@@ -1323,7 +1324,37 @@ main .todoConts .ctaGroupTodo {
   font-family: Open Sans;
   font-size: 1rem;
   font-weight: 600;
-  line-height: 93.682%; /* 1.40525rem */
+  line-height: 93.682%;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 100%;
+}
+main .todoConts .ctaGroupTodo::before {
+  background-image: url(../assets/icons/BluePlus.svg);
+  background-repeat: no-repeat;
+  background-size: 1rem;
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  content: "";
+}
+main .todoConts .ctaGroupTodo:hover {
+  background-color: rgb(234, 247, 255);
+  transition: 250ms;
+  cursor: pointer;
+}
+main .todoConts .leftCtaGroupTodo {
+  margin-left: 5.5rem;
+  height: 2.5rem;
+}
+main .todoConts .leftCtaGroupTodo:nth-child(2) {
+  margin-top: 2rem;
+}
+main .todoConts .leftCtaGroupTodo:nth-child(4) {
+  margin-top: 0;
 }
 main .todoConts .groupHeadline {
   color: #FF3D00;
@@ -1332,6 +1363,8 @@ main .todoConts .groupHeadline {
   line-height: 93.682%; /* 2.34206rem */
   font-weight: 600;
   margin-left: 5.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 html, body {

@@ -153,6 +153,9 @@ main {
         align-items: center;
         gap: .5rem;
         height: 100%;
+        padding-right: .5rem;
+        transition: 250ms;
+        border-radius: .75rem;
 
         &::before {
           background-image: url(../assets/icons/BluePlus.svg);
@@ -168,6 +171,13 @@ main {
           background-color: rgb(234, 247, 255);
           transition: 250ms;
           cursor: pointer;
+          padding-left: .5rem;
+          color: #ADADAD;
+        }
+
+        &:active {
+          transform: scale(.95);
+          transition: 250ms;
         }
 
         
@@ -175,6 +185,7 @@ main {
 
       .leftCtaGroupTodo {
         margin-left: 5.5rem;
+        font-weight: 400;
         &:nth-child(2) {
           margin-top: 2rem;
         }
@@ -194,6 +205,54 @@ main {
         margin-left: 5.5rem;
         margin-top: 1.5rem;
         margin-bottom: 1.5rem;
+
+        &:nth-child(5) {
+          margin-top: 3rem;
+        }
+      }
+
+      .toDoListItemsCont {
+        margin-left: 5.5rem;
+        
+        .toDoListItem {
+          display: flex;
+          align-items: center;
+          width: 70%;
+          border-bottom: solid 1px #CCC;
+          height: 3rem;
+          justify-content: space-between;
+          
+          .btnAndTextCont {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            gap: .5rem;
+            
+            .priorityCircle {
+              height: 1.25rem;
+              width: 1.25rem;
+              border-radius: 100%;
+              box-sizing: border-box;
+            }
+
+            p {
+              color: #333;
+              font-family: Open Sans;
+              font-size: 1.2rem;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 93.682%; /* 22.484px */
+              margin: 0;
+            }
+          }
+          
+          .rightBtnsCont {
+            display: flex;
+            align-items: center;
+            padding-right: .5rem;
+            gap: .5rem;
+          }
+        }
       }
   }
 }

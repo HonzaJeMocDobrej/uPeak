@@ -1331,6 +1331,9 @@ main .todoConts .ctaGroupTodo {
   align-items: center;
   gap: 0.5rem;
   height: 100%;
+  padding-right: 0.5rem;
+  transition: 250ms;
+  border-radius: 0.75rem;
 }
 main .todoConts .ctaGroupTodo::before {
   background-image: url(../assets/icons/BluePlus.svg);
@@ -1345,9 +1348,16 @@ main .todoConts .ctaGroupTodo:hover {
   background-color: rgb(234, 247, 255);
   transition: 250ms;
   cursor: pointer;
+  padding-left: 0.5rem;
+  color: #ADADAD;
+}
+main .todoConts .ctaGroupTodo:active {
+  transform: scale(0.95);
+  transition: 250ms;
 }
 main .todoConts .leftCtaGroupTodo {
   margin-left: 5.5rem;
+  font-weight: 400;
   height: 2.5rem;
 }
 main .todoConts .leftCtaGroupTodo:nth-child(2) {
@@ -1365,6 +1375,47 @@ main .todoConts .groupHeadline {
   margin-left: 5.5rem;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
+}
+main .todoConts .groupHeadline:nth-child(5) {
+  margin-top: 3rem;
+}
+main .todoConts .toDoListItemsCont {
+  margin-left: 5.5rem;
+}
+main .todoConts .toDoListItemsCont .toDoListItem {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  border-bottom: solid 1px #CCC;
+  height: 3rem;
+  justify-content: space-between;
+}
+main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 0.5rem;
+}
+main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont .priorityCircle {
+  height: 1.25rem;
+  width: 1.25rem;
+  border-radius: 100%;
+  box-sizing: border-box;
+}
+main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont p {
+  color: #333;
+  font-family: Open Sans;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 93.682%; /* 22.484px */
+  margin: 0;
+}
+main .todoConts .toDoListItemsCont .toDoListItem .rightBtnsCont {
+  display: flex;
+  align-items: center;
+  padding-right: 0.5rem;
+  gap: 0.5rem;
 }
 
 html, body {

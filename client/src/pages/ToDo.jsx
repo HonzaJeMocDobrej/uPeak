@@ -2,6 +2,7 @@
 import { useState } from "react";
 import LeftMenu from "../components/LeftMenu";
 import TopMenu from "../components/topMenu";
+import ToDoListItem from "../components/ToDoListItem";
 
 import "../styles/styles.css";
 
@@ -88,6 +89,13 @@ function ToDo(props) {
             <div className="ctaGroupTodo leftCtaGroupTodo">Add Group</div>
             <h2 className="groupHeadline">General</h2>
             <h2 className="ctaGroupTodo leftCtaGroupTodo">Add To-Do</h2>
+            <h2 className="groupHeadline">Banger</h2>
+            <div className="toDoListItemsCont">
+              <ToDoListItem
+                name='Do The Dishes'
+                priorityCircleSx={{border: 'solid 0.5px #ADADAD'}}
+              />
+            </div>
           </div>
         </main>
       </div>

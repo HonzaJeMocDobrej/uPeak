@@ -1,5 +1,7 @@
 main {
   .todoConts {
+    box-sizing: border-box;
+    padding-bottom: 3rem;
 
     .topCont {
       display: flex;
@@ -148,6 +150,7 @@ main {
         font-weight: 600;
         line-height: 93.682%;
         width: fit-content;
+        user-select: none;
         
         display: flex;
         align-items: center;
@@ -184,10 +187,10 @@ main {
       }
 
       .leftCtaGroupTodo {
-        margin-left: 5.5rem;
         font-weight: 400;
         &:nth-child(2) {
           margin-top: 2rem;
+          margin-left: 5.5rem;
         }
         &:nth-child(4) {
           margin-top: 0;
@@ -202,17 +205,233 @@ main {
         font-size: 2rem;
         line-height: 93.682%; /* 2.34206rem */
         font-weight: 600;
-        margin-left: 5.5rem;
         margin-top: 1.5rem;
         margin-bottom: 1.5rem;
 
-        &:nth-child(5) {
+        &:not(:nth-child(1)) {
           margin-top: 3rem;
         }
       }
 
+      .groupCont {
+        padding-left: 5.5rem;
+      }
+
+      .createToDo {
+        width: 70%;
+        height: 15rem;
+        border-radius: 1.5rem;
+        border: 1px solid #CCC;
+
+        .topInputCont {
+          padding-top: 2.75rem;
+          display: flex;
+          flex-direction: column;
+          input {
+            border: none;
+            width: fit-content;
+            outline: none;
+            background: transparent;
+          }
+
+          .imgAndInputCont {
+            margin-left: 2.45rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            
+            .headline {
+              color: #a7a7a7;
+              font-family: Poppins;
+              font-size: 1.2rem;
+              font-weight: 500;
+              min-width: 8rem;
+              max-width: 30rem;
+            }
+            img {
+              height: 1.25rem;
+              width: 1.25rem;
+              cursor: pointer;
+            }
+          }
+          
+          .shortDesc {
+            color: #a7a7a7;
+            font-family: Poppins;
+            font-size: .8rem;
+            font-weight: 500;
+            margin-top: .8rem;
+            margin-left: 4rem;
+            min-width: 7rem;
+            max-width: 30rem;
+          }
+          
+        }
+        .bottomBtnCont {
+          width: 100%;
+          display: flex;
+          margin-top: 5rem;
+          height: fit-content;
+          justify-content: space-between;
+
+          .prioBtn {
+            padding: 0 2.25rem 0 2.25rem;
+            height: 2.1rem;
+            border-radius: 0.75rem;
+            border: 1px solid #CCC;
+            box-shadow: 0px 4px 4px -4px rgba(0, 0, 0, 0.25);    
+            color: #a7a7a7;
+            font-family: Open Sans;
+            font-size: .8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-left: 2.75rem;
+            cursor: pointer;
+            transition: color 600ms;
+            z-index: 2;
+
+            &::after {
+              content: '';
+              background-color: #FFD600;
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              height: 0;
+              border-radius: 0.7rem;
+              z-index: -1;
+              transition: height 500ms ease, transform 300ms;
+              overflow: hidden;
+            }
+            
+            &:hover::after {
+              height: 100%;
+              transition: 500ms ease;
+            }
+
+            &:hover {
+              color: #FFF;
+              transition: 600ms;
+            }
+
+            &:active {
+              transform: translateY(.25rem);
+              transition: transform 300ms;
+            }
+
+            &::before {
+              content: '';
+              background-image: url(../assets/icons/PriorityLightningDef.svg);
+              height: 1.2rem;
+              width: .8rem;
+              background-position: center;
+              background-size: cover;
+              background-repeat: no-repeat;
+              position: absolute;
+              left: 1rem;
+            }
+            
+            &:hover::before {
+              filter: brightness(0) invert(1)
+            }
+          }
+
+          .rightBtnCont {
+            display: flex;
+            margin-right: 2.75rem;
+            gap: 1.5rem;
+
+            .closeBtn {
+              padding: 0 1.5rem 0 1.5rem;
+              height: 2.1rem;
+              border-radius: 0.75rem;
+              border: 1px solid #CCC;
+              box-shadow: 0px 4px 4px -4px rgba(0, 0, 0, 0.25);    
+              color: #a7a7a7;
+              font-family: Open Sans;
+              font-size: .8rem;
+              font-weight: 600;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+              position: relative;
+              transition: color 600ms, transform 300ms;
+              z-index: 2;
+
+              &::before {
+                content: '';
+                background-color: #FF6767;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                top: 100%;
+                border-radius: 0.7rem;
+                z-index: -1;
+                transition: top 500ms ease;
+                overflow: hidden;
+              }
+              
+              &:hover::before {
+                top: 0;
+                transition: 500ms ease;
+              }
+              
+              &:hover {
+                color: #FFF;
+                transition: 600ms;
+              }
+
+              &:active {
+                transform: translateY(.25rem);
+                transition: transform 300ms;
+              }
+            }
+
+            .submitBtn {
+              padding: 0 1.5rem 0 1.5rem;
+              height: 2.1rem;
+              border-radius: 0.75rem;
+              box-shadow: 0px 4px 4px -4px rgba(0, 0, 0, 0.25);    
+              color: #a7a7a7;
+              font-family: Open Sans;
+              font-size: .8rem;
+              font-weight: 600;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background: #09F;
+              color: #FFF;
+              box-sizing: border-box;
+              cursor: pointer;
+              transition: background-color 400ms, color 400ms, border-color 400ms, transform 300ms;
+
+              &:hover {
+                border: #09F solid 2px;
+                background-color: transparent;
+                color: #09F;
+                transition: background-color 400ms, color 400ms, border-color 400ms;
+                padding: 0 1.4rem 0 1.4rem;
+              }
+
+              &:active {
+                transform: translateY(.25rem);
+                transition: transform 300ms;
+              }
+            }
+            
+          }
+
+        }
+        
+      }
+      
       .toDoListItemsCont {
-        margin-left: 5.5rem;
+        user-select: none;
         
         .toDoListItem {
           display: flex;
@@ -233,6 +452,39 @@ main {
               width: 1.25rem;
               border-radius: 100%;
               box-sizing: border-box;
+              transition: 250ms;
+              cursor: pointer;
+
+              &:hover {
+                transition: 125ms;
+                transform: scale(1.05);
+              }
+
+              &:active {
+                transform: scale(.95);
+                transition: 125ms;
+              }
+            }
+
+            .prio4 {
+              &:hover {
+                background-color: #F2F2F2;
+              }
+            }
+            .prio3 {
+              &:hover {
+                background-color: #CCEBFF !important;
+              }
+            }
+            .prio2 {
+              &:hover {
+                background-color: #CCFFDA !important;
+              }
+            }
+            .prio1 {
+              &:hover {
+                background-color: #FFCCCC !important;
+              }
             }
 
             p {
@@ -251,6 +503,20 @@ main {
             align-items: center;
             padding-right: .5rem;
             gap: .5rem;
+
+            img {
+              cursor: pointer;
+              transition: 125ms;
+              &:hover {
+                transition: 200ms;
+                transform: scale(1.05);
+              }
+
+              &:active {
+                transition: 200ms;
+                transform: scale(.95);
+              }
+            }
           }
         }
       }

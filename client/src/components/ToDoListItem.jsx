@@ -10,7 +10,7 @@ function ToDoListItem(props) {
     <>
       <div className="toDoListItem">
         <div className="btnAndTextCont">
-          <div style={props.priorityCircleSx} className="priorityCircle"></div>
+          <div style={props.priorityCircleSx} className={`priorityCircle ${props.priorityCircleHoverClass}`}></div>
           <p>{props.name}</p>
         </div>
         <div className="rightBtnsCont">

@@ -1389,15 +1389,19 @@ main .todoConts .groupCont {
   padding-left: 5.5rem;
 }
 main .todoConts .createToDo {
-  width: 70%;
+  width: 48.4%;
   height: 15rem;
   border-radius: 1.5rem;
   border: 1px solid #CCC;
+  position: absolute;
+  background-color: #FFF;
+  z-index: 1;
 }
 main .todoConts .createToDo .topInputCont {
   padding-top: 2.75rem;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 main .todoConts .createToDo .topInputCont input {
   border: none;
@@ -1435,6 +1439,21 @@ main .todoConts .createToDo .topInputCont .shortDesc {
   min-width: 7rem;
   max-width: 30rem;
 }
+main .todoConts .createToDo .topInputCont .chrome-picker {
+  position: absolute;
+  z-index: 3;
+  left: 15rem;
+  font-family: Open Sans;
+}
+main .todoConts .createToDo .topInputCont .chrome-picker .flexbox-fix #rc-editable-input-2, main .todoConts .createToDo .topInputCont .chrome-picker .flexbox-fix label {
+  font-family: Open Sans;
+}
+main .todoConts .createToDo .topInputCont .palletteOpen {
+  display: block;
+}
+main .todoConts .createToDo .topInputCont .palletteClose {
+  display: none;
+}
 main .todoConts .createToDo .bottomBtnCont {
   width: 100%;
   display: flex;
@@ -1442,6 +1461,7 @@ main .todoConts .createToDo .bottomBtnCont {
   height: -moz-fit-content;
   height: fit-content;
   justify-content: space-between;
+  position: relative;
 }
 main .todoConts .createToDo .bottomBtnCont .prioBtn {
   padding: 0 2.25rem 0 2.25rem;
@@ -1500,6 +1520,18 @@ main .todoConts .createToDo .bottomBtnCont .prioBtn::before {
 }
 main .todoConts .createToDo .bottomBtnCont .prioBtn:hover::before {
   filter: brightness(0) invert(1);
+}
+main .todoConts .createToDo .bottomBtnCont .lightPrio1::before {
+  filter: brightness(0) invert(17%) sepia(93%) saturate(6497%) hue-rotate(1deg) contrast(119%);
+}
+main .todoConts .createToDo .bottomBtnCont .lightPrio2::before {
+  filter: brightness(0) invert(40%) sepia(26%) saturate(7113%) hue-rotate(119deg) contrast(101%);
+}
+main .todoConts .createToDo .bottomBtnCont .lightPrio3::before {
+  filter: brightness(0) invert(41%) sepia(17%) saturate(6726%) hue-rotate(184deg) contrast(102%);
+}
+main .todoConts .createToDo .bottomBtnCont .lightPrio4::before {
+  filter: brightness(0) invert(41%) sepia(6%) saturate(2%) hue-rotate(315deg) contrast(84%);
 }
 main .todoConts .createToDo .bottomBtnCont .rightBtnCont {
   display: flex;
@@ -1578,10 +1610,86 @@ main .todoConts .createToDo .bottomBtnCont .rightBtnCont .submitBtn:active {
   transform: translateY(0.25rem);
   transition: transform 300ms;
 }
+main .todoConts .createToDo .prioDropdown {
+  width: 117.4px;
+  border-radius: 0.75rem;
+  border: 1px solid #CCC;
+  background: #FFF;
+  box-shadow: 0px 4px 4px -4px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  padding: 0;
+  margin-left: 2.75rem;
+  display: flex;
+  flex-direction: column;
+  top: 2rem;
+}
+main .todoConts .createToDo .prioDropdown li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.15rem;
+  position: relative;
+  color: #999;
+  font-family: Open Sans;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 600ms;
+  z-index: 2;
+  background-color: #FFF;
+}
+main .todoConts .createToDo .prioDropdown li::after {
+  content: "";
+  background-color: #FFD600;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  z-index: -1;
+  transition: height 500ms ease, transform 300ms;
+  overflow: hidden;
+}
+main .todoConts .createToDo .prioDropdown li:hover::after {
+  height: 100%;
+  transition: 500ms ease;
+}
+main .todoConts .createToDo .prioDropdown li:hover {
+  color: #FFF;
+  transition: 600ms;
+}
+main .todoConts .createToDo .prioDropdown li:hover img {
+  filter: brightness(0) invert(1);
+}
+main .todoConts .createToDo .prioDropdown li:not(:nth-child(4)) {
+  border-bottom: 1px #CCC solid;
+}
+main .todoConts .createToDo .prioDropdown li:nth-child(1) {
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+main .todoConts .createToDo .prioDropdown li:nth-child(1)::after {
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+main .todoConts .createToDo .prioDropdown li:nth-child(4) {
+  border-radius: 0 0 0.75rem 0.75rem;
+}
+main .todoConts .createToDo .prioDropdown li:nth-child(4)::after {
+  border-radius: 0 0 0.75rem 0.75rem;
+}
+main .todoConts .createToDo .prioDropdown li img {
+  height: 1.2rem;
+  width: 0.8rem;
+  position: absolute;
+  left: 1rem;
+}
+main .todoConts .createToDo .prioDropdown li p {
+  margin-left: 0.65rem;
+}
 main .todoConts .toDoListItemsCont {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  position: relative;
 }
 main .todoConts .toDoListItemsCont .toDoListItem {
   display: flex;

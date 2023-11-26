@@ -3,10 +3,15 @@ import { useState } from "react";
 import LeftMenu from "../components/LeftMenu";
 import TopMenu from "../components/topMenu";
 import ToDoListItem from "../components/ToDoListItem";
+import { ChromePicker } from 'react-color'
 
 import "../styles/styles.css";
 
 import pallette from '../assets/icons/Pallette.svg'
+import priorityLightningFour from '../assets/icons/priorityLightningFour.svg'
+import priorityLightningThree from '../assets/icons/priorityLightningThree.svg'
+import priorityLightningTwo from '../assets/icons/priorityLightningTwo.svg'
+import priorityLightningOne from '../assets/icons/priorityLightningOne.svg'
 
 function ToDo(props) {
   const {
@@ -27,13 +32,28 @@ function ToDo(props) {
   }
 
   const [isDayOpen, setIsDayOpen] = useState(false);
+  const [isPrioOpen, setIsPrioOpen] = useState(false)
+  const [isCreateTodoOpen, setIsCreateTodoOpen] = useState(false)
+  const [isPalletteOpen, setIsPalletteOpen] = useState(false)
   const [day, setDay] = useState("Today");
   const [headlineVal, setHeadlineVal] = useState('')
   const [shortDescVal, setShortDescVal] = useState('')
 
-  const toggleDropdownPage = () => {
-    setIsDayOpen((prev) => !prev);
-  };
+  const [todoData, setTodoData] = useState({
+    headline: '',
+    shortDesc: '',
+    color: '#333',
+    priority: ''
+  })
+
+  const prioImgTernary = todoData.priority === 1 ? 'lightPrio1'
+   : todoData.priority === 2 ? 'lightPrio2'
+   : todoData.priority === 3 ? 'lightPrio3'
+   : todoData.priority === 4 ? 'lightPrio4' : ''
+
+  const univToggle = (setState) => {
+    setState(prev => !prev)
+  }
 
   const selectDay = (day) => {
     setDay(day);
@@ -41,10 +61,52 @@ function ToDo(props) {
 
   const updateHeadlineVal = (e) => {
     setHeadlineVal(e.target.value.length)
+    setTodoData(prev => {
+      return {
+        ...prev,
+        headline: e.target.value
+      }
+    })
   }
   
   const updateShortDescVal = (e) => {
     setShortDescVal(e.target.value.length)
+    setTodoData(prev => {
+      return {
+        ...prev,
+        shortDesc: e.target.value
+      }
+    })
+  }
+
+  const updatePrioVal = (prio) => {
+    setTodoData(prev => {
+      return {
+        ...prev,
+        priority: prio
+      }
+    })
+    setIsPrioOpen(prev => !prev)
+    console.log(todoData);
+  }
+
+  const closeCreateTodo = () => {
+    setTodoData({
+      headline: '',
+      shortDesc: '',
+      color: '#333',
+      priority: ''
+    })
+    setIsCreateTodoOpen(false)
+  }
+
+  const changeColor = (color) => {
+    setTodoData(prev => {
+      return {
+        ...prev,
+        color: `rgba(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${color.rgb.a})`
+      }
+    })
   }
 
   return (
@@ -69,7 +131,7 @@ function ToDo(props) {
             <div className="topCont">
               <div className="dayTimeCont">
                 <div
-                  onClick={toggleDropdownPage}
+                  onClick={() => univToggle(setIsDayOpen)}
                   className={`h2Cont ${isDayOpen ? "rotate" : "goBack"}`}
                 >
                   <h2>{day}</h2>
@@ -109,19 +171,42 @@ function ToDo(props) {
             <div className="groupCont">
               <h2 className="groupHeadline">General</h2>
               <div className="todoListItemsCont">
-                <h2 className="ctaGroupTodo leftCtaGroupTodo">Add To-Do</h2>
-                <div className="createToDo">
+                <h2 onClick={() => univToggle(setIsCreateTodoOpen)} className="ctaGroupTodo leftCtaGroupTodo">Add To-Do</h2>
+                <div style={isCreateTodoOpen ? {display: "block"} : {display: "none"}} className="createToDo">
                   <div className="topInputCont">
                     <div className="imgAndInputCont">
-                      <img src={pallette} alt="" />
-                      <input onChange={updateHeadlineVal} style={headlineVal === '' ? {width: '8rem'} : {width: `${headlineVal}ch`}} className="headline" placeholder="Task Name..." type="text" maxLength={30} />
+                      <img onClick={() => univToggle(setIsPalletteOpen)} src={pallette} alt="" />
+                      <input value={todoData.headline} onChange={updateHeadlineVal} style={{width: headlineVal === '' ? '8rem' : `${headlineVal}ch`, color: todoData.color === '#333' ? null : todoData.color}} className="headline" placeholder="Task Name..." type="text" maxLength={30} />
                     </div>
-                    <input onChange={updateShortDescVal} style={shortDescVal === '' ? {width: '7rem'} : {width: `${shortDescVal}ch`}} className="shortDesc" placeholder="Short Description" type="text" maxLength={50} />
+                    <input value={todoData.shortDesc} onChange={updateShortDescVal} style={shortDescVal === '' ? {width: '7rem'} : {width: `${shortDescVal}ch`}} className="shortDesc" placeholder="Short Description" type="text" maxLength={50} />
+                  <ChromePicker
+                    color={todoData.color}
+                    onChange={changeColor}
+                    className={isPalletteOpen ? 'palletteOpen' : 'palletteClose' }
+                  />
                   </div>
                   <div className="bottomBtnCont">
-                      <div className="prioBtn">Priority</div>
+                      <div onClick={() => univToggle(setIsPrioOpen)} className={`prioBtn ${prioImgTernary}`}>Priority</div>
+                      <ul style={isPrioOpen ? {display: "flex"} : {display: "none"}} className="prioDropdown">
+                        <li onClick={() => updatePrioVal(1)}>
+                          <img src={priorityLightningOne} alt="" />
+                          <p>Priority 1</p>
+                        </li>
+                        <li onClick={() => updatePrioVal(2)}>
+                          <img src={priorityLightningTwo} alt="" />
+                          <p>Priority 2</p>
+                        </li>
+                        <li onClick={() => updatePrioVal(3)}>
+                          <img src={priorityLightningThree} alt="" />
+                          <p>Priority 3</p>
+                        </li>
+                        <li onClick={() => updatePrioVal(4)}>
+                          <img src={priorityLightningFour} alt="" />
+                          <p>Priority 4</p>
+                        </li>
+                      </ul>
                     <div className="rightBtnCont">
-                      <div className="closeBtn">Close</div>
+                      <div onClick={closeCreateTodo} className="closeBtn">Close</div>
                       <div className="submitBtn">Submit</div>
                     </div>
                   </div>

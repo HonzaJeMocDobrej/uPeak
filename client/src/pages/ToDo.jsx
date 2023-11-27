@@ -46,10 +46,14 @@ function ToDo(props) {
     priority: ''
   })
 
+  const [todos, setTodos] = useState([])
+
   const prioImgTernary = todoData.priority === 1 ? 'lightPrio1'
    : todoData.priority === 2 ? 'lightPrio2'
    : todoData.priority === 3 ? 'lightPrio3'
    : todoData.priority === 4 ? 'lightPrio4' : ''
+
+   
 
   const univToggle = (setState) => {
     setState(prev => !prev)
@@ -107,6 +111,28 @@ function ToDo(props) {
         color: `rgba(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${color.rgb.a})`
       }
     })
+  }
+
+  const allTodosOnClick = () => {
+    setTodos(prev => {
+      return [
+        ...prev,
+        {
+          headline: todoData.headline === '' ? 'Task Name' : todoData.headline,
+          shortDesc: todoData.shortDesc,
+          color: todoData.color,
+          priority: todoData.priority === '' ? 4 : todoData.priority
+        }
+      ]
+    })
+    setTodoData({
+      headline: '',
+      shortDesc: '',
+      color: '#333',
+      priority: ''
+    })
+    setIsCreateTodoOpen(false)
+    console.log(todos);
   }
 
   return (
@@ -170,7 +196,7 @@ function ToDo(props) {
             <div className="ctaGroupTodo leftCtaGroupTodo">Add Group</div>
             <div className="groupCont">
               <h2 className="groupHeadline">General</h2>
-              <div className="todoListItemsCont">
+              <div className="toDoListItemsCont">
                 <h2 onClick={() => univToggle(setIsCreateTodoOpen)} className="ctaGroupTodo leftCtaGroupTodo">Add To-Do</h2>
                 <div style={isCreateTodoOpen ? {display: "block"} : {display: "none"}} className="createToDo">
                   <div className="topInputCont">
@@ -207,10 +233,29 @@ function ToDo(props) {
                       </ul>
                     <div className="rightBtnCont">
                       <div onClick={closeCreateTodo} className="closeBtn">Close</div>
-                      <div className="submitBtn">Submit</div>
+                      <div onClick={allTodosOnClick} className="submitBtn">Submit</div>
                     </div>
                   </div>
                 </div>
+                {todos.map(todo => {
+                  const prioCircleHoverTernary = todo.priority === 1 ? 'prio1'
+                  : todo.priority === 2 ? 'prio2'
+                  : todo.priority === 3 ? 'prio3'
+                  : todo.priority === 4 ? 'prio4' : ''
+
+                  const prioCircleStyleTernary = todo.priority === 1 ? prioCircleStyles.prio1
+                  : todo.priority === 2 ? prioCircleStyles.prio2
+                  : todo.priority === 3 ? prioCircleStyles.prio3
+                  : todo.priority === 4 ? prioCircleStyles.prio4 : ''
+
+                  return <ToDoListItem
+                  key={Math.random}
+                  name={todo.headline}
+                  priorityCircleSx={prioCircleStyleTernary}
+                  priorityCircleHoverClass={prioCircleHoverTernary}
+                  headlineColor={todo.color}
+                  />
+                })}
               </div>
             </div>
             <div className="groupCont">

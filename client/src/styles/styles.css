@@ -1389,7 +1389,7 @@ main .todoConts .groupCont {
   padding-left: 5.5rem;
 }
 main .todoConts .createToDo {
-  width: 48.4%;
+  width: 70%;
   height: 15rem;
   border-radius: 1.5rem;
   border: 1px solid #CCC;

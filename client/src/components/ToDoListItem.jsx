@@ -11,7 +11,7 @@ function ToDoListItem(props) {
       <div className="toDoListItem">
         <div className="btnAndTextCont">
           <div style={props.priorityCircleSx} className={`priorityCircle ${props.priorityCircleHoverClass}`}></div>
-          <p>{props.name}</p>
+          <p style={{color: props.headlineColor}}>{props.name}</p>
         </div>
         <div className="rightBtnsCont">
           <img src={PriorityLightningDef} alt="" />

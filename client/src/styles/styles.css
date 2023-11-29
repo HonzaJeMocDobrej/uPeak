@@ -1322,6 +1322,9 @@ main .todoConts .topCont .dayTimeCont .goBack:before {
   transition: 0.25s;
   transform: rotate(0deg) scale(0.5);
 }
+main .todoConts .ctaCont {
+  height: 100%;
+}
 main .todoConts .ctaGroupTodo {
   margin-bottom: 0.2rem;
   color: #CCC;
@@ -1341,6 +1344,7 @@ main .todoConts .ctaGroupTodo {
   padding-right: 0.5rem;
   transition: 250ms;
   border-radius: 0.75rem;
+  margin-top: 0;
 }
 main .todoConts .ctaGroupTodo::before {
   background-image: url(../assets/icons/BluePlus.svg);
@@ -1684,6 +1688,23 @@ main .todoConts .createToDo .prioDropdown li img {
 }
 main .todoConts .createToDo .prioDropdown li p {
   margin-left: 0.65rem;
+}
+main .todoConts .createGroup {
+  width: auto;
+  height: auto;
+  padding-bottom: 1rem;
+}
+main .todoConts .createGroup .topInputCont {
+  padding-top: 2rem;
+}
+main .todoConts .createGroup .bottomBtnCont {
+  margin-top: 2rem;
+}
+main .todoConts .createGroup .rightBtnCont {
+  width: 100%;
+  justify-content: end;
+  margin-left: 2.45rem;
+  margin-right: 2.45rem;
 }
 main .todoConts .toDoListItemsCont {
   -webkit-user-select: none;

@@ -142,6 +142,11 @@ main {
         }
       }
     }
+
+    .ctaCont {
+      height: 100%;
+    }
+
     .ctaGroupTodo {
         margin-bottom: 0.2rem;
         color: #CCC;
@@ -159,6 +164,7 @@ main {
         padding-right: .5rem;
         transition: 250ms;
         border-radius: .75rem;
+        margin-top: 0;
 
         &::before {
           background-image: url(../assets/icons/BluePlus.svg);
@@ -556,6 +562,27 @@ main {
           }
         }
         
+      }
+
+      .createGroup {
+        width: auto;
+        height: auto;
+        padding-bottom: 1rem;
+
+        .topInputCont {
+          padding-top: 2rem;
+        }
+
+        .bottomBtnCont {
+          margin-top: 2rem;
+        }
+
+        .rightBtnCont {
+          width: 100%;
+          justify-content: end;
+          margin-left: 2.45rem;
+          margin-right: 2.45rem;
+        }
       }
       
       .toDoListItemsCont {

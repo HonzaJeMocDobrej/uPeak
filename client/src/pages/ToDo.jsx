@@ -4,6 +4,7 @@ import LeftMenu from "../components/LeftMenu";
 import TopMenu from "../components/topMenu";
 import ToDoListItem from "../components/ToDoListItem";
 import { ChromePicker } from 'react-color'
+import { nanoid } from 'nanoid'
 
 import "../styles/styles.css";
 
@@ -34,17 +35,22 @@ function ToDo(props) {
   const [isDayOpen, setIsDayOpen] = useState(false);
   const [isPrioOpen, setIsPrioOpen] = useState(false)
   const [isCreateTodoOpen, setIsCreateTodoOpen] = useState(false)
+  const [isCreateGroupOpen, setIsCreateGroupOpen] = useState(false)
   const [isPalletteOpen, setIsPalletteOpen] = useState(false)
+  const [isPalletteGroupOpen, setIsPalletteGroupOpen] = useState(false)
   const [day, setDay] = useState("Today");
   const [headlineVal, setHeadlineVal] = useState('')
+  const [headlineGroupVal, setHeadlineGroupVal] = useState('')
   const [shortDescVal, setShortDescVal] = useState('')
 
   const [todoData, setTodoData] = useState({
     headline: '',
     shortDesc: '',
     color: '#333',
-    priority: ''
+    priority: '',
   })
+
+  const [groupData, setGroupData] = useState({})
 
   const [todos, setTodos] = useState([])
 
@@ -66,6 +72,16 @@ function ToDo(props) {
   const updateHeadlineVal = (e) => {
     setHeadlineVal(e.target.value.length)
     setTodoData(prev => {
+      return {
+        ...prev,
+        headline: e.target.value
+      }
+    })
+  }
+
+  const updateHeadlineGroupVal = (e) => {
+    setHeadlineGroupVal(e.target.value.length)
+    setGroupData(prev => {
       return {
         ...prev,
         headline: e.target.value
@@ -104,6 +120,10 @@ function ToDo(props) {
     setIsCreateTodoOpen(false)
   }
 
+  const closeCreateGroup = () => {
+    setIsCreateGroupOpen(false)
+  }
+
   const changeColor = (color) => {
     setTodoData(prev => {
       return {
@@ -121,7 +141,7 @@ function ToDo(props) {
           headline: todoData.headline === '' ? 'Task Name' : todoData.headline,
           shortDesc: todoData.shortDesc,
           color: todoData.color,
-          priority: todoData.priority === '' ? 4 : todoData.priority
+          priority: todoData.priority === '' ? 4 : todoData.priority,
         }
       ]
     })
@@ -189,11 +209,32 @@ function ToDo(props) {
                 </div>
                 <h4>Sat. 16 Sep</h4>
               </div>
-              <div className="ctaGroupTodo">
-                Create Group
+              <div className="ctaCont" style={{position: "relative"}}>
+                <p onClick={() => univToggle(setIsCreateGroupOpen)} className="ctaGroupTodo">Create Group</p>
+                <div style={isCreateGroupOpen ? {display: "block"} : {display: "none"}} className="createToDo createGroup">
+                  <div className="topInputCont">
+                    <div className="imgAndInputCont">
+                      <img onClick={() => univToggle(setIsPalletteGroupOpen)} src={pallette} alt="" />
+                      <input value={groupData.headline} onChange={updateHeadlineGroupVal} style={{width: headlineVal === '' ? '8.75rem' : `${headlineVal}ch`, color: groupData.color === '#333' ? '#333' : todoData.color}} className="headline" placeholder="Group Name..." type="text" maxLength={15} />
+                    </div>
+                  <ChromePicker
+                    color={todoData.color}
+                    onChange={changeColor}
+                    className={isPalletteGroupOpen ? 'palletteOpen' : 'palletteClose' }
+                  />
+                  </div>
+                  <div className="bottomBtnCont">
+                    <div className="rightBtnCont">
+                      <div onClick={closeCreateGroup} className="closeBtn">Close</div>
+                      <div onClick={null} className="submitBtn">Submit</div>
+                    </div>
+                  </div>
+                </div>
               </div>
+              
             </div>
             <div className="ctaGroupTodo leftCtaGroupTodo">Add Group</div>
+            
             <div className="groupCont">
               <h2 className="groupHeadline">General</h2>
               <div className="toDoListItemsCont">

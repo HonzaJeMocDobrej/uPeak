@@ -36,10 +36,11 @@ function ToDo(props) {
   const [isPrioOpen, setIsPrioOpen] = useState(false)
   const [isCreateTodoOpen, setIsCreateTodoOpen] = useState(false)
   const [isCreateGroupOpen, setIsCreateGroupOpen] = useState(false)
+  const [isGroupAddOpen, setIsGroupAddOpen] = useState(false)
   const [isPalletteOpen, setIsPalletteOpen] = useState(false)
   const [isPalletteGroupOpen, setIsPalletteGroupOpen] = useState(false)
   const [day, setDay] = useState("Today");
-  const [headlineVal, setHeadlineVal] = useState('')
+  const [headlineTodoVal, setHeadlineTodoVal] = useState('')
   const [headlineGroupVal, setHeadlineGroupVal] = useState('')
   const [shortDescVal, setShortDescVal] = useState('')
 
@@ -50,9 +51,22 @@ function ToDo(props) {
     priority: '',
   })
 
-  const [groupData, setGroupData] = useState({})
+  const [groupData, setGroupData] = useState({
+    headline: '',
+    color: '#333',
+  })
 
   const [todos, setTodos] = useState([])
+  const [groups, setGroups] = useState([
+    {
+      headline: 'General',
+      color: '#333'
+    },
+    {
+      headline: 'Banger',
+      color: '#FF3D00'
+    }
+  ])
 
   const prioImgTernary = todoData.priority === 1 ? 'lightPrio1'
    : todoData.priority === 2 ? 'lightPrio2'
@@ -69,8 +83,8 @@ function ToDo(props) {
     setDay(day);
   };
 
-  const updateHeadlineVal = (e) => {
-    setHeadlineVal(e.target.value.length)
+  const updateHeadlineTodoVal = (e) => {
+    setHeadlineTodoVal(e.target.value.length)
     setTodoData(prev => {
       return {
         ...prev,
@@ -124,8 +138,16 @@ function ToDo(props) {
     setIsCreateGroupOpen(false)
   }
 
-  const changeColor = (color) => {
+  const changeTodoColor = (color) => {
     setTodoData(prev => {
+      return {
+        ...prev,
+        color: `rgba(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${color.rgb.a})`
+      }
+    })
+  }
+  const changeGroupColor = (color) => {
+    setGroupData(prev => {
       return {
         ...prev,
         color: `rgba(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${color.rgb.a})`
@@ -153,6 +175,24 @@ function ToDo(props) {
     })
     setIsCreateTodoOpen(false)
     console.log(todos);
+  }
+
+  const allGroupsOnClick = () => {
+    setGroups(prev => {
+      return [
+        ...prev,
+        {
+          headline: groupData.headline === '' ? 'Group Name' : groupData.headline,
+          color: groupData.color,
+        }
+      ]
+    })
+    setGroupData({
+      headline: '',
+      color: '#333',
+    })
+    setIsCreateGroupOpen(false)
+    console.log(groups);
   }
 
   return (
@@ -215,25 +255,34 @@ function ToDo(props) {
                   <div className="topInputCont">
                     <div className="imgAndInputCont">
                       <img onClick={() => univToggle(setIsPalletteGroupOpen)} src={pallette} alt="" />
-                      <input value={groupData.headline} onChange={updateHeadlineGroupVal} style={{width: headlineVal === '' ? '8.75rem' : `${headlineVal}ch`, color: groupData.color === '#333' ? '#333' : todoData.color}} className="headline" placeholder="Group Name..." type="text" maxLength={15} />
+                      <input value={groupData.headline} onChange={updateHeadlineGroupVal} style={{width: headlineGroupVal === '' ? '8.75rem' : `${headlineGroupVal}ch`, color: groupData.color === '#333' ? null : groupData.color}} className="headline" placeholder="Group Name..." type="text" maxLength={15} />
                     </div>
                   <ChromePicker
-                    color={todoData.color}
-                    onChange={changeColor}
+                    color={groupData.color}
+                    onChange={changeGroupColor}
                     className={isPalletteGroupOpen ? 'palletteOpen' : 'palletteClose' }
                   />
                   </div>
                   <div className="bottomBtnCont">
                     <div className="rightBtnCont">
                       <div onClick={closeCreateGroup} className="closeBtn">Close</div>
-                      <div onClick={null} className="submitBtn">Submit</div>
+                      <div onClick={allGroupsOnClick} className="submitBtn">Submit</div>
                     </div>
                   </div>
                 </div>
               </div>
               
             </div>
-            <div className="ctaGroupTodo leftCtaGroupTodo">Add Group</div>
+            <div className="ctaCont" style={{position: "relative"}}>
+              <div onClick={() => univToggle(setIsGroupAddOpen)} className="ctaGroupTodo leftCtaGroupTodo">Add Group</div>
+              <ul className="dropdownGroup" style={{display: isGroupAddOpen ? 'block' : 'none'}}>
+                {groups.map(group => {
+                  return(
+                    <li key={'key'} style={{color: group.color === '#333' ? 'rgba(51, 51, 51, 0.8)' : group.color}} >{group.headline}</li>
+                  )
+                })}
+              </ul>
+            </div>
             
             <div className="groupCont">
               <h2 className="groupHeadline">General</h2>
@@ -243,12 +292,12 @@ function ToDo(props) {
                   <div className="topInputCont">
                     <div className="imgAndInputCont">
                       <img onClick={() => univToggle(setIsPalletteOpen)} src={pallette} alt="" />
-                      <input value={todoData.headline} onChange={updateHeadlineVal} style={{width: headlineVal === '' ? '8rem' : `${headlineVal}ch`, color: todoData.color === '#333' ? null : todoData.color}} className="headline" placeholder="Task Name..." type="text" maxLength={30} />
+                      <input value={todoData.headline} onChange={updateHeadlineTodoVal} style={{width: headlineTodoVal === '' ? '8rem' : `${headlineTodoVal}ch`, color: todoData.color === '#333' ? null : todoData.color}} className="headline" placeholder="Task Name..." type="text" maxLength={30} />
                     </div>
                     <input value={todoData.shortDesc} onChange={updateShortDescVal} style={shortDescVal === '' ? {width: '7rem'} : {width: `${shortDescVal}ch`}} className="shortDesc" placeholder="Short Description" type="text" maxLength={50} />
                   <ChromePicker
                     color={todoData.color}
-                    onChange={changeColor}
+                    onChange={changeTodoColor}
                     className={isPalletteOpen ? 'palletteOpen' : 'palletteClose' }
                   />
                   </div>

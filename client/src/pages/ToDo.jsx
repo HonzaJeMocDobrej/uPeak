@@ -195,6 +195,10 @@ function ToDo(props) {
     console.log(groups);
   }
 
+  const selectGroup = (group) => {
+    console.log(group.headline)
+  }
+
   return (
     <>
       <div className={`menuCont ${isBlack ? "menuBlack" : null}`}>
@@ -276,9 +280,9 @@ function ToDo(props) {
             <div className="ctaCont" style={{position: "relative"}}>
               <div onClick={() => univToggle(setIsGroupAddOpen)} className="ctaGroupTodo leftCtaGroupTodo">Add Group</div>
               <ul className="dropdownGroup" style={{display: isGroupAddOpen ? 'block' : 'none'}}>
-                {groups.map(group => {
+                {groups.map((group, index) => {
                   return(
-                    <li key={'key'} style={{color: group.color === '#333' ? 'rgba(51, 51, 51, 0.8)' : group.color}} >{group.headline}</li>
+                    <li onClick={() => selectGroup(group)} key={index} style={{color: group.color === '#333' ? 'rgba(51, 51, 51, 0.8)' : group.color}} >{group.headline}</li>
                   )
                 })}
               </ul>

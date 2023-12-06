@@ -3,11 +3,20 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const mongoose = require('mongoose')
+const cors = require('cors')
+
+mongoose
+.connect('mongodb+srv://admin:admin@upeak.1bnbca2.mongodb.net/?retryWrites=true&w=majority')
+.then(() => console.log('Connected to db'))
+.catch(err => console.log(err))
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+app.use(cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

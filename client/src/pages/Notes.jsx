@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
 import LeftMenu from "../components/LeftMenu"
 import TopMenu from "../components/topMenu"
+import NotesRightMenu from "../components/NotesRightMenu"
 
 import '../styles/styles.css'
 
 function Notes(props) {
 
     const {active, isEnglish, setIsEnglish, isBlack, setIsBlack, switchStyle, setSwitchStyle} = props
+
+
 
   return (
     <>
@@ -25,7 +28,12 @@ function Notes(props) {
           switchStyle={switchStyle}
           setSwitchStyle={setSwitchStyle}
         />
-        <main className={`mainStuff ${isBlack ? 'mainBlack' : null}`}></main>
+        <main className={`mainStuff ${isBlack ? 'mainBlack' : null}`}>
+          <NotesRightMenu />
+          <div className="notesCont">
+            
+          </div>
+        </main>
     </div>
     </>
   )

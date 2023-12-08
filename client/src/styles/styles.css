@@ -1904,11 +1904,40 @@ main .todoConts .dropdownPlaceholder {
   font-weight: 600;
   line-height: 93.682%;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100px;
 }
 .notesMenu .bottomCont .notesList .rightCont {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.notesCont {
+  padding: 0 10% 0 10%;
+  width: calc(100% - 15.5rem - 20%);
+}
+.notesCont .heading {
+  color: #333;
+  font-family: Poppins;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  outline: none;
+  word-break: break-all;
+  border: none;
+  margin-top: 4rem;
+  width: 100%;
+  resize: none;
+}
+.notesCont .allContsCont .inputP {
+  width: 100%;
+  outline: none;
+  word-break: break-all;
+  margin-top: 2rem;
 }
 
 html, body {

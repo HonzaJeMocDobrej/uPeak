@@ -79,6 +79,10 @@
           font-weight: 600;
           line-height: 93.682%;
           margin: 0;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 100px;
         }
       }
 

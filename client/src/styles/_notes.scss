@@ -1,1 +1,27 @@
- 
+.notesCont {
+  padding: 0 10% 0 10%;
+  width: calc(100% - 15.5rem - 20%);
+  .heading {
+    color: #333;
+    font-family: Poppins;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    outline: none;
+    word-break: break-all;
+    border: none;
+    margin-top: 4rem;
+    width: 100%;
+    resize: none;
+  }
+  .allContsCont {
+    .inputP {
+      width: calc(100%);
+      outline: none;
+      // height: 2rem;
+      word-break: break-all;
+      margin-top: 2rem;
+    }
+  }
+}

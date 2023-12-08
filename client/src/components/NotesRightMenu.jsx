@@ -5,7 +5,10 @@ import plus from '../assets/icons/plus.svg'
 import threeDots from '../assets/icons/threeDots.svg'
 
 
-const NotesRightMenu = () => {
+const NotesRightMenu = (props) => {
+
+    const { noteNames } = props
+
   return (
     <>
         <div className="notesMenu">
@@ -24,7 +27,7 @@ const NotesRightMenu = () => {
                 <div className="notesList">
                     <div className="leftCont">
                         <span>✅</span>
-                        <p>Test</p>
+                        <p>{noteNames}</p>
                     </div>
                     <div className="rightCont">
                         <img src={threeDots} alt="" />

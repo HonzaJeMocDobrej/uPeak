@@ -4,7 +4,6 @@ import LeftMenu from "../components/LeftMenu";
 import TopMenu from "../components/topMenu";
 import ToDoListItem from "../components/ToDoListItem";
 import { ChromePicker } from 'react-color'
-import { nanoid } from 'nanoid'
 
 import "../styles/styles.css";
 

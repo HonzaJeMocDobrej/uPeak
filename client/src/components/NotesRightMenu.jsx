@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import '../styles/styles.css'
 import binBlack from '../assets/icons/binBlack.svg'
 import magnifyingGlass from '../assets/icons/magnifyingGlass.svg'
@@ -27,7 +28,7 @@ const NotesRightMenu = (props) => {
                 <div className="notesList">
                     <div className="leftCont">
                         <span>✅</span>
-                        <p>{noteNames}</p>
+                        <p>{noteNames === '' ? 'Untitled' : noteNames }</p>
                     </div>
                     <div className="rightCont">
                         <img src={threeDots} alt="" />

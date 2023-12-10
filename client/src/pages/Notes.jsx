@@ -3,9 +3,10 @@ import LeftMenu from "../components/LeftMenu";
 import TopMenu from "../components/topMenu";
 import NotesRightMenu from "../components/NotesRightMenu";
 import TextareaAutosize from 'react-textarea-autosize';
+import { nanoid } from "nanoid";
 
 import "../styles/styles.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
 function Notes(props) {
@@ -20,11 +21,108 @@ function Notes(props) {
   } = props;
   
   const [heading, setHeading] = useState('')
+  const [inputElements, setInputElements] = useState([{
+    focused: false,
+    id: nanoid(),
+    notePlaceholder: false,
+    text: ''
+  }, {
+    focused: false,
+    id: nanoid(),
+    notePlaceholder: false,
+    text: ''
+  }])
+  const headlineRef = useRef()
+  const notesRef = useRef([]);
+  const [enterCount, setEnterCount] = useState(-1);
 
   const headingChange = (e) => {
     const { value } = e.target
     setHeading(value)
   }
+
+  const handlePlaceholder = (id, val) => {
+    let newElements = []
+    inputElements.map(element => {
+      if (element.id === id) {
+        element = {
+          focused: element.focused,
+          id: element.id,
+          notePlaceholder: val,
+          text: element.text
+        }
+      }
+      newElements = [...newElements, element]
+    })
+    setInputElements(newElements)
+  }
+
+  const handleInputFocus = (id, val) => {
+    let newElements = []
+    inputElements.map(element => {
+      if (element.id === id) {
+        element = {
+          focused: val,
+          id: element.id,
+          notePlaceholder: element.notePlaceholder,
+          text: element.text
+        }
+      }
+      newElements = [...newElements, element]
+    })
+    setInputElements(newElements)
+    console.log(newElements);
+  }
+
+  const handleTextChange = (e, id) => {
+    let newElements = []
+    inputElements.map(element => {
+      if (element.id === id) {
+        element = {
+          focused: element.focused,
+          id: element.id,
+          notePlaceholder: element.notePlaceholder,
+          text: e.target.value
+        }
+      }
+      newElements = [...newElements, element]
+    })
+    setInputElements(newElements)
+    console.log(newElements);
+  }
+
+
+  
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      console.log(e.keyCode);
+      // if (e.keyCode === 13) {
+      //   if (enterCount >= inputElements.length) {
+      //     return setEnterCount(enterCount)
+      //   }
+      //   setEnterCount(prev => prev + 1)
+      //   console.log(enterCount);
+      //   if (enterCount === -1) {
+      //     headlineRef.current.focus();
+      //     e.preventDefault()
+      //     console.log(headlineRef.current.focus());
+      //   }
+
+      //   if (enterCount >= 0 && enterCount <= inputElements.length) {
+      //     notesRef.current[enterCount].focus();
+      //     e.preventDefault();
+      //   }
+      // }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    //clean up
+    return function cleanup() {
+      document.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [enterCount])
   
   return (
     <>
@@ -47,10 +145,28 @@ function Notes(props) {
           <NotesRightMenu
             noteNames={heading}
           />
-          <div className="notesCont">
-            <TextareaAutosize onChange={headingChange} className="heading" placeholder="Untitled" ></TextareaAutosize>
+          <div  className="notesCont">
+            <TextareaAutosize ref={headlineRef} onChange={headingChange} className="heading" placeholder="Untitled" ></TextareaAutosize>
             <div className="allContsCont">
-              <textarea className="inputP"></textarea>
+              {/* <TextareaAutosize onChange={textChange} onMouseOut={() => handlePlaceholder(false)} onMouseOver={() => handlePlaceholder(true)} style={{opacity: text === '' ? notePlaceholder ? 1 : 0 : 1}} placeholder={'New Note'} className="inputP"></TextareaAutosize> */}
+              {
+                inputElements.map((element, index) => {
+                  return <TextareaAutosize
+                    onFocus={() => handleInputFocus(element.id ,true)}
+                    onBlur={() => handleInputFocus(element.id, false)}
+                    onChange={() => handleTextChange(event, element.id)}
+                    onMouseOut={() => handlePlaceholder(element.id, false)}
+                    onMouseOver={() => handlePlaceholder(element.id, true)}
+                    // style={{opacity: element.text === '' ? element.notePlaceholder ? 1 : 0 : 1}}
+                    style={{opacity: element.focused ? 1 : 0 || element.notePlaceholder ? 1 : 0 || element.text === '' ? 0 : 1}}
+                    placeholder={'New Note'}
+                    className="inputP"
+                    key={index}
+                    ref={(ref) => notesRef.current.push(ref)}>
+
+                    </TextareaAutosize>
+                })
+              }
             </div>
           </div>
         </main>

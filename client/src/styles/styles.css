@@ -1902,7 +1902,6 @@ main .todoConts .dropdownPlaceholder {
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 600;
-  line-height: 93.682%;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -1936,8 +1935,18 @@ main .todoConts .dropdownPlaceholder {
 .notesCont .allContsCont .inputP {
   width: 100%;
   outline: none;
+  color: #333;
+  font-family: Open Sans;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
   word-break: break-all;
+  border: none;
+  resize: none;
   margin-top: 2rem;
+  transition: 500ms;
+  overflow-y: hidden;
 }
 
 html, body {

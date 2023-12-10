@@ -17,11 +17,20 @@
   }
   .allContsCont {
     .inputP {
-      width: calc(100%);
+      width: 100%;
       outline: none;
-      // height: 2rem;
+      color: #333;
+      font-family: Open Sans;
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
       word-break: break-all;
+      border: none;
+      resize: none;
       margin-top: 2rem;
+      transition: 500ms;
+      overflow-y: hidden;
     }
   }
 }

@@ -31,6 +31,16 @@ function Notes(props) {
     id: nanoid(),
     notePlaceholder: false,
     text: ''
+  }, {
+    focused: false,
+    id: nanoid(),
+    notePlaceholder: false,
+    text: ''
+  }, {
+    focused: false,
+    id: nanoid(),
+    notePlaceholder: false,
+    text: ''
   }])
   const headlineRef = useRef()
   const notesRef = useRef([]);
@@ -57,21 +67,28 @@ function Notes(props) {
     setInputElements(newElements)
   }
 
-  const handleInputFocus = (id, val) => {
-    let newElements = []
-    inputElements.map(element => {
-      if (element.id === id) {
-        element = {
-          focused: val,
-          id: element.id,
-          notePlaceholder: element.notePlaceholder,
-          text: element.text
-        }
-      }
-      newElements = [...newElements, element]
+  const handleInputFocus = (index) => {
+    let items = [...inputElements];
+    let item = {...items[index]};
+    
+    items.map(item => {
+      item.focused = false
     })
-    setInputElements(newElements)
-    console.log(newElements);
+    item.focused = true;
+    items[index] = item;
+    setInputElements(items);
+  }
+
+  const handleInputBlur = (index) => {
+    let items = [...inputElements];
+    let item = {...items[index]};
+    
+    items.map(item => {
+      item.focused = false
+    })
+    item.focused = false;
+    items[index] = item;
+    setInputElements(items);
   }
 
   const handleTextChange = (e, id) => {
@@ -91,39 +108,40 @@ function Notes(props) {
     console.log(newElements);
   }
 
-
-  
+  const handleRightEnterCount = (index) => {
+    setEnterCount(index + 1)
+  }
 
   useEffect(() => {
     function handleKeyDown(e) {
-      console.log(e.keyCode);
-      // if (e.keyCode === 13) {
+      console.log(enterCount);
+      if (e.keyCode === 13) {
       //   if (enterCount >= inputElements.length) {
       //     return setEnterCount(enterCount)
       //   }
-      //   setEnterCount(prev => prev + 1)
-      //   console.log(enterCount);
-      //   if (enterCount === -1) {
-      //     headlineRef.current.focus();
-      //     e.preventDefault()
-      //     console.log(headlineRef.current.focus());
-      //   }
+        setEnterCount(prev => prev + 1)
+        if (enterCount === -1) {
+          headlineRef.current.focus();
+          e.preventDefault()
+          console.log(headlineRef.current.focus());
+        }
 
-      //   if (enterCount >= 0 && enterCount <= inputElements.length) {
-      //     notesRef.current[enterCount].focus();
-      //     e.preventDefault();
-      //   }
-      // }
+        if (enterCount >= 0) {
+          notesRef.current[enterCount].focus();
+          e.preventDefault();
+        }
+      }
     }
 
     document.addEventListener('keydown', handleKeyDown);
-
+    
     //clean up
     return function cleanup() {
       document.removeEventListener('keydown', handleKeyDown);
     }
   }, [enterCount])
   
+
   return (
     <>
       <div className="menuCont">
@@ -146,19 +164,20 @@ function Notes(props) {
             noteNames={heading}
           />
           <div  className="notesCont">
-            <TextareaAutosize ref={headlineRef} onChange={headingChange} className="heading" placeholder="Untitled" ></TextareaAutosize>
+            <TextareaAutosize ref={headlineRef} onClick={() => handleRightEnterCount(-1)} onChange={headingChange} className="heading" placeholder="Untitled" ></TextareaAutosize>
             <div className="allContsCont">
               {/* <TextareaAutosize onChange={textChange} onMouseOut={() => handlePlaceholder(false)} onMouseOver={() => handlePlaceholder(true)} style={{opacity: text === '' ? notePlaceholder ? 1 : 0 : 1}} placeholder={'New Note'} className="inputP"></TextareaAutosize> */}
               {
                 inputElements.map((element, index) => {
                   return <TextareaAutosize
-                    onFocus={() => handleInputFocus(element.id ,true)}
-                    onBlur={() => handleInputFocus(element.id, false)}
+                    onFocus={() => handleInputFocus(index)}
+                    onBlur={() => handleInputBlur(index)}
                     onChange={() => handleTextChange(event, element.id)}
                     onMouseOut={() => handlePlaceholder(element.id, false)}
                     onMouseOver={() => handlePlaceholder(element.id, true)}
+                    onClick={() => handleRightEnterCount(index)}
                     // style={{opacity: element.text === '' ? element.notePlaceholder ? 1 : 0 : 1}}
-                    style={{opacity: element.focused ? 1 : 0 || element.notePlaceholder ? 1 : 0 || element.text === '' ? 0 : 1}}
+                    style={{opacity: element.focused ? 1 : 0 || element.notePlaceholder ? 1 : 0 || element.text === '' ? 0 : 1 }}
                     placeholder={'New Note'}
                     className="inputP"
                     key={index}

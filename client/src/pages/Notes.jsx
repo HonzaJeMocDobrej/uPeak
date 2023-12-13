@@ -116,10 +116,15 @@ function Notes(props) {
     function handleKeyDown(e) {
       console.log(enterCount);
       if (e.keyCode === 13) {
-      //   if (enterCount >= inputElements.length) {
-      //     return setEnterCount(enterCount)
-      //   }
+        //   if (enterCount >= inputElements.length) {
+          //     return setEnterCount(enterCount)
+          //   }
         setEnterCount(prev => prev + 1)
+        // if (enterCount <= -2){
+        //   setEnterCount(0);
+        //   notesRef.current[0].focus();
+        //   e.preventDefault()
+        // }  
         if (enterCount === -1) {
           headlineRef.current.focus();
           e.preventDefault()
@@ -131,6 +136,23 @@ function Notes(props) {
           e.preventDefault();
         }
       }
+      if (e.keyCode === 38) {
+        setEnterCount(prev => prev - 1)
+
+        if (enterCount === -1) setEnterCount(-2)
+          if (enterCount === 0) setEnterCount(-1)
+            
+          if (enterCount === 1) {
+            headlineRef.current.focus();
+            e.preventDefault()
+            console.log(headlineRef.current.focus());
+          }
+  
+          if (enterCount >= 2) {
+            notesRef.current[enterCount-2].focus();
+            e.preventDefault();
+          }
+        }
     }
 
     document.addEventListener('keydown', handleKeyDown);

@@ -3,7 +3,6 @@ import LeftMenu from "../components/LeftMenu";
 import TopMenu from "../components/topMenu";
 import NotesRightMenu from "../components/NotesRightMenu";
 import TextareaAutosize from 'react-textarea-autosize';
-import { nanoid } from "nanoid";
 
 import "../styles/styles.css";
 import { useEffect, useRef, useState } from "react";
@@ -21,30 +20,27 @@ function Notes(props) {
   } = props;
   
   const [heading, setHeading] = useState('')
-  const [inputElements, setInputElements] = useState([{
+  const [inputElements, setInputElements] = useState([
+    {
+    index: 0,
     focused: false,
-    id: nanoid(),
+    // id: nanoid(),
     notePlaceholder: false,
-    text: ''
-  }, {
-    focused: false,
-    id: nanoid(),
-    notePlaceholder: false,
-    text: ''
-  }, {
-    focused: false,
-    id: nanoid(),
-    notePlaceholder: false,
-    text: ''
-  }, {
-    focused: false,
-    id: nanoid(),
-    notePlaceholder: false,
-    text: ''
-  }])
+    text: 'ahoj'
+  }, 
+  //  {
+  //   index: 0,
+  //   focused: false,
+  //   // id: nanoid(),
+  //   notePlaceholder: false,
+  //   text: ''
+  // }
+])
   const headlineRef = useRef()
   const notesRef = useRef([]);
-  const [enterCount, setEnterCount] = useState(-1);
+  const [maxCount, setMaxCount] = useState(0);
+  const [currentlyAtCount, setCurrentlyAtCount] = useState(0)
+  const [isHeadingFocused, setIsHeadingFocused] = useState(false)
 
   const headingChange = (e) => {
     const { value } = e.target
@@ -54,10 +50,10 @@ function Notes(props) {
   const handlePlaceholder = (id, val) => {
     let newElements = []
     inputElements.map(element => {
-      if (element.id === id) {
+      if (element.index === id) {
         element = {
           focused: element.focused,
-          id: element.id,
+          index: element.index,
           notePlaceholder: val,
           text: element.text
         }
@@ -94,10 +90,10 @@ function Notes(props) {
   const handleTextChange = (e, id) => {
     let newElements = []
     inputElements.map(element => {
-      if (element.id === id) {
+      if (element.index === id) {
         element = {
           focused: element.focused,
-          id: element.id,
+          index: element.index,
           notePlaceholder: element.notePlaceholder,
           text: e.target.value
         }
@@ -109,50 +105,90 @@ function Notes(props) {
   }
 
   const handleRightEnterCount = (index) => {
-    setEnterCount(index + 1)
+    setMaxCount(index + 1)
   }
 
-  useEffect(() => {
-    function handleKeyDown(e) {
-      console.log(enterCount);
-      if (e.keyCode === 13) {
-        //   if (enterCount >= inputElements.length) {
-          //     return setEnterCount(enterCount)
-          //   }
-        setEnterCount(prev => prev + 1)
-        // if (enterCount <= -2){
-        //   setEnterCount(0);
-        //   notesRef.current[0].focus();
-        //   e.preventDefault()
-        // }  
-        if (enterCount === -1) {
-          headlineRef.current.focus();
-          e.preventDefault()
-          console.log(headlineRef.current.focus());
-        }
+  const createNewInput = () => {
+    setInputElements(prev => {
+      const index = currentlyAtCount - 1
+      return [
+        ...prev.slice(0, index),
+        {
+          focused: false,
+          index: prev.length,
+          notePlaceholder: false,
+          text: ''
+        },
+        ...prev.slice(index)
+      ]
+    })
+  }
 
-        if (enterCount >= 0) {
-          notesRef.current[enterCount].focus();
-          e.preventDefault();
-        }
-      }
-      if (e.keyCode === 38) {
-        setEnterCount(prev => prev - 1)
-
-        if (enterCount === -1) setEnterCount(-2)
-          if (enterCount === 0) setEnterCount(-1)
-            
-          if (enterCount === 1) {
-            headlineRef.current.focus();
-            e.preventDefault()
-            console.log(headlineRef.current.focus());
+  const resortArray = () => {
+    setInputElements(prevs => {
+      return(
+        prevs.map((prev, index) => {
+          return {
+            ...prev,
+            index: index 
           }
+        })
+        )
+    })
+  }
+
   
-          if (enterCount >= 2) {
-            notesRef.current[enterCount-2].focus();
-            e.preventDefault();
-          }
+
+  useEffect(() => {
+
+    const enterLogic = async (e) => {
+      if (e.keyCode === 13) {
+        e.preventDefault()
+        if (!isHeadingFocused) {
+          headlineRef.current.focus();
+          setIsHeadingFocused(true)
+          return
         }
+        await createNewInput();
+        setMaxCount(prev => prev + 1)
+        setCurrentlyAtCount(prev => prev + 1)
+        notesRef.current[currentlyAtCount].focus()
+      }
+    }
+  
+    const upLogic = async (e) => {
+      if (e.keyCode === 38) {
+        if (currentlyAtCount <= 1) {
+          setCurrentlyAtCount(0)
+          headlineRef.current.focus();
+          return
+        }
+        setCurrentlyAtCount(prev => prev - 1)
+        notesRef.current[currentlyAtCount - 2].focus()
+      }
+    }
+  
+    const downLogic = async (e) => {
+      if (e.keyCode === 40) {
+        if (currentlyAtCount === maxCount + 1) {
+          setCurrentlyAtCount(maxCount + 1)
+          return 
+        }
+        setCurrentlyAtCount(prev => prev + 1)
+        notesRef.current[currentlyAtCount].focus()
+      }
+    }
+  
+    
+
+    async function handleKeyDown(e) {
+      console.log(`Max count: ${maxCount}, currentlyAtCount: ${currentlyAtCount}`);
+      
+      await enterLogic(e)
+      resortArray()
+      upLogic(e)
+      downLogic(e)
+      console.log(inputElements);
     }
 
     document.addEventListener('keydown', handleKeyDown);
@@ -161,7 +197,7 @@ function Notes(props) {
     return function cleanup() {
       document.removeEventListener('keydown', handleKeyDown);
     }
-  }, [enterCount])
+  }, [maxCount, inputElements.length, currentlyAtCount, isHeadingFocused, resortArray, inputElements])
   
 
   return (
@@ -190,20 +226,21 @@ function Notes(props) {
             <div className="allContsCont">
               {/* <TextareaAutosize onChange={textChange} onMouseOut={() => handlePlaceholder(false)} onMouseOver={() => handlePlaceholder(true)} style={{opacity: text === '' ? notePlaceholder ? 1 : 0 : 1}} placeholder={'New Note'} className="inputP"></TextareaAutosize> */}
               {
-                inputElements.map((element, index) => {
+                inputElements.map((element) => {
                   return <TextareaAutosize
-                    onFocus={() => handleInputFocus(index)}
-                    onBlur={() => handleInputBlur(index)}
-                    onChange={() => handleTextChange(event, element.id)}
-                    onMouseOut={() => handlePlaceholder(element.id, false)}
-                    onMouseOver={() => handlePlaceholder(element.id, true)}
-                    onClick={() => handleRightEnterCount(index)}
+                    onFocus={() => handleInputFocus(element.index)}
+                    onBlur={() => handleInputBlur(element.index)}
+                    onChange={() => handleTextChange(event, element.index)}
+                    onMouseOut={() => handlePlaceholder(element.index, false)}
+                    onMouseOver={() => handlePlaceholder(element.index, true)}
+                    onClick={() => handleRightEnterCount(element.index)}
                     // style={{opacity: element.text === '' ? element.notePlaceholder ? 1 : 0 : 1}}
                     style={{opacity: element.focused ? 1 : 0 || element.notePlaceholder ? 1 : 0 || element.text === '' ? 0 : 1 }}
                     placeholder={'New Note'}
+                    value={element.text}
                     className="inputP"
-                    key={index}
-                    ref={(ref) => notesRef.current.push(ref)}>
+                    key={element.index}
+                    ref={(el) => (notesRef.current[element.index] = el)}>
 
                     </TextareaAutosize>
                 })

@@ -26,7 +26,8 @@ function Notes(props) {
     focused: false,
     // id: nanoid(),
     notePlaceholder: false,
-    text: 'ahoj'
+    text: 'ahoj',
+    cursorPosition: 0
   }, 
   //  {
   //   index: 0,
@@ -55,7 +56,8 @@ function Notes(props) {
           focused: element.focused,
           index: element.index,
           notePlaceholder: val,
-          text: element.text
+          text: element.text,
+          cursorPosition: element.cursorPosition
         }
       }
       newElements = [...newElements, element]
@@ -95,7 +97,8 @@ function Notes(props) {
           focused: element.focused,
           index: element.index,
           notePlaceholder: element.notePlaceholder,
-          text: e.target.value
+          text: e.target.value,
+          cursorPosition: element.cursorPosition
         }
       }
       newElements = [...newElements, element]
@@ -104,11 +107,12 @@ function Notes(props) {
     console.log(newElements);
   }
 
-  const handleRightEnterCount = (index) => {
-    setMaxCount(index + 1)
+  const handleOnClick = (e ,index) => {
+    setCurrentlyAtCount(index + 1)
+    console.log(e.target.selectionStart);
   }
 
-  const createNewInput = () => {
+  const createNewInput = (value) => {
     setInputElements(prev => {
       const index = currentlyAtCount - 1
       return [
@@ -117,7 +121,8 @@ function Notes(props) {
           focused: false,
           index: prev.length,
           notePlaceholder: false,
-          text: ''
+          text: value,
+          cursorPosition: 0
         },
         ...prev.slice(index)
       ]
@@ -137,6 +142,63 @@ function Notes(props) {
     })
   }
 
+  const handleOnKeyDown = (e) => {
+    console.log(e.target.selectionStart);
+    // let newElements = []
+    // inputElements.map(element => {
+    //   if (element.index === id) {
+    //     element = {
+    //       focused: element.focused,
+    //       index: element.index,
+    //       notePlaceholder: element.notePlaceholder,
+    //       text: element.text,
+    //       cursorPosition: e.target.selectionStart
+    //     }
+    //   }
+    //   newElements = [...newElements, element]
+    // })
+    // setInputElements(newElements)
+
+    setInputElements(prevs => {
+      return (
+        prevs.map(prev => {
+          return {
+            ...prev,
+            cursorPosition: e.target.selectionStart
+          }
+        })
+      )
+    })
+
+  }
+
+  const splitText = (id) => {
+    const splitIndex = inputElements[currentlyAtCount - 1].cursorPosition
+    const first = inputElements[currentlyAtCount - 1].text.slice(0, splitIndex)
+    const second = inputElements[currentlyAtCount - 1].text.slice(splitIndex)
+    console.log(`First: ${first}, Second: ${second}`);
+
+    let newElements = []
+
+    inputElements.map(element => {
+      if (element.index === id) {
+        element = {
+          focused: element.focused,
+          index: element.index,
+          notePlaceholder: element.notePlaceholder,
+          text: second,
+          cursorPosition: element.cursorPosition
+        }
+      }
+
+      newElements = [...newElements, element]
+    })
+    setInputElements(newElements)
+
+    return first
+
+  }
+
   
 
   useEffect(() => {
@@ -149,7 +211,18 @@ function Notes(props) {
           setIsHeadingFocused(true)
           return
         }
-        await createNewInput();
+        if (currentlyAtCount === 0) {
+          await createNewInput('');
+        }
+
+        if (currentlyAtCount > 0) {
+          if (inputElements[currentlyAtCount - 1].text === '') {
+            await createNewInput('');
+          } else {
+            await createNewInput(splitText(currentlyAtCount - 1));
+          }
+          
+        }
         setMaxCount(prev => prev + 1)
         setCurrentlyAtCount(prev => prev + 1)
         notesRef.current[currentlyAtCount].focus()
@@ -178,8 +251,6 @@ function Notes(props) {
         notesRef.current[currentlyAtCount].focus()
       }
     }
-  
-    
 
     async function handleKeyDown(e) {
       console.log(`Max count: ${maxCount}, currentlyAtCount: ${currentlyAtCount}`);
@@ -222,7 +293,7 @@ function Notes(props) {
             noteNames={heading}
           />
           <div  className="notesCont">
-            <TextareaAutosize ref={headlineRef} onClick={() => handleRightEnterCount(-1)} onChange={headingChange} className="heading" placeholder="Untitled" ></TextareaAutosize>
+            <TextareaAutosize ref={headlineRef} onClick={() => handleOnClick(-1)} onChange={headingChange} className="heading" placeholder="Untitled" ></TextareaAutosize>
             <div className="allContsCont">
               {/* <TextareaAutosize onChange={textChange} onMouseOut={() => handlePlaceholder(false)} onMouseOver={() => handlePlaceholder(true)} style={{opacity: text === '' ? notePlaceholder ? 1 : 0 : 1}} placeholder={'New Note'} className="inputP"></TextareaAutosize> */}
               {
@@ -233,7 +304,8 @@ function Notes(props) {
                     onChange={() => handleTextChange(event, element.index)}
                     onMouseOut={() => handlePlaceholder(element.index, false)}
                     onMouseOver={() => handlePlaceholder(element.index, true)}
-                    onClick={() => handleRightEnterCount(element.index)}
+                    onClick={() => handleOnClick(event, element.index)}
+                    onKeyDown={handleOnKeyDown}
                     // style={{opacity: element.text === '' ? element.notePlaceholder ? 1 : 0 : 1}}
                     style={{opacity: element.focused ? 1 : 0 || element.notePlaceholder ? 1 : 0 || element.text === '' ? 0 : 1 }}
                     placeholder={'New Note'}

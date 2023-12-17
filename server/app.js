@@ -5,9 +5,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose')
 const cors = require('cors')
+require('dotenv').config()
+
+
 
 mongoose
-.connect('mongodb+srv://admin:admin@upeak.1bnbca2.mongodb.net/?retryWrites=true&w=majority')
+.connect(process.env.DB_KEY)
 .then(() => console.log('Connected to db'))
 .catch(err => console.log(err))
 

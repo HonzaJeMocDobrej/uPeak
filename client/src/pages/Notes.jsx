@@ -29,13 +29,13 @@ function Notes(props) {
     text: 'ahoj',
     cursorPosition: 0
   }, 
-  //  {
-  //   index: 0,
-  //   focused: false,
-  //   // id: nanoid(),
-  //   notePlaceholder: false,
-  //   text: ''
-  // }
+   {
+    index: 1,
+    focused: false,
+    notePlaceholder: false,
+    text: 'asdf',
+    cursorPosition: 0
+  }
 ])
   const headlineRef = useRef()
   const notesRef = useRef([]);
@@ -243,8 +243,8 @@ function Notes(props) {
   
     const downLogic = async (e) => {
       if (e.keyCode === 40) {
-        if (currentlyAtCount === maxCount + 1) {
-          setCurrentlyAtCount(maxCount + 1)
+        if (currentlyAtCount === maxCount) {
+          setCurrentlyAtCount(maxCount)
           return 
         }
         setCurrentlyAtCount(prev => prev + 1)
@@ -269,6 +269,10 @@ function Notes(props) {
       document.removeEventListener('keydown', handleKeyDown);
     }
   }, [maxCount, inputElements.length, currentlyAtCount, isHeadingFocused, resortArray, inputElements])
+
+  useEffect(() => {
+    setMaxCount(inputElements.length)
+  }, [])
   
 
   return (

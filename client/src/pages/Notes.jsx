@@ -108,8 +108,13 @@ function Notes(props) {
   }
 
   const handleOnClick = (e ,index) => {
+    if (index < 0) {
+      setCurrentlyAtCount(0)
+      setIsHeadingFocused(true)
+      return
+    }
     setCurrentlyAtCount(index + 1)
-    console.log(e.target.selectionStart);
+    setIsHeadingFocused(true)
   }
 
   const createNewInput = (value) => {
@@ -199,6 +204,10 @@ function Notes(props) {
 
   }
 
+  const deleteInput = (index) => {
+    setInputElements(prev => prev.filter(element => element.index !== index))
+    console.log(index);
+  }
   
 
   useEffect(() => {
@@ -231,6 +240,11 @@ function Notes(props) {
   
     const upLogic = async (e) => {
       if (e.keyCode === 38) {
+        if (!isHeadingFocused) {
+          headlineRef.current.focus();
+          setIsHeadingFocused(true)
+          return
+        }
         if (currentlyAtCount <= 1) {
           setCurrentlyAtCount(0)
           headlineRef.current.focus();
@@ -243,12 +257,37 @@ function Notes(props) {
   
     const downLogic = async (e) => {
       if (e.keyCode === 40) {
+        if (!isHeadingFocused) {
+          headlineRef.current.focus();
+          setIsHeadingFocused(true)
+          return
+        }
         if (currentlyAtCount === maxCount) {
           setCurrentlyAtCount(maxCount)
           return 
         }
         setCurrentlyAtCount(prev => prev + 1)
         notesRef.current[currentlyAtCount].focus()
+      }
+    }
+
+    const backspaceLogic = async (e) => {
+      if (e.keyCode === 8) {
+        if (inputElements.length === 1) {
+          return
+        }
+        if (inputElements[currentlyAtCount - 1].text === '') {
+          await deleteInput(currentlyAtCount - 1)
+          setCurrentlyAtCount(prev => prev - 1)
+          setMaxCount(prev => prev - 1)
+          notesRef.current[currentlyAtCount - 2].focus()
+          e.preventDefault()
+          resortArray()
+
+          if (currentlyAtCount <= 1) {
+            return
+          }
+        }
       }
     }
 
@@ -259,6 +298,8 @@ function Notes(props) {
       resortArray()
       upLogic(e)
       downLogic(e)
+      backspaceLogic(e)
+      
       console.log(inputElements);
     }
 
@@ -297,7 +338,7 @@ function Notes(props) {
             noteNames={heading}
           />
           <div  className="notesCont">
-            <TextareaAutosize ref={headlineRef} onClick={() => handleOnClick(-1)} onChange={headingChange} className="heading" placeholder="Untitled" ></TextareaAutosize>
+            <TextareaAutosize ref={headlineRef} onClick={() => handleOnClick(event, -1)} onChange={headingChange} className="heading" placeholder="Untitled" ></TextareaAutosize>
             <div className="allContsCont">
               {/* <TextareaAutosize onChange={textChange} onMouseOut={() => handlePlaceholder(false)} onMouseOver={() => handlePlaceholder(true)} style={{opacity: text === '' ? notePlaceholder ? 1 : 0 : 1}} placeholder={'New Note'} className="inputP"></TextareaAutosize> */}
               {

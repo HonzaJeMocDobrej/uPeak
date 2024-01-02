@@ -118,8 +118,11 @@ function Notes(props) {
   }
 
   const createNewInput = (value) => {
+    let index
     setInputElements(prev => {
-      const index = currentlyAtCount - 1
+
+      currentlyAtCount === 0 ? index = currentlyAtCount - 2 : index = currentlyAtCount - 1
+
       return [
         ...prev.slice(0, index),
         {
@@ -204,6 +207,30 @@ function Notes(props) {
 
   }
 
+  const addText = (id) => {
+    const first = inputElements[currentlyAtCount - 1].text
+    const second = inputElements[currentlyAtCount - 2].text
+    const final = second.concat(first)  
+    
+    let newElements = []
+
+    inputElements.map(element => {
+      if (element.index === id) {
+        element = {
+          focused: element.focused,
+          index: element.index,
+          notePlaceholder: element.notePlaceholder,
+          text: final,
+          cursorPosition: element.cursorPosition
+        }
+      }
+
+      newElements = [...newElements, element]
+    })
+    setInputElements(newElements)
+    deleteInput(currentlyAtCount - 1)
+  }
+
   const deleteInput = (index) => {
     setInputElements(prev => prev.filter(element => element.index !== index))
     console.log(index);
@@ -276,7 +303,17 @@ function Notes(props) {
         if (inputElements.length === 1) {
           return
         }
-        if (inputElements[currentlyAtCount - 1].text === '') {
+
+        if (inputElements[currentlyAtCount - 1].text === '' && currentlyAtCount === 1) {
+          await deleteInput(currentlyAtCount - 1)
+          setCurrentlyAtCount(prev => prev - 1)
+          setMaxCount(prev => prev - 1)
+          headlineRef.current.focus()
+          e.preventDefault()
+          resortArray()
+        }
+
+        if (inputElements[currentlyAtCount - 1].text === '' && currentlyAtCount !== 1) {
           await deleteInput(currentlyAtCount - 1)
           setCurrentlyAtCount(prev => prev - 1)
           setMaxCount(prev => prev - 1)
@@ -288,6 +325,19 @@ function Notes(props) {
             return
           }
         }
+
+        if (e.target.selectionStart === 0 && e.target.selectionEnd === 0 && inputElements[currentlyAtCount - 1].text !== '' && currentlyAtCount > 1) {
+          // console.log(inputElements[currentlyAtCount - 1].text);
+          await addText(currentlyAtCount - 2)
+          
+          setCurrentlyAtCount(prev => prev - 1)
+          setMaxCount(prev => prev - 1)
+          notesRef.current[currentlyAtCount - 2].focus()
+          e.preventDefault()
+          resortArray()
+          
+        }
+
       }
     }
 

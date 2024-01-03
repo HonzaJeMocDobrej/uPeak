@@ -1949,6 +1949,79 @@ main .todoConts .dropdownPlaceholder {
   overflow-y: hidden;
 }
 
+.pomodoroCont {
+  padding-bottom: 4rem;
+}
+.pomodoroCont h2 {
+  color: #333;
+  font-family: Poppins;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: center;
+  margin-top: 5rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.pomodoroCont h2 span {
+  color: #09F;
+}
+.pomodoroCont .timeCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  margin-top: 4.5rem;
+}
+.pomodoroCont .timeCont h1 {
+  color: #09F;
+  font-family: Poppins;
+  font-size: 6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
+}
+.pomodoroCont .timeCont .stars {
+  position: absolute;
+  top: -0.5rem;
+}
+.pomodoroCont .bottomBtnsCont {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 4rem;
+  margin-top: 2.5rem;
+}
+.pomodoroCont .bottomBtnsCont .pauseBtn, .pomodoroCont .bottomBtnsCont .stopBtn {
+  width: 7.5rem;
+  height: 7.5rem;
+  border: 6px solid #333;
+  border-radius: 50%;
+}
+.pomodoroCont .bottomBtnsCont .playBtn {
+  width: 11rem;
+  height: 11rem;
+  border: 6px solid #09F;
+  border-radius: 50%;
+}
+.pomodoroCont .bottomBtnsCont .playBtn img {
+  margin-left: 1rem;
+}
+.pomodoroCont .bottomBtnsCont .playBtn, .pomodoroCont .bottomBtnsCont .pauseBtn, .pomodoroCont .bottomBtnsCont .stopBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 html, body {
   margin: 0;
   padding: 0;

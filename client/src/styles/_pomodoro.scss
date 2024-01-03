@@ -1,0 +1,83 @@
+.pomodoroCont {
+
+    padding-bottom: 4rem;
+
+    h2 {
+        color: #333;
+        font-family: Poppins;
+        font-size: 2.5rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        text-align: center;
+        margin-top: 5rem;
+        user-select: none;
+
+        span {
+            color: #09F;
+        }
+    }
+
+    .timeCont {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        user-select: none;
+
+        margin-top: 4.5rem;
+
+        h1 {
+            color: #09F;
+            font-family: Poppins;
+            font-size: 6rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            margin-top: 0;
+            margin-bottom: 0;
+
+            text-align: center;
+        }
+        
+        .stars {
+            position: absolute;
+            top: -0.5rem;
+        }
+    }
+
+    .bottomBtnsCont {
+
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;        
+        gap: 4rem;
+        margin-top: 2.5rem;
+
+        .pauseBtn, .stopBtn {
+            width: 7.5rem;
+            height: 7.5rem;
+            border: 6px solid #333;
+            border-radius: 50%;
+        }
+
+        .playBtn {
+            width: 11rem;
+            height: 11rem;
+            border: 6px solid #09F;
+            border-radius: 50%;
+
+            img {
+                margin-left: 1rem;
+            }
+        }
+
+        .playBtn, .pauseBtn, .stopBtn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}

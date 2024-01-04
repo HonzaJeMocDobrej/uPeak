@@ -1951,6 +1951,9 @@ main .todoConts .dropdownPlaceholder {
 
 .pomodoroCont {
   padding-bottom: 4rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .pomodoroCont h2 {
   color: #333;
@@ -2006,20 +2009,108 @@ main .todoConts .dropdownPlaceholder {
   height: 7.5rem;
   border: 6px solid #333;
   border-radius: 50%;
+  background-color: white;
 }
-.pomodoroCont .bottomBtnsCont .playBtn {
+.pomodoroCont .bottomBtnsCont .playBtnCont {
+  position: relative;
+}
+.pomodoroCont .bottomBtnsCont .playBtnCont .playBtn {
   width: 11rem;
   height: 11rem;
   border: 6px solid #09F;
   border-radius: 50%;
+  background-color: white;
+  transition: 200ms cubic-bezier(0, 0, 1, 1);
 }
-.pomodoroCont .bottomBtnsCont .playBtn img {
+.pomodoroCont .bottomBtnsCont .playBtnCont .playBtn:hover + .border {
+  transform: translateY(0.5rem);
+  transition: 200ms cubic-bezier(0, 0, 1, 1);
+}
+.pomodoroCont .bottomBtnsCont .playBtnCont .playBtn:hover {
+  transform: translateY(0.5rem);
+  transition: 200ms cubic-bezier(0, 0, 1, 1);
+  background-color: #E5F5FF;
+}
+.pomodoroCont .bottomBtnsCont .playBtnCont .playBtn:active {
+  transform: translateY(1rem);
+  transition: 150ms;
+}
+.pomodoroCont .bottomBtnsCont .playBtnCont .playBtn img {
   margin-left: 1rem;
+}
+.pomodoroCont .bottomBtnsCont .playBtnCont .border {
+  background-color: #09F;
+  width: calc(11rem + 12px);
+  height: 8rem;
+  position: absolute;
+  top: 5.6rem;
+  z-index: -1;
+  border-radius: 0 0 50% 50%;
+  transition: 200ms cubic-bezier(0, 0, 1, 1);
 }
 .pomodoroCont .bottomBtnsCont .playBtn, .pomodoroCont .bottomBtnsCont .pauseBtn, .pomodoroCont .bottomBtnsCont .stopBtn {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+.pomodoroCont .bottomBtnsCont .pauseBtnCont {
+  position: relative;
+}
+.pomodoroCont .bottomBtnsCont .pauseBtnCont .pauseBtn {
+  transition: 200ms cubic-bezier(0, 0, 1, 1);
+}
+.pomodoroCont .bottomBtnsCont .pauseBtnCont .pauseBtn:hover + .border {
+  transform: translateY(0.5rem);
+  transition: 200ms cubic-bezier(0, 0, 1, 1);
+}
+.pomodoroCont .bottomBtnsCont .pauseBtnCont .pauseBtn:hover {
+  transform: translateY(0.5rem);
+  transition: 200ms cubic-bezier(0, 0, 1, 1);
+  background-color: #E6E6E6;
+}
+.pomodoroCont .bottomBtnsCont .pauseBtnCont .pauseBtn:active {
+  transform: translateY(1rem);
+  transition: 150ms;
+}
+.pomodoroCont .bottomBtnsCont .pauseBtnCont .border {
+  background-color: #333;
+  width: calc(7.5rem + 12px);
+  height: 5.5rem;
+  position: absolute;
+  top: 4.1rem;
+  z-index: -1;
+  border-radius: 0 0 50% 50%;
+  transition: 200ms cubic-bezier(0, 0, 1, 1);
+}
+.pomodoroCont .bottomBtnsCont .stopBtnCont {
+  position: relative;
+}
+.pomodoroCont .bottomBtnsCont .stopBtnCont .stopBtn {
+  transition: 200ms cubic-bezier(0, 0, 1, 1);
+}
+.pomodoroCont .bottomBtnsCont .stopBtnCont .stopBtn:hover + .border {
+  transform: translateY(0.5rem);
+  transition: 200ms cubic-bezier(0, 0, 1, 1);
+}
+.pomodoroCont .bottomBtnsCont .stopBtnCont .stopBtn:hover {
+  transform: translateY(0.5rem);
+  transition: 200ms cubic-bezier(0, 0, 1, 1);
+  background-color: #E6E6E6;
+}
+.pomodoroCont .bottomBtnsCont .stopBtnCont .stopBtn:active {
+  transform: translateY(1rem);
+  transition: 150ms;
+}
+.pomodoroCont .bottomBtnsCont .stopBtnCont .border {
+  background-color: #333;
+  width: calc(7.5rem + 12px);
+  height: 5.5rem;
+  position: absolute;
+  top: 4.1rem;
+  z-index: -1;
+  border-radius: 0 0 50% 50%;
+  transition: 200ms cubic-bezier(0, 0, 1, 1);
 }
 
 html, body {

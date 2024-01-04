@@ -1,6 +1,18 @@
+@mixin buttonBefore($color, $width, $height, $top) {
+    background-color: $color ;
+    width: $width;
+    height: $height;
+    position: absolute;
+    top: $top;
+    z-index: -1;
+    border-radius: 0 0 50% 50%;
+    transition: 200ms cubic-bezier(0, 0, 1, 1);
+}
+
 .pomodoroCont {
 
     padding-bottom: 4rem;
+    user-select: none;
 
     h2 {
         color: #333;
@@ -61,23 +73,118 @@
             height: 7.5rem;
             border: 6px solid #333;
             border-radius: 50%;
+            background-color: white;
+            
         }
 
-        .playBtn {
-            width: 11rem;
-            height: 11rem;
-            border: 6px solid #09F;
-            border-radius: 50%;
+        .playBtnCont {
 
-            img {
-                margin-left: 1rem;
+            position: relative;
+
+            .playBtn {
+                width: 11rem;
+                height: 11rem;
+                border: 6px solid #09F;
+                border-radius: 50%;
+                background-color: white;
+                transition: 200ms cubic-bezier(0, 0, 1, 1);
+    
+                &:hover + .border {
+                    transform: translateY(.5rem);
+                    transition: 200ms cubic-bezier(0, 0, 1, 1);
+                }
+
+                &:hover {
+                    transform: translateY(.5rem);
+                    transition: 200ms cubic-bezier(0, 0, 1, 1);
+                    background-color: #E5F5FF;
+                }
+
+                &:active {
+                    transform: translateY(1rem);
+                    transition: 150ms;
+                }
+    
+                img {
+                    margin-left: 1rem;
+                }
+            }
+
+            .border {
+                @include buttonBefore(#09F, calc(11rem + 12px), 8rem, 5.6rem);
             }
         }
+
 
         .playBtn, .pauseBtn, .stopBtn {
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
         }
+
+        .pauseBtnCont {
+            position: relative;
+
+            .pauseBtn {
+                transition: 200ms cubic-bezier(0, 0, 1, 1);
+                
+
+                &:hover + .border {
+                    transform: translateY(.5rem);
+                    transition: 200ms cubic-bezier(0, 0, 1, 1);
+                }
+
+                &:hover {
+                    transform: translateY(.5rem);
+                    transition: 200ms cubic-bezier(0, 0, 1, 1);
+                    background-color: #E6E6E6;
+                }
+
+                &:active {
+                    transform: translateY(1rem);
+                    transition: 150ms;
+                }
+
+            }
+
+            .border {
+                @include buttonBefore(#333, calc(7.5rem + 12px), 5.5rem, 4.1rem)
+            }
+        }
+
+
+        .stopBtnCont {
+            position: relative;
+
+            .stopBtn {
+                transition: 200ms cubic-bezier(0, 0, 1, 1);
+                
+
+                &:hover + .border {
+                    transform: translateY(.5rem);
+                    transition: 200ms cubic-bezier(0, 0, 1, 1);
+                }
+
+                &:hover {
+                    transform: translateY(.5rem);
+                    transition: 200ms cubic-bezier(0, 0, 1, 1);
+                    background-color: #E6E6E6;
+                }
+
+                &:active {
+                    transform: translateY(1rem);
+                    transition: 150ms;
+                }
+
+            }
+
+            .border {
+                @include buttonBefore(#333, calc(7.5rem + 12px), 5.5rem, 4.1rem)
+            }
+
     }
 }
+
+}
+

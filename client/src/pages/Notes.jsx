@@ -235,7 +235,16 @@ function Notes(props) {
       }
       setMaxCount((prev) => prev + 1);
       setCurrentlyAtCount((prev) => prev + 1);
+
       notesRef.current[currentlyAtCount].focus();
+      let foo = cursorPosition.current;
+      currentArea.current = notesRef.current[currentlyAtCount];
+      setTimeout(() => {
+        cursorPosition.current = foo;
+        notesRef.current[currentlyAtCount].focus();
+        currentArea.current.selectionStart = cursorPosition.current;
+        currentArea.current.selectionEnd = cursorPosition.current;
+      });
     };
 
     const upLogic = async (e) => {
@@ -304,9 +313,18 @@ function Notes(props) {
         await deleteInput(currentlyAtCount - 1);
         setCurrentlyAtCount((prev) => prev - 1);
         setMaxCount((prev) => prev - 1);
-        notesRef.current[currentlyAtCount - 2].focus();
         e.preventDefault();
         resortArray();
+
+        let foo = 0;
+        currentArea.current = notesRef.current[currentlyAtCount - 2];
+
+        setTimeout(() => {
+          cursorPosition.current = foo;
+          currentArea.current.selectionStart = cursorPosition.current;
+          notesRef.current[currentlyAtCount - 2].focus();
+          currentArea.current.selectionEnd = cursorPosition.current;
+        });
 
         if (currentlyAtCount <= 1) {
           return;
@@ -324,10 +342,22 @@ function Notes(props) {
 
         setCurrentlyAtCount((prev) => prev - 1);
         setMaxCount((prev) => prev - 1);
-        notesRef.current[currentlyAtCount - 2].focus();
         e.preventDefault();
         resortArray();
+        let foo = 0;
+        currentArea.current = notesRef.current[currentlyAtCount - 2];
+
+        setTimeout(() => {
+        cursorPosition.current = foo;
+        currentArea.current.selectionStart = cursorPosition.current;
+        notesRef.current[currentlyAtCount - 2].focus();
+        currentArea.current.selectionEnd = cursorPosition.current;
+      });
       }
+
+      
+
+      
     };
 
     async function handleKeyDown(e) {
@@ -397,7 +427,7 @@ function Notes(props) {
               className="heading"
               placeholder="Untitled"
             ></TextareaAutosize>
-            <div className="allContsCont">
+            <div className="allNotesCont">
               {/* <TextareaAutosize onChange={textChange} onMouseOut={() => handlePlaceholder(false)} onMouseOver={() => handlePlaceholder(true)} style={{opacity: text === '' ? notePlaceholder ? 1 : 0 : 1}} placeholder={'New Note'} className="inputP"></TextareaAutosize> */}
               {inputElements.map((element) => {
                 return (

@@ -1932,7 +1932,7 @@ main .todoConts .dropdownPlaceholder {
   width: 100%;
   resize: none;
 }
-.notesCont .allContsCont .inputP {
+.notesCont .allNotesCont .inputP {
   width: 100%;
   outline: none;
   color: #333;

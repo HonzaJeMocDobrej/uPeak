@@ -2,11 +2,10 @@
 import LeftMenu from "../components/LeftMenu";
 import TopMenu from "../components/topMenu";
 import NotesRightMenu from "../components/NotesRightMenu";
-import TextareaAutosize from 'react-textarea-autosize';
+import TextareaAutosize from "react-textarea-autosize";
 
 import "../styles/styles.css";
 import { useEffect, useRef, useState } from "react";
-
 
 function Notes(props) {
   const {
@@ -18,110 +17,113 @@ function Notes(props) {
     switchStyle,
     setSwitchStyle,
   } = props;
-  
-  const [heading, setHeading] = useState('')
+
+  const cursorPosition = useRef();
+  const currentArea = useRef();
+  const [heading, setHeading] = useState("");
   const [inputElements, setInputElements] = useState([
     {
-    index: 0,
-    focused: false,
-    // id: nanoid(),
-    notePlaceholder: false,
-    text: 'ahoj',
-    cursorPosition: 0
-  }, 
-   {
-    index: 1,
-    focused: false,
-    notePlaceholder: false,
-    text: 'asdf',
-    cursorPosition: 0
-  }
-])
-  const headlineRef = useRef()
+      index: 0,
+      focused: false,
+      // id: nanoid(),
+      notePlaceholder: false,
+      text: "ahoj",
+      cursorPosition: 0,
+    },
+    {
+      index: 1,
+      focused: false,
+      notePlaceholder: false,
+      text: "asdf",
+      cursorPosition: 0,
+    },
+  ]);
+  const headlineRef = useRef();
   const notesRef = useRef([]);
   const [maxCount, setMaxCount] = useState(0);
-  const [currentlyAtCount, setCurrentlyAtCount] = useState(0)
-  const [isHeadingFocused, setIsHeadingFocused] = useState(false)
+  const [currentlyAtCount, setCurrentlyAtCount] = useState(0);
+  const [isHeadingFocused, setIsHeadingFocused] = useState(false);
 
   const headingChange = (e) => {
-    const { value } = e.target
-    setHeading(value)
-  }
+    const { value } = e.target;
+    setHeading(value);
+  };
 
   const handlePlaceholder = (id, val) => {
-    let newElements = []
-    inputElements.map(element => {
+    let newElements = [];
+    inputElements.map((element) => {
       if (element.index === id) {
         element = {
           focused: element.focused,
           index: element.index,
           notePlaceholder: val,
           text: element.text,
-          cursorPosition: element.cursorPosition
-        }
+          cursorPosition: cursorPosition.current,
+        };
       }
-      newElements = [...newElements, element]
-    })
-    setInputElements(newElements)
-  }
+      newElements = [...newElements, element];
+    });
+    setInputElements(newElements);
+  };
 
-  const handleInputFocus = (index) => {
+  const handleInputFocus = (e, index) => {
     let items = [...inputElements];
-    let item = {...items[index]};
-    
-    items.map(item => {
-      item.focused = false
-    })
+    let item = { ...items[index] };
+
+    items.map((item) => {
+      item.focused = false;
+    });
     item.focused = true;
     items[index] = item;
     setInputElements(items);
-  }
+  };
 
-  const handleInputBlur = (index) => {
+  const handleInputBlur = (e, index) => {
     let items = [...inputElements];
-    let item = {...items[index]};
-    
-    items.map(item => {
-      item.focused = false
-    })
+    let item = { ...items[index] };
+
+    items.map((item) => {
+      item.focused = false;
+    });
     item.focused = false;
     items[index] = item;
     setInputElements(items);
-  }
+  };
 
   const handleTextChange = (e, id) => {
-    let newElements = []
-    inputElements.map(element => {
+    let newElements = [];
+    inputElements.map((element) => {
       if (element.index === id) {
         element = {
           focused: element.focused,
           index: element.index,
           notePlaceholder: element.notePlaceholder,
           text: e.target.value,
-          cursorPosition: element.cursorPosition
-        }
+          cursorPosition: cursorPosition.current,
+        };
       }
-      newElements = [...newElements, element]
-    })
-    setInputElements(newElements)
+      newElements = [...newElements, element];
+    });
+    setInputElements(newElements);
     console.log(newElements);
-  }
+  };
 
-  const handleOnClick = (e ,index) => {
+  const handleOnClick = (e, index) => {
     if (index < 0) {
-      setCurrentlyAtCount(0)
-      setIsHeadingFocused(true)
-      return
+      setCurrentlyAtCount(0);
+      setIsHeadingFocused(true);
+      return;
     }
-    setCurrentlyAtCount(index + 1)
-    setIsHeadingFocused(true)
-  }
+    setCurrentlyAtCount(index + 1);
+    setIsHeadingFocused(true);
+  };
 
   const createNewInput = (value) => {
-    let index
-    setInputElements(prev => {
-
-      currentlyAtCount === 0 ? index = currentlyAtCount - 2 : index = currentlyAtCount - 1
+    let index;
+    setInputElements((prev) => {
+      currentlyAtCount === 0
+        ? (index = currentlyAtCount - 2)
+        : (index = currentlyAtCount - 1);
 
       return [
         ...prev.slice(0, index),
@@ -130,241 +132,243 @@ function Notes(props) {
           index: prev.length,
           notePlaceholder: false,
           text: value,
-          cursorPosition: 0
+          cursorPosition: 0,
         },
-        ...prev.slice(index)
-      ]
-    })
-  }
+        ...prev.slice(index),
+      ];
+    });
+  };
 
   const resortArray = () => {
-    setInputElements(prevs => {
-      return(
-        prevs.map((prev, index) => {
-          return {
-            ...prev,
-            index: index 
-          }
-        })
-        )
-    })
-  }
+    setInputElements((prevs) => {
+      return prevs.map((prev, index) => {
+        return {
+          ...prev,
+          index: index,
+        };
+      });
+    });
+  };
 
-  const handleOnKeyDown = (e) => {
-    console.log(e.target.selectionStart);
-    // let newElements = []
-    // inputElements.map(element => {
-    //   if (element.index === id) {
-    //     element = {
-    //       focused: element.focused,
-    //       index: element.index,
-    //       notePlaceholder: element.notePlaceholder,
-    //       text: element.text,
-    //       cursorPosition: e.target.selectionStart
-    //     }
-    //   }
-    //   newElements = [...newElements, element]
-    // })
-    // setInputElements(newElements)
-
-    setInputElements(prevs => {
-      return (
-        prevs.map(prev => {
-          return {
-            ...prev,
-            cursorPosition: e.target.selectionStart
-          }
-        })
-      )
-    })
-
-  }
+  const handleOnKeyDown = () => {
+    setInputElements((prevs) => {
+      return prevs.map((prev) => {
+        return {
+          ...prev,
+        };
+      });
+    });
+  };
 
   const splitText = (id) => {
-    const splitIndex = inputElements[currentlyAtCount - 1].cursorPosition
-    const first = inputElements[currentlyAtCount - 1].text.slice(0, splitIndex)
-    const second = inputElements[currentlyAtCount - 1].text.slice(splitIndex)
-    console.log(`First: ${first}, Second: ${second}`);
+    const splitIndex = cursorPosition.current;
+    const first = inputElements[currentlyAtCount - 1].text.slice(0, splitIndex);
+    const second = inputElements[currentlyAtCount - 1].text.slice(splitIndex);
+    let newElements = [];
 
-    let newElements = []
-
-    inputElements.map(element => {
+    inputElements.map((element) => {
       if (element.index === id) {
         element = {
           focused: element.focused,
           index: element.index,
           notePlaceholder: element.notePlaceholder,
           text: second,
-          cursorPosition: element.cursorPosition
-        }
+          cursorPosition: cursorPosition.current,
+        };
       }
 
-      newElements = [...newElements, element]
-    })
-    setInputElements(newElements)
+      newElements = [...newElements, element];
+    });
+    setInputElements(newElements);
 
-    return first
-
-  }
+    return first;
+  };
 
   const addText = (id) => {
-    const first = inputElements[currentlyAtCount - 1].text
-    const second = inputElements[currentlyAtCount - 2].text
-    const final = second.concat(first)  
-    
-    let newElements = []
+    const first = inputElements[currentlyAtCount - 1].text;
+    const second = inputElements[currentlyAtCount - 2].text;
+    const final = second.concat(first);
 
-    inputElements.map(element => {
+    let newElements = [];
+
+    inputElements.map((element) => {
       if (element.index === id) {
         element = {
           focused: element.focused,
           index: element.index,
           notePlaceholder: element.notePlaceholder,
           text: final,
-          cursorPosition: element.cursorPosition
-        }
+          cursorPosition: cursorPosition.current,
+        };
       }
 
-      newElements = [...newElements, element]
-    })
-    setInputElements(newElements)
-    deleteInput(currentlyAtCount - 1)
-  }
+      newElements = [...newElements, element];
+    });
+    setInputElements(newElements);
+    deleteInput(currentlyAtCount - 1);
+  };
 
   const deleteInput = (index) => {
-    setInputElements(prev => prev.filter(element => element.index !== index))
-    console.log(index);
-  }
-  
+    setInputElements((prev) =>
+      prev.filter((element) => element.index !== index)
+    );
+  };
 
   useEffect(() => {
-
     const enterLogic = async (e) => {
-      if (e.keyCode === 13) {
-        e.preventDefault()
-        if (!isHeadingFocused) {
-          headlineRef.current.focus();
-          setIsHeadingFocused(true)
-          return
-        }
-        if (currentlyAtCount === 0) {
-          await createNewInput('');
-        }
+      e.preventDefault();
+      if (!isHeadingFocused) {
+        headlineRef.current.focus();
+        setIsHeadingFocused(true);
+        return;
+      }
+      if (currentlyAtCount === 0) {
+        await createNewInput("");
+      }
 
-        if (currentlyAtCount > 0) {
-          if (inputElements[currentlyAtCount - 1].text === '') {
-            await createNewInput('');
-          } else {
-            await createNewInput(splitText(currentlyAtCount - 1));
-          }
-          
+      if (currentlyAtCount > 0) {
+        if (inputElements[currentlyAtCount - 1].text === "") {
+          await createNewInput("");
+        } else {
+          await createNewInput(splitText(currentlyAtCount - 1));
         }
-        setMaxCount(prev => prev + 1)
-        setCurrentlyAtCount(prev => prev + 1)
-        notesRef.current[currentlyAtCount].focus()
       }
-    }
-  
+      setMaxCount((prev) => prev + 1);
+      setCurrentlyAtCount((prev) => prev + 1);
+      notesRef.current[currentlyAtCount].focus();
+    };
+
     const upLogic = async (e) => {
-      if (e.keyCode === 38) {
-        if (!isHeadingFocused) {
-          headlineRef.current.focus();
-          setIsHeadingFocused(true)
-          return
-        }
-        if (currentlyAtCount <= 1) {
-          setCurrentlyAtCount(0)
-          headlineRef.current.focus();
-          return
-        }
-        setCurrentlyAtCount(prev => prev - 1)
-        notesRef.current[currentlyAtCount - 2].focus()
+      if (!isHeadingFocused) {
+        headlineRef.current.focus();
+        setIsHeadingFocused(true);
+        return;
       }
-    }
-  
+      if (currentlyAtCount <= 1) {
+        setCurrentlyAtCount(0);
+        headlineRef.current.focus();
+        return;
+      }
+      setCurrentlyAtCount((prev) => prev - 1);
+      let foo = cursorPosition.current;
+      currentArea.current = notesRef.current[currentlyAtCount - 2];
+      setTimeout(() => {
+        cursorPosition.current = foo;
+        notesRef.current[currentlyAtCount - 2].focus();
+        currentArea.current.selectionStart = cursorPosition.current;
+        currentArea.current.selectionEnd = cursorPosition.current;
+      });
+    };
+
     const downLogic = async (e) => {
-      if (e.keyCode === 40) {
-        if (!isHeadingFocused) {
-          headlineRef.current.focus();
-          setIsHeadingFocused(true)
-          return
-        }
-        if (currentlyAtCount === maxCount) {
-          setCurrentlyAtCount(maxCount)
-          return 
-        }
-        setCurrentlyAtCount(prev => prev + 1)
-        notesRef.current[currentlyAtCount].focus()
+      if (!isHeadingFocused) {
+        headlineRef.current.focus();
+        setIsHeadingFocused(true);
+        return;
       }
-    }
+      if (currentlyAtCount === maxCount) {
+        setCurrentlyAtCount(maxCount);
+        return;
+      }
+      setCurrentlyAtCount((prev) => prev + 1);
+      let foo = cursorPosition.current;
+      currentArea.current = notesRef.current[currentlyAtCount];
+      setTimeout(() => {
+        cursorPosition.current = foo;
+        notesRef.current[currentlyAtCount].focus();
+        currentArea.current.selectionStart = cursorPosition.current;
+        currentArea.current.selectionEnd = cursorPosition.current;
+      });
+    };
 
     const backspaceLogic = async (e) => {
+      if (inputElements.length === 1) {
+        return;
+      }
+      if (
+        inputElements[currentlyAtCount - 1].text === "" &&
+        currentlyAtCount === 1
+      ) {
+        await deleteInput(currentlyAtCount - 1);
+        setCurrentlyAtCount((prev) => prev - 1);
+        setMaxCount((prev) => prev - 1);
+        headlineRef.current.focus();
+        e.preventDefault();
+        resortArray();
+      }
+
+      if (
+        inputElements[currentlyAtCount - 1].text === "" &&
+        currentlyAtCount !== 1
+      ) {
+        await deleteInput(currentlyAtCount - 1);
+        setCurrentlyAtCount((prev) => prev - 1);
+        setMaxCount((prev) => prev - 1);
+        notesRef.current[currentlyAtCount - 2].focus();
+        e.preventDefault();
+        resortArray();
+
+        if (currentlyAtCount <= 1) {
+          return;
+        }
+      }
+
+      if (
+        e.target.selectionStart === 0 &&
+        e.target.selectionEnd === 0 &&
+        inputElements[currentlyAtCount - 1].text !== "" &&
+        currentlyAtCount > 1
+      ) {
+        // console.log(inputElements[currentlyAtCount - 1].text);
+        await addText(currentlyAtCount - 2);
+
+        setCurrentlyAtCount((prev) => prev - 1);
+        setMaxCount((prev) => prev - 1);
+        notesRef.current[currentlyAtCount - 2].focus();
+        e.preventDefault();
+        resortArray();
+      }
+    };
+
+    async function handleKeyDown(e) {
+      if (e.keyCode === 40) {
+        return downLogic(e);
+      }
+      if (e.keyCode === 38) {
+        return upLogic(e);
+      }
       if (e.keyCode === 8) {
-        if (inputElements.length === 1) {
-          return
-        }
-
-        if (inputElements[currentlyAtCount - 1].text === '' && currentlyAtCount === 1) {
-          await deleteInput(currentlyAtCount - 1)
-          setCurrentlyAtCount(prev => prev - 1)
-          setMaxCount(prev => prev - 1)
-          headlineRef.current.focus()
-          e.preventDefault()
-          resortArray()
-        }
-
-        if (inputElements[currentlyAtCount - 1].text === '' && currentlyAtCount !== 1) {
-          await deleteInput(currentlyAtCount - 1)
-          setCurrentlyAtCount(prev => prev - 1)
-          setMaxCount(prev => prev - 1)
-          notesRef.current[currentlyAtCount - 2].focus()
-          e.preventDefault()
-          resortArray()
-
-          if (currentlyAtCount <= 1) {
-            return
-          }
-        }
-
-        if (e.target.selectionStart === 0 && e.target.selectionEnd === 0 && inputElements[currentlyAtCount - 1].text !== '' && currentlyAtCount > 1) {
-          // console.log(inputElements[currentlyAtCount - 1].text);
-          await addText(currentlyAtCount - 2)
-          
-          setCurrentlyAtCount(prev => prev - 1)
-          setMaxCount(prev => prev - 1)
-          notesRef.current[currentlyAtCount - 2].focus()
-          e.preventDefault()
-          resortArray()
-          
-        }
-
+        return backspaceLogic(e);
+      }
+      if (e.keyCode === 13) {
+        await enterLogic(e);
+        return resortArray();
       }
     }
 
-    async function handleKeyDown(e) {
-      console.log(`Max count: ${maxCount}, currentlyAtCount: ${currentlyAtCount}`);
-      
-      await enterLogic(e)
-      resortArray()
-      upLogic(e)
-      downLogic(e)
-      backspaceLogic(e)
-      
-      console.log(inputElements);
-    }
+    document.addEventListener("keydown", handleKeyDown);
 
-    document.addEventListener('keydown', handleKeyDown);
-    
     //clean up
     return function cleanup() {
-      document.removeEventListener('keydown', handleKeyDown);
-    }
-  }, [maxCount, inputElements.length, currentlyAtCount, isHeadingFocused, resortArray, inputElements])
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [
+    maxCount,
+    inputElements.length,
+    currentlyAtCount,
+    isHeadingFocused,
+    resortArray,
+    inputElements,
+  ]);
 
   useEffect(() => {
-    setMaxCount(inputElements.length)
-  }, [])
-  
+    setMaxCount(inputElements.length);
+  }, []);
+
+  const handleSelect = (e) => {
+    cursorPosition.current = e.target.selectionEnd;
+    handleOnKeyDown();
+  };
 
   return (
     <>
@@ -384,34 +388,45 @@ function Notes(props) {
           setSwitchStyle={setSwitchStyle}
         />
         <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
-          <NotesRightMenu
-            noteNames={heading}
-          />
-          <div  className="notesCont">
-            <TextareaAutosize ref={headlineRef} onClick={() => handleOnClick(event, -1)} onChange={headingChange} className="heading" placeholder="Untitled" ></TextareaAutosize>
+          <NotesRightMenu noteNames={heading} />
+          <div className="notesCont">
+            <TextareaAutosize
+              ref={headlineRef}
+              onClick={() => handleOnClick(event, -1)}
+              onChange={headingChange}
+              className="heading"
+              placeholder="Untitled"
+            ></TextareaAutosize>
             <div className="allContsCont">
               {/* <TextareaAutosize onChange={textChange} onMouseOut={() => handlePlaceholder(false)} onMouseOver={() => handlePlaceholder(true)} style={{opacity: text === '' ? notePlaceholder ? 1 : 0 : 1}} placeholder={'New Note'} className="inputP"></TextareaAutosize> */}
-              {
-                inputElements.map((element) => {
-                  return <TextareaAutosize
-                    onFocus={() => handleInputFocus(element.index)}
-                    onBlur={() => handleInputBlur(element.index)}
-                    onChange={() => handleTextChange(event, element.index)}
+              {inputElements.map((element) => {
+                return (
+                  <TextareaAutosize
+                    onFocus={(e) => handleInputFocus(e, element.index)}
+                    onBlur={(e) => handleInputBlur(e, element.index)}
+                    onChange={(e) => handleTextChange(e, element.index)}
                     onMouseOut={() => handlePlaceholder(element.index, false)}
                     onMouseOver={() => handlePlaceholder(element.index, true)}
                     onClick={() => handleOnClick(event, element.index)}
-                    onKeyDown={handleOnKeyDown}
+                    onSelect={handleSelect}
                     // style={{opacity: element.text === '' ? element.notePlaceholder ? 1 : 0 : 1}}
-                    style={{opacity: element.focused ? 1 : 0 || element.notePlaceholder ? 1 : 0 || element.text === '' ? 0 : 1 }}
-                    placeholder={'New Note'}
+                    style={{
+                      opacity: element.focused
+                        ? 1
+                        : 0 || element.notePlaceholder
+                        ? 1
+                        : 0 || element.text === ""
+                        ? 0
+                        : 1,
+                    }}
+                    placeholder={"New Note"}
                     value={element.text}
                     className="inputP"
                     key={element.index}
-                    ref={(el) => (notesRef.current[element.index] = el)}>
-
-                    </TextareaAutosize>
-                })
-              }
+                    ref={(el) => (notesRef.current[element.index] = el)}
+                  ></TextareaAutosize>
+                );
+              })}
             </div>
           </div>
         </main>

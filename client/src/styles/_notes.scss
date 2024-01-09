@@ -1,8 +1,65 @@
-.notesCont {
-  padding: 0 10% 0 10%;
+// .notesCont {
+//   padding: 0 10% 0 10%;
+//   width: calc(100% - 15.5rem - 20%);
+//   .heading {
+//     color: #333;
+//     font-family: Poppins;
+//     font-size: 2.5rem;
+//     font-style: normal;
+//     font-weight: 600;
+//     line-height: normal;
+//     outline: none;
+//     word-break: break-all;
+//     border: none;
+//     margin-top: 4rem;
+//     width: 100%;
+//     resize: none;
+//   }
+//   .allNotesCont {
+//     .inputP {
+//       width: 100%;
+//       outline: none;
+//       color: #333;
+//       font-family: Open Sans;
+//       font-size: 1.25rem;
+//       font-style: normal;
+//       font-weight: 600;
+//       line-height: normal;
+//       word-break: break-all;
+//       border: none;
+//       resize: none;
+//       margin-top: 2rem;
+//       transition: 500ms;
+//       overflow-y: hidden;
+//     }
+//   }
+// }
+
+.inputP {
+  color: #333;
   width: calc(100% - 15.5rem - 20%);
-  .heading {
-    color: #333;
+  font-family: Open Sans;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  transition: 500ms;
+  margin: 2rem 2rem 0 4rem;
+  outline: none;
+
+}
+
+[contenteditable=true]:empty:not(:focus):before{
+  content:attr(data-ph);
+  opacity: 0.6;
+  cursor: text;
+}
+
+.headline {
+  color: #333;
     font-family: Poppins;
     font-size: 2.5rem;
     font-style: normal;
@@ -10,27 +67,9 @@
     line-height: normal;
     outline: none;
     word-break: break-all;
-    border: none;
-    margin-top: 4rem;
-    width: 100%;
-    resize: none;
-  }
-  .allNotesCont {
-    .inputP {
-      width: 100%;
-      outline: none;
-      color: #333;
-      font-family: Open Sans;
-      font-size: 1.25rem;
-      font-style: normal;
-      font-weight: 600;
-      line-height: normal;
-      word-break: break-all;
-      border: none;
-      resize: none;
-      margin-top: 2rem;
-      transition: 500ms;
-      overflow-y: hidden;
-    }
-  }
+    margin: 4rem 2rem 0 4rem;
+    width: calc(100% - 15.5rem - 20%)
 }
+
+
+

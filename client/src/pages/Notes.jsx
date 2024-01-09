@@ -2,7 +2,6 @@
 import LeftMenu from "../components/LeftMenu";
 import TopMenu from "../components/topMenu";
 import NotesRightMenu from "../components/NotesRightMenu";
-import TextareaAutosize from "react-textarea-autosize";
 
 import "../styles/styles.css";
 import { useEffect, useRef, useState } from "react";
@@ -18,31 +17,12 @@ function Notes(props) {
     setSwitchStyle,
   } = props;
 
-  const cursorPosition = useRef();
-  const currentArea = useRef();
   const [heading, setHeading] = useState("");
-  const [inputElements, setInputElements] = useState([
-    {
-      index: 0,
-      focused: false,
-      // id: nanoid(),
-      notePlaceholder: false,
-      text: "ahoj",
-      cursorPosition: 0,
-    },
-    {
-      index: 1,
-      focused: false,
-      notePlaceholder: false,
-      text: "asdf",
-      cursorPosition: 0,
-    },
-  ]);
+
   const headlineRef = useRef();
   const notesRef = useRef();
-  const [maxCount, setMaxCount] = useState(0);
-  const [currentlyAtCount, setCurrentlyAtCount] = useState(0);
-  const [isHeadingFocused, setIsHeadingFocused] = useState(false);
+  const [headlineFocused, setHeadlineFocused] = useState(false);
+  const [notesFocused, setNotesFocused] = useState(false);
 
   const handlePlaceholder = () => {
       console.log(notesRef.current.textContent);
@@ -60,11 +40,53 @@ function Notes(props) {
   }
 }
 
+const handleCusorPostion = (index, ref) => {
+  ref.current.focus()
+  // setCurrentlyAtCount(index)
+}
+
 useEffect(() => {
     function handleKeyDown(e) {
+      console.log(`Headline ${headlineFocused} Notes ${notesFocused}`);
         if (e.keyCode === 13) {
-            console.log('enter');
+          if (!headlineFocused && !notesFocused) {
+            setHeadlineFocused(true)
+            headlineRef.current.focus();
+            e.preventDefault()
+          }
+
+          if (headlineFocused && !notesFocused || headlineFocused && notesFocused) {
+            setNotesFocused(true)
+            notesRef.current.focus();
+          }
         }
+
+        if (e.keyCode === 40) {
+          if (!headlineFocused && !notesFocused) {
+            setHeadlineFocused(true)
+            headlineRef.current.focus();
+            e.preventDefault()
+          }
+
+          if (headlineFocused && !notesFocused || headlineFocused && notesFocused) {
+            setNotesFocused(true)
+            notesRef.current.focus();
+          }
+        }
+
+        if (e.keyCode === 38) {
+          if (!headlineFocused && !notesFocused) {
+            setHeadlineFocused(true)
+            notesRef.current.focus();
+            e.preventDefault()
+          }
+
+          // if (headlineFocused && notesFocused) {
+          //   setNotesFocused(true)
+          //   headlineRef.current.focus();
+          // }
+        }
+
       }
   
       document.addEventListener('keydown', handleKeyDown);
@@ -73,7 +95,7 @@ useEffect(() => {
       return function cleanup() {
         document.removeEventListener('keydown', handleKeyDown);
       }
-}, [])
+}, [headlineFocused, notesFocused])
 
   
 
@@ -97,8 +119,8 @@ useEffect(() => {
         <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
           <NotesRightMenu noteNames={heading} />
           <div className="notesCont">
-            <h2 onInput={handleHealdine} ref={headlineRef} data-ph='Untitled' spellCheck='false' contentEditable='true' className='headline'></h2>
-            <p onInput={handlePlaceholder} data-ph='Start Typing...' spellCheck='false' contentEditable='true' className='inputP' ref={notesRef}></p>
+            <h2 onClick={() => handleCusorPostion(1, headlineRef)} onInput={handleHealdine} ref={headlineRef} data-ph='Untitled' spellCheck='false' contentEditable='true' className='headline'></h2>
+            <p onClick={() => handleCusorPostion(1, notesRef)} onInput={handlePlaceholder} data-ph='Start Typing...' spellCheck='false' contentEditable='true' className='inputP' ref={notesRef}></p>
           </div>
         </main>
       </div>

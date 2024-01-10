@@ -24,6 +24,7 @@ function Notes(props) {
   const [headlineFocused, setHeadlineFocused] = useState(false);
   const [notesFocused, setNotesFocused] = useState(false);
 
+
   const handlePlaceholder = () => {
       console.log(notesRef.current.textContent);
       if (notesRef.current.textContent === '') {
@@ -33,7 +34,7 @@ function Notes(props) {
   }
 
   const handleHealdine = () => {
-    console.log(headlineRef.current.textContent);
+    setHeading(headlineRef.current.textContent)
     if (headlineRef.current.textContent === '') {
       console.log('banger');
       headlineRef.current.innerHTML = "";
@@ -42,7 +43,6 @@ function Notes(props) {
 
 const handleCusorPostion = (index, ref) => {
   ref.current.focus()
-  // setCurrentlyAtCount(index)
 }
 
 useEffect(() => {
@@ -80,11 +80,26 @@ useEffect(() => {
             notesRef.current.focus();
             e.preventDefault()
           }
+        }
 
-          // if (headlineFocused && notesFocused) {
-          //   setNotesFocused(true)
-          //   headlineRef.current.focus();
-          // }
+        // 1 key
+        if (e.keyCode === 49) {
+          setHeadlineFocused(true)
+            headlineRef.current.focus();
+            e.preventDefault()
+        }
+
+        // 2 key
+        if (e.keyCode === 50) {
+          setHeadlineFocused(true)
+          notesRef.current.focus();
+          e.preventDefault()
+        }
+
+        // esc key
+        if (e.keyCode === 27) {
+          notesRef.current.blur()
+          headlineRef.current.blur()
         }
 
       }

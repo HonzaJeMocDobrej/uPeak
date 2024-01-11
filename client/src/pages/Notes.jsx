@@ -83,14 +83,14 @@ useEffect(() => {
         }
 
         // 1 key
-        if (e.keyCode === 49) {
+        if (e.keyCode === 49 && e.ctrlKey) {
           setHeadlineFocused(true)
             headlineRef.current.focus();
             e.preventDefault()
         }
 
         // 2 key
-        if (e.keyCode === 50) {
+        if (e.keyCode === 50 && e.ctrlKey) {
           setHeadlineFocused(true)
           notesRef.current.focus();
           e.preventDefault()

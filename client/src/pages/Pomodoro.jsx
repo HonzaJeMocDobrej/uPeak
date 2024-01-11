@@ -23,59 +23,111 @@ function Pomodoro(props) {
     setSwitchStyle,
   } = props;
 
-  const [time, setTime] = useState(1500)
-  const [minutes, setMinutes] = useState(0)
-  const [seconds, setSeconds] = useState(0)
-  const decrement = useRef(null)
-  const [isPlayClicked, setIsPlayClicked] = useState(false)
+  const [time, setTime] = useState(6);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+  const decrement = useRef(null);
+  const [isPlayClicked, setIsPlayClicked] = useState(false);
+  const [isPause, setIsPause] = useState(false);
+  const [stage, setStage] = useState(1);
+  const [stars, setStars] = useState(stars_stage_one)
 
   const playBtnClick = () => {
     if (!isPlayClicked) {
       decrement.current = setInterval(() => {
-        setTime(prev => prev - 1)
-      }, 1000)
-      setIsPlayClicked(true)
-      return
+        setTime((prev) => prev - 1);
+      }, 1000);
+      setIsPlayClicked(true);
+      return;
     }
-  }
+  };
 
   const pauseBtnClick = () => {
     if (isPlayClicked) {
-      clearInterval(decrement.current)
-      setIsPlayClicked(false)
-      return
+      clearInterval(decrement.current);
+      setIsPlayClicked(false);
+      return;
     }
-  }
+  };
 
   const stopBtnClick = () => {
-    setTime(1500)
-    clearInterval(decrement.current)
-    setIsPlayClicked(false)
-  }
+    setTime(6);
+    clearInterval(decrement.current);
+    setIsPlayClicked(false);
+    setStars(stars_stage_one)
+    setStage(1)
+  };
 
   useEffect(() => {
-    if (time <= 0) {
-      clearInterval(decrement.current)
-      setTime(0)
-      return
+    if (time <= 0 && !isPause) {
+      setTime(3);
+      setIsPause(true);
+      return;
     }
-    formatter()
-  }, [time])
+
+    if (time <= 0 && isPause) {
+      setTime(6);
+      setIsPause(false);
+      setStage(prev => prev + 1)
+      return;
+    }
+
+    if (stage === 1) {
+      setStars(stars_stage_one)
+    }
+    if (stage === 2) {
+      setStars(stars_stage_two)
+    }
+    if (stage === 3) {
+      setStars(stars_stage_three)
+    }
+    if (stage === 4) {
+      setStars(stars_stage_four)
+    }
+    if (stage > 4) {
+      setStars(stars_stage_one)
+      setStage(1)
+      clearInterval(decrement.current)
+      setIsPlayClicked(false);
+    }
+
+    formatter();
+  }, [time, isPause, stage]);
 
   const formatter = () => {
-    const minutesRaw = time/60
-    const minutes = Math.floor(time/60)
-    let seconds
+    const minutesRaw = time / 60;
+    const minutes = Math.floor(time / 60);
+    let seconds;
     if (minutesRaw % 60 !== 0) {
-      seconds = time - (minutes * 60) 
+      seconds = time - minutes * 60;
     }
     if (minutesRaw % 60 === 0) {
-      seconds = 0
+      seconds = 0;
     }
 
-    setMinutes(minutes)
-    setSeconds(seconds)
+    setMinutes(minutes);
+    setSeconds(seconds);
+  };
+
+  let headline;
+
+  if (isPause) {
+    headline = (
+      <h2>
+        R<span className="blueLetter">ES</span>T
+      </h2>
+    );
+  } else if (!isPause) {
+    headline = (
+      <h2>
+        FO<span className="blueLetter">C</span>US
+      </h2>
+    );
   }
+
+  
+
+  
 
   return (
     <>
@@ -96,14 +148,13 @@ function Pomodoro(props) {
         />
         <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
           <div className="pomodoroCont">
-            <h2>
-              FO<span className="blueLetter">C</span>US
-            </h2>
+            {headline}
             <div className="timeCont">
-              <img className="stars" src={stars_stage_one} alt="" />
+              <img className="stars" src={stars} alt="" />
               <h1 className="time">
-                {minutes > 9 ? minutes : `0${minutes}`}:{seconds > 9 ? seconds : `0${seconds}`}
-                </h1>
+                {minutes > 9 ? minutes : `0${minutes}`}:
+                {seconds > 9 ? seconds : `0${seconds}`}
+              </h1>
             </div>
             <div className="bottomBtnsCont">
               <div className="pauseBtnCont" onClick={pauseBtnClick}>

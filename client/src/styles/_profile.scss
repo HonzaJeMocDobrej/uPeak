@@ -1,0 +1,227 @@
+.profileCont {
+  padding-left: 6.5rem;
+  padding-bottom: 5rem;
+  .profileHeadline {
+    color: #333;
+    font-family: Poppins;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .profileInfoCont {
+    width: 54.125rem;
+    padding: 2.25rem 0;
+    border-radius: 1rem;
+    border: 1px solid #ccc;
+    background: #fff;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+
+    img {
+      height: 5rem;
+      margin-left: 2rem;
+    }
+
+    p {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #333;
+      font-family: Open Sans;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 93.682%; /* 22.484px */
+      margin: 0;
+
+      @media (max-width: 750px) {
+        display: none;
+      }
+    }
+
+    span {
+      color: #09f;
+      font-family: Open Sans;
+      font-weight: 600;
+      line-height: 93.682%;
+    }
+
+    .uploadBtn {
+      width: 10rem;
+      padding: 0.5rem 0rem;
+      flex-shrink: 0;
+      position: absolute;
+      right: 3.5rem;
+      bottom: 1rem;
+      cursor: pointer;
+      user-select: none;
+
+      color: #333;
+      font-family: Open Sans;
+      font-size: 0.85rem;
+      font-style: normal;
+      font-weight: 600;
+      border-radius: 0.5625rem;
+      border: 1px solid #ccc;
+      background: #fff;
+      text-align: center;
+    }
+  }
+
+  input {
+    width: 53.125rem;
+    height: 51.6px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    background: #fff;
+    margin-top: 0.25rem;
+
+    color: #808080;
+    font-family: Poppins;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 0 0 0 1rem;
+
+    &:focus {
+      outline: #0099ff 2px solid;
+      // border: none;
+    }
+
+    @media (max-width: 1320px) {
+      font-size: 0.9rem;
+      height: 2.5rem;
+      width: 17.5rem;
+      margin-left: 0rem;
+      margin-top: 1.5rem;
+    }
+  }
+
+  p {
+    color: #333;
+    font-family: Open Sans;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 600;
+    margin: 1.5rem 0 0 0;
+  }
+
+  .saveBtn {
+    width: 7.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    cursor: pointer;
+    margin-top: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    color: #fff;
+    font-family: Open Sans;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    box-sizing: border-box;
+    transition: 400ms background-color, color;
+
+    border-radius: 12px;
+    background: #09f;
+
+    &:hover {
+        background-color: white;
+        color: #0099FF;
+        border: solid 2px #0099FF;
+        transition: 400ms background-color, color;
+    }
+    
+    &:active {
+        transform: scale(.95);
+        transition: 150ms;
+    }
+  }
+
+  .dropdownRoot {
+    display: flex;
+    .dropdownShown {
+      height: 51.6px;
+      padding-left: 1rem;
+      width: 870px;
+      display: flex;
+      align-items: center;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      background: #fff;
+      color: #808080;
+      font-family: Poppins;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-top: 0.25rem;
+      cursor: pointer;
+
+      .arrow {
+        position: absolute;
+        right: 1.5rem;
+        transition: 250ms;
+      }
+      .rotate {
+        transform: rotate(180deg);
+        transition: 250ms;
+      }
+    }
+  }
+
+  .dropdownMenu {
+    // padding-left: 1rem;
+    width: 870px !important;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #b6b6b6;
+    font-family: Poppins;
+    font-size: 1rem;
+    font-weight: 500;
+
+    @media (max-width: 1320px) {
+      font-size: 0.9rem;
+      width: 299.333px !important;
+      margin-left: 0rem;
+      margin-top: 1.5rem;
+    }
+
+    & {
+      scrollbar-width: thin;
+      scrollbar-color: #b8e3ff #ffffff;
+    }
+
+    /* Chrome, Edge, and Safari */
+    &::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #ffffff;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #b8e3ff;
+      border-radius: 12px;
+      border: 3px solid #ffffff;
+    }
+
+    .Dropdown-option {
+      padding: 0.5rem 1rem;
+    }
+
+    .Dropdown-title {
+      padding: 0.5rem 1.5rem !important;
+    }
+  }
+
+  .dropdownPlaceholder {
+    color: #b6b6b6;
+  }
+}

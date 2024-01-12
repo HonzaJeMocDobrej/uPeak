@@ -134,7 +134,7 @@ useEffect(() => {
         <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
           <NotesRightMenu noteNames={heading} />
           <div className="notesCont">
-            <h2 onClick={() => handleCusorPostion(1, headlineRef)} onInput={handleHealdine} ref={headlineRef} data-ph='Untitled' spellCheck='false' contentEditable='true' className='headline'></h2>
+            <h2 onClick={() => handleCusorPostion(1, headlineRef)} onInput={handleHealdine} ref={headlineRef} data-ph='Untitled' spellCheck='false' contentEditable='true' className='notesHeadline'></h2>
             <p onClick={() => handleCusorPostion(1, notesRef)} onInput={handlePlaceholder} data-ph='Start Typing...' spellCheck='false' contentEditable='true' className='inputP' ref={notesRef}></p>
           </div>
         </main>

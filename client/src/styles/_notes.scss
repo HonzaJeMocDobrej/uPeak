@@ -50,6 +50,18 @@
   margin: 2rem 2rem 0 4rem;
   outline: none;
 
+  @media (max-width: 1000px) {
+    margin: 2rem 2rem 0 3rem;
+    width: calc(100% - 3rem - 10%);
+    font-size: .9rem;
+}
+
+@media (max-width: 480px) {
+  font-size: .6rem;
+  margin: 1.5rem 1rem 0 1rem;
+  width: calc(100% - 1rem - 10%);
+}
+
 }
 
 [contenteditable=true]:empty:not(:focus):before{
@@ -68,7 +80,27 @@
     outline: none;
     word-break: break-all;
     margin: 4rem 2rem 0 4rem;
-    width: calc(100% - 15.5rem - 20%)
+    width: calc(100% - 15.5rem - 20%);
+
+    @media (max-width: 1000px) {
+      margin: 4rem 2rem 0 3rem;
+      width: calc(100% - 3rem - 10%);
+      font-size: 1.75rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1rem;
+    margin: 4rem 1rem 0 1rem;
+    width: calc(100% - 1rem - 10%);
+  }
+    
+}
+
+.notesCont {
+  @media (max-width: 1000px) {
+    width: calc(100% - 10rem);
+}
+
 }
 
 

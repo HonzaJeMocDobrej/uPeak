@@ -31,8 +31,8 @@ const NotesRightMenu = (props) => {
                         <p>{noteNames === '' ? 'Untitled' : noteNames }</p>
                     </div>
                     <div className="rightCont">
-                        <img src={threeDots} alt="" />
-                        <img src={binBlack} alt="" />
+                        <img className='threeDots' src={threeDots} alt="" />
+                        <img className='bin' src={binBlack} alt="" />
                     </div>
                 </div>
             </div>

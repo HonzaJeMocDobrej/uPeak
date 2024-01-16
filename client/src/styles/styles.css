@@ -1840,6 +1840,34 @@ main .todoConts .dropdownPlaceholder {
   border-left: 2px solid rgba(51, 51, 51, 0.09);
   position: fixed;
   right: 0rem;
+  overflow-y: auto;
+  /* Chrome, Edge, and Safari */
+}
+@media (max-width: 1000px) {
+  .notesMenu {
+    width: 10rem;
+    gap: 1.5rem;
+  }
+}
+@media (max-width: 480px) {
+  .notesMenu {
+    height: calc(100vh - 4rem);
+  }
+}
+.notesMenu {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 153, 255, 0.3) #ffffff;
+}
+.notesMenu::-webkit-scrollbar {
+  width: 16px;
+}
+.notesMenu::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+.notesMenu::-webkit-scrollbar-thumb {
+  background-color: rgb(234, 247, 255);
+  border-radius: 10px;
+  border: 3px solid #ffffff;
 }
 .notesMenu .topCont {
   display: flex;
@@ -1848,12 +1876,22 @@ main .todoConts .dropdownPlaceholder {
   gap: 1.25rem;
   align-self: stretch;
 }
+@media (max-width: 1000px) {
+  .notesMenu .topCont {
+    gap: 0.5rem;
+  }
+}
 .notesMenu .topCont .item {
   display: flex;
   padding: 0.25rem 0rem 0.25rem 1.25rem;
   align-items: center;
   gap: 0.75rem;
   align-self: stretch;
+}
+@media (max-width: 1000px) {
+  .notesMenu .topCont .item {
+    gap: 0.5rem;
+  }
 }
 .notesMenu .topCont .item p {
   margin: 0;
@@ -1862,10 +1900,20 @@ main .todoConts .dropdownPlaceholder {
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 93.682%; /* 1.40525rem */
+  line-height: 93.682%;
+}
+@media (max-width: 1000px) {
+  .notesMenu .topCont .item p {
+    font-size: 0.9rem;
+  }
 }
 .notesMenu .topCont .item img {
   height: 1.25rem;
+}
+@media (max-width: 1000px) {
+  .notesMenu .topCont .item img {
+    height: 0.9rem;
+  }
 }
 .notesMenu .bottomCont {
   display: flex;
@@ -1873,6 +1921,12 @@ main .todoConts .dropdownPlaceholder {
   align-items: flex-start;
   gap: 1.5rem;
   align-self: stretch;
+  padding-bottom: 1.75rem;
+}
+@media (max-width: 1000px) {
+  .notesMenu .bottomCont {
+    gap: 0.5rem;
+  }
 }
 .notesMenu .bottomCont .myNotes {
   padding-left: 1.25rem;
@@ -1883,6 +1937,11 @@ main .todoConts .dropdownPlaceholder {
   font-style: normal;
   font-weight: 600;
   line-height: 93.682%; /* 1.40525rem */
+}
+@media (max-width: 1000px) {
+  .notesMenu .bottomCont .myNotes {
+    font-size: 0.9rem;
+  }
 }
 .notesMenu .bottomCont .notesList {
   display: flex;
@@ -1896,6 +1955,16 @@ main .todoConts .dropdownPlaceholder {
   align-items: center;
   gap: 0.75rem;
 }
+@media (max-width: 1000px) {
+  .notesMenu .bottomCont .notesList .leftCont {
+    gap: 0.5rem;
+  }
+}
+@media (max-width: 1000px) {
+  .notesMenu .bottomCont .notesList .leftCont span {
+    font-size: 0.75rem;
+  }
+}
 .notesMenu .bottomCont .notesList .leftCont p {
   color: #09f;
   font-family: Open Sans;
@@ -1908,10 +1977,26 @@ main .todoConts .dropdownPlaceholder {
   text-overflow: ellipsis;
   width: 100px;
 }
+@media (max-width: 1000px) {
+  .notesMenu .bottomCont .notesList .leftCont p {
+    font-size: 0.9rem;
+    width: 50px;
+  }
+}
 .notesMenu .bottomCont .notesList .rightCont {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+@media (max-width: 1000px) {
+  .notesMenu .bottomCont .notesList .rightCont .threeDots {
+    height: 3px;
+  }
+}
+@media (max-width: 1000px) {
+  .notesMenu .bottomCont .notesList .rightCont .bin {
+    height: 0.9rem;
+  }
 }
 
 .inputP {
@@ -1928,6 +2013,20 @@ main .todoConts .dropdownPlaceholder {
   transition: 500ms;
   margin: 2rem 2rem 0 4rem;
   outline: none;
+}
+@media (max-width: 1000px) {
+  .inputP {
+    margin: 2rem 2rem 0 3rem;
+    width: calc(100% - 3rem - 10%);
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 480px) {
+  .inputP {
+    font-size: 0.6rem;
+    margin: 1.5rem 1rem 0 1rem;
+    width: calc(100% - 1rem - 10%);
+  }
 }
 
 [contenteditable=true]:empty:not(:focus):before {
@@ -1947,6 +2046,26 @@ main .todoConts .dropdownPlaceholder {
   word-break: break-all;
   margin: 4rem 2rem 0 4rem;
   width: calc(100% - 15.5rem - 20%);
+}
+@media (max-width: 1000px) {
+  .notesHeadline {
+    margin: 4rem 2rem 0 3rem;
+    width: calc(100% - 3rem - 10%);
+    font-size: 1.75rem;
+  }
+}
+@media (max-width: 480px) {
+  .notesHeadline {
+    font-size: 1rem;
+    margin: 4rem 1rem 0 1rem;
+    width: calc(100% - 1rem - 10%);
+  }
+}
+
+@media (max-width: 1000px) {
+  .notesCont {
+    width: calc(100% - 10rem);
+  }
 }
 
 .pomodoroCont {

@@ -43,6 +43,7 @@ function Notes(props) {
 
 const handleCusorPostion = (index, ref) => {
   ref.current.focus()
+    setHeadlineFocused(true)
 }
 
 useEffect(() => {
@@ -100,6 +101,8 @@ useEffect(() => {
         if (e.keyCode === 27) {
           notesRef.current.blur()
           headlineRef.current.blur()
+          setHeadlineFocused(false)
+          setNotesFocused(false)
         }
 
       }

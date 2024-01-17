@@ -276,7 +276,7 @@ function ToDo(props) {
               </div>
               
             </div>
-            <div className="ctaCont" style={{position: "relative"}}>
+            <div className="ctaCont secondCtaCont" style={{position: "relative"}}>
               <div onClick={() => univToggle(setIsGroupAddOpen)} className="ctaGroupTodo leftCtaGroupTodo">Add Group</div>
               <ul className="dropdownGroup" style={{display: isGroupAddOpen ? 'block' : 'none'}}>
                 {groups.map((group, index) => {

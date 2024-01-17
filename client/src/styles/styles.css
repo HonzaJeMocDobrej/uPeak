@@ -1194,14 +1194,24 @@ main .progressConts .counterCont h2 {
 main .todoConts {
   box-sizing: border-box;
   padding-bottom: 3rem;
+  overflow-y: auto;
+  height: calc(100vh - 7rem);
 }
 main .todoConts .topCont {
   display: flex;
   align-items: center;
   margin-left: 4rem;
-  gap: 30%;
+  gap: calc(70% - 21.25rem);
   height: 2.5rem;
-  margin-top: 2.8rem;
+  padding-top: 2.8rem;
+}
+@media (max-width: 1000px) {
+  main .todoConts .topCont {
+    gap: calc(100% - 27.25rem);
+  }
+}
+main .todoConts .topCont .ctaCont {
+  height: 100%;
 }
 main .todoConts .topCont .ctaGroupTodo {
   margin-bottom: 0.2rem;
@@ -1319,10 +1329,7 @@ main .todoConts .topCont .dayTimeCont .goBack:before {
   transition: 0.25s;
   transform: rotate(0deg) scale(0.5);
 }
-main .todoConts .ctaCont {
-  height: 100%;
-}
-main .todoConts .ctaCont:nth-child(2) {
+main .todoConts .secondCtaCont {
   padding-top: 2rem;
   padding-left: 5.5rem;
 }
@@ -1716,6 +1723,11 @@ main .todoConts .toDoListItemsCont .toDoListItem {
   border-bottom: solid 1px #CCC;
   height: 3rem;
   justify-content: space-between;
+}
+@media (max-width: 1000px) {
+  main .todoConts .toDoListItemsCont .toDoListItem {
+    width: calc(100% - 5.5rem);
+  }
 }
 main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont {
   display: flex;

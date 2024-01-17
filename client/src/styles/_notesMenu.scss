@@ -19,7 +19,7 @@
   }
 
   @media (max-width: 480px) {
-    height: calc(100vh - 4rem);
+    height: calc(100vh - 5.75rem);
 }
 
 & {
@@ -29,7 +29,7 @@
 
 /* Chrome, Edge, and Safari */
 &::-webkit-scrollbar {
-  width: 16px;
+  width: 12px;
 }
 
 &::-webkit-scrollbar-track {

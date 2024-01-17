@@ -37,7 +37,7 @@
 
 .inputP {
   color: #333;
-  width: calc(100% - 15.5rem - 20%);
+  width: calc(100% - 20%);
   font-family: Open Sans;
   font-size: 1.25rem;
   font-style: normal;
@@ -49,59 +49,83 @@
   transition: 500ms;
   margin: 2rem 2rem 0 4rem;
   outline: none;
+  padding-bottom: 2rem;
 
   @media (max-width: 1000px) {
     margin: 2rem 2rem 0 3rem;
     width: calc(100% - 3rem - 10%);
-    font-size: .9rem;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.6rem;
+    margin: 1.5rem 1rem 0 1rem;
+    width: calc(100% - 1rem - 10%);
+  }
 }
 
-@media (max-width: 480px) {
-  font-size: .6rem;
-  margin: 1.5rem 1rem 0 1rem;
-  width: calc(100% - 1rem - 10%);
-}
-
-}
-
-[contenteditable=true]:empty:not(:focus):before{
-  content:attr(data-ph);
+[contenteditable="true"]:empty:not(:focus):before {
+  content: attr(data-ph);
   opacity: 0.6;
   cursor: text;
 }
 
 .notesHeadline {
   color: #333;
-    font-family: Poppins;
-    font-size: 2.5rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    outline: none;
-    word-break: break-all;
-    margin: 4rem 2rem 0 4rem;
-    width: calc(100% - 15.5rem - 20%);
+  font-family: Poppins;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  outline: none;
+  word-break: break-all;
+  margin: 4rem 2rem 0 4rem;
+  width: calc(100% - 25%);
 
-    @media (max-width: 1000px) {
-      margin: 4rem 2rem 0 3rem;
-      width: calc(100% - 3rem - 10%);
-      font-size: 1.75rem;
+  @media (max-width: 1000px) {
+    margin: 4rem 2rem 0 3rem;
+    width: calc(100% - 3rem - 10%);
+    font-size: 1.75rem;
   }
-  
+
   @media (max-width: 480px) {
     font-size: 1rem;
     margin: 4rem 1rem 0 1rem;
     width: calc(100% - 1rem - 10%);
   }
-    
 }
 
 .notesCont {
+  width: calc(100% - 15.5rem);
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - 7rem);
+  
   @media (max-width: 1000px) {
     width: calc(100% - 10rem);
+  }
+
+  @media (max-width: 480px) {
+    height: calc(100vh - 4rem);
+  }
+
+  & {
+    scrollbar-width: thin;
+    scrollbar-color: #0099ff white;
+  }
+
+  /* Chrome, Edge, and Safari */
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: white;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #0099ff;
+    border-radius: 12px;
+    border: 3px solid white;
+  }
 }
-
-}
-
-
-

@@ -1210,11 +1210,31 @@ main .todoConts .topCont {
     gap: calc(100% - 27.25rem);
   }
 }
+@media (max-width: 750px) {
+  main .todoConts .topCont {
+    flex-direction: column;
+    align-items: start;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin-left: 1.5rem;
+  }
+}
 main .todoConts .topCont .ctaCont {
   height: 100%;
 }
+@media (max-width: 750px) {
+  main .todoConts .topCont .ctaCont {
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+  }
+}
 main .todoConts .topCont .ctaGroupTodo {
   margin-bottom: 0.2rem;
+}
+@media (max-width: 750px) {
+  main .todoConts .topCont .ctaGroupTodo {
+    height: 1.8rem;
+  }
 }
 main .todoConts .topCont .dayTimeCont {
   display: flex;
@@ -1229,6 +1249,11 @@ main .todoConts .topCont .dayTimeCont h4 {
   font-weight: 400;
   line-height: 93.682%; /* 1.40525rem */
 }
+@media (max-width: 750px) {
+  main .todoConts .topCont .dayTimeCont h4 {
+    font-size: 0.75rem;
+  }
+}
 main .todoConts .topCont .dayTimeCont .h2Cont {
   position: relative;
   display: flex;
@@ -1237,6 +1262,18 @@ main .todoConts .topCont .dayTimeCont .h2Cont {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+}
+main .todoConts .topCont .dayTimeCont .h2Cont .calendar {
+  position: absolute;
+  left: 0;
+  top: 6rem;
+  z-index: 3;
+}
+main .todoConts .topCont .dayTimeCont .h2Cont .calendarShown {
+  display: block;
+}
+main .todoConts .topCont .dayTimeCont .h2Cont .calendarHidden {
+  display: none;
 }
 main .todoConts .topCont .dayTimeCont .h2Cont h2 {
   font-size: 2rem;
@@ -1255,6 +1292,11 @@ main .todoConts .topCont .dayTimeCont .h2Cont h2 {
     font-size: 2rem;
   }
 }
+@media (max-width: 750px) {
+  main .todoConts .topCont .dayTimeCont .h2Cont h2 {
+    font-size: 1.5rem;
+  }
+}
 @media (max-width: 480px) {
   main .todoConts .topCont .dayTimeCont .h2Cont h2 {
     font-size: 1.5rem;
@@ -1264,6 +1306,11 @@ main .todoConts .topCont .dayTimeCont .h2Cont::before {
   content: url("../assets/icons/dropdown.svg");
   display: inline-block;
   transform: scale(0.5);
+}
+@media (max-width: 750px) {
+  main .todoConts .topCont .dayTimeCont .h2Cont::before {
+    transform: scale(0.375);
+  }
 }
 main .todoConts .topCont .dayTimeCont .h2Cont ul {
   position: absolute;
@@ -1325,13 +1372,30 @@ main .todoConts .topCont .dayTimeCont .rotate:before {
   transition: 0.25s;
   transform: rotate(180deg) scale(0.5);
 }
+@media (max-width: 750px) {
+  main .todoConts .topCont .dayTimeCont .rotate:before {
+    transform: rotate(180deg) scale(0.375);
+  }
+}
 main .todoConts .topCont .dayTimeCont .goBack:before {
   transition: 0.25s;
   transform: rotate(0deg) scale(0.5);
 }
+@media (max-width: 750px) {
+  main .todoConts .topCont .dayTimeCont .goBack:before {
+    transform: rotate(0deg) scale(0.375);
+  }
+}
 main .todoConts .secondCtaCont {
   padding-top: 2rem;
   padding-left: 5.5rem;
+}
+@media (max-width: 750px) {
+  main .todoConts .secondCtaCont {
+    padding: 0;
+    margin-top: 0.5rem;
+    margin-left: 3rem;
+  }
 }
 main .todoConts .ctaGroupTodo {
   margin-bottom: 0.2rem;
@@ -1354,6 +1418,12 @@ main .todoConts .ctaGroupTodo {
   border-radius: 0.75rem;
   margin-top: 0;
 }
+@media (max-width: 750px) {
+  main .todoConts .ctaGroupTodo {
+    font-size: 0.75rem;
+    border-radius: 0.55rem;
+  }
+}
 main .todoConts .ctaGroupTodo::before {
   background-image: url(../assets/icons/BluePlus.svg);
   background-repeat: no-repeat;
@@ -1362,6 +1432,12 @@ main .todoConts .ctaGroupTodo::before {
   width: 1rem;
   height: 1rem;
   content: "";
+}
+@media (max-width: 750px) {
+  main .todoConts .ctaGroupTodo::before {
+    background-size: 0.75rem;
+    margin-top: 0.25rem;
+  }
 }
 main .todoConts .ctaGroupTodo:hover {
   background-color: rgb(234, 247, 255);
@@ -1381,6 +1457,11 @@ main .todoConts .leftCtaGroupTodo {
 main .todoConts .leftCtaGroupTodo:nth-child(4) {
   margin-top: 0;
 }
+@media (max-width: 750px) {
+  main .todoConts .leftCtaGroupTodo {
+    height: 1.8rem;
+  }
+}
 main .todoConts .groupHeadline {
   color: #FF3D00;
   font-family: Poppins;
@@ -1390,26 +1471,55 @@ main .todoConts .groupHeadline {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
+@media (max-width: 750px) {
+  main .todoConts .groupHeadline {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
 main .todoConts .groupHeadline:not(:nth-child(1)) {
   margin-top: 3rem;
 }
 main .todoConts .groupCont {
   padding-left: 5.5rem;
 }
+@media (max-width: 750px) {
+  main .todoConts .groupCont {
+    padding-left: 3rem;
+  }
+}
+@media (max-width: 750px) {
+  main .todoConts .createToDo2 .rightBtnCont {
+    padding-left: 0.5rem !important;
+  }
+}
 main .todoConts .createToDo {
   width: 70%;
   height: 15rem;
-  border-radius: 1.5rem;
+  border-radius: 1.25rem;
   border: 1px solid #CCC;
   position: absolute;
   background-color: #FFF;
   z-index: 1;
+}
+@media (max-width: 750px) {
+  main .todoConts .createToDo {
+    height: 10rem;
+    width: calc(100% - 2rem);
+  }
 }
 main .todoConts .createToDo .topInputCont {
   padding-top: 2.75rem;
   display: flex;
   flex-direction: column;
   position: relative;
+  padding-right: 2.5rem;
+}
+@media (max-width: 750px) {
+  main .todoConts .createToDo .topInputCont {
+    padding-top: 2.125rem;
+  }
 }
 main .todoConts .createToDo .topInputCont input {
   border: none;
@@ -1424,18 +1534,40 @@ main .todoConts .createToDo .topInputCont .imgAndInputCont {
   align-items: center;
   gap: 0.3rem;
 }
+@media (max-width: 480px) {
+  main .todoConts .createToDo .topInputCont .imgAndInputCont {
+    margin-left: 1.5rem;
+  }
+}
 main .todoConts .createToDo .topInputCont .imgAndInputCont .headline {
   color: #a7a7a7;
   font-family: Poppins;
   font-size: 1.2rem;
   font-weight: 500;
+  width: 70%;
   min-width: 8rem;
-  max-width: 30rem;
+}
+@media (max-width: 750px) {
+  main .todoConts .createToDo .topInputCont .imgAndInputCont .headline {
+    font-size: 0.95rem;
+  }
+}
+@media (max-width: 400px) {
+  main .todoConts .createToDo .topInputCont .imgAndInputCont .headline {
+    font-size: 0.7rem;
+    min-width: 5rem;
+  }
 }
 main .todoConts .createToDo .topInputCont .imgAndInputCont img {
   height: 1.25rem;
   width: 1.25rem;
   cursor: pointer;
+}
+@media (max-width: 750px) {
+  main .todoConts .createToDo .topInputCont .imgAndInputCont img {
+    height: 1rem;
+    width: 1rem;
+  }
 }
 main .todoConts .createToDo .topInputCont .shortDesc {
   color: #a7a7a7;
@@ -1444,14 +1576,36 @@ main .todoConts .createToDo .topInputCont .shortDesc {
   font-weight: 500;
   margin-top: 0.8rem;
   margin-left: 4rem;
+  width: 70%;
   min-width: 7rem;
-  max-width: 30rem;
+}
+@media (max-width: 750px) {
+  main .todoConts .createToDo .topInputCont .shortDesc {
+    font-size: 0.6rem;
+    margin-left: 2.85rem;
+    margin-top: 0.6rem;
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+}
+@media (max-width: 400px) {
+  main .todoConts .createToDo .topInputCont .shortDesc {
+    font-size: 0.5rem;
+    min-width: 5rem;
+  }
 }
 main .todoConts .createToDo .topInputCont .chrome-picker {
   position: absolute;
   z-index: 3;
   left: 15rem;
   font-family: Open Sans;
+}
+@media (max-width: 750px) {
+  main .todoConts .createToDo .topInputCont .chrome-picker {
+    left: 0;
+    top: 5rem;
+    width: 10rem !important;
+  }
 }
 main .todoConts .createToDo .topInputCont .chrome-picker .flexbox-fix #rc-editable-input-2, main .todoConts .createToDo .topInputCont .chrome-picker .flexbox-fix label {
   font-family: Open Sans;
@@ -1470,6 +1624,32 @@ main .todoConts .createToDo .bottomBtnCont {
   height: fit-content;
   justify-content: space-between;
   position: relative;
+}
+@media (max-width: 750px) {
+  main .todoConts .createToDo .bottomBtnCont {
+    margin-top: 1.75rem;
+    overflow-x: auto;
+    height: 2.5rem;
+    margin-left: 1.5rem;
+    padding: 0 0.5rem 0 0.5rem;
+    width: calc(100% - 5rem);
+    /* Chrome, Edge, and Safari */
+  }
+  main .todoConts .createToDo .bottomBtnCont {
+    scrollbar-width: thin;
+    scrollbar-color: #b8e3ff #ffffff;
+  }
+  main .todoConts .createToDo .bottomBtnCont::-webkit-scrollbar {
+    width: 12px;
+  }
+  main .todoConts .createToDo .bottomBtnCont::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  main .todoConts .createToDo .bottomBtnCont::-webkit-scrollbar-thumb {
+    background-color: #b8e3ff;
+    border-radius: 12px;
+    border: 3px solid #ffffff;
+  }
 }
 main .todoConts .createToDo .bottomBtnCont .prioBtn {
   padding: 0 2.25rem 0 2.25rem;
@@ -1490,6 +1670,15 @@ main .todoConts .createToDo .bottomBtnCont .prioBtn {
   transition: color 600ms;
   z-index: 2;
 }
+@media (max-width: 750px) {
+  main .todoConts .createToDo .bottomBtnCont .prioBtn {
+    font-size: 0.6rem;
+    padding: 0 1.25rem 0 1.75rem;
+    height: 1.5rem;
+    border-radius: 0.5rem;
+    margin: 0;
+  }
+}
 main .todoConts .createToDo .bottomBtnCont .prioBtn::after {
   content: "";
   background-color: #FFD600;
@@ -1502,6 +1691,11 @@ main .todoConts .createToDo .bottomBtnCont .prioBtn::after {
   z-index: -1;
   transition: height 500ms ease, transform 300ms;
   overflow: hidden;
+}
+@media (max-width: 750px) {
+  main .todoConts .createToDo .bottomBtnCont .prioBtn::after {
+    border-radius: 0.55rem;
+  }
 }
 main .todoConts .createToDo .bottomBtnCont .prioBtn:hover::after {
   height: 100%;
@@ -1526,6 +1720,12 @@ main .todoConts .createToDo .bottomBtnCont .prioBtn::before {
   position: absolute;
   left: 1rem;
 }
+@media (max-width: 750px) {
+  main .todoConts .createToDo .bottomBtnCont .prioBtn::before {
+    transform: scale(0.75);
+    left: 0.75rem;
+  }
+}
 main .todoConts .createToDo .bottomBtnCont .prioBtn:hover::before {
   filter: brightness(0) invert(1);
 }
@@ -1546,6 +1746,13 @@ main .todoConts .createToDo .bottomBtnCont .rightBtnCont {
   margin-right: 2.75rem;
   gap: 1.5rem;
 }
+@media (max-width: 750px) {
+  main .todoConts .createToDo .bottomBtnCont .rightBtnCont {
+    gap: 0.5rem;
+    margin: 0;
+    padding-left: 2rem;
+  }
+}
 main .todoConts .createToDo .bottomBtnCont .rightBtnCont .closeBtn {
   padding: 0 1.5rem 0 1.5rem;
   height: 2.1rem;
@@ -1564,6 +1771,14 @@ main .todoConts .createToDo .bottomBtnCont .rightBtnCont .closeBtn {
   transition: color 600ms, transform 300ms;
   z-index: 2;
 }
+@media (max-width: 750px) {
+  main .todoConts .createToDo .bottomBtnCont .rightBtnCont .closeBtn {
+    font-size: 0.6rem;
+    padding: 0 1rem 0 1rem;
+    height: 1.5rem;
+    border-radius: 0.5rem;
+  }
+}
 main .todoConts .createToDo .bottomBtnCont .rightBtnCont .closeBtn::before {
   content: "";
   background-color: #FF6767;
@@ -1576,6 +1791,11 @@ main .todoConts .createToDo .bottomBtnCont .rightBtnCont .closeBtn::before {
   z-index: -1;
   transition: top 500ms ease;
   overflow: hidden;
+}
+@media (max-width: 750px) {
+  main .todoConts .createToDo .bottomBtnCont .rightBtnCont .closeBtn::before {
+    border-radius: 0.55rem;
+  }
 }
 main .todoConts .createToDo .bottomBtnCont .rightBtnCont .closeBtn:hover::before {
   top: 0;
@@ -1607,12 +1827,25 @@ main .todoConts .createToDo .bottomBtnCont .rightBtnCont .submitBtn {
   cursor: pointer;
   transition: background-color 400ms, color 400ms, border-color 400ms, transform 300ms;
 }
+@media (max-width: 750px) {
+  main .todoConts .createToDo .bottomBtnCont .rightBtnCont .submitBtn {
+    font-size: 0.6rem;
+    padding: 0 1rem 0 1rem;
+    height: 1.5rem;
+    border-radius: 0.5rem;
+  }
+}
 main .todoConts .createToDo .bottomBtnCont .rightBtnCont .submitBtn:hover {
   border: #09F solid 2px;
   background-color: transparent;
   color: #09F;
   transition: background-color 400ms, color 400ms, border-color 400ms;
   padding: 0 1.4rem 0 1.4rem;
+}
+@media (max-width: 750px) {
+  main .todoConts .createToDo .bottomBtnCont .rightBtnCont .submitBtn:hover {
+    padding: 0 0.9rem 0 0.9rem;
+  }
 }
 main .todoConts .createToDo .bottomBtnCont .rightBtnCont .submitBtn:active {
   transform: translateY(0.25rem);
@@ -1698,11 +1931,30 @@ main .todoConts .createGroup {
   height: auto;
   padding-bottom: 1rem;
 }
+@media (max-width: 1000px) {
+  main .todoConts .createGroup {
+    left: -5rem;
+  }
+}
+@media (max-width: 750px) {
+  main .todoConts .createGroup {
+    left: 0;
+    padding-bottom: 0;
+  }
+}
 main .todoConts .createGroup .topInputCont {
   padding-top: 2rem;
 }
 main .todoConts .createGroup .bottomBtnCont {
   margin-top: 2rem;
+}
+@media (max-width: 750px) {
+  main .todoConts .createGroup .bottomBtnCont {
+    width: -moz-fit-content;
+    width: fit-content;
+    overflow-x: hidden;
+    margin-left: 0.5rem;
+  }
 }
 main .todoConts .createGroup .rightBtnCont {
   width: 100%;
@@ -1729,6 +1981,12 @@ main .todoConts .toDoListItemsCont .toDoListItem {
     width: calc(100% - 5.5rem);
   }
 }
+@media (max-width: 750px) {
+  main .todoConts .toDoListItemsCont .toDoListItem {
+    height: 2rem;
+    width: calc(100% - 2rem);
+  }
+}
 main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont {
   display: flex;
   align-items: center;
@@ -1742,6 +2000,12 @@ main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont .priorityCircle
   box-sizing: border-box;
   transition: 250ms;
   cursor: pointer;
+}
+@media (max-width: 750px) {
+  main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont .priorityCircle {
+    height: 0.9rem;
+    width: 0.9rem;
+  }
 }
 main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont .priorityCircle:hover {
   transition: 125ms;
@@ -1771,6 +2035,25 @@ main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont p {
   font-weight: 400;
   line-height: 93.682%; /* 22.484px */
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 30vw;
+}
+@media (max-width: 750px) {
+  main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont p {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 480px) {
+  main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont p {
+    font-size: 0.75rem;
+  }
+}
+@media (max-width: 400px) {
+  main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont p {
+    width: 20vw;
+  }
 }
 main .todoConts .toDoListItemsCont .toDoListItem .rightBtnsCont {
   display: flex;
@@ -1781,6 +2064,11 @@ main .todoConts .toDoListItemsCont .toDoListItem .rightBtnsCont {
 main .todoConts .toDoListItemsCont .toDoListItem .rightBtnsCont img {
   cursor: pointer;
   transition: 125ms;
+}
+@media (max-width: 750px) {
+  main .todoConts .toDoListItemsCont .toDoListItem .rightBtnsCont img {
+    scale: 0.75;
+  }
 }
 main .todoConts .toDoListItemsCont .toDoListItem .rightBtnsCont img:hover {
   transition: 200ms;
@@ -1794,18 +2082,25 @@ main .todoConts .dropdownGroup {
   display: block;
   width: 419.6px !important;
   height: 10rem;
-  border-radius: 12px;
+  border-radius: 1.5rem;
   border: 1px solid hsl(0, 0%, 80%);
   background: #FFF;
   color: #b6b6b6;
   font-family: Poppins;
   font-size: 1rem;
   font-weight: 500;
-  overflow: auto;
+  overflow-y: auto;
   padding: 0;
   position: absolute;
   z-index: 2;
   /* Chrome, Edge, and Safari */
+}
+@media (max-width: 750px) {
+  main .todoConts .dropdownGroup {
+    width: calc(100% - 2rem) !important;
+    font-size: 0.75rem;
+    border-radius: 1.25rem;
+  }
 }
 main .todoConts .dropdownGroup li {
   box-sizing: border-box;
@@ -1814,6 +2109,15 @@ main .todoConts .dropdownGroup li {
   display: block;
   padding: 0.75rem 1.5rem;
   transition: 300ms;
+}
+@media (max-width: 750px) {
+  main .todoConts .dropdownGroup li {
+    padding: 0.5rem 1.5rem;
+  }
+}
+main .todoConts .dropdownGroup li p {
+  margin: 0;
+  max-width: 15ch;
 }
 main .todoConts .dropdownGroup li:hover {
   background-color: rgb(234, 247, 255);

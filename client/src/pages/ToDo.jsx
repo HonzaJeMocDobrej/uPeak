@@ -13,6 +13,9 @@ import priorityLightningThree from '../assets/icons/priorityLightningThree.svg'
 import priorityLightningTwo from '../assets/icons/priorityLightningTwo.svg'
 import priorityLightningOne from '../assets/icons/priorityLightningOne.svg'
 
+import Calendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css';
+
 function ToDo(props) {
   const {
     active,
@@ -39,9 +42,6 @@ function ToDo(props) {
   const [isPalletteOpen, setIsPalletteOpen] = useState(false)
   const [isPalletteGroupOpen, setIsPalletteGroupOpen] = useState(false)
   const [day, setDay] = useState("Today");
-  const [headlineTodoVal, setHeadlineTodoVal] = useState('')
-  const [headlineGroupVal, setHeadlineGroupVal] = useState('')
-  const [shortDescVal, setShortDescVal] = useState('')
 
   const [todoData, setTodoData] = useState({
     headline: '',
@@ -83,7 +83,6 @@ function ToDo(props) {
   };
 
   const updateHeadlineTodoVal = (e) => {
-    setHeadlineTodoVal(e.target.value.length)
     setTodoData(prev => {
       return {
         ...prev,
@@ -93,7 +92,6 @@ function ToDo(props) {
   }
 
   const updateHeadlineGroupVal = (e) => {
-    setHeadlineGroupVal(e.target.value.length)
     setGroupData(prev => {
       return {
         ...prev,
@@ -103,7 +101,6 @@ function ToDo(props) {
   }
   
   const updateShortDescVal = (e) => {
-    setShortDescVal(e.target.value.length)
     setTodoData(prev => {
       return {
         ...prev,
@@ -220,45 +217,23 @@ function ToDo(props) {
             <div className="topCont">
               <div className="dayTimeCont">
                 <div
-                  onClick={() => univToggle(setIsDayOpen)}
                   className={`h2Cont ${isDayOpen ? "rotate" : "goBack"}`}
                 >
-                  <h2>{day}</h2>
-                  <ul
-                    style={
-                      isDayOpen ? { display: "flex" } : { display: "none" }
-                    }
-                    className="dropdown"
-                  >
-                    <li
-                      onClick={() => selectDay("Today")}
-                      className={day === "Today" ? "selectedLi" : null}
-                    >
-                      To-Do
-                    </li>
-                    <li
-                      onClick={() => selectDay("Notes")}
-                      className={day === "Notes" ? "selectedLi" : null}
-                    >
-                      Notes
-                    </li>
-                    <li
-                      onClick={() => selectDay("Pomodoro")}
-                      className={day === "Pomodoro" ? "selectedLi" : null}
-                    >
-                      Pomodoro
-                    </li>
-                  </ul>
+                  <h2 onClick={() => univToggle(setIsDayOpen)}>{day}</h2>
+                  <Calendar
+                    style = {isDayOpen ? { display: "flex" } : { display: "none" }}
+                    className={`calendar ${isDayOpen ? "calendarShown" :  "calendarHidden"} `}
+                  />
                 </div>
                 <h4>Sat. 16 Sep</h4>
               </div>
               <div className="ctaCont" style={{position: "relative"}}>
                 <p onClick={() => univToggle(setIsCreateGroupOpen)} className="ctaGroupTodo">Create Group</p>
-                <div style={isCreateGroupOpen ? {display: "block"} : {display: "none"}} className="createToDo createGroup">
+                <div style={isCreateGroupOpen ? {display: "block"} : {display: "none"}} className="createToDo createToDo2 createGroup">
                   <div className="topInputCont">
                     <div className="imgAndInputCont">
                       <img onClick={() => univToggle(setIsPalletteGroupOpen)} src={pallette} alt="" />
-                      <input value={groupData.headline} onChange={updateHeadlineGroupVal} style={{width: headlineGroupVal === '' ? '8.75rem' : `${headlineGroupVal}ch`, color: groupData.color === '#333' ? null : groupData.color}} className="headline" placeholder="Group Name..." type="text" maxLength={15} />
+                      <input value={groupData.headline} onChange={updateHeadlineGroupVal} style={{color: groupData.color === '#333' ? null : groupData.color}} className="headline" placeholder="Group Name..." type="text" maxLength={15} />
                     </div>
                   <ChromePicker
                     color={groupData.color}
@@ -281,7 +256,7 @@ function ToDo(props) {
               <ul className="dropdownGroup" style={{display: isGroupAddOpen ? 'block' : 'none'}}>
                 {groups.map((group, index) => {
                   return(
-                    <li onClick={() => selectGroup(group)} key={index} style={{color: group.color === '#333' ? 'rgba(51, 51, 51, 0.8)' : group.color}} >{group.headline}</li>
+                    <li onClick={() => selectGroup(group)} key={index} style={{color: group.color === '#333' ? 'rgba(51, 51, 51, 0.8)' : group.color}} ><p>{group.headline}</p></li>
                   )
                 })}
               </ul>
@@ -295,9 +270,9 @@ function ToDo(props) {
                   <div className="topInputCont">
                     <div className="imgAndInputCont">
                       <img onClick={() => univToggle(setIsPalletteOpen)} src={pallette} alt="" />
-                      <input value={todoData.headline} onChange={updateHeadlineTodoVal} style={{width: headlineTodoVal === '' ? '8rem' : `${headlineTodoVal}ch`, color: todoData.color === '#333' ? null : todoData.color}} className="headline" placeholder="Task Name..." type="text" maxLength={30} />
+                      <input value={todoData.headline} onChange={updateHeadlineTodoVal} style={{color: todoData.color === '#333' ? null : todoData.color}} className="headline" placeholder="Task Name..." type="text" maxLength={30} />
                     </div>
-                    <input value={todoData.shortDesc} onChange={updateShortDescVal} style={shortDescVal === '' ? {width: '7rem'} : {width: `${shortDescVal}ch`}} className="shortDesc" placeholder="Short Description" type="text" maxLength={50} />
+                    <input value={todoData.shortDesc} onChange={updateShortDescVal} className="shortDesc" placeholder="Short Description" type="text" maxLength={50} />
                   <ChromePicker
                     color={todoData.color}
                     onChange={changeTodoColor}
@@ -355,7 +330,7 @@ function ToDo(props) {
               <h2 className="groupHeadline">Banger</h2>
               <div className="toDoListItemsCont">
                 <ToDoListItem
-                  name='Do The Dishes'
+                  name='Do The Dishes asdfasfsdafsdasdfasdfasfdfsd'
                   priorityCircleSx={prioCircleStyles.prio4}
                   priorityCircleHoverClass='prio4'
                   />

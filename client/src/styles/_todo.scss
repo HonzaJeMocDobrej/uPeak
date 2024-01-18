@@ -17,13 +17,27 @@ main {
         gap: calc(100% - 27.25rem);
       }
 
+      @media (max-width: 750px) {
+        flex-direction: column;
+        align-items: start;
+        height: fit-content;
+        margin-left: 1.5rem;
+      }
+
       .ctaCont {
         height: 100%;
+
+        @media (max-width: 750px) {
+          margin-left: 1.5rem;
+          margin-top: 1rem;
+        }
       }
 
       .ctaGroupTodo {
         margin-bottom: 0.2rem;
-        
+        @media (max-width: 750px) {
+          height: 1.8rem;
+        }
       }
 
       .dayTimeCont {
@@ -38,6 +52,10 @@ main {
             font-size: 1rem;
             font-weight: 400;
             line-height: 93.682%; /* 1.40525rem */
+
+            @media (max-width: 750px) {
+              font-size: .75rem;
+            }
         }
 
         .h2Cont {
@@ -46,6 +64,21 @@ main {
           align-items: end;
           cursor: pointer;
           user-select: none;
+
+          .calendar {
+            position: absolute;
+            left: 0;
+            top: 6rem;
+            z-index: 3;
+          }
+
+          .calendarShown {
+            display: block;
+          }
+          
+          .calendarHidden {
+            display: none;
+          }
 
           h2 {
             font-size: 2rem;
@@ -63,6 +96,10 @@ main {
               font-size: 2rem;
             }
 
+            @media (max-width: 750px) {
+              font-size: 1.5rem;
+            }
+
             @media (max-width: 480px) {
               font-size: 1.5rem;
             }
@@ -72,6 +109,10 @@ main {
             content: url("../assets/icons/dropdown.svg");
             display: inline-block;
             transform: scale(0.5);
+            
+            @media (max-width: 750px) {
+              transform: scale(0.375);
+            }
           }
 
           ul {
@@ -141,6 +182,10 @@ main {
           &:before {
             transition: 0.25s;
             transform: rotate(180deg) scale(0.5);
+
+            @media (max-width: 750px) {
+              transform: rotate(180deg) scale(0.375);
+            }
           }
         }
   
@@ -148,6 +193,10 @@ main {
           &:before {
             transition: 0.25s;
             transform: rotate(0deg) scale(0.5);
+
+            @media (max-width: 750px) {
+              transform: rotate(0deg) scale(0.375);
+            }
           }
         }
       }
@@ -156,6 +205,12 @@ main {
     .secondCtaCont {
       padding-top: 2rem;
       padding-left: 5.5rem;
+
+      @media (max-width: 750px) {
+        padding: 0;
+        margin-top: .5rem;
+        margin-left: 3rem;
+      }
     }
 
     .ctaGroupTodo {
@@ -177,6 +232,11 @@ main {
         border-radius: .75rem;
         margin-top: 0;
 
+        @media (max-width: 750px) {
+          font-size: .75rem;
+          border-radius: .55rem;
+        }
+
         &::before {
           background-image: url(../assets/icons/BluePlus.svg);
           background-repeat: no-repeat;
@@ -185,6 +245,11 @@ main {
           width: 1rem; 
           height: 1rem;
           content:"";
+
+          @media (max-width: 750px) {
+            background-size: .75rem;
+            margin-top: .25rem;
+          }
         }
 
         &:hover {
@@ -209,6 +274,10 @@ main {
           margin-top: 0;
         }
         height: 2.5rem;
+
+        @media (max-width: 750px) {
+          height: 1.8rem;
+        }
         
       }
 
@@ -221,6 +290,13 @@ main {
         margin-top: 1.5rem;
         margin-bottom: 1.5rem;
 
+        @media (max-width: 750px) {
+          font-size: 1.5rem;
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+        }
+        
+
         &:not(:nth-child(1)) {
           margin-top: 3rem;
         }
@@ -228,22 +304,47 @@ main {
 
       .groupCont {
         padding-left: 5.5rem;
+
+        @media (max-width: 750px) {
+          padding-left: 3rem;
+        }
+
+      }
+
+      .createToDo2 {
+        .rightBtnCont {
+          @media (max-width: 750px) {
+            
+            padding-left: .5rem !important;
+          }
+        }
       }
 
       .createToDo {
         width: 70%;
         height: 15rem;
-        border-radius: 1.5rem;
+        border-radius: 1.25rem;
         border: 1px solid #CCC;
         position: absolute;
         background-color: #FFF;
         z-index: 1;
+
+        @media (max-width: 750px) {
+          height: 10rem;
+          width: calc(100% - 2rem);
+        }
 
         .topInputCont {
           padding-top: 2.75rem;
           display: flex;
           flex-direction: column;
           position: relative;
+          padding-right: 2.5rem;
+
+          @media (max-width: 750px) {
+            padding-top: 2.125rem;
+          }
+
           input {
             border: none;
             width: fit-content;
@@ -256,19 +357,36 @@ main {
             display: flex;
             align-items: center;
             gap: 0.3rem;
+
+            @media (max-width: 480px) {
+              margin-left: 1.5rem;
+            }
             
             .headline {
               color: #a7a7a7;
               font-family: Poppins;
               font-size: 1.2rem;
               font-weight: 500;
+              width: 70%;
               min-width: 8rem;
-              max-width: 30rem;
+
+              @media (max-width: 750px) {
+                font-size: .95rem;
+              }
+              @media (max-width: 400px) {
+                font-size: .7rem;
+                min-width: 5rem;
+              }
             }
             img {
               height: 1.25rem;
               width: 1.25rem;
               cursor: pointer;
+
+              @media (max-width: 750px) {
+                height: 1rem;
+                width: 1rem;
+              }
             }
           }
           
@@ -279,8 +397,21 @@ main {
             font-weight: 500;
             margin-top: .8rem;
             margin-left: 4rem;
+            width: 70%;
             min-width: 7rem;
-            max-width: 30rem;
+
+            @media (max-width: 750px) {
+              font-size: .6rem;
+              margin-left: 2.85rem;
+              margin-top: .6rem;
+              word-wrap: break-word;
+              word-break: break-all;
+            }
+
+            @media (max-width: 400px) {
+              font-size: .5rem;
+              min-width: 5rem;
+            }
           }
 
           .chrome-picker {
@@ -288,6 +419,12 @@ main {
             z-index: 3;
             left: 15rem;
             font-family: Open Sans;
+
+            @media (max-width: 750px) {
+              left: 0;
+              top: 5rem;
+              width: 10rem !important;
+            }
 
             .flexbox-fix {
               #rc-editable-input-2, label {
@@ -313,6 +450,35 @@ main {
           justify-content: space-between;
           position: relative;
 
+          @media (max-width: 750px) {
+            margin-top: 1.75rem;
+            overflow-x: auto;
+            height: 2.5rem;
+            margin-left: 1.5rem;
+            padding: 0 .5rem 0 .5rem;
+            width: calc(100% - 5rem);
+            
+            & {
+              scrollbar-width: thin;
+              scrollbar-color: #b8e3ff #ffffff;
+            }
+          
+            /* Chrome, Edge, and Safari */
+            &::-webkit-scrollbar {
+              width: 12px;
+            }
+          
+            &::-webkit-scrollbar-track {
+              background: #ffffff;
+            }
+          
+            &::-webkit-scrollbar-thumb {
+              background-color: #b8e3ff;
+              border-radius: 12px;
+              border: 3px solid #ffffff;
+            }
+          }
+
           .prioBtn {
             padding: 0 2.25rem 0 2.25rem;
             height: 2.1rem;
@@ -332,6 +498,14 @@ main {
             transition: color 600ms;
             z-index: 2;
 
+            @media (max-width: 750px) {
+              font-size: .6rem;
+              padding: 0 1.25rem 0 1.75rem;
+              height: 1.5rem;
+              border-radius: .5rem;
+              margin: 0;
+            }
+
             &::after {
               content: '';
               background-color: #FFD600;
@@ -344,6 +518,12 @@ main {
               z-index: -1;
               transition: height 500ms ease, transform 300ms;
               overflow: hidden;
+
+              @media (max-width: 750px) {
+                border-radius: .55rem;
+              }
+
+              
             }
             
             &:hover::after {
@@ -371,6 +551,11 @@ main {
               background-repeat: no-repeat;
               position: absolute;
               left: 1rem;
+
+              @media (max-width: 750px) {
+                transform: scale(.75);
+                left: .75rem; 
+              }
             }
             
             &:hover::before {
@@ -396,6 +581,12 @@ main {
             margin-right: 2.75rem;
             gap: 1.5rem;
 
+            @media (max-width: 750px) {
+              gap: .5rem;
+              margin: 0;
+              padding-left: 2rem;
+            }
+
             .closeBtn {
               padding: 0 1.5rem 0 1.5rem;
               height: 2.1rem;
@@ -414,6 +605,13 @@ main {
               transition: color 600ms, transform 300ms;
               z-index: 2;
 
+              @media (max-width: 750px) {
+                font-size: .6rem;
+                padding: 0 1rem 0 1rem;
+                height: 1.5rem;
+                border-radius: .5rem;
+              }
+
               &::before {
                 content: '';
                 background-color: #FF6767;
@@ -426,6 +624,10 @@ main {
                 z-index: -1;
                 transition: top 500ms ease;
                 overflow: hidden;
+
+                @media (max-width: 750px) {
+                  border-radius: .55rem;
+                }
               }
               
               &:hover::before {
@@ -462,12 +664,22 @@ main {
               cursor: pointer;
               transition: background-color 400ms, color 400ms, border-color 400ms, transform 300ms;
 
+              @media (max-width: 750px) {
+                font-size: .6rem;
+                padding: 0 1rem 0 1rem;
+                height: 1.5rem;
+                border-radius: .5rem;
+              }
+
               &:hover {
                 border: #09F solid 2px;
                 background-color: transparent;
                 color: #09F;
                 transition: background-color 400ms, color 400ms, border-color 400ms;
                 padding: 0 1.4rem 0 1.4rem;
+                @media (max-width: 750px) {
+                  padding: 0 .9rem 0 .9rem;
+                }
               }
 
               &:active {
@@ -576,12 +788,28 @@ main {
         height: auto;
         padding-bottom: 1rem;
 
+        @media (max-width: 1000px) {
+          left: -5rem;
+        }
+
+        @media (max-width: 750px) {
+          left: 0;
+          padding-bottom: 0;
+        }
+
         .topInputCont {
           padding-top: 2rem;
+          
         }
 
         .bottomBtnCont {
           margin-top: 2rem;
+          @media (max-width: 750px) {
+            width: fit-content;
+            overflow-x: hidden;
+            margin-left: .5rem;
+          }
+
         }
 
         .rightBtnCont {
@@ -589,6 +817,8 @@ main {
           justify-content: end;
           margin-left: 2.45rem;
           margin-right: 2.45rem;
+
+          
         }
       }
       
@@ -607,6 +837,11 @@ main {
           @media (max-width: 1000px) {
             width: calc(100% - 5.5rem);
           }
+
+          @media (max-width: 750px) {
+            height: 2rem;
+            width: calc(100% - 2rem);
+          }
           
           .btnAndTextCont {
             display: flex;
@@ -621,6 +856,11 @@ main {
               box-sizing: border-box;
               transition: 250ms;
               cursor: pointer;
+
+              @media (max-width: 750px) {
+                height: .9rem;
+                width: .9rem;
+              }
 
               &:hover {
                 transition: 125ms;
@@ -662,6 +902,22 @@ main {
               font-weight: 400;
               line-height: 93.682%; /* 22.484px */
               margin: 0;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              width: 30vw;
+
+              @media (max-width: 750px) {
+                font-size: .9rem;
+              }
+
+              @media (max-width: 480px) {
+                font-size: .75rem;
+              }
+
+              @media (max-width: 400px) {
+                width: 20vw;
+              }
             }
           }
           
@@ -674,6 +930,11 @@ main {
             img {
               cursor: pointer;
               transition: 125ms;
+
+              @media (max-width: 750px) {
+                scale: (.75);
+              }
+
               &:hover {
                 transition: 200ms;
                 transform: scale(1.05);
@@ -692,17 +953,23 @@ main {
         display: block;
       width: 419.6px !important;
       height: 10rem;
-      border-radius: 12px;
+      border-radius: 1.5rem;
         border: 1px solid hsl(0, 0%, 80%);
         background: #FFF;
         color: #b6b6b6;
         font-family: Poppins;
         font-size: 1rem;
         font-weight: 500;
-        overflow: auto;
+        overflow-y: auto;
         padding: 0;
         position: absolute;
         z-index: 2;
+
+        @media (max-width: 750px) {
+          width: calc(100% - 2rem) !important;
+          font-size: .75rem;
+          border-radius: 1.25rem;
+        }
 
         li {
           box-sizing: border-box;
@@ -711,6 +978,15 @@ main {
           display: block;
           padding: .75rem 1.5rem ;
           transition: 300ms;
+
+          @media (max-width: 750px) {
+            padding: .5rem 1.5rem;
+          }
+
+          p {
+            margin: 0;
+            max-width: 15ch;
+          }
 
           &:hover {
             background-color: rgb(234, 247, 255);

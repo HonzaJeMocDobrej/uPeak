@@ -12,6 +12,39 @@ main {
       gap: calc(70% - 21.25rem);
       height: 2.5rem;
       padding-top: 2.8rem;
+      position: relative;
+
+      .calendar {
+        position:absolute;
+        left: 0;
+        top: 6rem;
+        z-index: 3;
+        color: #333;
+
+        .react-calendar__tile {
+          &:enabled:hover {
+            background-color: rgb(234, 247, 255);
+            color: #333;
+          }
+        }
+
+        .react-calendar__tile--active {
+          background-color: #09F;
+        }
+        
+        // .react-calendar__tile--now {
+        //   background-color: #FFA800;
+        // }
+
+      }
+
+      .calendarShown {
+        display: block;
+      }
+      
+      .calendarHidden {
+        display: none;
+      }
 
       @media (max-width: 1000px) {
         gap: calc(100% - 27.25rem);
@@ -64,21 +97,6 @@ main {
           align-items: end;
           cursor: pointer;
           user-select: none;
-
-          .calendar {
-            position: absolute;
-            left: 0;
-            top: 6rem;
-            z-index: 3;
-          }
-
-          .calendarShown {
-            display: block;
-          }
-          
-          .calendarHidden {
-            display: none;
-          }
 
           h2 {
             font-size: 2rem;

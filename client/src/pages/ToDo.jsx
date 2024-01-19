@@ -215,15 +215,17 @@ function ToDo(props) {
         <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
           <div className="todoConts">
             <div className="topCont">
+              <Calendar
+                style = {isDayOpen ? { display: "flex" } : { display: "none" }}
+                className={`calendar ${isDayOpen ? "calendarShown" :  "calendarHidden"} `}
+                onClickDay={(value, event) => console.log(`Day: ${value.getDate()} Month: ${value.getMonth()}`)}
+              />
               <div className="dayTimeCont">
                 <div
                   className={`h2Cont ${isDayOpen ? "rotate" : "goBack"}`}
+                  onClick={() => univToggle(setIsDayOpen)}
                 >
-                  <h2 onClick={() => univToggle(setIsDayOpen)}>{day}</h2>
-                  <Calendar
-                    style = {isDayOpen ? { display: "flex" } : { display: "none" }}
-                    className={`calendar ${isDayOpen ? "calendarShown" :  "calendarHidden"} `}
-                  />
+                  <h2>{day}</h2>
                 </div>
                 <h4>Sat. 16 Sep</h4>
               </div>

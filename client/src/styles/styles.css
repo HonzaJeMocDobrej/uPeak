@@ -1204,6 +1204,27 @@ main .todoConts .topCont {
   gap: calc(70% - 21.25rem);
   height: 2.5rem;
   padding-top: 2.8rem;
+  position: relative;
+}
+main .todoConts .topCont .calendar {
+  position: absolute;
+  left: 0;
+  top: 6rem;
+  z-index: 3;
+  color: #333;
+}
+main .todoConts .topCont .calendar .react-calendar__tile:enabled:hover {
+  background-color: rgb(234, 247, 255);
+  color: #333;
+}
+main .todoConts .topCont .calendar .react-calendar__tile--active {
+  background-color: #09F;
+}
+main .todoConts .topCont .calendarShown {
+  display: block;
+}
+main .todoConts .topCont .calendarHidden {
+  display: none;
 }
 @media (max-width: 1000px) {
   main .todoConts .topCont {
@@ -1262,18 +1283,6 @@ main .todoConts .topCont .dayTimeCont .h2Cont {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-}
-main .todoConts .topCont .dayTimeCont .h2Cont .calendar {
-  position: absolute;
-  left: 0;
-  top: 6rem;
-  z-index: 3;
-}
-main .todoConts .topCont .dayTimeCont .h2Cont .calendarShown {
-  display: block;
-}
-main .todoConts .topCont .dayTimeCont .h2Cont .calendarHidden {
-  display: none;
 }
 main .todoConts .topCont .dayTimeCont .h2Cont h2 {
   font-size: 2rem;

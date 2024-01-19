@@ -49,6 +49,8 @@ function ToDo(props) {
     year: null
   })
 
+  const now = new Date
+
   const [todoData, setTodoData] = useState({
     headline: '',
     shortDesc: '',
@@ -215,7 +217,6 @@ function ToDo(props) {
         monthFormatted = formatter.month[i - 1]      
       }
     }
-    console.log(selectedDate.dayName);
     setSelectedDate(prev => {
       return {
         ...prev,
@@ -229,7 +230,6 @@ function ToDo(props) {
   }
 
   useEffect(() => {
-    const now = new Date
     formatDate(now.getDay(), now.getDate(), now.getMonth() + 1, now.getFullYear())
   }, [])
   return (
@@ -266,6 +266,7 @@ function ToDo(props) {
                 }
               }
               minDate={new Date}
+              maxDate={new Date(now.getFullYear() + 1, now.getMonth(), now.getDate())}
               />
               <div className="dayTimeCont">
                 <div

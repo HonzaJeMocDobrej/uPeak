@@ -23,7 +23,7 @@ function Pomodoro(props) {
     setSwitchStyle,
   } = props;
 
-  const [time, setTime] = useState(6);
+  const [time, setTime] = useState(1500);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const decrement = useRef(null);
@@ -51,7 +51,7 @@ function Pomodoro(props) {
   };
 
   const stopBtnClick = () => {
-    setTime(6);
+    setTime(1500);
     clearInterval(decrement.current);
     setIsPlayClicked(false);
     setStars(stars_stage_one)
@@ -60,13 +60,13 @@ function Pomodoro(props) {
 
   useEffect(() => {
     if (time <= 0 && !isPause) {
-      setTime(3);
+      setTime(300);
       setIsPause(true);
       return;
     }
 
     if (time <= 0 && isPause) {
-      setTime(6);
+      setTime(1500);
       setIsPause(false);
       setStage(prev => prev + 1)
       return;

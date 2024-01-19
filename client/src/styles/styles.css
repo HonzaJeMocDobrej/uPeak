@@ -1196,6 +1196,22 @@ main .todoConts {
   padding-bottom: 3rem;
   overflow-y: auto;
   height: calc(100vh - 7rem);
+  /* Chrome, Edge, and Safari */
+}
+main .todoConts {
+  scrollbar-width: thin;
+  scrollbar-color: #0099ff white;
+}
+main .todoConts::-webkit-scrollbar {
+  width: 12px;
+}
+main .todoConts::-webkit-scrollbar-track {
+  background: white;
+}
+main .todoConts::-webkit-scrollbar-thumb {
+  background-color: #0099ff;
+  border-radius: 12px;
+  border: 3px solid white;
 }
 main .todoConts .topCont {
   display: flex;
@@ -1212,6 +1228,24 @@ main .todoConts .topCont .calendar {
   top: 6rem;
   z-index: 3;
   color: #333;
+  border-radius: 1.25rem;
+}
+@media (max-width: 480px) {
+  main .todoConts .topCont .calendar {
+    transform: scale(0.9);
+  }
+}
+main .todoConts .topCont .calendar .react-calendar__navigation button:first-child {
+  border-radius: 1.25rem 0 0 0;
+}
+main .todoConts .topCont .calendar .react-calendar__navigation button:last-child {
+  border-radius: 0 1.25rem 0 0;
+}
+main .todoConts .topCont .calendar .react-calendar__month-view__days button:nth-child(29) {
+  border-radius: 0 0 0 1.25rem;
+}
+main .todoConts .topCont .calendar .react-calendar__month-view__days button:nth-child(35) {
+  border-radius: 0 0 1.25rem 0;
 }
 main .todoConts .topCont .calendar .react-calendar__tile:enabled:hover {
   background-color: rgb(234, 247, 255);
@@ -1228,7 +1262,7 @@ main .todoConts .topCont .calendarHidden {
 }
 @media (max-width: 1000px) {
   main .todoConts .topCont {
-    gap: calc(100% - 27.25rem);
+    gap: calc(100% - 30rem);
   }
 }
 @media (max-width: 750px) {
@@ -1268,7 +1302,7 @@ main .todoConts .topCont .dayTimeCont h4 {
   font-family: Open Sans;
   font-size: 1rem;
   font-weight: 400;
-  line-height: 93.682%; /* 1.40525rem */
+  line-height: 100%;
 }
 @media (max-width: 750px) {
   main .todoConts .topCont .dayTimeCont h4 {

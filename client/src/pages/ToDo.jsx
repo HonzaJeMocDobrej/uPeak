@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LeftMenu from "../components/LeftMenu";
 import TopMenu from "../components/topMenu";
 import ToDoListItem from "../components/ToDoListItem";
@@ -34,14 +34,20 @@ function ToDo(props) {
     prio4: {border: 'solid 0.5px #ADADAD'}
   }
 
-  const [isDayOpen, setIsDayOpen] = useState(false);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [isPrioOpen, setIsPrioOpen] = useState(false)
   const [isCreateTodoOpen, setIsCreateTodoOpen] = useState(false)
   const [isCreateGroupOpen, setIsCreateGroupOpen] = useState(false)
   const [isGroupAddOpen, setIsGroupAddOpen] = useState(false)
   const [isPalletteOpen, setIsPalletteOpen] = useState(false)
   const [isPalletteGroupOpen, setIsPalletteGroupOpen] = useState(false)
-  const [day, setDay] = useState("Today");
+  const [selectedDate, setSelectedDate] = useState({
+    dayNum: null,
+    dayName: null,
+    monthNum: null,
+    monthName: null,
+    year: null
+  })
 
   const [todoData, setTodoData] = useState({
     headline: '',
@@ -72,15 +78,16 @@ function ToDo(props) {
    : todoData.priority === 3 ? 'lightPrio3'
    : todoData.priority === 4 ? 'lightPrio4' : ''
 
+   const formatter = {
+    day: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    month: ['Jan', 'Feb', 'March', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+   }
+
    
 
   const univToggle = (setState) => {
     setState(prev => !prev)
   }
-
-  const selectDay = (day) => {
-    setDay(day);
-  };
 
   const updateHeadlineTodoVal = (e) => {
     setTodoData(prev => {
@@ -195,6 +202,36 @@ function ToDo(props) {
     console.log(group.headline)
   }
 
+  const formatDate = (dayType, day, month, year) => {
+    let dayFormatted
+    let monthFormatted
+    for (let i = 0; i < 7; i++) {
+      if (dayType === i) {
+        dayFormatted = formatter.day[i]
+      } 
+    }
+    for (let i = 1; i <= 12; i++) {
+      if (month === i) {
+        monthFormatted = formatter.month[i - 1]      
+      }
+    }
+    console.log(selectedDate.dayName);
+    setSelectedDate(prev => {
+      return {
+        ...prev,
+        dayNum: day,
+        dayName: dayFormatted,
+        monthNum: month,
+        monthName: monthFormatted,
+        year: year
+      }
+    })        
+  }
+
+  useEffect(() => {
+    const now = new Date
+    formatDate(now.getDay(), now.getDate(), now.getMonth() + 1, now.getFullYear())
+  }, [])
   return (
     <>
       <div className={`menuCont ${isBlack ? "menuBlack" : null}`}>
@@ -216,18 +253,28 @@ function ToDo(props) {
           <div className="todoConts">
             <div className="topCont">
               <Calendar
-                style = {isDayOpen ? { display: "flex" } : { display: "none" }}
-                className={`calendar ${isDayOpen ? "calendarShown" :  "calendarHidden"} `}
-                onClickDay={(value, event) => console.log(`Day: ${value.getDate()} Month: ${value.getMonth()}`)}
+                style = {isCalendarOpen ? { display: "block" } : { display: "none" }}
+                className={`calendar ${isCalendarOpen ? "calendarShown" :  "calendarHidden"} `}
+                onClickDay={
+                  (value) => {
+                    const day = value.getDate()
+                    const month = value.getMonth() + 1 
+                    const year = value.getFullYear()
+                    formatDate(value.getDay(), day, month, year)
+                    setIsCalendarOpen(false)
+                    // console.log(`Day: ${day} Month: ${month} Year: ${year}`)
+                }
+              }
+              minDate={new Date}
               />
               <div className="dayTimeCont">
                 <div
-                  className={`h2Cont ${isDayOpen ? "rotate" : "goBack"}`}
-                  onClick={() => univToggle(setIsDayOpen)}
+                  className={`h2Cont ${isCalendarOpen ? "rotate" : "goBack"}`}
+                  onClick={() => univToggle(setIsCalendarOpen)}
                 >
-                  <h2>{day}</h2>
+                  <h2>{selectedDate.dayName}</h2>
                 </div>
-                <h4>Sat. 16 Sep</h4>
+                <h4>{selectedDate.dayNum} {selectedDate.monthName}. {selectedDate.year}</h4>
               </div>
               <div className="ctaCont" style={{position: "relative"}}>
                 <p onClick={() => univToggle(setIsCreateGroupOpen)} className="ctaGroupTodo">Create Group</p>

@@ -19,7 +19,7 @@ function Path() {
     user: null,
     pass: null,
     repPass: null,
-    country: null
+    email: null
   })
   const [logData, setLogData] = useState({
     user: null,

@@ -31,33 +31,13 @@ function Register(props) {
         user: '',
         pass: '',
         repPass: '',
-        country: ''
+        email: ''
       })
       axios.get("http://worldtimeapi.org/api/timezone/Europe/Prague")
       .then((res) => {
         console.log(res.data);
       })
   }
-
-  const options = [
-    { value: 'one', label: 'One' },
-    { value: 'two', label: 'Two', className: 'myOptionClassName' },
-    {
-     type: 'group', name: 'group1', items: [
-       { value: 'three', label: 'Three', className: 'myOptionClassName' },
-       { value: 'four', label: 'Four' }
-     ]
-    },
-    {
-     type: 'group', name: 'group2', items: [
-       { value: 'five', label: 'Five' },
-       { value: 'six', label: 'Six' }
-     ]
-    }
-  ];
-  // const defaultOption = options[0];
-
-
 
   return (
     <>
@@ -74,24 +54,13 @@ function Register(props) {
                 <h2>Sign up</h2>
                 <p className="inputH">Username</p>
                 <input onChange={() => univInpChange(event, "user")} value={regData.user} placeholder='Your Username' type="text" />
+                <p className="inputH">Email</p>
+                <input onChange={() => univInpChange(event, "email")} value={regData.email} placeholder='Your Email' type='email' />
                 <p className="inputH">Password</p>
                 <input onChange={() => univInpChange(event, "pass")} value={regData.pass} placeholder='Your Password' type="text" />
                 <p className="inputH">Repeat Password</p>
                 <input onChange={() => univInpChange(event, "repPass")} value={regData.repPass} placeholder='Your Password Again' type="text" />
-                <p className="inputH">Country</p>
                 {/* <input onChange={() => univInpChange(event, "country")} value={regData.country} placeholder='Country' type="text" /> */}
-                <Dropdown 
-                  options={options}
-                  onChange={null} 
-                  placeholder="Country" 
-                  placeholderClassName='dropdownPlaceholder'
-                  className="dropdownRoot"
-                  controlClassName="dropdownShown"
-                  menuClassName='dropdownMenu' 
-                  // arrowClassName='arrow'
-                  arrowClosed={<img src={dropdown} className="arrow" />}
-                  arrowOpen={<img src={dropdown} className="arrow rotate" />}
-                  />
                 <button onClick={submit}>Sign Up</button>
             </div>
             <p className='accountInfo'>Already have an account? <pre onClick={signInClick}> Sign in</pre></p>

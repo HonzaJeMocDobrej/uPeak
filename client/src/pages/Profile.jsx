@@ -1,9 +1,7 @@
 /* eslint-disable react/prop-types */
 import LeftMenu from "../components/LeftMenu";
 import TopMenu from "../components/topMenu";
-import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-import dropdown from '../assets/icons/dropdownFill.svg'
 import honzak from '../assets/img/honzak.png'
 
 import "../styles/styles.css";
@@ -18,26 +16,6 @@ function Profile(props) {
     switchStyle,
     setSwitchStyle,
   } = props;
-  const options = [
-    { value: "one", label: "One" },
-    { value: "two", label: "Two", className: "myOptionClassName" },
-    {
-      type: "group",
-      name: "group1",
-      items: [
-        { value: "three", label: "Three", className: "myOptionClassName" },
-        { value: "four", label: "Four" },
-      ],
-    },
-    {
-      type: "group",
-      name: "group2",
-      items: [
-        { value: "five", label: "Five" },
-        { value: "six", label: "Six" },
-      ],
-    },
-  ];
 
   return (
     <>
@@ -72,22 +50,12 @@ function Profile(props) {
                 </div>
             </div>
             <p>Username</p>
-            <input className="userInput" placeholder="Your Username"></input>
+            <input maxLength={20} className="userInput" placeholder="Your Username"></input>
+            <p>Email</p>
+            <input maxLength={32} className="emailInput" placeholder="Your Email"></input>
             <p>Password</p>
             <input className="passInput" placeholder="Your Password"></input>
-            <p>Location</p>
-            <Dropdown
-              options={options}
-              onChange={null}
-              placeholder="Country"
-              placeholderClassName="dropdownPlaceholder"
-              className="dropdownRoot"
-              controlClassName="dropdownShown"
-              menuClassName="dropdownMenu"
-              // arrowClassName='arrow'
-              arrowClosed={<img src={dropdown} className="arrow" />}
-              arrowOpen={<img src={dropdown} className="arrow rotate" />}
-            />
+            
             <div className="saveBtn">
               Save
             </div>

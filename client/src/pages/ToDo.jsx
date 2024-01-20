@@ -85,8 +85,6 @@ function ToDo(props) {
     month: ['Jan', 'Feb', 'March', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
    }
 
-   
-
   const univToggle = (setState) => {
     setState(prev => !prev)
   }
@@ -273,7 +271,9 @@ function ToDo(props) {
                   className={`h2Cont ${isCalendarOpen ? "rotate" : "goBack"}`}
                   onClick={() => univToggle(setIsCalendarOpen)}
                 >
-                  <h2>{selectedDate.dayName}</h2>
+                  <h2>
+                    {selectedDate.dayNum === now.getDate() + 1 && selectedDate.monthNum === now.getMonth() + 1 ? 'Tommorrow' : selectedDate.dayNum === now.getDate() && selectedDate.monthNum === now.getMonth() + 1 ? 'Today' : selectedDate.dayName }
+                    </h2>
                 </div>
                 <h4>{selectedDate.dayNum} {selectedDate.monthName}. {selectedDate.year}</h4>
               </div>

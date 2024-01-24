@@ -16,11 +16,14 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 let db = {
     Sequelize,
     sequelize,
-    users: require('./user')(sequelize, Sequelize)
+    users: require('./user')(sequelize, Sequelize),
+    pomodoro: require('./pomodoro/pomodoro')(sequelize, Sequelize),
 }
 
-db.Sequelize = Sequelize
-db.sequelize = sequelize
-db.users = require('./user')(sequelize, Sequelize)
+db.pomodoro.belongsTo(db.users, {
+    foreignKey: 'userId',
+    onDelete: 'cascade'
+})
+
 
 export default db

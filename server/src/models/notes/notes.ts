@@ -1,6 +1,6 @@
 module.exports = (sequelize: any, Sequelize: any) => {
     return sequelize.define(
-        'user',
+        'notes',
         {
             id: {
                 type: Sequelize.UUID,
@@ -8,20 +8,17 @@ module.exports = (sequelize: any, Sequelize: any) => {
                 primaryKey: true,
                 allowNull: false
             },
-            username: {
+            userId: {
+                type: Sequelize.UUID,
+                allowNull: false
+            },
+            headline: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            email: {
-                type: Sequelize.STRING,
+            mainText: {
+                type: Sequelize.TEXT('medium'),
                 allowNull: false
-            },
-            passwordHash: {
-                type: Sequelize.STRING,
-                allowNull: false
-            },
-            profilePic: {
-                type: Sequelize.STRING,
             },
             createdAt: {
                 type: Sequelize.DATE

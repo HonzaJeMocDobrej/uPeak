@@ -19,6 +19,7 @@ let db = {
     users: require('./user')(sequelize, Sequelize),
     pomodoro: require('./pomodoro/pomodoro')(sequelize, Sequelize),
     todo: require('./todo/todo')(sequelize, Sequelize),
+    notes: require('./notes/notes')(sequelize, Sequelize),
 }
 
 db.pomodoro.belongsTo(db.users, {
@@ -27,6 +28,11 @@ db.pomodoro.belongsTo(db.users, {
 })
 
 db.todo.belongsTo(db.users, {
+    foreignKey: 'userId',
+    onDelete: 'cascade'
+})
+
+db.notes.belongsTo(db.users, {
     foreignKey: 'userId',
     onDelete: 'cascade'
 })

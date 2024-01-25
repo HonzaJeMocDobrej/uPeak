@@ -30,6 +30,7 @@ export const getUserById = async (req: Request, res: Response) => {
 
 export const createUser = async (req: Request, res: Response) => {
     try {
+        console.log(req.file?.path)
         const { email, username, password } = req.body
         if (!email || !username || !password) return res.status(400).send({msg: 'Missing details'})
         const user = await User.findOne({ where: { email: email } })
@@ -51,6 +52,7 @@ export const createUser = async (req: Request, res: Response) => {
 
 export const updateUser = async (req: Request, res: Response) => {
     try {
+        console.log(req.file?.path)
         const { id } = req.params
         const data = req.body
         if (!id || !data) return res.status(400).send({msg: 'Missing details'})

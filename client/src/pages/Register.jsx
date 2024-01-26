@@ -52,12 +52,16 @@ function Register(props) {
           <div className="centerD">
             <div className="signUp">
                 <h2>Sign up</h2>
+                <div className="imgCont">
+                  <img src="" alt="" />
+                  <input type="file" name="profilePic" id="" />
+                </div>
                 <p className="inputH">Username</p>
-                <input onChange={() => univInpChange(event, "user")} value={regData.user} placeholder='Your Username' type="text" />
+                <input name="username" onChange={() => univInpChange(event, "user")} value={regData.user} placeholder='Your Username' type="text" />
                 <p className="inputH">Email</p>
-                <input onChange={() => univInpChange(event, "email")} value={regData.email} placeholder='Your Email' type='email' />
+                <input name="email" onChange={() => univInpChange(event, "email")} value={regData.email} placeholder='Your Email' type='email' />
                 <p className="inputH">Password</p>
-                <input onChange={() => univInpChange(event, "pass")} value={regData.pass} placeholder='Your Password' type="text" />
+                <input name="password" onChange={() => univInpChange(event, "pass")} value={regData.pass} placeholder='Your Password' type="text" />
                 <p className="inputH">Repeat Password</p>
                 <input onChange={() => univInpChange(event, "repPass")} value={regData.repPass} placeholder='Your Password Again' type="text" />
                 {/* <input onChange={() => univInpChange(event, "country")} value={regData.country} placeholder='Country' type="text" /> */}

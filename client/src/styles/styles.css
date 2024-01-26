@@ -2211,6 +2211,7 @@ main .todoConts .dropdownPlaceholder {
 @media (max-width: 480px) {
   .notesMenu {
     height: calc(100vh - 5.75rem);
+    width: 7.5rem;
   }
 }
 .notesMenu {
@@ -2252,6 +2253,12 @@ main .todoConts .dropdownPlaceholder {
     gap: 0.5rem;
   }
 }
+@media (max-width: 480px) {
+  .notesMenu .topCont .item {
+    gap: 0.25rem;
+    padding: 0.25rem 0rem 0.25rem 0.75rem;
+  }
+}
 .notesMenu .topCont .item p {
   margin: 0;
   color: #999;
@@ -2266,12 +2273,22 @@ main .todoConts .dropdownPlaceholder {
     font-size: 0.9rem;
   }
 }
+@media (max-width: 480px) {
+  .notesMenu .topCont .item p {
+    font-size: 0.75rem;
+  }
+}
 .notesMenu .topCont .item img {
   height: 1.25rem;
 }
 @media (max-width: 1000px) {
   .notesMenu .topCont .item img {
     height: 0.9rem;
+  }
+}
+@media (max-width: 480px) {
+  .notesMenu .topCont .item img {
+    height: 0.65rem;
   }
 }
 .notesMenu .bottomCont {
@@ -2285,6 +2302,11 @@ main .todoConts .dropdownPlaceholder {
 @media (max-width: 1000px) {
   .notesMenu .bottomCont {
     gap: 0.5rem;
+  }
+}
+@media (max-width: 480px) {
+  .notesMenu .bottomCont {
+    gap: 0.25rem;
   }
 }
 .notesMenu .bottomCont .myNotes {
@@ -2302,12 +2324,23 @@ main .todoConts .dropdownPlaceholder {
     font-size: 0.9rem;
   }
 }
+@media (max-width: 480px) {
+  .notesMenu .bottomCont .myNotes {
+    font-size: 0.65rem;
+    padding-left: 0.75rem;
+  }
+}
 .notesMenu .bottomCont .notesList {
   display: flex;
   padding: 0rem 1rem 0rem 1.25rem;
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
+}
+@media (max-width: 480px) {
+  .notesMenu .bottomCont .notesList {
+    padding: 0rem 0.5rem 0rem 0.75rem;
+  }
 }
 .notesMenu .bottomCont .notesList .leftCont {
   display: flex;
@@ -2319,9 +2352,19 @@ main .todoConts .dropdownPlaceholder {
     gap: 0.5rem;
   }
 }
+@media (max-width: 480px) {
+  .notesMenu .bottomCont .notesList .leftCont {
+    gap: 0.25rem;
+  }
+}
 @media (max-width: 1000px) {
   .notesMenu .bottomCont .notesList .leftCont span {
     font-size: 0.75rem;
+  }
+}
+@media (max-width: 480px) {
+  .notesMenu .bottomCont .notesList .leftCont span {
+    font-size: 0.65rem;
   }
 }
 .notesMenu .bottomCont .notesList .leftCont p {
@@ -2338,7 +2381,13 @@ main .todoConts .dropdownPlaceholder {
 }
 @media (max-width: 1000px) {
   .notesMenu .bottomCont .notesList .leftCont p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    width: 70px;
+  }
+}
+@media (max-width: 480px) {
+  .notesMenu .bottomCont .notesList .leftCont p {
+    font-size: 0.75rem;
     width: 50px;
   }
 }
@@ -2437,6 +2486,7 @@ main .todoConts .dropdownPlaceholder {
 @media (max-width: 480px) {
   .notesCont {
     height: calc(100vh - 4rem);
+    width: calc(100% - 7.5rem);
   }
 }
 .notesCont {

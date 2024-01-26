@@ -40,7 +40,9 @@ export const createUser = async (req: Request, res: Response) => {
         const createdUser = await User.create({
             email: email,
             username: username,
-            passwordHash: passwordHash
+            passwordHash: passwordHash,
+            profilePic: req.file?.path
+
         })
         if (!createdUser) return res.status(500).send({msg: 'Something went wrong'})
         return res.status(201).send({msg: 'User created successfully', payload: createdUser})

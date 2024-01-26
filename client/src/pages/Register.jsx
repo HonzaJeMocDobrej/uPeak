@@ -1,10 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom"
-import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-import dropdown from '../assets/icons/dropdownFill.svg'
-
-import axios from "axios"
 
 function Register(props) {
 
@@ -33,10 +29,7 @@ function Register(props) {
         repPass: '',
         email: ''
       })
-      axios.get("http://worldtimeapi.org/api/timezone/Europe/Prague")
-      .then((res) => {
-        console.log(res.data);
-      })
+      navigate('/signup/imageselect')
   }
 
   return (
@@ -52,10 +45,6 @@ function Register(props) {
           <div className="centerD">
             <div className="signUp">
                 <h2>Sign up</h2>
-                <div className="imgCont">
-                  <img src="" alt="" />
-                  <input type="file" name="profilePic" id="" />
-                </div>
                 <p className="inputH">Username</p>
                 <input name="username" onChange={() => univInpChange(event, "user")} value={regData.user} placeholder='Your Username' type="text" />
                 <p className="inputH">Email</p>

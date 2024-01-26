@@ -30,7 +30,6 @@ export const getUserById = async (req: Request, res: Response) => {
 
 export const createUser = async (req: Request, res: Response) => {
     try {
-        console.log(req.file?.path)
         const { email, username, password } = req.body
         if (!email || !username || !password) return res.status(400).send({msg: 'Missing details'})
         const user = await User.findOne({ where: { email: email } })
@@ -41,11 +40,27 @@ export const createUser = async (req: Request, res: Response) => {
             email: email,
             username: username,
             passwordHash: passwordHash,
-            profilePic: req.file?.path
 
         })
         if (!createdUser) return res.status(500).send({msg: 'Something went wrong'})
         return res.status(201).send({msg: 'User created successfully', payload: createdUser})
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err)
+    }
+}
+
+export const updateUserProfilePic =async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+        if (!id || !req.file) return res.status(400).send({msg: 'Missing details'})
+        const user = await User.findOne({where: {id: id}})
+        if (!user) return res.status(400).send({msg: 'User not found'})
+        user.profilePic = req.file.path
+        const action = await user.save()
+        if (!action) return res.status(500).send({msg: 'Something went wrong'})
+        return res.status(200).send({msg: 'User profile picture updated', payload: action})
+            
     } catch (err) {
         console.log(err);
         res.status(500).send(err)

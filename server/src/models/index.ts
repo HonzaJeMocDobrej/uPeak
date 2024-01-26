@@ -17,25 +17,29 @@ let db = {
     Sequelize,
     sequelize,
     users: require('./user')(sequelize, Sequelize),
-    pomodoro: require('./pomodoro/pomodoro')(sequelize, Sequelize),
+    stats: require('./stats/stats')(sequelize, Sequelize),
     todo: require('./todo/todo')(sequelize, Sequelize),
     notes: require('./notes/notes')(sequelize, Sequelize),
 }
 
-db.pomodoro.belongsTo(db.users, {
+db.stats.belongsTo(db.users, {
     foreignKey: 'userId',
     onDelete: 'cascade'
 })
 
-db.todo.belongsTo(db.users, {
+db.users.hasMany(db.todo, {
     foreignKey: 'userId',
     onDelete: 'cascade'
 })
 
-db.notes.belongsTo(db.users, {
+db.todo.belongsTo(db.users)
+
+db.users.hasMany(db.notes, {
     foreignKey: 'userId',
     onDelete: 'cascade'
 })
+
+db.notes.belongsTo(db.users)
 
 
 export default db

@@ -108,10 +108,11 @@
         
         .profile {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
+            cursor: pointer;
             
             img {
-                height: 5rem;
+                height: 4rem;
 
                 @media (max-width: 750px) {
                     display: none;

@@ -3,13 +3,19 @@ import sun from '../assets/icons/sun.svg'
 import moon from '../assets/icons/moon.svg'
 import notific from '../assets/icons/notific.svg'
 import notificWhite from '../assets/icons/notificWhite.svg'
-import honzak from '../assets/img/honzak.png'
+import basicProfilePic from '../assets/img/userPicBasic.svg'
 
 import '../styles/styles.css'
+import { useNavigate } from 'react-router-dom'
 
 function TopMenu(props) {
     
     const {isEnglish, setIsEnglish, isBlack, setIsBlack, switchStyle, setSwitchStyle} = props
+    const navigate = useNavigate()
+
+    const handleProfileClick = () => {
+        navigate('/profile')
+    }
 
     const langClick = () => {
         setIsEnglish(!isEnglish)
@@ -43,8 +49,8 @@ function TopMenu(props) {
             <div onClick={switchClick} style={isBlack ? {background: '#4D4D4D'} : {background: '#66C2FF'}} className="dark-lightSwitch">
                 <img style={switchStyle} src={isBlack ? moon : sun} alt="" />
             </div>
-            <div className="profile">
-                <img src={honzak} alt="" />
+            <div onClick={handleProfileClick} className="profile">
+                <img src={basicProfilePic} alt="" />
                 <p>
                     {isEnglish ? 'Hello' : 'Ahoj'} 
                     <br /><span>Honzak</span>

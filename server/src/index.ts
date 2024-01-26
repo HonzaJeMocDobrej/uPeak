@@ -11,7 +11,7 @@ app.use(cors())
 
 const PORT = process.env.PORT || 3000
 
-db.sequelize.sync({ force: true, alter: true })
+// db.sequelize.sync({ force: true, alter: true })
 
 app.use(`/api/v${process.env.API_VER}/users`, require('./routes/user'))
 app.use('./images', express.static('./images'))

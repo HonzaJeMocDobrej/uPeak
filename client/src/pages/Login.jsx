@@ -32,7 +32,7 @@ function Login(props) {
   return (
     <>
     <div className="login">
-        <div className="lLogin diffBg">
+        <div className="lLogin logBg">
             <h1 className='fullHeading'>u<span className='blackSpan'>Peak<div className="underline"></div></span></h1>
         </div>
         <div className="media1300">

@@ -9,6 +9,7 @@ import Profile from './pages/Profile'
 import { useEffect, useState } from 'react'
 import Register from './pages/Register'
 import Login from './pages/Login'
+import ImageSelect from './pages/ImageSelect'
 
 function Path() {
 
@@ -45,6 +46,10 @@ function Path() {
               <Route path='/signup' element={<Register
                 regData={regData}
                 setRegData={setRegData}
+              />}>
+              </Route>
+              <Route path='/signup/imageselect' element={<ImageSelect
+                
               />}>
               </Route>
                 <Route path='/progress' element={

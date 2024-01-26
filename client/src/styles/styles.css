@@ -725,10 +725,11 @@ main .progressConts .counterCont h2 {
 }
 .tMenu .profCont .profile {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
+  cursor: pointer;
 }
 .tMenu .profCont .profile img {
-  height: 5rem;
+  height: 4rem;
 }
 @media (max-width: 750px) {
   .tMenu .profCont .profile img {
@@ -851,8 +852,11 @@ main .progressConts .counterCont h2 {
     display: none;
   }
 }
-.login .diffBg {
+.login .logBg {
   background-image: url(../assets/img/radiant-gradient.svg);
+}
+.login .imgSelBg {
+  background-image: url(../assets//img/poly-grid.svg);
 }
 .login .fullHeading {
   margin-top: 3.75rem;
@@ -880,10 +884,10 @@ main .progressConts .counterCont h2 {
   display: none;
 }
 .login .media1300 .fullHeading .blackSpan {
-  color: #0099FF;
+  color: #0099ff;
 }
 .login .media1300 .fullHeading .underline {
-  background-color: #0099FF;
+  background-color: #0099ff;
 }
 @media (max-width: 1320px) {
   .login .media1300 {
@@ -925,8 +929,8 @@ main .progressConts .counterCont h2 {
   height: 40rem;
   width: 38rem;
   border-radius: 12px;
-  border: 1px solid #CCC;
-  background: #FFF;
+  border: 1px solid #ccc;
+  background: #fff;
   position: relative;
   filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15));
 }
@@ -985,8 +989,8 @@ main .progressConts .counterCont h2 {
 }
 .login .rLogin .centerD .signUp input {
   border-radius: 12px;
-  border: 1px solid #CCC;
-  background: #FFF;
+  border: 1px solid #ccc;
+  background: #fff;
   width: 25rem;
   height: 3rem;
   margin-left: 4.75rem;
@@ -997,7 +1001,7 @@ main .progressConts .counterCont h2 {
   padding-left: 1rem;
 }
 .login .rLogin .centerD .signUp input:focus {
-  outline: #0099FF 2px solid;
+  outline: #0099ff 2px solid;
 }
 @media (max-width: 1320px) {
   .login .rLogin .centerD .signUp input {
@@ -1011,9 +1015,9 @@ main .progressConts .counterCont h2 {
 .login .rLogin .centerD .signUp button {
   width: 26.25rem;
   height: 3rem;
-  background-color: #0099FF;
+  background-color: #0099ff;
   border-radius: 12px;
-  color: #FFF;
+  color: #fff;
   font-family: Poppins;
   font-size: 1.2rem;
   font-weight: 500;
@@ -1025,8 +1029,8 @@ main .progressConts .counterCont h2 {
 }
 .login .rLogin .centerD .signUp button:hover {
   background-color: white;
-  color: #0099FF;
-  border: solid 2px #0099FF;
+  color: #0099ff;
+  border: solid 2px #0099ff;
   transition: 400ms background-color, color;
 }
 .login .rLogin .centerD .signUp button:active {
@@ -1044,12 +1048,12 @@ main .progressConts .counterCont h2 {
 }
 .login .rLogin .centerD .signUp .signInB {
   background-color: white;
-  color: #0099FF;
-  border: solid 2px #0099FF;
+  color: #0099ff;
+  border: solid 2px #0099ff;
   transition: 700ms background-color, color ease-out;
 }
 .login .rLogin .centerD .signUp .signInB:hover {
-  background-color: #09F;
+  background-color: #09f;
   color: white;
   border: none;
   transition: 400ms background-color, color ease-in;
@@ -1065,8 +1069,8 @@ main .progressConts .counterCont h2 {
   display: flex;
   align-items: center;
   border-radius: 12px;
-  border: 1px solid #CCC;
-  background: #FFF;
+  border: 1px solid #ccc;
+  background: #fff;
   color: #808080;
   font-family: Poppins;
   font-size: 1.2rem;
@@ -1096,8 +1100,8 @@ main .progressConts .counterCont h2 {
   width: 419.6px !important;
   margin-left: 4.75rem;
   border-radius: 12px;
-  border: 1px solid #CCC;
-  background: #FFF;
+  border: 1px solid #ccc;
+  background: #fff;
   color: #b6b6b6;
   font-family: Poppins;
   font-size: 1rem;
@@ -1155,6 +1159,91 @@ main .progressConts .counterCont h2 {
     border-right: 0;
     border-radius: 0;
   }
+}
+.login .rLogin .centerD .uploadImg {
+  height: auto;
+  padding: 2rem 0;
+}
+.login .rLogin .centerD .uploadImg h2 {
+  text-align: center;
+  margin: 0;
+}
+.login .rLogin .centerD .uploadImg .signInB {
+  width: calc(100% - 9.5rem);
+  margin-top: 4rem;
+}
+@media (max-width: 480px) {
+  .login .rLogin .centerD .uploadImg .signInB {
+    width: calc(100% - 4rem);
+  }
+}
+.login .rLogin .centerD .uploadImg .profilePicCont {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  width: calc(100% - 9.5rem);
+  margin-left: 4.75rem;
+  justify-content: space-between;
+}
+@media (max-width: 1320px) {
+  .login .rLogin .centerD .uploadImg .profilePicCont {
+    margin-left: 0;
+  }
+}
+@media (max-width: 480px) {
+  .login .rLogin .centerD .uploadImg .profilePicCont {
+    width: calc(100% - 4rem);
+  }
+}
+.login .rLogin .centerD .uploadImg .profilePicCont .filesReader {
+  width: 7rem;
+  height: 2rem;
+  background-color: #0099ff;
+  border-radius: 8px;
+  color: #fff;
+  font-family: Poppins;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 0;
+  cursor: pointer;
+  transition: 700ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login .rLogin .centerD .uploadImg .profilePicCont .filesReader:hover {
+  background-color: #66C2FF;
+  transition: 400ms background-color, color;
+}
+.login .rLogin .centerD .uploadImg .profilePicCont .filesReader:active {
+  transform: scale(0.95);
+  transition: 150ms;
+}
+.login .rLogin .centerD .uploadImg .profilePicCont .profile {
+  display: flex;
+  gap: 1rem;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.login .rLogin .centerD .uploadImg .profilePicCont .profile img {
+  height: 4rem;
+}
+.login .rLogin .centerD .uploadImg .profilePicCont .profile p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #333;
+  font-family: Open Sans;
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 400;
+  line-height: 93.682%; /* 22.484px */
+}
+.login .rLogin .centerD .uploadImg .profilePicCont .profile span {
+  color: #09f;
+  font-family: Open Sans;
+  font-weight: 600;
+  line-height: 93.682%;
 }
 .login .rLogin .accountInfo {
   margin: auto;

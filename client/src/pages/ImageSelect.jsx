@@ -50,8 +50,6 @@ function ImageSelect() {
                   >
                     Your Image
                   </Files>
-                  <input type="file" name="profilePic" id="" />
-                
               </div>
               <button onClick={submit} className="signInB">
                 Save

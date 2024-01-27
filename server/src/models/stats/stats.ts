@@ -8,26 +8,32 @@ module.exports = (sequelize: any, Sequelize: any) => {
             },
             todoStreak: {
                 type: Sequelize.SMALLINT,
+                defaultValue: 0,
                 allowNull: false
             },
             notesStreak: {
                 type: Sequelize.SMALLINT,
+                defaultValue: 0,
                 allowNull: false
             },
             pomodoroStreak: {
                 type: Sequelize.SMALLINT,
+                defaultValue: 0,
                 allowNull: false
             },
             todoTotal: {
                 type: Sequelize.SMALLINT,
+                defaultValue: 0,
                 allowNull: false
             },
             notesTotal: {
                 type: Sequelize.SMALLINT,
+                defaultValue: 0,
                 allowNull: false
             },
             pomodoroTotal: {
                 type: Sequelize.SMALLINT,
+                defaultValue: 0,
                 allowNull: false
             },
             createdAt: {

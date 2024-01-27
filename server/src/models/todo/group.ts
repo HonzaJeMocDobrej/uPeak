@@ -1,6 +1,6 @@
 module.exports = (sequelize: any, Sequelize: any) => {
     return sequelize.define(
-        'todo',
+        'group',
         {
             id: {
                 type: Sequelize.UUID,
@@ -18,10 +18,6 @@ module.exports = (sequelize: any, Sequelize: any) => {
             },
             color: {
                 type: Sequelize.STRING,
-                allowNull: false
-            },
-            priority: {
-                type: Sequelize.TINYINT,
                 allowNull: false
             },
             createdAt: {

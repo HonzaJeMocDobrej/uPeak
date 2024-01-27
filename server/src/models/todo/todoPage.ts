@@ -1,6 +1,6 @@
 module.exports = (sequelize: any, Sequelize: any) => {
     return sequelize.define(
-        'todo',
+        'todoPage',
         {
             id: {
                 type: Sequelize.UUID,
@@ -8,20 +8,12 @@ module.exports = (sequelize: any, Sequelize: any) => {
                 primaryKey: true,
                 allowNull: false
             },
-            selectedPageId: {
+            userId: {
                 type: Sequelize.UUID,
                 allowNull: false
             },
-            name: {
-                type: Sequelize.STRING,
-                allowNull: false
-            },
-            color: {
-                type: Sequelize.STRING,
-                allowNull: false
-            },
-            priority: {
-                type: Sequelize.TINYINT,
+            selectedDayId: {
+                type: Sequelize.UUID,
                 allowNull: false
             },
             createdAt: {

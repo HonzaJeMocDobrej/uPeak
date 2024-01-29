@@ -9,7 +9,7 @@ module.exports = (sequelize: any, Sequelize: any) => {
                 allowNull: false
             },
             selectedPageId: {
-                type: Sequelize.UUID,
+                type: Sequelize.INTEGER,
                 allowNull: false
             },
             name: {

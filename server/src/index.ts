@@ -15,6 +15,7 @@ const PORT = process.env.PORT || 3000
 
 app.use(`/api/v${process.env.API_VER}/users`, require('./routes/user'))
 app.use(`/api/v${process.env.API_VER}/stats`, require('./routes/stats'))
+app.use(`/api/v${process.env.API_VER}/todoPages`, require('./routes/todo/todoPages'))
 app.use(`/api/v${process.env.API_VER}/todoPage`, require('./routes/todo/todoPage'))
 
 app.use('./images', express.static('./images'))

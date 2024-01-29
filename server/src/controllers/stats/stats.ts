@@ -8,7 +8,7 @@ export const getStatsById = async (req: Request, res: Response) => {
         const { id } = req.params
         if (!id) return res.status(400).send({msg: 'Missing details'})
         const stats = await Stats.findOne({where: {userId: id}})
-        if (!stats) return res.status(404).send({msg: 'Stats not found'})
+        if (!stats || stats.length == 0) return res.status(404).send({msg: 'Stats not found'})
         return res.status(200).send({msg: 'Stats found', payload: stats})
     } catch (err) {
         console.log(err)

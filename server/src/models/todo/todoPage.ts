@@ -3,17 +3,32 @@ module.exports = (sequelize: any, Sequelize: any) => {
         'todoPage',
         {
             id: {
-                type: Sequelize.UUID,
-                defaultValue: Sequelize.UUIDV4,
-                primaryKey: true,
-                allowNull: false
+                type: Sequelize.INTEGER,
+                autoIncrement: true,
+                primaryKey: true
             },
             userId: {
                 type: Sequelize.UUID,
                 allowNull: false
             },
-            selectedDayId: {
-                type: Sequelize.UUID,
+            dayNum: {
+                type: Sequelize.TINYINT,
+                allowNull: false
+            },
+            dayName: {
+                type: Sequelize.STRING,
+                allowNull: false
+            },
+            monthNum: {
+                type: Sequelize.TINYINT,
+                allowNull: false
+            },
+            monthName: {
+                type: Sequelize.STRING,
+                allowNull: false
+            },
+            year: {
+                type: Sequelize.SMALLINT,
                 allowNull: false
             },
             createdAt: {

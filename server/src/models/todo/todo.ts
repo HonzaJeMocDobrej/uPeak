@@ -3,10 +3,9 @@ module.exports = (sequelize: any, Sequelize: any) => {
         'todo',
         {
             id: {
-                type: Sequelize.UUID,
-                defaultValue: Sequelize.UUIDV4,
-                primaryKey: true,
-                allowNull: false
+                type: Sequelize.INTEGER,
+                autoIncrement: true,
+                primaryKey: true
             },
             selectedPageId: {
                 type: Sequelize.INTEGER,

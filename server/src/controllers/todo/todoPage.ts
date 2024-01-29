@@ -5,11 +5,16 @@ const TodoPage = db.todoPage
 
 
 export const getUserTodoPageById =async (req:Request, res: Response) => {
-    const { id } = req.params
-    if (!id) return res.status(400).send({msg: 'Missing details'})
-    const todoPage = await TodoPage.findOne({where: {id: id}})
-    if (!todoPage) return res.status(500).send({msg: 'Something went wrong'})
-    return res.status(200).send({msg: 'Todo Page found', payload: todoPage})
+    try {
+        const { id } = req.params
+        if (!id) return res.status(400).send({msg: 'Missing details'})
+        const todoPage = await TodoPage.findOne({where: {id: id}})
+        if (!todoPage) return res.status(500).send({msg: 'Something went wrong'})
+        return res.status(200).send({msg: 'Todo Page found', payload: todoPage})
+    } catch (err) {
+        console.log(err)
+        res.status(500).send(err)
+    }
 }
 
 export const patchTodoPage =async (req:Request, res: Response) => {

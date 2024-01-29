@@ -4,11 +4,16 @@ import db from '../../models/index'
 const TodoPages = db.todoPage
 
 export const getAllUserTodosPages =async (req:Request, res: Response) => {
-    const {userId} = req.params
-    if (!userId) return res.status(400).send({msg: 'Missing details'})
-    const todoPages = await TodoPages.findAll({where: {userId: userId}})
-    if (!todoPages || todoPages.length == 0) return res.status(404).send({msg: 'Todo Pages not found'})
-    return res.status(200).send({msg: 'Todo Pages found', payload: todoPages})
+    try {
+        const {userId} = req.params
+        if (!userId) return res.status(400).send({msg: 'Missing details'})
+        const todoPages = await TodoPages.findAll({where: {userId: userId}})
+        if (!todoPages || todoPages.length == 0) return res.status(404).send({msg: 'Todo Pages not found'})
+        return res.status(200).send({msg: 'Todo Pages found', payload: todoPages})
+    } catch (err) {
+        console.log(err)
+        res.status(500).send(err)
+    }
 }
 
 export const createTodoPage =async (req:Request, res: Response) => {

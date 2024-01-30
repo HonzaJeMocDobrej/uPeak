@@ -3,10 +3,9 @@ module.exports = (sequelize: any, Sequelize: any) => {
         'notes',
         {
             id: {
-                type: Sequelize.UUID,
-                defaultValue: Sequelize.UUIDV4,
-                primaryKey: true,
-                allowNull: false
+                type: Sequelize.INTEGER,
+                autoIncrement: true,
+                primaryKey: true
             },
             userId: {
                 type: Sequelize.UUID,
@@ -19,6 +18,9 @@ module.exports = (sequelize: any, Sequelize: any) => {
             mainText: {
                 type: Sequelize.TEXT('medium'),
                 allowNull: false
+            },
+            image: {
+                type: Sequelize.STRING,
             },
             createdAt: {
                 type: Sequelize.DATE

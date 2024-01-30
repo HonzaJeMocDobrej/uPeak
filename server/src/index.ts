@@ -21,6 +21,8 @@ app.use(`/api/v${process.env.API_VER}/todos`, require('./routes/todo/todos'))
 app.use(`/api/v${process.env.API_VER}/todo`, require('./routes/todo/todo'))
 app.use(`/api/v${process.env.API_VER}/groups`, require('./routes/todo/groups'))
 app.use(`/api/v${process.env.API_VER}/group`, require('./routes/todo/group'))
+app.use(`/api/v${process.env.API_VER}/notes`, require('./routes/notes/notes'))
+app.use(`/api/v${process.env.API_VER}/note`, require('./routes/notes/note'))
 
 app.use('./images', express.static('./images'))
 

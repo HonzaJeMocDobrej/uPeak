@@ -837,7 +837,7 @@ main .progressConts .counterCont h2 {
   min-height: 100vh;
   width: clamp(30rem, 45vw, 50rem);
   background-color: aqua;
-  background-image: url(../assets/img/subtle-prism.svg);
+  background-image: url(../assets/img/rocks.svg);
   /* background by SVGBackgrounds.com */
   background-position: center;
   background-size: cover;
@@ -853,7 +853,7 @@ main .progressConts .counterCont h2 {
   }
 }
 .login .logBg {
-  background-image: url(../assets/img/radiant-gradient.svg);
+  background-image: url(../assets/img/waves.svg);
 }
 .login .imgSelBg {
   background-image: url(../assets//img/poly-grid.svg);

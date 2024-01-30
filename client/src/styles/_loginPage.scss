@@ -10,7 +10,7 @@
     min-height: 100vh;
     width: clamp(30rem, 45vw, 50rem);
     background-color: aqua;
-    background-image: url(../assets/img/subtle-prism.svg);
+    background-image: url(../assets/img/rocks.svg);
     /* background by SVGBackgrounds.com */
     background-position: center;
     background-size: cover;
@@ -25,7 +25,7 @@
   }
 
   .logBg {
-    background-image: url(../assets/img/radiant-gradient.svg);
+    background-image: url(../assets/img/waves.svg);
   }
 
   .imgSelBg {
@@ -40,7 +40,6 @@
     color: #333;
     margin-bottom: 0;
     text-align: center;
-    // padding-right: 1rem;
 
     .blackSpan {
       color: white;

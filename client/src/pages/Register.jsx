@@ -1,13 +1,17 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom"
 import 'react-dropdown/style.css';
-import axios from 'axios'
+import { createUser } from "../models/user";
+import { useEffect, useState } from "react";
+import LoadingPage from "../components/LoadingPage";
 
 function Register(props) {
 
   const {regData, setRegData} = props
 
   let navigate = useNavigate()
+  const [info, setInfo] = useState('')
+  const [isLoaded, setIsLoaded] = useState(false)
 
   const signInClick = () => {
     navigate('/signin')
@@ -23,24 +27,54 @@ function Register(props) {
   }
 
   const submit = async () => {
-    console.log(regData);
-    setRegData({
+    if (regData.pass !== regData.repPass) {
+      setInfo('Passwords do not match')
+      setRegData({
         user: '',
         pass: '',
         repPass: '',
         email: ''
       })
-       axios.post('http://localhost:3000/api/v1/users', {
-        username: regData.user,
-        password: regData.pass,
-        email: regData.email
+      return
+    }
+    const user = await createUser(regData)
+    .catch(err => {
+      setInfo(err.response.data.msg)
+      setRegData({
+        user: '',
+        pass: '',
+        repPass: '',
+        email: ''
       })
-      .then((res) => {
-        if (res.status === 201) {
-          navigate('/signup/imageselect')
-          console.log(res)
-        }
-      })
+    })
+    if (user.status === 201) {
+      setInfo(user.msg)
+      navigate('/signup/imageselect')
+      return
+    }
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setInfo('')
+    }, 5000)
+
+    //cleanup
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [info])
+
+  useEffect(() => {
+      setIsLoaded(true)
+  }, [])
+
+  if (!isLoaded) {
+    return(
+      <>
+        <LoadingPage />
+      </>
+    )
   }
 
   return (
@@ -66,6 +100,14 @@ function Register(props) {
                 <input onChange={() => univInpChange(event, "repPass")} value={regData.repPass} placeholder='Your Password Again' type="password" />
                 {/* <input onChange={() => univInpChange(event, "country")} value={regData.country} placeholder='Country' type="text" /> */}
                 <button onClick={submit}>Sign Up</button>
+                <p style={{
+                  marginLeft: 0,
+                  marginRight: '2.4rem',
+                  textAlign: "center",
+                  color: '#FF3D00'
+                }}>
+                  {info}
+                </p>
             </div>
             <p className='accountInfo'>Already have an account? <pre onClick={signInClick}> Sign in</pre></p>
           </div>

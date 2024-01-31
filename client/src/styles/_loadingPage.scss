@@ -1,0 +1,77 @@
+@use './animations';
+
+.loadingPage {
+    min-height: 100vh;
+    background-color: #333;
+        -webkit-animation: slide-in-bottom .5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+                animation: slide-in-bottom .5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
+    .spinner {
+        position: relative;
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 2rem auto 0 auto;
+        padding-bottom: 4.75rem;
+     }
+     
+     .spinner::before,
+     .spinner::after {
+        border: 6.7px solid #0099ff;
+        border-radius: 50%;
+        position: absolute;
+        content: '';
+        display: block;
+     }
+     
+     .spinner::before {
+        width: 33.6px;
+        height: 33.6px;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        animation: spinner-1o3y8q 0.75s infinite linear reverse;
+     }
+     
+     .spinner::after {
+        animation: spinner-1o3y8q 0.5s infinite linear;
+        height: 56px;
+        width: 56px;
+        border-right-color: transparent;
+        border-top-color: transparent;
+     }
+     
+     @keyframes spinner-1o3y8q {
+        to {
+           transform: rotate(360deg);
+        }
+     }
+
+     .fullHeading {
+        padding-top: 3.75rem;
+        margin-top: 0;
+        font-family: Poppins;
+        font-size: 4rem;
+        font-weight: 500;
+        color: white;
+        margin-bottom: 0;
+        text-align: center;
+    
+        .blackSpan {
+          color: #0099ff;
+          position: relative;
+    
+          .underline {
+            position: absolute;
+            height: 3.5px;
+            width: 97%;
+            left: 3%;
+            top: 5rem;
+            border-radius: 8px;
+            background-color: #0099ff;
+          }
+        }
+      }
+
+}

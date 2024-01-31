@@ -8,6 +8,8 @@
 @use './notes';
 @use './pomodoro';
 @use './profile';
+@use './spinner';
+@use './loadingPage';
 
 html, body {
     margin: 0;

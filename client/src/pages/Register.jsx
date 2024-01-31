@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom"
 import 'react-dropdown/style.css';
+import axios from 'axios'
 
 function Register(props) {
 
@@ -21,7 +22,7 @@ function Register(props) {
     })
   }
 
-  const submit = () => {
+  const submit = async () => {
     console.log(regData);
     setRegData({
         user: '',
@@ -29,7 +30,17 @@ function Register(props) {
         repPass: '',
         email: ''
       })
-      navigate('/signup/imageselect')
+       axios.post('http://localhost:3000/api/v1/users', {
+        username: regData.user,
+        password: regData.pass,
+        email: regData.email
+      })
+      .then((res) => {
+        if (res.status === 201) {
+          navigate('/signup/imageselect')
+          console.log(res)
+        }
+      })
   }
 
   return (
@@ -50,9 +61,9 @@ function Register(props) {
                 <p className="inputH">Email</p>
                 <input name="email" onChange={() => univInpChange(event, "email")} value={regData.email} placeholder='Your Email' type='email' />
                 <p className="inputH">Password</p>
-                <input name="password" onChange={() => univInpChange(event, "pass")} value={regData.pass} placeholder='Your Password' type="text" />
+                <input name="password" onChange={() => univInpChange(event, "pass")} value={regData.pass} placeholder='Your Password' type="password" />
                 <p className="inputH">Repeat Password</p>
-                <input onChange={() => univInpChange(event, "repPass")} value={regData.repPass} placeholder='Your Password Again' type="text" />
+                <input onChange={() => univInpChange(event, "repPass")} value={regData.repPass} placeholder='Your Password Again' type="password" />
                 {/* <input onChange={() => univInpChange(event, "country")} value={regData.country} placeholder='Country' type="text" /> */}
                 <button onClick={submit}>Sign Up</button>
             </div>

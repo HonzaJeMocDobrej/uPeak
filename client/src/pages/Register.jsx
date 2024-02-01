@@ -49,7 +49,7 @@ function Register(props) {
     })
     if (user.status === 201) {
       setInfo(user.msg)
-      navigate('/signup/imageselect')
+      navigate(`/signup/imageselect/${user.data.id}`)
       return
     }
   }

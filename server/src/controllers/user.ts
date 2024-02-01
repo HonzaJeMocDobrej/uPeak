@@ -52,15 +52,13 @@ export const createUser = async (req: Request, res: Response) => {
 
 export const updateUserProfilePic =async (req: Request, res: Response) => {
     try {
-        console.log(req.file)
         const { id } = req.params
         if (!id || !req.file) return res.status(400).send({msg: 'Missing details'})
         const user = await User.findOne({where: {id: id}})
-        if (!user) return res.status(400).send({msg: 'User not found'})
-        user.profilePic = req.file.path
-        const action = await user.save()
-        if (!action) return res.status(500).send({msg: 'Something went wrong'})
-        return res.status(200).send({msg: 'User profile picture updated', payload: action})
+        if (!user) return res.status(400).send({msg: 'Pic not found'})
+        const updatedUser = await User.update({ profilePic: req.file.path }, {where: {id: id}})
+        if (!updatedUser) return res.status(500).send({msg: 'Something went wrong'})
+        return res.status(200).send({msg: 'User profile picture updated', payload: user})
             
     } catch (err) {
         console.log(err);

@@ -9,8 +9,8 @@ export const createUser = async (regData) => {
       return createUserPayload(res)
 }
 
-export const patchImage = async (id) => {
-    const res = await axios.patch(`http://localhost:3000/api/v1/users/patchimg/${id}`)
+export const patchImage = async (id, data) => {
+    const res = await axios.patch(`http://localhost:3000/api/v1/users/patchimg/${id}`, data)
       return createUserPayload(res)
 }
 

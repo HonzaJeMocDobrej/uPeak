@@ -48,7 +48,7 @@ function Path() {
                 setRegData={setRegData}
               />}>
               </Route>
-              <Route path='/signup/imageselect' element={<ImageSelect
+              <Route path='/signup/imageselect/:id' element={<ImageSelect
                 
               />}>
               </Route>

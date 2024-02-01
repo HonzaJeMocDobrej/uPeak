@@ -1,18 +1,21 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import profilePicDef from "../assets/img/userPicBasic.svg";
 import Files from 'react-files'
 import { useState } from "react";
 import { patchImage } from "../models/user";
 
 function ImageSelect() {
+  const { id } = useParams()
   let navigate = useNavigate();
   const [profilePic, setProfilePic] = useState(null)
 
   const submit = async () => {
     
-    // navigate("/progress");
+    const data = new FormData
+    data.append('profilePic', profilePic)
+    navigate(`/progress/`);
     
-    const img = await patchImage('1dc39e05-c003-409e-be5c-0c7aa2a5359c')
+    const img = await patchImage(id, data)
     .catch(err => {
       console.log(err.response.data.msg)
     })
@@ -23,7 +26,7 @@ function ImageSelect() {
     const fileObj = file[0]
     const img = URL.createObjectURL(fileObj)
     console.log(img)
-    setProfilePic(img)
+    setProfilePic(fileObj)
   }
 
   return (
@@ -51,7 +54,7 @@ function ImageSelect() {
               <h2>Upload a profile picture</h2>
               <div className="profilePicCont">
               <div className="profile">
-                <img src={profilePic ? profilePic : profilePicDef} alt="" />
+                <img src={profilePic ? URL.createObjectURL(profilePic) : profilePicDef} alt="" />
                 <p>
                   Hello
                   <br />

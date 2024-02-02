@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import db from "../models/index";
-import { genSalt, hash } from "bcrypt";
+import { compare, genSalt, hash } from "bcrypt";
 
 const User = db.users
 
@@ -44,6 +44,22 @@ export const createUser = async (req: Request, res: Response) => {
         })
         if (!createdUser) return res.status(500).send({msg: 'Something went wrong'})
         return res.status(201).send({msg: 'User created successfully', payload: createdUser})
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err)
+    }
+}
+
+export const comparePasswords = async (req: Request, res: Response) => {
+    try {
+        const { email, password } = req.body
+        if (!email || !password) return res.status(400).send({msg: 'Missing details'})
+        const user = await User.findOne({where: {email: email}})
+        if (!user) return res.status(400).send({msg: "Email not registered yet", failed: 'email'})
+        const comparedPassword = await compare(password, user.passwordHash)
+        if (!comparedPassword) return res.status(400).send({msg: 'Invalid password', failed: 'password'})
+        return res.status(200).send({msg: 'Successfully logged in', payload: user})
+    
     } catch (err) {
         console.log(err);
         res.status(500).send(err)

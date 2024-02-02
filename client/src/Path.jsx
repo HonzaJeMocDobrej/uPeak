@@ -23,7 +23,7 @@ function Path() {
     email: null
   })
   const [logData, setLogData] = useState({
-    user: null,
+    email: null,
     pass: null,
   })
 

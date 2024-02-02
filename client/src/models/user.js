@@ -9,6 +9,14 @@ export const createUser = async (regData) => {
       return createUserPayload(res)
 }
 
+export const comparePasswords = async (logData) => {
+    const res = await axios.post('http://localhost:3000/api/v1/users/compare', {
+        email: logData.email,
+        password: logData.pass
+      })
+      return createUserPayload(res)
+}
+
 export const patchImage = async (id, data) => {
     const res = await axios.patch(`http://localhost:3000/api/v1/users/patchimg/${id}`, data)
       return createUserPayload(res)

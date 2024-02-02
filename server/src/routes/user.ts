@@ -11,6 +11,7 @@ router.post('/', userController.createUser)
 router.put('/:id', uploadUserProfilePic, userController.updateUser)
 router.delete('/:id', userController.deleteUser)
 
+router.post('/compare', userController.comparePasswords)
 router.patch('/patchimg/:id', uploadUserProfilePic, userController.updateUserProfilePic)
 
 module.exports = router

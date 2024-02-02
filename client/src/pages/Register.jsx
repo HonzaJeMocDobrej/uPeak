@@ -29,14 +29,27 @@ function Register(props) {
   const submit = async () => {
     if (regData.pass !== regData.repPass) {
       setInfo('Passwords do not match')
-      setRegData({
-        user: '',
-        pass: '',
-        repPass: '',
-        email: ''
+      setRegData(prev => {
+        return {
+          ...prev,
+          pass: '',
+          repPass: ''
+        }
       })
       return
     }
+
+    if (!(regData.email.includes('@')) || !(regData.email.includes('.'))) {
+      setInfo('Invalid email')
+      setRegData(prev => {
+        return {
+          ...prev,
+          email: ''
+        }
+      })
+      return
+    }
+    
     const user = await createUser(regData)
     .catch(err => {
       setInfo(err.response.data.msg)
@@ -48,7 +61,6 @@ function Register(props) {
       })
     })
     if (user.status === 201) {
-      setInfo(user.msg)
       navigate(`/signup/imageselect/${user.data.id}`)
       return
     }

@@ -27,6 +27,9 @@ function Register(props) {
   }
 
   const submit = async () => {
+
+    //max username length = 18
+
     if (regData.pass !== regData.repPass) {
       setInfo('Passwords do not match')
       setRegData(prev => {

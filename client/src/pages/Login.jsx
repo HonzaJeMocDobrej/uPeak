@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 import LoadingPage from "../components/LoadingPage";
 import { comparePasswords } from "../models/user";
+import useSignIn from 'react-auth-kit/hooks/useSignIn'
 
 function Login(props) {
 
@@ -11,6 +12,8 @@ function Login(props) {
   const [isLoaded, setIsLoaded] = useState(false) 
 
   let navigate = useNavigate()
+
+  const signIn = useSignIn()
   
 
   const signUpClick = () => {
@@ -48,6 +51,19 @@ function Login(props) {
     })
 
     if (user.status == 200) {
+      signIn({
+        auth: {
+          token: user.token,
+          type: 'Bearer',
+        },
+        userState: {
+          id: user.data.id,
+          email: user.data.email,
+          username: user.data.username,
+          profilePic: user.data.profilePic
+        }
+      })
+      console.log(user.token);
       navigate(`/progress`)
       return
     }

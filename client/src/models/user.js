@@ -14,7 +14,7 @@ export const comparePasswords = async (logData) => {
         email: logData.email,
         password: logData.pass
       })
-      return createUserPayload(res)
+      return loggedInUserPayload(res)
 }
 
 export const patchImage = async (id, data) => {
@@ -27,5 +27,14 @@ const createUserPayload =  (res) => {
         msg: res.data.msg,
         data: res.data.payload,
         status: res.status,
+    }
+}
+
+const loggedInUserPayload =  (res) => {
+    return{
+        msg: res.data.msg,
+        data: res.data.payload,
+        status: res.status,
+        token: res.data.token
     }
 }

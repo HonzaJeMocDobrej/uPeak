@@ -5,13 +5,18 @@ import notific from '../assets/icons/notific.svg'
 import notificWhite from '../assets/icons/notificWhite.svg'
 import basicProfilePic from '../assets/img/userPicBasic.svg'
 
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
+
 import '../styles/styles.css'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 function TopMenu(props) {
     
     const {isEnglish, setIsEnglish, isBlack, setIsBlack, switchStyle, setSwitchStyle} = props
     const navigate = useNavigate()
+
+    const auth = useAuthUser()
 
     const handleProfileClick = () => {
         navigate('/profile')
@@ -38,7 +43,6 @@ function TopMenu(props) {
         }
     }
 
-
   return (
     <>
     <nav className={`tMenu ${isBlack ? 'tBlack' : null}`}>
@@ -50,10 +54,10 @@ function TopMenu(props) {
                 <img style={switchStyle} src={isBlack ? moon : sun} alt="" />
             </div>
             <div onClick={handleProfileClick} className="profile">
-                <img src={basicProfilePic} alt="" />
+                <img src={auth.profilePic ? `http://localhost:3000/${auth.profilePic}` : basicProfilePic} alt="" />
                 <p>
                     {isEnglish ? 'Hello' : 'Ahoj'} 
-                    <br /><span>Honzak</span>
+                    <br /><span>{auth.username}</span>
                 </p>
             </div>
         </div>

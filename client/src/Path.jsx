@@ -11,6 +11,8 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import ImageSelect from './pages/ImageSelect'
 
+import AuthOutlet from '@auth-kit/react-router/AuthOutlet'
+
 function Path() {
 
   const [isEnglish, setIsEnglish] = useState(true)
@@ -35,23 +37,23 @@ function Path() {
     <>
         <Router>
             <Routes>
-              <Route path='/' element={<Navigate to='/signin' />}>
                 
-              </Route>
               <Route path='/signin' element={<Login
                 logData={logData}
                 setLogData={setLogData}              
-              />}>
+                />}>
               </Route>
               <Route path='/signup' element={<Register
                 regData={regData}
                 setRegData={setRegData}
-              />}>
+                />}>
               </Route>
               <Route path='/signup/imageselect/:id' element={<ImageSelect
                 
-              />}>
+                />}>
               </Route>
+              <Route element={<AuthOutlet fallbackPath='/signin' />}>
+                <Route path='/' element={<Navigate to='/progress' />} />
                 <Route path='/progress' element={
                   <Progress
                    active='progress'
@@ -102,6 +104,7 @@ function Path() {
                    switchStyle={switchStyle} 
                    setSwitchStyle={setSwitchStyle}/>
                 } />
+              </Route>
             </Routes>
         </Router>
     </>

@@ -59,7 +59,7 @@ export const comparePasswords = async (req: Request, res: Response) => {
         if (!user) return res.status(400).send({msg: "Email not registered yet", failed: 'email'})
         const comparedPassword = await compare(password, user.passwordHash)
         if (!comparedPassword) return res.status(400).send({msg: 'Invalid password', failed: 'password'})
-        const token = jwt.sign({id: user.id, email: user.email}, process.env.JWT_SECRET as Secret)
+        const token = jwt.sign({id: user.id, email: user.email, username: user.username, profilePic: user.profilePic}, process.env.JWT_SECRET as Secret, { expiresIn: '1h' })
         if (!token) return res.status(500).send({msg: 'Unexpected error'})
         return res.status(200).send({msg: 'Successfully logged in', token: token, payload: user})
     

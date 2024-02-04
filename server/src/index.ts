@@ -24,7 +24,7 @@ app.use(`/api/v${process.env.API_VER}/group`, require('./routes/todo/group'))
 app.use(`/api/v${process.env.API_VER}/notes`, require('./routes/notes/notes'))
 app.use(`/api/v${process.env.API_VER}/note`, require('./routes/notes/note'))
 
-app.use('./images', express.static('./images'))
+app.use('/images',express.static('images'));
 
 app.listen(PORT, () => {
     console.log(`App is running on port ${PORT}`)

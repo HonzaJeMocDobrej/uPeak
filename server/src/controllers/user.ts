@@ -35,6 +35,8 @@ export const createUser = async (req: Request, res: Response) => {
         if (!email || !username || !password) return res.status(400).send({msg: 'Missing details'})
         const user = await User.findOne({ where: { email: email } })
         if (user) return res.status(400).send({msg: 'Email is already used'})
+        if (username.length >= 19) return res.status(400).send({msg: 'Username is too long'})
+        if (password.length <= 3) return res.status(400).send({msg: 'Password is too short'})
         const salt = await genSalt(12)
         const passwordHash = await hash(password, salt)
         const createdUser = await User.create({
@@ -44,7 +46,9 @@ export const createUser = async (req: Request, res: Response) => {
 
         })
         if (!createdUser) return res.status(500).send({msg: 'Something went wrong'})
-        return res.status(201).send({msg: 'User created successfully', payload: createdUser})
+        const token = jwt.sign({username: username, email: email}, process.env.JWT_SECRET as Secret, { expiresIn: '1h' })
+        if (!token) return res.status(500).send({msg: 'Unexpected error'})
+        return res.status(201).send({msg: 'User created successfully', token: token, payload: createdUser})
     } catch (err) {
         console.log(err);
         res.status(500).send(err)
@@ -71,13 +75,16 @@ export const comparePasswords = async (req: Request, res: Response) => {
 
 export const updateUserProfilePic =async (req: Request, res: Response) => {
     try {
-        const { id } = req.params
-        if (!id || !req.file) return res.status(400).send({msg: 'Missing details'})
-        const user = await User.findOne({where: {id: id}})
-        if (!user) return res.status(400).send({msg: 'Pic not found'})
-        const updatedUser = await User.update({ profilePic: req.file.path }, {where: {id: id}})
+        const { email } = req.params
+        console.log(email)
+        if (!email || !req.file) return res.status(400).send({msg: 'Missing details'})
+        const user = await User.findOne({where: {email: email}})
+        if (!user) return res.status(400).send({msg: 'User not found'})
+        const updatedUser = await User.update({ profilePic: req.file.path }, {where: {email: email}})
         if (!updatedUser) return res.status(500).send({msg: 'Something went wrong'})
-        return res.status(200).send({msg: 'User profile picture updated', payload: user})
+        const token = jwt.sign({id: user.id, email: user.email, username: user.username, profilePic: user.profilePic}, process.env.JWT_SECRET as Secret, { expiresIn: '1h' })
+        if (!token) return res.status(500).send({msg: 'Unexpected error'})
+        return res.status(200).send({msg: 'User profile picture updated', payload: user, token: token, profilePic: req.file.path})
             
     } catch (err) {
         console.log(err);

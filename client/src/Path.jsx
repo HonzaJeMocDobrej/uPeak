@@ -48,11 +48,11 @@ function Path() {
                 setRegData={setRegData}
                 />}>
               </Route>
-              <Route path='/signup/imageselect/:id' element={<ImageSelect
-                
-                />}>
-              </Route>
               <Route element={<AuthOutlet fallbackPath='/signin' />}>
+                <Route path='/signup/imageselect' element={<ImageSelect
+
+                />}>
+                </Route>
                 <Route path='/' element={<Navigate to='/progress' />} />
                 <Route path='/progress' element={
                   <Progress

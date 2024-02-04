@@ -4,6 +4,7 @@ import 'react-dropdown/style.css';
 import { createUser } from "../models/user";
 import { useEffect, useState } from "react";
 import LoadingPage from "../components/LoadingPage";
+import useSignIn from 'react-auth-kit/hooks/useSignIn'
 
 function Register(props) {
 
@@ -12,6 +13,8 @@ function Register(props) {
   let navigate = useNavigate()
   const [info, setInfo] = useState('')
   const [isLoaded, setIsLoaded] = useState(false)
+
+  const signIn = useSignIn()
 
   const signInClick = () => {
     navigate('/signin')
@@ -64,7 +67,17 @@ function Register(props) {
       })
     })
     if (user.status === 201) {
-      navigate(`/signup/imageselect/${user.data.id}`)
+      signIn({
+        auth: {
+          token: user.token,
+          type: 'Bearer',
+        },
+        userState: {
+          username: user.data.username,
+          email: user.data.email,
+        }
+      })
+      navigate(`/signup/imageselect`)
       return
     }
   }

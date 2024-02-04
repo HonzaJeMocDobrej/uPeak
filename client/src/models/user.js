@@ -6,7 +6,7 @@ export const createUser = async (regData) => {
         password: regData.pass,
         email: regData.email
       })
-      return createUserPayload(res)
+      return tokenUserPayload(res)
 }
 
 export const comparePasswords = async (logData) => {
@@ -14,23 +14,25 @@ export const comparePasswords = async (logData) => {
         email: logData.email,
         password: logData.pass
       })
-      return loggedInUserPayload(res)
+      return tokenUserPayload(res)
 }
 
-export const patchImage = async (id, data) => {
-    const res = await axios.patch(`http://localhost:3000/api/v1/users/patchimg/${id}`, data)
-      return createUserPayload(res)
+export const patchImage = async (email, data) => {
+    const res = await axios.patch(`http://localhost:3000/api/v1/users/patchimg/${email}`, data)
+      return profilePicPayload(res)
 }
 
-const createUserPayload =  (res) => {
+const profilePicPayload =  (res) => {
     return{
         msg: res.data.msg,
         data: res.data.payload,
         status: res.status,
+        token: res.data.token,
+        profilePic: res.data.profilePic
     }
 }
 
-const loggedInUserPayload =  (res) => {
+const tokenUserPayload =  (res) => {
     return{
         msg: res.data.msg,
         data: res.data.payload,

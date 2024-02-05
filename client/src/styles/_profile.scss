@@ -94,16 +94,19 @@
     
 
     img {
-      height: 5rem;
       margin-left: 2rem;
+      max-height: 4rem;
+      max-width: 5rem;
 
       @media (max-width: 750px) {
-        height: 3rem;
+        max-height: 3rem;
+        max-width: 4rem;
         margin-left: 1.2rem;
       }
 
       @media (max-width: 480px) {
-        height: 2rem;
+        max-height: 2rem;
+        max-width: 3rem;
       }
     }
 

@@ -296,7 +296,6 @@ main .progressConts .counterCont .counter {
   width: 18rem;
   border-radius: 100%;
   margin-top: 10rem;
-  background: linear-gradient(0.12turn, #ffa800, rgba(255, 168, 0, 0));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -327,7 +326,6 @@ main .progressConts .counterCont .counter .counterInside {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #FFA800;
   font-family: Poppins;
   font-size: 7rem;
   font-style: normal;
@@ -345,7 +343,6 @@ main .progressConts .counterCont .counter .counterInside {
   }
 }
 main .progressConts .counterCont h2 {
-  color: #FFA800;
   text-align: center;
   font-family: Open Sans;
   font-size: 2.5rem;
@@ -362,6 +359,42 @@ main .progressConts .counterCont h2 {
   main .progressConts .counterCont h2 {
     font-size: 1.25rem;
   }
+}
+main .progressConts .counterYellow .counter {
+  background: linear-gradient(0.12turn, #ffa800, rgba(255, 168, 0, 0));
+}
+main .progressConts .counterYellow .counterInside {
+  color: #FFA800;
+}
+main .progressConts .counterYellow h2 {
+  color: #FFA800;
+}
+main .progressConts .counterOrange .counter {
+  background: linear-gradient(0.12turn, #ff6b00, rgba(255, 107, 0, 0));
+}
+main .progressConts .counterOrange .counterInside {
+  color: #FF6B00;
+}
+main .progressConts .counterOrange h2 {
+  color: #FF6B00;
+}
+main .progressConts .counterRed .counter {
+  background: linear-gradient(0.12turn, #ff2e00, rgba(255, 46, 0, 0));
+}
+main .progressConts .counterRed .counterInside {
+  color: #FF2E00;
+}
+main .progressConts .counterRed h2 {
+  color: #FF2E00;
+}
+main .progressConts .counterPurple .counter {
+  background: linear-gradient(0.12turn, #eb00ff, rgba(235, 0, 255, 0));
+}
+main .progressConts .counterPurple .counterInside {
+  color: #EB00FF;
+}
+main .progressConts .counterPurple h2 {
+  color: #EB00FF;
 }
 
 .mainBlack .h2Cont h2 {
@@ -748,9 +781,11 @@ main .progressConts .counterCont h2 {
   display: flex;
   gap: 1rem;
   cursor: pointer;
+  align-items: center;
 }
 .tMenu .profCont .profile img {
-  height: 4rem;
+  max-width: 6rem;
+  max-height: 4rem;
 }
 @media (max-width: 750px) {
   .tMenu .profCont .profile img {
@@ -1277,9 +1312,11 @@ main .progressConts .counterCont h2 {
   gap: 1rem;
   width: -moz-fit-content;
   width: fit-content;
+  align-items: center;
 }
 .login .rLogin .centerD .uploadImg .profilePicCont .profile img {
-  height: 4rem;
+  max-width: 6rem;
+  max-height: 4rem;
 }
 .login .rLogin .centerD .uploadImg .profilePicCont .profile p {
   display: flex;
@@ -3239,18 +3276,21 @@ main .todoConts .dropdownPlaceholder {
   }
 }
 .profileCont .profileInfoCont img {
-  height: 5rem;
   margin-left: 2rem;
+  max-height: 4rem;
+  max-width: 5rem;
 }
 @media (max-width: 750px) {
   .profileCont .profileInfoCont img {
-    height: 3rem;
+    max-height: 3rem;
+    max-width: 4rem;
     margin-left: 1.2rem;
   }
 }
 @media (max-width: 480px) {
   .profileCont .profileInfoCont img {
-    height: 2rem;
+    max-height: 2rem;
+    max-width: 3rem;
   }
 }
 .profileCont .profileInfoCont p {

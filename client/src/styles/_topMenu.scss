@@ -110,9 +110,11 @@
             display: flex;
             gap: 1rem;
             cursor: pointer;
+            align-items: center;
             
             img {
-                height: 4rem;
+                max-width: 6rem;
+                max-height: 4rem;
 
                 @media (max-width: 750px) {
                     display: none;

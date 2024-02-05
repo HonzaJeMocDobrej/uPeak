@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import profilePicDef from "../assets/img/userPicBasic.svg";
 import Files from 'react-files'
 import { useState } from "react";

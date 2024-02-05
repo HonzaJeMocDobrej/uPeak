@@ -423,9 +423,11 @@
             display: flex;
             gap: 1rem;
             width: fit-content;
+            align-items: center;
 
             img {
-              height: 4rem;
+              max-width: 6rem;
+              max-height: 4rem;
             }
 
             p {

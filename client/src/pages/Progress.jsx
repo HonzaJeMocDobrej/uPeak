@@ -7,6 +7,7 @@ import '../styles/styles.css'
 
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import { getUserStats } from "../models/stats";
+import LoadingPage from "../components/LoadingPage";
 
 function Progress(props) {
 
@@ -14,13 +15,62 @@ function Progress(props) {
 
   const [isPageOpen, setIsPageOpen] = useState(false)
   const [isTypeOpen, setIsTypeOpen] = useState(false)
+  const [data, setData] = useState(null)
 
   const [page, setPage] = useState('To-Do')
   const [type, setType] = useState('Streak')
 
+  const [isLoaded, setIsLoaded] = useState(false)
+  
   const auth = useAuthUser()
 
-  
+  const [displayedNum, setDisplayedNum] = useState()
+  const [formattedNum, setFormattedNum] = useState()
+  const [displayedTime, setDisplayedTime] = useState('days')
+  const [counterClass, setCounterClass] = useState('counterYellow')
+
+  const load = async () => {
+    const stats = await getUserStats(auth.id)
+    if(stats.status === 500) return setIsLoaded(null);
+      if(stats.status === 200){
+        setData(stats.data);
+        setTimeout(() => {
+          setIsLoaded(true);
+          
+        }, 2000)
+      }
+  }
+
+
+  const counterFormatter = () => {
+    if (displayedNum < 14) {
+      setCounterClass('counterYellow')
+      setDisplayedTime('days')
+      setFormattedNum(displayedNum)
+    }
+
+    if (displayedNum >= 14 && displayedNum < 31) {
+      setCounterClass('counterOrange')
+      setDisplayedTime('days')
+      setFormattedNum(displayedNum)
+    }
+
+    if (displayedNum >= 31 && displayedNum < 91) {
+      setFormattedNum(Math.floor(displayedNum / 31))
+      setDisplayedTime('months')
+      setCounterClass('counterRed')
+    }
+    if (displayedNum >= 91 && displayedNum < 360) {
+      setFormattedNum(Math.floor(displayedNum / 31))
+      setDisplayedTime('months')
+      setCounterClass('counterPurple')
+    }
+    if (displayedNum >= 360) {
+      setFormattedNum(Math.floor(displayedNum / 360))
+      setDisplayedTime('years')
+      setCounterClass('counterPurple')
+    }
+  }
 
 
   const toggleDropdownPage = () => {
@@ -40,16 +90,41 @@ function Progress(props) {
   }
 
   useEffect(() => {
-    const handleStats = async () => {
-      const stats = await getUserStats(auth.id)
-      .catch(err => console.log(err.response.data.msg))
-    
-      if (stats.status === 200) {
-        console.log(stats.data)
+      load()
+  }, [])
+
+  useEffect(() => {
+    const handleDisplayedNum = (pageVal, typeVal, num) => {
+      if (page == pageVal && type == typeVal) {
+        setDisplayedNum(num)
       }
     }
-    handleStats()
-  }, [auth.id])
+    if (data) {
+        handleDisplayedNum('To-Do', 'Streak', data.todoStreak)
+        handleDisplayedNum('Notes', 'Streak', data.notesStreak)
+        handleDisplayedNum('Pomodoro', 'Streak', data.pomodoroStreak)
+        handleDisplayedNum('To-Do', 'Total', data.todoTotal)
+        handleDisplayedNum('Notes', 'Total', data.notesTotal)
+        handleDisplayedNum('Pomodoro', 'Total', data.pomodoroTotal)
+    }
+  }, [data, page, type])
+
+  useEffect(() => {
+    if (!data) {
+      return
+    }
+
+    counterFormatter()    
+
+  }, [displayedNum, counterFormatter])
+
+  if (!isLoaded) {
+    return(
+      <>
+        <LoadingPage />
+      </>
+    )
+  }
 
 return (
   <>
@@ -80,11 +155,20 @@ return (
               </ul>
             </div>
           </div>
-          <div className="counterCont">
+          <div className={`counterCont ${counterClass}`}>
             <div className="counter">
-              <div style={isBlack ? {backgroundColor: '#333'} : {backgroundColor: '#FFF'}} className="counterInside">5</div>
+              <div style={isBlack ? {backgroundColor: '#333'} : {backgroundColor: '#FFF'}} className="counterInside">{formattedNum}</div>
             </div>
-            <h2>{isEnglish ? 'DAYS' : 'DNŮ'}</h2>
+            {/* <h2>{displayedTime == 'days' ? isEnglish ? 'DAYS' : 'DNŮ' : isEnglish ? 'MONTHS' : 'MĚSÍCŮ'}</h2> */}
+            {
+              displayedTime == 'days' && <h2>{isEnglish ? 'DAYS' : 'DNŮ'}</h2>
+            }
+            {
+              displayedTime == 'months' && <h2>{isEnglish ? 'MONTHS' : 'MĚSÍCŮ'}</h2>
+            }
+            {
+              displayedTime == 'years' && <h2>{isEnglish ? 'YEARS' : 'ROKŮ'}</h2>
+            }
           </div>
           <div className="selectTypeCont">
             <div onClick={toggleDropdownType} className={`h3Cont ${isTypeOpen ? 'rotate' : 'goBack'}`}>

@@ -337,7 +337,6 @@ main {
                     margin-top: 5rem;
                 }
                 
-                background: linear-gradient(.12turn, rgba($color: #FFA800, $alpha: 1.0), rgba($color: #FFA800, $alpha: 0));
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -351,7 +350,6 @@ main {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    color: #FFA800;
                     font-family: Poppins;
                     font-size: 7rem;
                     font-style: normal;
@@ -369,7 +367,6 @@ main {
             }
 
             h2 {
-                color: #FFA800;
                 text-align: center;
                 font-family: Open Sans;
                 font-size: 2.5rem;
@@ -386,6 +383,52 @@ main {
                 }
             }
         }
+
+        .counterYellow {
+            .counter {
+                background: linear-gradient(.12turn, rgba($color: #FFA800, $alpha: 1.0), rgba($color: #FFA800, $alpha: 0));
+            }
+            .counterInside {
+                color: #FFA800;
+            }
+            h2 {
+                color: #FFA800;
+            }
+        }
+        .counterOrange {
+            .counter {
+                background: linear-gradient(.12turn, rgba($color: #FF6B00, $alpha: 1.0), rgba($color: #FF6B00, $alpha: 0));
+            }
+            .counterInside {
+                color: #FF6B00;
+            }
+            h2 {
+                color: #FF6B00;
+            }
+        }
+        .counterRed {
+            .counter {
+                background: linear-gradient(.12turn, rgba($color: #FF2E00, $alpha: 1.0), rgba($color: #FF2E00, $alpha: 0));
+            }
+            .counterInside {
+                color: #FF2E00;
+            }
+            h2 {
+                color: #FF2E00;
+            }
+        }
+        .counterPurple {
+            .counter {
+                background: linear-gradient(.12turn, rgba($color: #EB00FF, $alpha: 1.0), rgba($color: #EB00FF, $alpha: 0));
+            }
+            .counterInside {
+                color: #EB00FF;
+            }
+            h2 {
+                color: #EB00FF;
+            }
+        }
+
     } 
 }
 

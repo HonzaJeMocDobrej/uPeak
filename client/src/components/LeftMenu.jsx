@@ -17,8 +17,6 @@ import plusWhiteSvg from '../assets/icons/plusCircleWhite.svg'
 import clockWhiteSvg from '../assets/icons/clockWhite.svg'
 import userWhiteSvg from '../assets/icons/userCircleWhite.svg'
 
-import basicProfilePic from '../assets/img/userPicBasic.svg'
-
 import '../styles/styles.css'
 
 import { useNavigate } from 'react-router-dom'
@@ -81,7 +79,7 @@ function LeftMenu(props) {
                 </li>
                 <li onMouseUp={() => univNavigate('/profile')}>
                     <img className='profilePic' src={active === 'profile' ? userFillSvg : (isBlack === true ? userWhiteSvg : userSvg)} alt="" />
-                    <img style={{maxHeight: '4rem'}} className='honzak' src={auth.profilePic ? `http://localhost:3000/${auth.profilePic}` : basicProfilePic} alt="" />
+                    <img style={{maxHeight: '4rem', maxWidth: '5rem'}} className='honzak' src={`http://localhost:3000/${auth.profilePic}`} alt="" />
                     <p style={active === 'profile' ? selectedStyle : null}>{isEnglish ? 'Profile' : 'Profil'}</p>
                 </li>
             </ul>

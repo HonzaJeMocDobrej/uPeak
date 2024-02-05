@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import LeftMenu from "../components/LeftMenu";
-import TopMenu from "../components/topMenu";
+import TopMenu from "../components/TopMenu";
 import NotesRightMenu from "../components/NotesRightMenu";
 
 import "../styles/styles.css";

@@ -17,12 +17,14 @@ import plusWhiteSvg from '../assets/icons/plusCircleWhite.svg'
 import clockWhiteSvg from '../assets/icons/clockWhite.svg'
 import userWhiteSvg from '../assets/icons/userCircleWhite.svg'
 
-import honzak from '../assets/img/honzak.png'
+import basicProfilePic from '../assets/img/userPicBasic.svg'
 
 import '../styles/styles.css'
 
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 
 
 
@@ -33,6 +35,8 @@ function LeftMenu(props) {
     const [height, setHeight] = useState(window.innerHeight)
 
     let navigate = useNavigate()
+    
+    const auth = useAuthUser()
 
     const univNavigate = (path) => {
         navigate(path)
@@ -77,7 +81,7 @@ function LeftMenu(props) {
                 </li>
                 <li onMouseUp={() => univNavigate('/profile')}>
                     <img className='profilePic' src={active === 'profile' ? userFillSvg : (isBlack === true ? userWhiteSvg : userSvg)} alt="" />
-                    <img className='honzak' src={honzak} alt="" />
+                    <img style={{maxHeight: '4rem'}} className='honzak' src={auth.profilePic ? `http://localhost:3000/${auth.profilePic}` : basicProfilePic} alt="" />
                     <p style={active === 'profile' ? selectedStyle : null}>{isEnglish ? 'Profile' : 'Profil'}</p>
                 </li>
             </ul>

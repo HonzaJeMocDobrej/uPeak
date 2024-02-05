@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 import LeftMenu from "../components/LeftMenu";
-import TopMenu from "../components/topMenu";
+import TopMenu from "../components/TopMenu";
 import 'react-dropdown/style.css';
-import honzak from '../assets/img/honzak.png'
+import basicProfilePic from '../assets/img/userPicBasic.svg'
+
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 
 import "../styles/styles.css";
 
@@ -16,6 +18,8 @@ function Profile(props) {
     switchStyle,
     setSwitchStyle,
   } = props;
+
+  const auth = useAuthUser()
 
   return (
     <>
@@ -40,10 +44,10 @@ function Profile(props) {
               My Profile
             </h2>
             <div className="profileInfoCont">
-              <img src={honzak} alt="" />
+              <img src={auth.profilePic ? `http://localhost:3000/${auth.profilePic}` : basicProfilePic} alt="" />
               <p>
                     {isEnglish ? 'Hello' : 'Ahoj'} 
-                    <br /><span>Honzak</span>
+                    <br /><span>{auth.username}</span>
                 </p>
                 <div className="uploadBtn">
                   Upload a Picture

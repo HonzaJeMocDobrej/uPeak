@@ -3,9 +3,9 @@ import express from 'express'
 const router = express.Router()
 import * as statsController from '../controllers/stats/stats'
 
-router.get('/:id', statsController.getStatsById)
-router.post('/:id', statsController.createStats)
-router.patch('/:id', statsController.patchStats)
-router.delete('/:id', statsController.deleteStats)
+router.get('/:userId', statsController.getStatsById)
+router.post('/:userId', statsController.createStats)
+router.patch('/:userId', statsController.patchStats)
+router.delete('/:userId', statsController.deleteStats)
 
 module.exports = router

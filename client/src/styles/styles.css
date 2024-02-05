@@ -1,5 +1,24 @@
 main .progressConts {
+  box-sizing: border-box;
+  overflow-y: auto;
+  height: calc(100vh - 7rem);
   display: flex;
+  /* Chrome, Edge, and Safari */
+}
+main .progressConts {
+  scrollbar-width: thin;
+  scrollbar-color: #0099ff white;
+}
+main .progressConts::-webkit-scrollbar {
+  width: 12px;
+}
+main .progressConts::-webkit-scrollbar-track {
+  background: white;
+}
+main .progressConts::-webkit-scrollbar-thumb {
+  background-color: #0099ff;
+  border-radius: 12px;
+  border: 3px solid white;
 }
 @media (max-width: 1200px) {
   main .progressConts {
@@ -263,6 +282,8 @@ main .progressConts .counterCont {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 @media (max-width: 1200px) {
   main .progressConts .counterCont {

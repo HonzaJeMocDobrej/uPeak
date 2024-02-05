@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import LeftMenu from "../components/LeftMenu";
-import TopMenu from "../components/topMenu";
+import TopMenu from "../components/TopMenu";
 import ToDoListItem from "../components/ToDoListItem";
 import { ChromePicker } from 'react-color'
 

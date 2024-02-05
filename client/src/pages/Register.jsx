@@ -5,6 +5,7 @@ import { createUser } from "../models/user";
 import { useEffect, useState } from "react";
 import LoadingPage from "../components/LoadingPage";
 import useSignIn from 'react-auth-kit/hooks/useSignIn'
+import { createStats } from "../models/stats";
 
 function Register(props) {
 
@@ -30,8 +31,6 @@ function Register(props) {
   }
 
   const submit = async () => {
-
-    //max username length = 18
 
     if (regData.pass !== regData.repPass) {
       setInfo('Passwords do not match')
@@ -66,6 +65,7 @@ function Register(props) {
         email: ''
       })
     })
+
     if (user.status === 201) {
       signIn({
         auth: {
@@ -77,6 +77,8 @@ function Register(props) {
           email: user.data.email,
         }
       })
+      await createStats(user.data.id)
+      .catch(err => setInfo(err.response.data.msg))
       navigate(`/signup/imageselect`)
       return
     }

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import LeftMenu from "../components/LeftMenu";
-import TopMenu from "../components/topMenu";
+import TopMenu from "../components/TopMenu";
 import stars_stage_one from "../assets/icons/stars_stage_one.svg";
 import stars_stage_two from "../assets/icons/stars_stage_two.svg";
 import stars_stage_three from "../assets/icons/stars_stage_three.svg";

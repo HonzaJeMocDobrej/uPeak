@@ -1,9 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import LeftMenu from "../components/LeftMenu"
-import TopMenu from "../components/topMenu"
+import TopMenu from "../components/TopMenu"
 
 import '../styles/styles.css'
+
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
+import { getUserStats } from "../models/stats";
 
 function Progress(props) {
 
@@ -14,6 +17,11 @@ function Progress(props) {
 
   const [page, setPage] = useState('To-Do')
   const [type, setType] = useState('Streak')
+
+  const auth = useAuthUser()
+
+  
+
 
   const toggleDropdownPage = () => {
     setIsPageOpen(prev => !prev)
@@ -30,6 +38,18 @@ function Progress(props) {
   const selectType = (type) => {
     setType(type)
   }
+
+  useEffect(() => {
+    const handleStats = async () => {
+      const stats = await getUserStats(auth.id)
+      .catch(err => console.log(err.response.data.msg))
+    
+      if (stats.status === 200) {
+        console.log(stats.data)
+      }
+    }
+    handleStats()
+  }, [auth.id])
 
 return (
   <>

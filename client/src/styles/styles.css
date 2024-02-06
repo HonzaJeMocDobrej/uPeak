@@ -1731,6 +1731,9 @@ main .todoConts .createToDo {
     width: calc(100% - 2rem);
   }
 }
+main .todoConts .createToDo .todoChromePicker {
+  left: 15rem;
+}
 main .todoConts .createToDo .topInputCont {
   padding-top: 2.75rem;
   display: flex;
@@ -1819,7 +1822,6 @@ main .todoConts .createToDo .topInputCont .shortDesc {
 main .todoConts .createToDo .topInputCont .chrome-picker {
   position: absolute;
   z-index: 3;
-  left: 15rem;
   font-family: Open Sans;
 }
 @media (max-width: 750px) {
@@ -2166,6 +2168,10 @@ main .todoConts .createGroup {
 }
 main .todoConts .createGroup .topInputCont {
   padding-top: 2rem;
+}
+main .todoConts .createGroup .groupChromePicker {
+  left: 1rem;
+  top: 5rem;
 }
 main .todoConts .createGroup .bottomBtnCont {
   margin-top: 2rem;

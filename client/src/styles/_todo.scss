@@ -401,6 +401,10 @@ main {
           width: calc(100% - 2rem);
         }
 
+        .todoChromePicker {
+          left: 15rem;
+        }
+
         .topInputCont {
           padding-top: 2.75rem;
           display: flex;
@@ -484,7 +488,6 @@ main {
           .chrome-picker {
             position: absolute;
             z-index: 3;
-            left: 15rem;
             font-family: Open Sans;
 
             @media (max-width: 750px) {
@@ -867,6 +870,11 @@ main {
         .topInputCont {
           padding-top: 2rem;
           
+        }
+
+        .groupChromePicker {
+          left: 1rem;
+          top: 5rem;
         }
 
         .bottomBtnCont {

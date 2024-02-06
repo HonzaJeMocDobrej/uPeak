@@ -6,6 +6,10 @@ import { useEffect, useState } from "react";
 import LoadingPage from "../components/LoadingPage";
 import useSignIn from 'react-auth-kit/hooks/useSignIn'
 import { createStats } from "../models/stats";
+import { formatDate } from "../functions/functions";
+import { createTodoPage } from "../models/todoPage";
+
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 
 function Register(props) {
 
@@ -16,6 +20,17 @@ function Register(props) {
   const [isLoaded, setIsLoaded] = useState(false)
 
   const signIn = useSignIn()
+
+  const now = new Date
+
+  const auth = useAuthUser()
+
+  const groupPageDateHandler = () => {
+    const day = now.getDate()
+    const month = now.getMonth() + 1 
+    const year = now.getFullYear()
+    return formatDate(now.getDay(), day, month, year)
+  }
 
   const signInClick = () => {
     navigate('/signin')
@@ -54,6 +69,8 @@ function Register(props) {
       })
       return
     }
+
+    groupPageDateHandler()
     
     const user = await createUser(regData)
     .catch(err => {
@@ -75,10 +92,14 @@ function Register(props) {
         userState: {
           username: user.data.username,
           email: user.data.email,
+          id: user.data.id
         }
       })
       await createStats(user.data.id)
       .catch(err => setInfo(err.response.data.msg))
+      await createTodoPage(user.data.id, groupPageDateHandler())
+      .catch(err => setInfo(err.response.data.msg))
+
       navigate(`/signup/imageselect`)
       return
     }

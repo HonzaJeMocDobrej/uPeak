@@ -19,6 +19,7 @@ export const createGroup = async (req: Request, res: Response) => {
     try {
         const {selectedPageId} = req.params
         const {name, color} = req.body
+        console.log(name + color + selectedPageId)
         if (!selectedPageId || !name || !color) return res.status(400).send({msg: 'Missing details'})
         const createdGroups = await Groups.create({
             selectedPageId: selectedPageId,

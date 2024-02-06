@@ -4,6 +4,7 @@ import LeftMenu from "../components/LeftMenu";
 import TopMenu from "../components/TopMenu";
 import ToDoListItem from "../components/ToDoListItem";
 import { ChromePicker } from 'react-color'
+import { formatDate } from "../functions/functions";
 
 import "../styles/styles.css";
 
@@ -15,6 +16,8 @@ import priorityLightningOne from '../assets/icons/priorityLightningOne.svg'
 
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
+
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 
 function ToDo(props) {
   const {
@@ -51,6 +54,8 @@ function ToDo(props) {
 
   const now = new Date
 
+  const auth = useAuthUser()
+
   const [todoData, setTodoData] = useState({
     headline: '',
     shortDesc: '',
@@ -59,7 +64,7 @@ function ToDo(props) {
   })
 
   const [groupData, setGroupData] = useState({
-    headline: '',
+    name: '',
     color: '#333',
   })
 
@@ -80,11 +85,6 @@ function ToDo(props) {
    : todoData.priority === 3 ? 'lightPrio3'
    : todoData.priority === 4 ? 'lightPrio4' : ''
 
-   const formatter = {
-    day: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    month: ['Jan', 'Feb', 'March', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-   }
-
   const univToggle = (setState) => {
     setState(prev => !prev)
   }
@@ -102,7 +102,7 @@ function ToDo(props) {
     setGroupData(prev => {
       return {
         ...prev,
-        headline: e.target.value
+        name: e.target.value
       }
     })
   }
@@ -180,18 +180,18 @@ function ToDo(props) {
     console.log(todos);
   }
 
-  const allGroupsOnClick = () => {
+  const allGroupsOnClick = async () => {
     setGroups(prev => {
       return [
         ...prev,
         {
-          headline: groupData.headline === '' ? 'Group Name' : groupData.headline,
+          headline: groupData.name === '' ? 'Group Name' : groupData.name,
           color: groupData.color,
         }
       ]
     })
     setGroupData({
-      headline: '',
+      name: '',
       color: '#333',
     })
     setIsCreateGroupOpen(false)
@@ -202,34 +202,10 @@ function ToDo(props) {
     console.log(group.headline)
   }
 
-  const formatDate = (dayType, day, month, year) => {
-    let dayFormatted
-    let monthFormatted
-    for (let i = 0; i < 7; i++) {
-      if (dayType === i) {
-        dayFormatted = formatter.day[i]
-      } 
-    }
-    for (let i = 1; i <= 12; i++) {
-      if (month === i) {
-        monthFormatted = formatter.month[i - 1]      
-      }
-    }
-    setSelectedDate(prev => {
-      return {
-        ...prev,
-        dayNum: day,
-        dayName: dayFormatted,
-        monthNum: month,
-        monthName: monthFormatted,
-        year: year
-      }
-    })        
-  }
-
   useEffect(() => {
-    formatDate(now.getDay(), now.getDate(), now.getMonth() + 1, now.getFullYear())
+    setSelectedDate(formatDate(now.getDay(), now.getDate(), now.getMonth() + 1, now.getFullYear()))
   }, [])
+
   return (
     <>
       <div className={`menuCont ${isBlack ? "menuBlack" : null}`}>
@@ -258,7 +234,7 @@ function ToDo(props) {
                     const day = value.getDate()
                     const month = value.getMonth() + 1 
                     const year = value.getFullYear()
-                    formatDate(value.getDay(), day, month, year)
+                    setSelectedDate(formatDate(value.getDay(), day, month, year))
                     setIsCalendarOpen(false)
                     // console.log(`Day: ${day} Month: ${month} Year: ${year}`)
                 }
@@ -283,12 +259,12 @@ function ToDo(props) {
                   <div className="topInputCont">
                     <div className="imgAndInputCont">
                       <img onClick={() => univToggle(setIsPalletteGroupOpen)} src={pallette} alt="" />
-                      <input value={groupData.headline} onChange={updateHeadlineGroupVal} style={{color: groupData.color === '#333' ? null : groupData.color}} className="headline" placeholder="Group Name..." type="text" maxLength={15} />
+                      <input value={groupData.name} onChange={updateHeadlineGroupVal} style={{color: groupData.color === '#333' ? null : groupData.color}} className="headline" placeholder="Group Name..." type="text" maxLength={15} />
                     </div>
                   <ChromePicker
                     color={groupData.color}
                     onChange={changeGroupColor}
-                    className={isPalletteGroupOpen ? 'palletteOpen' : 'palletteClose' }
+                    className={`${isPalletteGroupOpen ? 'palletteOpen' : 'palletteClose'} groupChromePicker` }
                   />
                   </div>
                   <div className="bottomBtnCont">
@@ -326,7 +302,7 @@ function ToDo(props) {
                   <ChromePicker
                     color={todoData.color}
                     onChange={changeTodoColor}
-                    className={isPalletteOpen ? 'palletteOpen' : 'palletteClose' }
+                    className={`${isPalletteOpen ? 'palletteOpen' : 'palletteClose'} todoChromePicker` }
                   />
                   </div>
                   <div className="bottomBtnCont">

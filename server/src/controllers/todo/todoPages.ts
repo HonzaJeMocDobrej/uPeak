@@ -19,14 +19,15 @@ export const getAllUserTodosPages =async (req:Request, res: Response) => {
 export const createTodoPage =async (req:Request, res: Response) => {
     try {
         const {userId} = req.params
-        if (!userId) return res.status(400).send({msg: 'Missing details'})
+        const {dayNum, dayName, monthNum, monthName, year} = req.body
+        if (!userId || !dayNum || !dayName || !monthNum || !monthName || !year) return res.status(400).send({msg: 'Missing details'})
         const createdTodoPages = await TodoPages.create({
             userId: userId,
-            dayNum: 5,
-            dayName: 'friday',
-            monthNum: 3,
-            monthName: 'March',
-            year: 2024
+            dayNum: dayNum,
+            dayName: dayName,
+            monthNum: monthNum,
+            monthName: monthName,
+            year: year
         })
         if (!createdTodoPages) return res.status(500).send({msg: 'Something went wrong'})
         const todoPages = await TodoPages.findAll({where: {userId: userId}})

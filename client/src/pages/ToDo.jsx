@@ -18,6 +18,8 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
+import { createTodoPage } from "../models/todoPage";
+import { createGroup } from "../models/groups";
 
 function ToDo(props) {
   const {
@@ -51,6 +53,8 @@ function ToDo(props) {
     monthName: null,
     year: null
   })
+
+  const [pageId, setPageId] = useState()
 
   const now = new Date
 
@@ -181,6 +185,13 @@ function ToDo(props) {
   }
 
   const allGroupsOnClick = async () => {
+    
+    const group = await createGroup(pageId, groupData)
+    .catch(err => console.log(err.response.data.msg))
+
+    if (group.status === 201) {
+      console.log(group.data)
+    }
     setGroups(prev => {
       return [
         ...prev,
@@ -206,6 +217,10 @@ function ToDo(props) {
     setSelectedDate(formatDate(now.getDay(), now.getDate(), now.getMonth() + 1, now.getFullYear()))
   }, [])
 
+  useEffect(() => {
+    console.log(pageId)
+  }, [pageId])
+
   return (
     <>
       <div className={`menuCont ${isBlack ? "menuBlack" : null}`}>
@@ -230,13 +245,26 @@ function ToDo(props) {
                 style = {isCalendarOpen ? { display: "block" } : { display: "none" }}
                 className={`calendar ${isCalendarOpen ? "calendarShown" :  "calendarHidden"} `}
                 onClickDay={
-                  (value) => {
+                  async (value) => {
                     const day = value.getDate()
                     const month = value.getMonth() + 1 
                     const year = value.getFullYear()
                     setSelectedDate(formatDate(value.getDay(), day, month, year))
                     setIsCalendarOpen(false)
-                    // console.log(`Day: ${day} Month: ${month} Year: ${year}`)
+                    const todoPage = await createTodoPage(auth.id ,formatDate(value.getDay(), day, month, year))
+                    .catch(err => console.log(err.response.data.msg))
+
+                    if (todoPage.status === 200) {
+                      setPageId(todoPage.data.id)
+                      console.log('already exists')
+                      console.log(todoPage.data)
+                    }
+
+                    if (todoPage.status === 201) {
+                      setPageId(todoPage.data.id)
+                      console.log('created')
+                      console.log(todoPage.data)
+                    }
                 }
               }
               minDate={new Date}

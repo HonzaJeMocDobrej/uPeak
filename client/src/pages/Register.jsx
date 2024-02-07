@@ -23,8 +23,6 @@ function Register(props) {
 
   const now = new Date
 
-  const auth = useAuthUser()
-
   const groupPageDateHandler = () => {
     const day = now.getDate()
     const month = now.getMonth() + 1 

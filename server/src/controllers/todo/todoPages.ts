@@ -21,6 +21,8 @@ export const createTodoPage =async (req:Request, res: Response) => {
         const {userId} = req.params
         const {dayNum, dayName, monthNum, monthName, year} = req.body
         if (!userId || !dayNum || !dayName || !monthNum || !monthName || !year) return res.status(400).send({msg: 'Missing details'})
+        const existingTodoPage = await TodoPages.findOne({where: {userId: userId, dayNum: dayNum, monthNum: monthNum, year: year}})
+        if (existingTodoPage) return res.status(200).send({msg: 'Todo Page already exists', payload: existingTodoPage})
         const createdTodoPages = await TodoPages.create({
             userId: userId,
             dayNum: dayNum,

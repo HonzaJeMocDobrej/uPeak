@@ -11,6 +11,16 @@ export const createTodoPage = async (userId, data) => {
     return todoPagePayload(res)
 }
 
+export const getTheFirstTodoPage = async (userId) => {
+    const res = await axios.get(`http://localhost:3000/api/v1/todoPages/${userId}`)
+    return todoPagePayload(res)
+}
+
+export const getTodoPage = async (todoPageId) => {
+    const res = await axios.get(`http://localhost:3000/api/v1/todoPage/${todoPageId}`)
+    return todoPagePayload(res)
+}
+
 const todoPagePayload = (res) => {
     return {
         msg: res.data.msg,

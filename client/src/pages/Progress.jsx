@@ -37,7 +37,7 @@ function Progress(props) {
         setTimeout(() => {
           setIsLoaded(true);
           
-        }, 2000)
+        }, 1000)
       }
   }
 

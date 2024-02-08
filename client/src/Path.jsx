@@ -64,7 +64,7 @@ function Path() {
                    switchStyle={switchStyle} 
                    setSwitchStyle={setSwitchStyle}/>
                 } />
-                <Route path='/todo' element={
+                <Route path='/todo/:todoPageId' element={
                   <ToDo
                    active='todo'
                    isEnglish={isEnglish}

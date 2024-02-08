@@ -23,6 +23,7 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
+import { getTheFirstTodoPage } from '../models/todoPage'
 
 
 
@@ -36,6 +37,8 @@ function LeftMenu(props) {
     
     const auth = useAuthUser()
 
+    const [firstTodoPageId, setFirstTodoPageId] = useState()
+
     const univNavigate = (path) => {
         navigate(path)
     }
@@ -45,6 +48,13 @@ function LeftMenu(props) {
         'fontWeight': 700,
       }
 
+      const load = async () => {
+        const todoPages = await getTheFirstTodoPage(auth.id)
+        if (todoPages.status === 200) {
+            setFirstTodoPageId(todoPages.data.id)
+        }
+    }
+
       useEffect(() => {
         const handleResize = () => {
                 // console.log(`changed, height: ${height}`);
@@ -52,6 +62,10 @@ function LeftMenu(props) {
         }
           window.addEventListener('resize', handleResize)
         }, )
+
+        useEffect(() => {
+            load()
+        }, [])
 
   return (
     <>
@@ -65,7 +79,7 @@ function LeftMenu(props) {
                     <img src={active ==='progress' ? trophyFill : (isBlack === true ? trophyWhiteSvg : trophy)} alt="" />
                     <p style={active === 'progress' ? selectedStyle : null}>{isEnglish ? 'Progress' : 'Progres'}</p>
                 </li>
-                <li onMouseUp={() => univNavigate('/todo')}>
+                <li onMouseUp={() => univNavigate(`/todo/${firstTodoPageId}`)}>
                     <img src={active === 'todo' ? checkFillSvg : (isBlack === true ? checkWhiteSvg : checkSvg)} alt="" />
                     <p style={active === 'todo' ? selectedStyle : null}>To-Do</p>
                 </li>

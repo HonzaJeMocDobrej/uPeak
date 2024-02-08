@@ -20,6 +20,6 @@ export const formatDate = (dayType, day, month, year) => {
         dayName: dayFormatted,
         monthNum: month,
         monthName: monthFormatted,
-        year: year
+        year: year,
       }
   }

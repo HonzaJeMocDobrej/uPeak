@@ -31,6 +31,10 @@ module.exports = (sequelize: any, Sequelize: any) => {
                 type: Sequelize.SMALLINT,
                 allowNull: false
             },
+            fullDate: {
+                type: Sequelize.STRING,
+                allowNull: false
+            },
             createdAt: {
                 type: Sequelize.DATE
             },

@@ -18,8 +18,10 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
-import { createTodoPage } from "../models/todoPage";
+import { createTodoPage, getTodoPage } from "../models/todoPage";
 import { createGroup } from "../models/groups";
+import { useNavigate, useParams } from "react-router-dom";
+import LoadingPage from "../components/LoadingPage";
 
 function ToDo(props) {
   const {
@@ -60,6 +62,12 @@ function ToDo(props) {
 
   const auth = useAuthUser()
 
+  let navigate = useNavigate()
+
+  const {todoPageId} = useParams()
+
+  const [isLoaded, setIsLoaded] = useState(false)
+
   const [todoData, setTodoData] = useState({
     headline: '',
     shortDesc: '',
@@ -88,6 +96,19 @@ function ToDo(props) {
    : todoData.priority === 2 ? 'lightPrio2'
    : todoData.priority === 3 ? 'lightPrio3'
    : todoData.priority === 4 ? 'lightPrio4' : ''
+
+
+  const load = async () => {
+    const todoPage = await getTodoPage(todoPageId)
+    if (todoPage.status === 500) return setIsLoaded(false)
+    if (todoPage.status === 200) {
+
+      setTimeout(() => {
+        setIsLoaded(true);
+      }, 1000)
+    
+    }    
+  }
 
   const univToggle = (setState) => {
     setState(prev => !prev)
@@ -215,11 +236,22 @@ function ToDo(props) {
 
   useEffect(() => {
     setSelectedDate(formatDate(now.getDay(), now.getDate(), now.getMonth() + 1, now.getFullYear()))
+    load()
+     
   }, [])
-
+  
   useEffect(() => {
-    console.log(pageId)
-  }, [pageId])
+    console.log(selectedDate)
+    
+  }, [selectedDate])
+
+  if (!isLoaded) {
+    return(
+      <>
+        <LoadingPage />
+      </>
+    )
+  }
 
   return (
     <>
@@ -258,12 +290,14 @@ function ToDo(props) {
                       setPageId(todoPage.data.id)
                       console.log('already exists')
                       console.log(todoPage.data)
+                      navigate(`/todo/${todoPage.data.id}`)
                     }
 
                     if (todoPage.status === 201) {
                       setPageId(todoPage.data.id)
                       console.log('created')
                       console.log(todoPage.data)
+                      navigate(`/todo/${todoPage.data.id}`)
                     }
                 }
               }

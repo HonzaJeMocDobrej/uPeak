@@ -18,7 +18,7 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
-import { createTodoPage, getTodoPage } from "../models/todoPage";
+import { createTodoPage, deleteOldTodoPages, getTodoPage } from "../models/todoPage";
 import { createGroup } from "../models/groups";
 import { useNavigate, useParams } from "react-router-dom";
 import LoadingPage from "../components/LoadingPage";
@@ -108,6 +108,13 @@ function ToDo(props) {
       }, 1000)
     
     }    
+  }
+
+  const loadDeleted = async () => {
+    const todoPage = await deleteOldTodoPages(auth.id)
+    if (todoPage.status === 200) {
+      console.log(todoPage.msg)
+    }
   }
 
   const univToggle = (setState) => {
@@ -237,7 +244,7 @@ function ToDo(props) {
   useEffect(() => {
     setSelectedDate(formatDate(now.getDay(), now.getDate(), now.getMonth() + 1, now.getFullYear()))
     load()
-     
+    loadDeleted() 
   }, [])
   
   useEffect(() => {

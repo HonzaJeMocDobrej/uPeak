@@ -21,6 +21,11 @@ export const getTodoPage = async (todoPageId) => {
     return todoPagePayload(res)
 }
 
+export const deleteOldTodoPages = async (userId) => {
+    const res = await axios.delete(`http://localhost:3000/api/v1/todoPages/${userId}`)
+    return todoPagePayload(res)
+}
+
 const todoPagePayload = (res) => {
     return {
         msg: res.data.msg,

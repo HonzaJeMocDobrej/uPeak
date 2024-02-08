@@ -1,7 +1,23 @@
 import { Request, Response } from "express";
 import db from '../../models/index'
+const { Op } = require('sequelize')
 
 const TodoPages = db.todoPage
+
+const formatFullDate = (dayNum:number, monthNum:number, year:number) => {
+    if (dayNum >= 10 && monthNum >= 10){
+        return `${year}${monthNum}${dayNum}` as string
+      }
+      if (dayNum < 10 && monthNum >= 10){
+        return `0${year}${monthNum}${dayNum}` as string
+      }
+      if (dayNum >= 10 && monthNum < 10){
+        return `${year}0${monthNum}${dayNum}` as string
+      }
+      if (dayNum < 10 && monthNum < 10) {
+        return `${year}0${monthNum}0${dayNum}` as string
+      }
+}
 
 export const getTheFirstTodoPage =async (req:Request, res: Response) => {
     try {
@@ -21,18 +37,7 @@ export const createTodoPage =async (req:Request, res: Response) => {
         const {userId} = req.params
         const {dayNum, dayName, monthNum, monthName, year} = req.body
         let dateString
-        if (dayNum >= 10 && monthNum >= 10){
-            dateString = `${dayNum}${monthNum}${year}`
-          }
-          if (dayNum < 10 && monthNum >= 10){
-            dateString = `0${dayNum}${monthNum}${year}`
-          }
-          if (dayNum >= 10 && monthNum < 10){
-            dateString = `${dayNum}0${monthNum}${year}`
-          }
-          if (dayNum < 10 && monthNum < 10) {
-            dateString = `0${dayNum}0${monthNum}${year}`
-          }
+        
         if (!userId || !dayNum || !dayName || !monthNum || !monthName || !year) return res.status(400).send({msg: 'Missing details'})
         const existingTodoPage = await TodoPages.findOne({where: {userId: userId, dayNum: dayNum, monthNum: monthNum, year: year}})
         if (existingTodoPage) return res.status(200).send({msg: 'Todo Page already exists', payload: existingTodoPage})
@@ -43,7 +48,7 @@ export const createTodoPage =async (req:Request, res: Response) => {
             monthNum: monthNum,
             monthName: monthName,
             year: year,
-            fullDate: dateString
+            fullDate: formatFullDate(dayNum, monthNum, year)
         })
         if (!createdTodoPages) return res.status(500).send({msg: 'Something went wrong'})
         const todoPages = await TodoPages.findAll({where: {userId: userId}})
@@ -57,10 +62,12 @@ export const createTodoPage =async (req:Request, res: Response) => {
 
 export const deleteOldTodoPages =async (req:Request, res: Response) => {
     try {
+        const now = new Date()
+        const parsedFullDate = parseInt(formatFullDate(now.getDate(), now.getMonth() + 1, now.getFullYear()) as string)
         const { userId } = req.params
         if (!userId) return res.status(400).send({msg: 'Missing details'})
-        const todoPages = await TodoPages.destroy({where: {userId: userId}})
-        if (!todoPages) return res.status(500).send({msg: 'Something went wrong'})
+        const todoPages = await TodoPages.destroy({where: {userId: userId, fullDate: { [Op.lt]: parsedFullDate }}})
+        if (!todoPages) return res.status(200).send({msg: 'All sorted'})
         return res.status(200).send({msg: 'Todo Pages deleted'})
     } catch (err) {
         console.log(err);

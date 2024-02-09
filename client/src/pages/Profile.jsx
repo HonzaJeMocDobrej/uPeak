@@ -7,6 +7,8 @@ import basicProfilePic from '../assets/img/userPicBasic.svg'
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 
 import "../styles/styles.css";
+import { checkIfImgExists } from "../functions/functions";
+import { useEffect, useState } from "react";
 
 function Profile(props) {
   const {
@@ -20,6 +22,11 @@ function Profile(props) {
   } = props;
 
   const auth = useAuthUser()
+  const [imgSrc ,setImgSrc] = useState()
+
+  useEffect(() => {
+    checkIfImgExists(setImgSrc, auth)
+}, [auth])
 
   return (
     <>
@@ -44,7 +51,7 @@ function Profile(props) {
               My Profile
             </h2>
             <div className="profileInfoCont">
-              <img src={auth.profilePic ? `http://localhost:3000/${auth.profilePic}` : basicProfilePic} alt="" />
+              <img src={imgSrc} alt="" />
               <p>
                     {isEnglish ? 'Hello' : 'Ahoj'} 
                     <br /><span>{auth.username}</span>

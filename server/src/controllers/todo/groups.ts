@@ -8,7 +8,7 @@ export const getAllGroups = async (req: Request, res: Response) => {
         const {selectedPageId} = req.params
         if (!selectedPageId) return res.status(400).send({msg: 'Missing details'})
         const groups = await Groups.findAll({where: {selectedPageId: selectedPageId}})
-        if (!groups || groups.length == 0) return res.status(404).send({msg: 'Groups not found'})
+        if (!groups || groups.length == 0) return res.status(204).send({msg: 'Doesnt exist yet'})
         return res.status(200).send({msg: 'Groups found', payload: groups})
     } catch (err) {
         console.log(err)
@@ -29,7 +29,7 @@ export const createGroup = async (req: Request, res: Response) => {
         if (!createdGroups) return res.status(500).send({msg: 'Something went wrong'})
         const groups = await Groups.findAll({where: {selectedPageId: selectedPageId}})
         if (!groups) return res.status(500).send({msg: 'Something went wrong'})
-        return res.status(201).send({msg: 'Group created', payload: groups})
+        return res.status(201).send({msg: 'Group created', payload: createdGroups})
     } catch (err) {
         console.log(err)
         res.status(500).send(err)

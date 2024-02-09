@@ -4,10 +4,13 @@ import moon from '../assets/icons/moon.svg'
 import notific from '../assets/icons/notific.svg'
 import notificWhite from '../assets/icons/notificWhite.svg'
 
+
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 
 import '../styles/styles.css'
 import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { checkIfImgExists } from '../functions/functions';
 
 function TopMenu(props) {
     
@@ -15,6 +18,7 @@ function TopMenu(props) {
     const navigate = useNavigate()
 
     const auth = useAuthUser()
+    const [imgSrc, setImgSrc] = useState()
 
     const handleProfileClick = () => {
         navigate('/profile')
@@ -41,6 +45,12 @@ function TopMenu(props) {
         }
     }
 
+    
+
+    useEffect(() => {
+        checkIfImgExists(setImgSrc, auth)
+    }, [auth])
+
   return (
     <>
     <nav className={`tMenu ${isBlack ? 'tBlack' : null}`}>
@@ -52,7 +62,7 @@ function TopMenu(props) {
                 <img style={switchStyle} src={isBlack ? moon : sun} alt="" />
             </div>
             <div onClick={handleProfileClick} className="profile">
-                <img src={`http://localhost:3000/${auth.profilePic}`} alt="" />
+                <img src={imgSrc} alt="" />
                 <p>
                     {isEnglish ? 'Hello' : 'Ahoj'} 
                     <br /><span>{auth.username}</span>

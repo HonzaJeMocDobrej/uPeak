@@ -1,14 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import profilePicDef from "../assets/img/userPicBasic.svg";
 import Files from 'react-files'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { patchImage } from "../models/user";
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import useSignIn from 'react-auth-kit/hooks/useSignIn'
+import { checkIfImgExists } from "../functions/functions";
 
 function ImageSelect() {
   let navigate = useNavigate();
   const [profilePic, setProfilePic] = useState(null)
+  const [imgSrc, setImgSrc] = useState()
 
   const auth = useAuthUser()
   const signIn = useSignIn()
@@ -45,6 +46,10 @@ function ImageSelect() {
     setProfilePic(fileObj)
   }
 
+  useEffect(() => {
+    checkIfImgExists(setImgSrc, auth)
+}, [auth])
+
   return (
     <>
       <div className="login">
@@ -70,7 +75,7 @@ function ImageSelect() {
               <h2>Upload a profile picture</h2>
               <div className="profilePicCont">
               <div className="profile">
-                <img src={profilePic ? URL.createObjectURL(profilePic) :  auth.profilePic ? `http://localhost:3000/${auth.profilePic}` : profilePicDef} alt="" />
+                <img src={profilePic ? URL.createObjectURL(profilePic) :  imgSrc} alt="" />
                 <p>
                   Hello
                   <br />

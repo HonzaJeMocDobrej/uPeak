@@ -1,3 +1,5 @@
+import basicProfPic from '../assets/img/userPicBasic.svg'
+
 export const formatDate = (dayType, day, month, year) => {
     let dayFormatted
     let monthFormatted
@@ -23,3 +25,14 @@ export const formatDate = (dayType, day, month, year) => {
         year: year,
       }
   }
+
+  export const checkIfImgExists = (setter, auth, ) => {
+    fetch(`http://localhost:3000/${auth.profilePic}`, { method: 'HEAD' })
+    .then(res => {
+        if (res.ok) {
+            return setter(`http://localhost:3000/${auth.profilePic}`)
+        } else {
+            return setter(basicProfPic)
+        }
+    }).catch(err => console.log('Error:', err));
+}

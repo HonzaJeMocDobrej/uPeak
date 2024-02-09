@@ -24,6 +24,7 @@ import { useEffect, useState } from 'react'
 
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import { getTheFirstTodoPage } from '../models/todoPage'
+import { checkIfImgExists } from '../functions/functions'
 
 
 
@@ -36,6 +37,7 @@ function LeftMenu(props) {
     let navigate = useNavigate()
     
     const auth = useAuthUser()
+    const [imgSrc ,setImgSrc] = useState()
 
     const [firstTodoPageId, setFirstTodoPageId] = useState()
 
@@ -67,6 +69,10 @@ function LeftMenu(props) {
             load()
         }, [])
 
+        useEffect(() => {
+            checkIfImgExists(setImgSrc, auth)
+        }, [auth])
+
   return (
     <>
         <nav className={`lMenu ${isBlack ? 'lBlack' : null}`}>
@@ -93,7 +99,7 @@ function LeftMenu(props) {
                 </li>
                 <li onMouseUp={() => univNavigate('/profile')}>
                     <img className='profilePic' src={active === 'profile' ? userFillSvg : (isBlack === true ? userWhiteSvg : userSvg)} alt="" />
-                    <img style={{maxHeight: '4rem', maxWidth: '5rem'}} className='honzak' src={`http://localhost:3000/${auth.profilePic}`} alt="" />
+                    <img style={{maxHeight: '4rem', maxWidth: '5rem'}} className='honzak' src={imgSrc} alt="" />
                     <p style={active === 'profile' ? selectedStyle : null}>{isEnglish ? 'Profile' : 'Profil'}</p>
                 </li>
             </ul>

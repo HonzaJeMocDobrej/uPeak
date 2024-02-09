@@ -8,6 +8,11 @@ export const createGroup = async (pageId, data) => {
     return groupPayload(res)
 }
 
+export const getAllGroups = async (pageId) => {
+    const res = await axios.get(`http://localhost:3000/api/v1/groups/${pageId}`)
+    return groupPayload(res)
+}
+
 const groupPayload = (res) => {
     return {
         msg: res.data.msg,

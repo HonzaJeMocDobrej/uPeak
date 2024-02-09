@@ -60,8 +60,6 @@ function ToDo(props) {
     year: null,
   });
 
-  const [pageId, setPageId] = useState();
-
   const now = new Date();
 
   const auth = useAuthUser();
@@ -323,7 +321,6 @@ function ToDo(props) {
                   ).catch((err) => console.log(err.response.data.msg));
 
                   if (todoPage.status === 200 || todoPage.status === 201) {
-                    setPageId(todoPage.data.id);
                     console.log("created or exists");
                     console.log(todoPage.data);
                     navigate(`/todo/${todoPage.data.id}`);

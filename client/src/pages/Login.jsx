@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import LoadingPage from "../components/LoadingPage";
 import { comparePasswords } from "../models/user";
 import useSignIn from 'react-auth-kit/hooks/useSignIn'
+import { deleteOldTodoPages } from "../models/todoPage";
 
 function Login(props) {
 
@@ -14,6 +15,13 @@ function Login(props) {
   let navigate = useNavigate()
 
   const signIn = useSignIn()
+
+  const loadDeleted = async (userId) => {
+    const todoPage = await deleteOldTodoPages(userId);
+    if (todoPage.status === 200) {
+      console.log(todoPage.msg);
+    }
+  };
   
 
   const signUpClick = () => {
@@ -63,6 +71,7 @@ function Login(props) {
           profilePic: user.data.profilePic
         }
       })
+      loadDeleted(user.data.id)
       console.log(user.token);
       navigate(`/progress`)
       return

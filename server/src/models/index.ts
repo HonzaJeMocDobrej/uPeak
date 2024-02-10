@@ -37,13 +37,14 @@ db.users.hasMany(db.todoPage, {
     onDelete: 'cascade'
 })
 
-db.todoPage.hasMany(db.todo, {
+
+db.todoPage.hasMany(db.group, {
     foreignKey: 'selectedPageId',
     onDelete: 'cascade'
 })
 
-db.todoPage.hasMany(db.group, {
-    foreignKey: 'selectedPageId',
+db.group.hasMany(db.todo, {
+    foreignKey: 'groupId',
     onDelete: 'cascade'
 })
 

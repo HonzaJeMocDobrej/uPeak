@@ -66,9 +66,10 @@ export const deleteOldTodoPages =async (req:Request, res: Response) => {
         const parsedFullDate = parseInt(formatFullDate(now.getDate(), now.getMonth() + 1, now.getFullYear()) as string)
         const { userId } = req.params
         if (!userId) return res.status(400).send({msg: 'Missing details'})
+        const getTodoPages = await TodoPages.findAll({where: {userId: userId, fullDate: { [Op.lt]: parsedFullDate }}})
         const todoPages = await TodoPages.destroy({where: {userId: userId, fullDate: { [Op.lt]: parsedFullDate }}})
         if (!todoPages) return res.status(200).send({msg: 'All sorted'})
-        return res.status(200).send({msg: 'Todo Pages deleted'})
+        return res.status(200).send({msg: 'Todo Pages deleted', payload: getTodoPages})
     } catch (err) {
         console.log(err);
         res.status(500).send(err)

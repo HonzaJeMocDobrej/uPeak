@@ -13,6 +13,11 @@ export const getAllGroups = async (pageId) => {
     return groupPayload(res)
 }
 
+export const patchGroup = async (id, data) => {
+    const res = await axios.patch(`http://localhost:3000/api/v1/group/${id}`, data)
+    return groupPayload(res)
+}
+
 const groupPayload = (res) => {
     return {
         msg: res.data.msg,

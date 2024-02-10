@@ -857,6 +857,7 @@ main {
         width: auto;
         height: auto;
         padding-bottom: 1rem;
+        left: -10rem;
 
         @media (max-width: 1000px) {
           left: -5rem;
@@ -900,6 +901,10 @@ main {
       .toDoListItemsCont {
         user-select: none;
         position: relative;
+
+        .ctaGroupTodo {
+          margin-top: .5rem;
+        }
         
         .toDoListItem {
           display: flex;
@@ -975,7 +980,6 @@ main {
               font-size: 1.2rem;
               font-style: normal;
               font-weight: 400;
-              line-height: 93.682%; /* 22.484px */
               margin: 0;
               white-space: nowrap;
               overflow: hidden;

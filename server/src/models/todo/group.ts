@@ -19,6 +19,10 @@ module.exports = (sequelize: any, Sequelize: any) => {
                 type: Sequelize.STRING,
                 allowNull: false
             },
+            isSelected: {
+                type: Sequelize.BOOLEAN,
+                defaultValue: 0
+            },
             createdAt: {
                 type: Sequelize.DATE
             },

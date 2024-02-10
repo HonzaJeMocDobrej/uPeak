@@ -7,7 +7,7 @@ module.exports = (sequelize: any, Sequelize: any) => {
                 autoIncrement: true,
                 primaryKey: true
             },
-            selectedPageId: {
+            groupId: {
                 type: Sequelize.INTEGER,
                 allowNull: false
             },

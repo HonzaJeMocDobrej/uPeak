@@ -5,9 +5,9 @@ const Todos = db.todo
 
 export const getAllTodos = async (req: Request, res: Response) => {
     try {
-        const {selectedPageId} = req.params
-        if (!selectedPageId) return res.status(400).send({msg: 'Missing details'})
-        const todos = await Todos.findAll({where: {selectedPageId: selectedPageId}})
+        const {groupId} = req.params
+        if (!groupId) return res.status(400).send({msg: 'Missing details'})
+        const todos = await Todos.findAll({where: {selectedPageId: groupId}})
         if (!todos || todos.length == 0) return res.status(404).send({msg: 'Todos not found'})
         return res.status(200).send({msg: 'Todos found', payload: todos})
     } catch (err) {
@@ -17,17 +17,17 @@ export const getAllTodos = async (req: Request, res: Response) => {
 }
 export const createTodo = async (req: Request, res: Response) => {
     try {
-        const {selectedPageId} = req.params
+        const {groupId} = req.params
         const {name, color, priority} = req.body
-        if (!selectedPageId || !name || !color || !priority) return res.status(400).send({msg: 'Missing details'})
+        if (!groupId || !name || !color || !priority) return res.status(400).send({msg: 'Missing details'})
         const createdTodos = await Todos.create({
-            selectedPageId: selectedPageId,
+            selectedPageId: groupId,
             name: name,
             color: color,
             priority: priority
         })
         if (!createdTodos) return res.status(500).send({msg: 'Something went wrong'})
-        const todos = await Todos.findAll({where: {selectedPageId: selectedPageId}})
+        const todos = await Todos.findAll({where: {selectedPageId: groupId}})
         if (!todos) return res.status(500).send({msg: 'Something went wrong'})
         return res.status(201).send({msg: 'Todo created', payload: todos})
     } catch (err) {
@@ -37,9 +37,9 @@ export const createTodo = async (req: Request, res: Response) => {
 }
 export const deleteAllTodos = async (req: Request, res: Response) => {
     try {
-        const { selectedPageId } = req.params
-        if (!selectedPageId) return res.status(400).send({msg: 'Missing details'})
-        const todos = await Todos.destroy({where: {selectedPageId: selectedPageId}})
+        const { groupId } = req.params
+        if (!groupId) return res.status(400).send({msg: 'Missing details'})
+        const todos = await Todos.destroy({where: {selectedPageId: groupId}})
         if (!todos) return res.status(500).send({msg: 'Something went wrong'})
         return res.status(200).send({msg: 'Todos deleted'})
     } catch (err) {

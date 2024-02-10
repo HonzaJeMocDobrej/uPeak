@@ -2154,6 +2154,7 @@ main .todoConts .createGroup {
   width: auto;
   height: auto;
   padding-bottom: 1rem;
+  left: -10rem;
 }
 @media (max-width: 1000px) {
   main .todoConts .createGroup {
@@ -2195,6 +2196,9 @@ main .todoConts .toDoListItemsCont {
      -moz-user-select: none;
           user-select: none;
   position: relative;
+}
+main .todoConts .toDoListItemsCont .ctaGroupTodo {
+  margin-top: 0.5rem;
 }
 main .todoConts .toDoListItemsCont .toDoListItem {
   display: flex;
@@ -2261,7 +2265,6 @@ main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont p {
   font-size: 1.2rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 93.682%; /* 22.484px */
   margin: 0;
   white-space: nowrap;
   overflow: hidden;

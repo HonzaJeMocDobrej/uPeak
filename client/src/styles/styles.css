@@ -2274,6 +2274,7 @@ main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont p {
 @media (max-width: 750px) {
   main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont p {
     font-size: 0.9rem;
+    width: 40vw;
   }
 }
 @media (max-width: 480px) {
@@ -2283,7 +2284,7 @@ main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont p {
 }
 @media (max-width: 400px) {
   main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont p {
-    width: 20vw;
+    width: 30vw;
   }
 }
 main .todoConts .toDoListItemsCont .toDoListItem .rightBtnsCont {

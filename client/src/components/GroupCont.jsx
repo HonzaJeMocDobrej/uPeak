@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ChromePicker } from "react-color";
 
 
@@ -9,10 +9,12 @@ import priorityLightningThree from "../assets/icons/priorityLightningThree.svg";
 import priorityLightningTwo from "../assets/icons/priorityLightningTwo.svg";
 import priorityLightningOne from "../assets/icons/priorityLightningOne.svg";
 import ToDoListItem from './ToDoListItem';
+import { createTodo, getTodosById } from '../models/todos';
+import { nanoid } from 'nanoid'
 
 function GroupCont(props) {
 
-    const { univToggle, name, color} = props
+    const { univToggle, name, color, id} = props
 
     const [isCreateTodoOpen, setIsCreateTodoOpen] = useState(false);
     const [isPalletteOpen, setIsPalletteOpen] = useState(false);
@@ -21,39 +23,57 @@ function GroupCont(props) {
     const [todos, setTodos] = useState([]);
 
     const [todoData, setTodoData] = useState({
-        headline: "",
+        name: "",
         shortDesc: "",
         color: "#333",
         priority: "",
+        id: ""
       });
+
+    const loadTodos = async () => {
+      const todos = await getTodosById(id)
+      if (todos.status === 200) {
+        console.log(todos.data)
+        setTodos(todos.data)
+      }
+    }
 
     const closeCreateTodo = () => {
         setTodoData({
-          headline: "",
+          name: "",
           shortDesc: "",
           color: "#333",
           priority: "",
+          id: ""
         });
         setIsCreateTodoOpen(false);
       };
 
-      const allTodosOnClick = () => {
-        setTodos((prev) => {
-          return [
-            ...prev,
-            {
-              headline: todoData.headline === "" ? "Task Name" : todoData.headline,
-              shortDesc: todoData.shortDesc,
-              color: todoData.color,
-              priority: todoData.priority === "" ? 4 : todoData.priority,
-            },
-          ];
-        });
+      const allTodosOnClick = async () => {
+        const createdTodo = await createTodo(id, {
+          name: todoData.name === "" ? "Task Name" : todoData.name,
+          shortDesc: todoData.shortDesc,
+          color: todoData.color,
+          priority: todoData.priority === "" ? 4 : todoData.priority,
+        })
+        if (createdTodo.status === 201) {
+            setTodos((prev) => {
+              return [...prev, {
+                name: todoData.name === "" ? "Task Name" : todoData.name,
+                shortDesc: todoData.shortDesc,
+                color: todoData.color,
+                priority: todoData.priority === "" ? 4 : todoData.priority,
+                id: nanoid()
+              }];
+            });
+        }
+        
         setTodoData({
-          headline: "",
+          name: "",
           shortDesc: "",
           color: "#333",
           priority: "",
+          id: ""
         });
         setIsCreateTodoOpen(false);
         console.log(todos);
@@ -104,7 +124,7 @@ function GroupCont(props) {
         setTodoData((prev) => {
           return {
             ...prev,
-            headline: e.target.value,
+            name: e.target.value,
           };
         });
       };
@@ -115,6 +135,11 @@ function GroupCont(props) {
         prio3: { border: "solid 1px #09F", backgroundColor: "#E5F5FF" },
         prio4: { border: "solid 0.5px #ADADAD" },
       };
+
+      useEffect(() => {
+        loadTodos()
+      }, [])
+      
 
   return (
     <>
@@ -146,8 +171,8 @@ function GroupCont(props) {
 
                   return (
                     <ToDoListItem
-                      key={Math.random}
-                      name={todo.headline}
+                      key={todo.id}
+                      name={todo.name}
                       priorityCircleSx={prioCircleStyleTernary}
                       priorityCircleHoverClass={prioCircleHoverTernary}
                       headlineColor={todo.color}
@@ -176,7 +201,7 @@ function GroupCont(props) {
                         alt=""
                       />
                       <input
-                        value={todoData.headline}
+                        value={todoData.name}
                         onChange={updateHeadlineTodoVal}
                         style={{
                           color:

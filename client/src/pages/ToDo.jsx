@@ -96,7 +96,6 @@ function ToDo(props) {
       console.log(groups.msg);
     }
     if (groups.status === 200) {
-      console.log("banger", groups.data);
       setGroups(groups.data);
     }
   };
@@ -140,12 +139,14 @@ function ToDo(props) {
   
 
   const allGroupsOnClick = async () => {
-    const group = await createGroup(todoPageId, groupData).catch((err) =>
+    const group = await createGroup(todoPageId, {
+      name: groupData.name === "" ? "Group Name" : groupData.name,
+      color: groupData.color === "333" ? "#333" : groupData.color
+    }).catch((err) =>
       console.log(err.response.data.msg)
     );
 
     if (group.status === 201) {
-      console.log(group.data);
       setGroups((prev) => {
         return [...prev, group.data];
       });
@@ -155,18 +156,15 @@ function ToDo(props) {
       color: "#333",
     });
     setIsCreateGroupOpen(false);
-    console.log(groups);
   };
 
   const selectGroup = async (group) => {
-    console.log(group.isSelected);
-    const patchedGroup = await patchGroup(group.id, [
+    await patchGroup(group.id, [
       {
         propName: "isSelected",
         value: !group.isSelected
       }
     ])
-    if (patchedGroup.status === 200) console.log(patchedGroup.data)
     loadGroups()
     setIsGroupAddOpen(false)
   };
@@ -182,16 +180,11 @@ function ToDo(props) {
     );
     loadTodoPages();
     loadDeleted();
-    console.log(todoPageId);
   }, []);
 
   useEffect(() => {
     loadGroups();
   }, [todoPageId]);
-
-  useEffect(() => {
-    console.log(selectedDate);
-  }, [selectedDate]);
 
   if (!isLoaded) {
     return (
@@ -240,9 +233,7 @@ function ToDo(props) {
 
                   if (todoPage.status === 200 || todoPage.status === 201) {
                     console.log("created or exists");
-                    console.log(todoPage.data);
                     navigate(`/todo/${todoPage.data.id}`);
-                    console.log(todoPage.data.id, todoPageId);
                     closeAll()
 
                     if (todoPage.data.id != todoPageId) return setGroups([]);
@@ -369,6 +360,7 @@ function ToDo(props) {
                     <GroupCont
                       univToggle={univToggle}
                       key={group.id}
+                      id={group.id}
                       name={group.name}
                       color={group.color}
                     />

@@ -15,6 +15,9 @@ module.exports = (sequelize: any, Sequelize: any) => {
                 type: Sequelize.STRING,
                 allowNull: false
             },
+            shortDesc: {
+                type: Sequelize.STRING,
+            },
             color: {
                 type: Sequelize.STRING,
                 allowNull: false

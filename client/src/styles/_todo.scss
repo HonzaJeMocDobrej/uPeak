@@ -988,6 +988,7 @@ main {
 
               @media (max-width: 750px) {
                 font-size: .9rem;
+                width: 40vw;
               }
 
               @media (max-width: 480px) {
@@ -995,7 +996,7 @@ main {
               }
 
               @media (max-width: 400px) {
-                width: 20vw;
+                width:30vw;
               }
             }
           }

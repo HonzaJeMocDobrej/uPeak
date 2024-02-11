@@ -2224,6 +2224,7 @@ main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont {
   align-items: center;
   height: 100%;
   gap: 0.5rem;
+  width: 100%;
 }
 main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont .priorityCircle {
   height: 1.25rem;
@@ -2269,7 +2270,7 @@ main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont p {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 30vw;
+  width: 100%;
 }
 @media (max-width: 750px) {
   main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont p {
@@ -2325,7 +2326,6 @@ main .todoConts .dropdownGroup {
   padding: 0;
   position: absolute;
   z-index: 2;
-  /* Chrome, Edge, and Safari */
 }
 @media (max-width: 750px) {
   main .todoConts .dropdownGroup {
@@ -2339,8 +2339,8 @@ main .todoConts .dropdownGroup li {
   color: rgba(51, 51, 51, 0.8);
   cursor: pointer;
   display: block;
-  padding: 0.75rem 1.5rem;
   transition: 300ms;
+  /* Chrome, Edge, and Safari */
 }
 @media (max-width: 750px) {
   main .todoConts .dropdownGroup li {
@@ -2356,22 +2356,41 @@ main .todoConts .dropdownGroup li:hover {
   cursor: pointer;
   transition: 300ms;
 }
-main .todoConts .dropdownGroup {
+main .todoConts .dropdownGroup li .rightCont {
+  cursor: url(../assets/icons/Bin.svg), auto;
+}
+main .todoConts .dropdownGroup li .bin {
+  transition: 125ms;
+}
+@media (max-width: 750px) {
+  main .todoConts .dropdownGroup li .bin {
+    scale: 0.75;
+  }
+}
+main .todoConts .dropdownGroup li .bin:hover {
+  transition: 200ms;
+  transform: scale(1.05);
+}
+main .todoConts .dropdownGroup li .bin:active {
+  transition: 200ms;
+  transform: scale(0.95);
+}
+main .todoConts .dropdownGroup li {
   scrollbar-width: thin;
   scrollbar-color: #b8e3ff #ffffff;
 }
-main .todoConts .dropdownGroup::-webkit-scrollbar {
+main .todoConts .dropdownGroup li::-webkit-scrollbar {
   width: 12px;
 }
-main .todoConts .dropdownGroup::-webkit-scrollbar-track {
+main .todoConts .dropdownGroup li::-webkit-scrollbar-track {
   background: #ffffff;
 }
-main .todoConts .dropdownGroup::-webkit-scrollbar-thumb {
+main .todoConts .dropdownGroup li::-webkit-scrollbar-thumb {
   background-color: #b8e3ff;
   border-radius: 12px;
   border: 3px solid #ffffff;
 }
-main .todoConts .dropdownPlaceholder {
+main .todoConts .dropdownGroup .dropdownPlaceholder {
   color: #b6b6b6;
 }
 

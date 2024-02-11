@@ -18,6 +18,11 @@ export const patchGroup = async (id, data) => {
     return groupPayload(res)
 }
 
+export const deleteGroup = async (id) => {
+    const res = await axios.delete(`http://localhost:3000/api/v1/group/${id}`)
+    return groupPayload(res)
+}
+
 const groupPayload = (res) => {
     return {
         msg: res.data.msg,

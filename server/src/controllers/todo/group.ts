@@ -39,7 +39,7 @@ export const deleteGroupById = async (req: Request, res: Response) => {
         if (!id) return res.status(400).send({msg: 'Missing details'})
         const group = await Group.destroy({where: {id: id}})
         if (!group) return res.status(500).send({msg: 'Something went wrong'})
-        return res.status(200).send({msg: 'Todo deleted'})
+        return res.status(200).send({msg: 'Group deleted'})
     } catch (err) {
         console.log(err);
         res.status(500).send(err)

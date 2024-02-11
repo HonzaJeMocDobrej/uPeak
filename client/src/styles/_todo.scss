@@ -928,6 +928,7 @@ main {
             align-items: center;
             height: 100%;
             gap: .5rem;
+            width: 100%;
             
             .priorityCircle {
               height: 1.25rem;
@@ -984,7 +985,7 @@ main {
               white-space: nowrap;
               overflow: hidden;
               text-overflow: ellipsis;
-              width: 30vw;
+              width: 100%;
 
               @media (max-width: 750px) {
                 font-size: .9rem;
@@ -1056,7 +1057,6 @@ main {
           color: rgba(51, 51, 51, 0.8);
           cursor: pointer;
           display: block;
-          padding: .75rem 1.5rem ;
           transition: 300ms;
 
           @media (max-width: 750px) {
@@ -1073,6 +1073,27 @@ main {
                 cursor: pointer;
                 transition: 300ms;
           }
+
+          .rightCont {
+            cursor: url(../assets/icons/Bin.svg), auto;
+          }
+
+          .bin {
+            transition: 125ms;
+
+            @media (max-width: 750px) {
+              scale: (.75);
+            }
+
+            &:hover {
+              transition: 200ms;
+              transform: scale(1.05);
+            }
+
+            &:active {
+              transition: 200ms;
+              transform: scale(.95);
+            }
         }
     
     
@@ -1108,4 +1129,5 @@ main {
     }
 
   }
+}
 }

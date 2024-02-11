@@ -10,6 +10,26 @@ export const getTodosById = async (groupId) => {
     return todoPayload(res)
 }
 
+export const getTodoById = async (id) => {
+    const res = await axios.get(`http://localhost:3000/api/v1/todo/${id}`)
+    return todoPayload(res)
+}
+
+export const updateTodoById = async (id, data) => {
+    const res = await axios.put(`http://localhost:3000/api/v1/todo/${id}`, data)
+    return todoPayload(res)
+}
+
+export const deleteTodoById = async (id) => {
+    const res = await axios.delete(`http://localhost:3000/api/v1/todo/${id}`)
+    return todoPayload(res)
+}
+
+export const submitTodoById = async (id) => {
+    const res = await axios.delete(`http://localhost:3000/api/v1/todo/submit/${id}`)
+    return todoPayload(res)
+}
+
 const todoPayload = (res) => {
     return {
         msg: res.data.msg,

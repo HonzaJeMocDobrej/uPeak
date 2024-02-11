@@ -6,9 +6,7 @@ import { ChromePicker } from "react-color";
 import { formatDate } from "../functions/functions";
 import pallette from "../assets/icons/Pallette.svg";
 
-
 import "../styles/styles.css";
-
 
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -19,10 +17,12 @@ import {
   deleteOldTodoPages,
   getTodoPage,
 } from "../models/todoPage";
-import { createGroup, getAllGroups, patchGroup } from "../models/groups";
+import { createGroup, deleteGroup, getAllGroups, patchGroup } from "../models/groups";
 import { useNavigate, useParams } from "react-router-dom";
 import LoadingPage from "../components/LoadingPage";
 import GroupCont from "../components/GroupCont";
+import greenCheckFill from "../assets/icons/greenCheckFill.svg";
+import bin from "../assets/icons/Bin.svg";
 
 function ToDo(props) {
   const {
@@ -35,10 +35,8 @@ function ToDo(props) {
     setSwitchStyle,
   } = props;
 
-  
-
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  
+
   const [isCreateGroupOpen, setIsCreateGroupOpen] = useState(false);
   const [isGroupAddOpen, setIsGroupAddOpen] = useState(false);
   const [isPalletteGroupOpen, setIsPalletteGroupOpen] = useState(false);
@@ -59,7 +57,6 @@ function ToDo(props) {
   const { todoPageId } = useParams();
 
   const [isLoaded, setIsLoaded] = useState(false);
-  const [todoPageState, setTodoPageState] = useState()
 
   const [groupData, setGroupData] = useState({
     name: "",
@@ -72,7 +69,7 @@ function ToDo(props) {
     const todoPage = await getTodoPage(todoPageId);
     if (todoPage.status === 500) return setIsLoaded(false);
     if (todoPage.status === 200) {
-      setSelectedDate(todoPage.data)
+      setSelectedDate(todoPage.data);
       setTimeout(() => {
         setIsLoaded(true);
       }, 1000);
@@ -86,7 +83,7 @@ function ToDo(props) {
     setIsCreateGroupOpen(false);
     // setIsCreateTodoOpen(false);
     // setIsPrioOpen(false)
-    setIsCalendarOpen(false)
+    setIsCalendarOpen(false);
   };
 
   const loadGroups = async () => {
@@ -100,6 +97,11 @@ function ToDo(props) {
     }
   };
 
+  const deletedGroup = async (id) => {
+    await deleteGroup(id)
+    loadGroups()
+  }
+
   const loadDeleted = async () => {
     const todoPage = await deleteOldTodoPages(auth.id);
     if (todoPage.status === 200) {
@@ -110,8 +112,6 @@ function ToDo(props) {
   const univToggle = (setState) => {
     setState((prev) => !prev);
   };
-
-  
 
   const updateHeadlineGroupVal = (e) => {
     setGroupData((prev) => {
@@ -126,7 +126,6 @@ function ToDo(props) {
     setIsCreateGroupOpen(false);
   };
 
-  
   const changeGroupColor = (color) => {
     setGroupData((prev) => {
       return {
@@ -136,15 +135,11 @@ function ToDo(props) {
     });
   };
 
-  
-
   const allGroupsOnClick = async () => {
     const group = await createGroup(todoPageId, {
       name: groupData.name === "" ? "Group Name" : groupData.name,
-      color: groupData.color === "333" ? "#333" : groupData.color
-    }).catch((err) =>
-      console.log(err.response.data.msg)
-    );
+      color: groupData.color === "333" ? "#333" : groupData.color,
+    }).catch((err) => console.log(err.response.data.msg));
 
     if (group.status === 201) {
       setGroups((prev) => {
@@ -162,11 +157,11 @@ function ToDo(props) {
     await patchGroup(group.id, [
       {
         propName: "isSelected",
-        value: !group.isSelected
-      }
-    ])
-    loadGroups()
-    setIsGroupAddOpen(false)
+        value: !group.isSelected,
+      },
+    ]);
+    loadGroups();
+    setIsGroupAddOpen(false);
   };
 
   useEffect(() => {
@@ -234,7 +229,7 @@ function ToDo(props) {
                   if (todoPage.status === 200 || todoPage.status === 201) {
                     console.log("created or exists");
                     navigate(`/todo/${todoPage.data.id}`);
-                    closeAll()
+                    closeAll();
 
                     if (todoPage.data.id != todoPageId) return setGroups([]);
                   }
@@ -337,37 +332,76 @@ function ToDo(props) {
                 {groups.map((group) => {
                   return (
                     <li
-                      onClick={() => selectGroup(group)}
                       key={group.id}
                       style={{
                         color:
                           group.color === "#333"
                             ? "rgba(51, 51, 51, 0.8)"
                             : group.color,
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        height: '3rem'
                       }}
                     >
-                      <p>{group.name}</p>
+                      <div
+                        className="leftCont"
+                        onClick={() => selectGroup(group)}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "1rem",
+                          width: "100%",
+                          height: "100%",
+                          paddingLeft: '1.5rem'
+                        }}
+                      >
+                        {group.isSelected && (
+                          <img
+                            style={{ height: "1.25rem" }}
+                            src={greenCheckFill}
+                            alt=""
+                          />
+                        )}
+                        <p>{group.name}</p>
+                      </div>
+                      <div
+                        className="rightCont"
+                        style={{
+                          height: "100%",
+                          paddingRight: '1.5rem',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center'
+                        }}
+                        onClick={() => deletedGroup(group.id)}
+                        >
+                        <img
+                          src={bin}
+                          alt=""
+                          style={{ height: "1.25rem" }}
+                          className="bin"
+                        />
+                      </div>
                     </li>
                   );
                 })}
               </ul>
             </div>
 
-            {
-              groups.map(group => {
-                if (group.isSelected) {
-                  return(
-                    <GroupCont
-                      univToggle={univToggle}
-                      key={group.id}
-                      id={group.id}
-                      name={group.name}
-                      color={group.color}
-                    />
-                  )
-                }
-              })
-            }
+            {groups.map((group) => {
+              if (group.isSelected) {
+                return (
+                  <GroupCont
+                    univToggle={univToggle}
+                    key={group.id}
+                    id={group.id}
+                    name={group.name}
+                    color={group.color}
+                  />
+                );
+              }
+            })}
 
             {/* <GroupCont
               univToggle={univToggle}

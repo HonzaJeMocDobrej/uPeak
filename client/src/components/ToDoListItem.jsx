@@ -17,7 +17,8 @@ function ToDoListItem(props) {
   });
 
   const deleteTodo = async () => {
-    await deleteTodoById(id);
+    const deletedTodo = await deleteTodoById(id);
+    console.log(deletedTodo.msg)
     loadTodos();
   };
 

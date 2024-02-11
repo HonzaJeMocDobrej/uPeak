@@ -2227,12 +2227,12 @@ main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont {
   width: 100%;
 }
 main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont .priorityCircle {
-  height: 1.25rem;
   width: 1.25rem;
   border-radius: 100%;
   box-sizing: border-box;
   transition: 250ms;
   cursor: pointer;
+  aspect-ratio: 1/1;
 }
 @media (max-width: 750px) {
   main .todoConts .toDoListItemsCont .toDoListItem .btnAndTextCont .priorityCircle {

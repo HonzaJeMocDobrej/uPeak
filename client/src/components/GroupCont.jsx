@@ -23,7 +23,7 @@ function GroupCont(props) {
 
     const loadTodos = async () => {
       const todos = await getTodosById(id)
-      if (todos.status === 200) {
+      if (todos.status === 200 || todos.status === 204) {
         console.log(todos.data)
         setTodos(todos.data)
       }
@@ -36,7 +36,7 @@ function GroupCont(props) {
           color: todoData.color,
           priority: todoData.priority === "" ? 4 : todoData.priority,
         })
-        if (createdTodo.status === 201) {
+        if (createdTodo.status === 201 && todos) {
             setTodos((prev) => {
               return [...prev, {
                 name: todoData.name === "" ? "Task Name" : todoData.name,
@@ -77,7 +77,8 @@ function GroupCont(props) {
         <div className="groupCont">
               <h2 className="groupHeadline" style={{color: color}}>{name}</h2>
               <div className="toDoListItemsCont">
-              {todos.map((todo) => {
+              {
+            todos && todos.map((todo) => {
                   const prioCircleHoverTernary =
                     todo.priority === 1
                       ? "prio1"

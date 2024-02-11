@@ -8,7 +8,7 @@ export const getAllTodos = async (req: Request, res: Response) => {
         const {groupId} = req.params
         if (!groupId) return res.status(400).send({msg: 'Missing details'})
         const todos = await Todos.findAll({where: {groupId: groupId}})
-        if (!todos || todos.length == 0) return res.status(204).send({msg: 'Doesnt exist yet'})
+        if (!todos || todos.length == 0) return res.status(204).send({msg: 'Doesnt exist'})
         return res.status(200).send({msg: 'Todos found', payload: todos})
     } catch (err) {
         console.log(err)

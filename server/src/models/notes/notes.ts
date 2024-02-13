@@ -13,11 +13,9 @@ module.exports = (sequelize: any, Sequelize: any) => {
             },
             headline: {
                 type: Sequelize.STRING,
-                allowNull: false
             },
             mainText: {
                 type: Sequelize.TEXT('medium'),
-                allowNull: false
             },
             image: {
                 type: Sequelize.STRING,

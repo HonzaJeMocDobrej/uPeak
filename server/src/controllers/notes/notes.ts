@@ -18,12 +18,9 @@ export const getAllNotes = async (req: Request, res: Response) => {
 export const createNotes = async (req: Request, res: Response) => {
     try {
         const {userId} = req.params
-        const {headline, mainText} = req.body
-        if (!userId || !headline || !mainText) return res.status(400).send({msg: 'Missing details'})
+        if (!userId) return res.status(400).send({msg: 'Missing details'})
         const createdNotes = await Notes.create({
             userId: userId,
-            headline: headline,
-            mainText: mainText
         })
         if (!createdNotes) return res.status(500).send({msg: 'Something went wrong'})
         const notes = await Notes.findAll({where: {userId: userId}})

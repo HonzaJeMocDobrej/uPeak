@@ -5,6 +5,8 @@ import NotesRightMenu from "../components/NotesRightMenu";
 
 import "../styles/styles.css";
 import { useEffect, useRef, useState } from "react";
+import { getNote } from "../models/notes";
+import { useParams } from "react-router-dom";
 
 function Notes(props) {
   const {
@@ -24,6 +26,11 @@ function Notes(props) {
   const [headlineFocused, setHeadlineFocused] = useState(false);
   const [notesFocused, setNotesFocused] = useState(false);
 
+  const { id } = useParams()
+
+  const load = async () => {
+    const note = await getNote()
+  }
 
   const handlePlaceholder = () => {
       console.log(notesRef.current.textContent);

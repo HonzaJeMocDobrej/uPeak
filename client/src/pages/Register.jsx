@@ -9,7 +9,7 @@ import { createStats } from "../models/stats";
 import { formatDate } from "../functions/functions";
 import { createTodoPage } from "../models/todoPage";
 
-import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
+import { createNotes } from "../models/notes";
 
 function Register(props) {
 
@@ -97,6 +97,12 @@ function Register(props) {
       .catch(err => setInfo(err.response.data.msg))
       await createTodoPage(user.data.id, groupPageDateHandler())
       .catch(err => setInfo(err.response.data.msg))
+      const notes = await createNotes(user.data.id)
+      .catch(err => console.log(err.response.data.msg))
+      if (notes.status === 201) {
+        document.cookie = `last_note_id=${notes.data[0].id}; SameSite=None`
+      }
+
 
       navigate(`/signup/imageselect`)
       return

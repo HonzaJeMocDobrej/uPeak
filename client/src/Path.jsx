@@ -74,7 +74,7 @@ function Path() {
                    switchStyle={switchStyle} 
                    setSwitchStyle={setSwitchStyle}/>
                 } />
-                <Route path='/notes' element={
+                <Route path='/notes/:id' element={
                   <Notes
                    active='notes'
                    isEnglish={isEnglish}

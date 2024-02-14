@@ -7,6 +7,7 @@ import "../styles/styles.css";
 import { useEffect, useRef, useState } from "react";
 import { getNote } from "../models/notes";
 import { useParams } from "react-router-dom";
+import LoadingPage from "../components/LoadingPage";
 
 function Notes(props) {
   const {
@@ -20,109 +21,141 @@ function Notes(props) {
   } = props;
 
   const [heading, setHeading] = useState("");
+  const [virtualHeading, setVirtualHeading] = useState("");
+  const [mainText, setMainText] = useState("");
 
   const headlineRef = useRef();
   const notesRef = useRef();
   const [headlineFocused, setHeadlineFocused] = useState(false);
   const [notesFocused, setNotesFocused] = useState(false);
 
-  const { id } = useParams()
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  const { id } = useParams();
 
   const load = async () => {
-    const note = await getNote()
-  }
+    const note = await getNote(id);
+    if (note.status === 500){
+      setIsLoaded(false)
+      setHeading('')
+      setVirtualHeading('')
+      setMainText('')
+      return
+    } 
+    if (note.status === 200) {
+      setHeading(note.data.headline)
+      setVirtualHeading(note.data.headline)
+      setMainText(note.data.mainText)
+      setTimeout(() => {
+        setIsLoaded(true)
+      }, 500)
+    }
+  };
 
   const handlePlaceholder = () => {
-      console.log(notesRef.current.textContent);
-      if (notesRef.current.textContent === '') {
-        console.log('banger');
-        notesRef.current.innerHTML = "";
+    if (notesRef.current.textContent === "") {
+      console.log("banger");
+      notesRef.current.innerHTML = "";
     }
-  }
+  };
 
   const handleHealdine = () => {
-    setHeading(headlineRef.current.textContent)
-    if (headlineRef.current.textContent === '') {
-      console.log('banger');
+    setVirtualHeading(headlineRef.current.textContent)
+    if (headlineRef.current.textContent === "") {
+      console.log("banger");
       headlineRef.current.innerHTML = "";
-  }
-}
+    }
+  };
 
-const handleCusorPostion = (index, ref) => {
-  ref.current.focus()
-    setHeadlineFocused(true)
-}
+  const handleCusorPostion = (index, ref) => {
+    ref.current.focus();
+    setHeadlineFocused(true);
+  };
 
-useEffect(() => {
+  useEffect(() => {
     function handleKeyDown(e) {
-      console.log(`Headline ${headlineFocused} Notes ${notesFocused}`);
-        if (e.keyCode === 13) {
-          if (!headlineFocused && !notesFocused) {
-            setHeadlineFocused(true)
-            headlineRef.current.focus();
-            e.preventDefault()
-          }
-
-          if (headlineFocused && !notesFocused || headlineFocused && notesFocused) {
-            setNotesFocused(true)
-            notesRef.current.focus();
-          }
+      if (e.keyCode === 13) {
+        if (!headlineFocused && !notesFocused) {
+          setHeadlineFocused(true);
+          headlineRef.current.focus();
+          e.preventDefault();
         }
 
-        if (e.keyCode === 40) {
-          if (!headlineFocused && !notesFocused) {
-            setHeadlineFocused(true)
-            headlineRef.current.focus();
-            e.preventDefault()
-          }
-
-          if (headlineFocused && !notesFocused || headlineFocused && notesFocused) {
-            setNotesFocused(true)
-            notesRef.current.focus();
-          }
-        }
-
-        if (e.keyCode === 38) {
-          if (!headlineFocused && !notesFocused) {
-            setHeadlineFocused(true)
-            notesRef.current.focus();
-            e.preventDefault()
-          }
-        }
-
-        // 1 key
-        if (e.keyCode === 49 && e.ctrlKey) {
-          setHeadlineFocused(true)
-            headlineRef.current.focus();
-            e.preventDefault()
-        }
-
-        // 2 key
-        if (e.keyCode === 50 && e.ctrlKey) {
-          setHeadlineFocused(true)
+        if (
+          (headlineFocused && !notesFocused) ||
+          (headlineFocused && notesFocused)
+        ) {
+          setNotesFocused(true);
           notesRef.current.focus();
-          e.preventDefault()
+        }
+      }
+
+      if (e.keyCode === 40) {
+        if (!headlineFocused && !notesFocused) {
+          setHeadlineFocused(true);
+          headlineRef.current.focus();
+          e.preventDefault();
         }
 
-        // esc key
-        if (e.keyCode === 27) {
-          notesRef.current.blur()
-          headlineRef.current.blur()
-          setHeadlineFocused(false)
-          setNotesFocused(false)
+        if (
+          (headlineFocused && !notesFocused) ||
+          (headlineFocused && notesFocused)
+        ) {
+          setNotesFocused(true);
+          notesRef.current.focus();
         }
-
       }
-  
-      document.addEventListener('keydown', handleKeyDown);
-      
-      //clean up
-      return function cleanup() {
-        document.removeEventListener('keydown', handleKeyDown);
-      }
-}, [headlineFocused, notesFocused])
 
-  
+      if (e.keyCode === 38) {
+        if (!headlineFocused && !notesFocused) {
+          setHeadlineFocused(true);
+          notesRef.current.focus();
+          e.preventDefault();
+        }
+      }
+
+      // 1 key
+      if (e.keyCode === 49 && e.ctrlKey) {
+        setHeadlineFocused(true);
+        headlineRef.current.focus();
+        e.preventDefault();
+      }
+
+      // 2 key
+      if (e.keyCode === 50 && e.ctrlKey) {
+        setHeadlineFocused(true);
+        notesRef.current.focus();
+        e.preventDefault();
+      }
+
+      // esc key
+      if (e.keyCode === 27) {
+        notesRef.current.blur();
+        headlineRef.current.blur();
+        setHeadlineFocused(false);
+        setNotesFocused(false);
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    //clean up
+    return function cleanup() {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [headlineFocused, notesFocused]);
+
+  useEffect(() => {
+    load()
+  }, []);
+
+  if (!isLoaded) {
+    return (
+      <>
+        <LoadingPage />
+      </>
+    );
+  }
 
   return (
     <>
@@ -142,10 +175,30 @@ useEffect(() => {
           setSwitchStyle={setSwitchStyle}
         />
         <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
-          <NotesRightMenu noteNames={heading} />
+          <NotesRightMenu noteNames={virtualHeading} />
           <div className="notesCont">
-            <h2 onClick={() => handleCusorPostion(1, headlineRef)} onInput={handleHealdine} ref={headlineRef} data-ph='Untitled' spellCheck='false' contentEditable='true' className='notesHeadline'></h2>
-            <p onClick={() => handleCusorPostion(1, notesRef)} onInput={handlePlaceholder} data-ph='Start Typing...' spellCheck='false' contentEditable='true' className='inputP' ref={notesRef}></p>
+            <h2
+              onClick={() => handleCusorPostion(1, headlineRef)}
+              onInput={handleHealdine}
+              ref={headlineRef}
+              data-ph="Untitled"
+              spellCheck="false"
+              contentEditable="true"
+              className="notesHeadline"
+            >
+              {heading}
+            </h2>
+            <p
+              onClick={() => handleCusorPostion(1, notesRef)}
+              onInput={handlePlaceholder}
+              data-ph="Start Typing..."
+              spellCheck="false"
+              contentEditable="true"
+              className="inputP"
+              ref={notesRef}
+            >
+              {mainText}
+            </p>
           </div>
         </main>
       </div>

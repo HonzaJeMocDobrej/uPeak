@@ -72,7 +72,7 @@ function ToDo(props) {
       setSelectedDate(todoPage.data);
       setTimeout(() => {
         setIsLoaded(true);
-      }, 1000);
+      }, 500);
     }
   };
 

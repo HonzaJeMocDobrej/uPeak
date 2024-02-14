@@ -2585,7 +2585,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 100px;
+  width: 150px;
 }
 @media (max-width: 1000px) {
   .notesMenu .bottomCont .notesList .leftCont p {

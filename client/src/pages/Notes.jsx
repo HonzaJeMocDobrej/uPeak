@@ -29,26 +29,26 @@ function Notes(props) {
   const [headlineFocused, setHeadlineFocused] = useState(false);
   const [notesFocused, setNotesFocused] = useState(false);
 
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const { id } = useParams();
 
   const load = async () => {
     const note = await getNote(id);
-    if (note.status === 500){
-      setIsLoaded(false)
-      setHeading('')
-      setVirtualHeading('')
-      setMainText('')
-      return
-    } 
+    if (note.status === 500) {
+      setIsLoaded(false);
+      setHeading("");
+      setVirtualHeading("");
+      setMainText("");
+      return;
+    }
     if (note.status === 200) {
-      setHeading(note.data.headline)
-      setVirtualHeading(note.data.headline)
-      setMainText(note.data.mainText)
+      setHeading(note.data.headline);
+      setVirtualHeading(note.data.headline);
+      setMainText(note.data.mainText);
       setTimeout(() => {
-        setIsLoaded(true)
-      }, 500)
+        setIsLoaded(true);
+      }, 500);
     }
   };
 
@@ -56,17 +56,16 @@ function Notes(props) {
     const updateNotes = await patchNote(id, [
       {
         propName: propname,
-        value: value
-      }
-    ])
-    .catch(err => console.log(err.response.data.msg))
+        value: value,
+      },
+    ]).catch((err) => console.log(err.response.data.msg));
     if (updateNotes.status === 200) {
-      console.log(updateNotes.data)
+      console.log(updateNotes.data);
     }
-  }
+  };
 
   const handlePlaceholder = async () => {
-    updateNotes('mainText', notesRef.current.textContent)
+    updateNotes("mainText", notesRef.current.textContent);
     if (notesRef.current.textContent === "") {
       console.log("banger");
       notesRef.current.innerHTML = "";
@@ -74,7 +73,8 @@ function Notes(props) {
   };
 
   const handleHealdine = async () => {
-    updateNotes('headline', headlineRef.current.textContent)
+    setVirtualHeading(headlineRef.current.textContent);
+    updateNotes("headline", headlineRef.current.textContent);
     if (headlineRef.current.textContent === "") {
       console.log("banger");
       headlineRef.current.innerHTML = "";
@@ -160,7 +160,7 @@ function Notes(props) {
   }, [headlineFocused, notesFocused]);
 
   useEffect(() => {
-    load()
+    load();
   }, []);
 
   if (!isLoaded) {
@@ -189,7 +189,10 @@ function Notes(props) {
           setSwitchStyle={setSwitchStyle}
         />
         <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
-          <NotesRightMenu noteNames={virtualHeading} />
+          <NotesRightMenu
+            virtualHeading={virtualHeading}
+            paramsId={id}
+          />
           <div className="notesCont">
             <h2
               onClick={() => handleCusorPostion(1, headlineRef)}

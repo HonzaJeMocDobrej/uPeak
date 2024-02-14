@@ -2449,11 +2449,77 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
     gap: 0.5rem;
   }
 }
+.notesMenu .topCont .notesBtn {
+  margin-bottom: 0.2rem;
+  color: #999;
+  font-family: Open Sans;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  width: -moz-fit-content;
+  width: fit-content;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 100%;
+  padding-right: 0.5rem;
+  transition: 250ms;
+  border-radius: 0.75rem;
+  margin-top: 0;
+  height: 2.5rem;
+  margin: 0 0 0 1.25rem;
+}
+@media (max-width: 1000px) {
+  .notesMenu .topCont .notesBtn {
+    font-size: 0.9rem;
+    gap: 0.5rem;
+    height: 1.75rem;
+    border-radius: 0.55rem;
+  }
+}
+@media (max-width: 480px) {
+  .notesMenu .topCont .notesBtn {
+    font-size: 0.75rem;
+    border-radius: 0.45rem;
+    height: 1.5rem;
+    gap: 0rem;
+    margin: 0 0 0 0.75rem;
+  }
+}
+.notesMenu .topCont .notesBtn::before {
+  background-image: url(../assets/icons/BluePlus.svg);
+  background-repeat: no-repeat;
+  background-size: 1rem;
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  content: "";
+}
+@media (max-width: 750px) {
+  .notesMenu .topCont .notesBtn::before {
+    background-size: 0.75rem;
+    margin-top: 0.25rem;
+  }
+}
+.notesMenu .topCont .notesBtn:hover {
+  background-color: rgb(234, 247, 255);
+  transition: 250ms;
+  cursor: pointer;
+  padding-left: 0.5rem;
+  color: #ADADAD;
+}
+.notesMenu .topCont .notesBtn:active {
+  transform: scale(0.95);
+  transition: 250ms;
+}
 .notesMenu .topCont .item {
   display: flex;
   padding: 0.25rem 0rem 0.25rem 1.25rem;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   align-self: stretch;
 }
 @media (max-width: 1000px) {
@@ -2487,7 +2553,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   }
 }
 .notesMenu .topCont .item img {
-  height: 1.25rem;
+  height: 1rem;
 }
 @media (max-width: 1000px) {
   .notesMenu .topCont .item img {
@@ -2553,11 +2619,11 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 .notesMenu .bottomCont .notesList .leftCont {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.25rem;
 }
 @media (max-width: 1000px) {
   .notesMenu .bottomCont .notesList .leftCont {
-    gap: 0.5rem;
+    gap: 0.1rem;
   }
 }
 @media (max-width: 480px) {
@@ -2565,15 +2631,50 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
     gap: 0.25rem;
   }
 }
+.notesMenu .bottomCont .notesList .leftCont .imgCont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  transition: 350ms;
+  border-radius: 0.5rem;
+}
 @media (max-width: 1000px) {
-  .notesMenu .bottomCont .notesList .leftCont span {
-    font-size: 0.75rem;
+  .notesMenu .bottomCont .notesList .leftCont .imgCont {
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 0.4rem;
   }
 }
 @media (max-width: 480px) {
-  .notesMenu .bottomCont .notesList .leftCont span {
-    font-size: 0.65rem;
+  .notesMenu .bottomCont .notesList .leftCont .imgCont {
+    height: 1.25rem;
+    width: 1.25rem;
+    border-radius: 0.3rem;
   }
+}
+.notesMenu .bottomCont .notesList .leftCont .imgCont img {
+  height: 1.5rem;
+}
+@media (max-width: 1000px) {
+  .notesMenu .bottomCont .notesList .leftCont .imgCont img {
+    height: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .notesMenu .bottomCont .notesList .leftCont .imgCont img {
+    height: 0.9rem;
+  }
+}
+.notesMenu .bottomCont .notesList .leftCont .imgCont:hover {
+  background-color: rgb(234, 247, 255);
+  transition: 350ms;
+  cursor: pointer;
+}
+.notesMenu .bottomCont .notesList .leftCont .imgCont:active {
+  transform: scale(0.95);
+  transition: 350ms;
 }
 .notesMenu .bottomCont .notesList .leftCont p {
   color: #09f;
@@ -2604,10 +2705,14 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   align-items: center;
   gap: 0.5rem;
 }
-@media (max-width: 1000px) {
-  .notesMenu .bottomCont .notesList .rightCont .threeDots {
-    height: 3px;
-  }
+.notesMenu .bottomCont .notesList .rightCont .bin:hover {
+  cursor: pointer;
+  transition: 200ms;
+  transform: scale(1.05);
+}
+.notesMenu .bottomCont .notesList .rightCont .bin:active {
+  transition: 200ms;
+  transform: scale(0.95);
 }
 @media (max-width: 1000px) {
   .notesMenu .bottomCont .notesList .rightCont .bin {

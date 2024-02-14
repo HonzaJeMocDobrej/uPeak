@@ -95,6 +95,9 @@ function ToDo(props) {
     if (groups.status === 200) {
       setGroups(groups.data);
     }
+    if (groups.status === 204) {
+      setGroups([]);
+    }
   };
 
   const deletedGroup = async (id) => {

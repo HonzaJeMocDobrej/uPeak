@@ -15,6 +15,11 @@ export const getNote = async (id) => {
     return notesPayload(res)
 }
 
+export const getNotes = async (userId) => {
+    const res = await axios.get(`http://localhost:3000/api/v1/notes/${userId}`)
+    return notesPayload(res)
+}
+
 const notesPayload = (res) => {
     return {
         msg: res.data.msg,

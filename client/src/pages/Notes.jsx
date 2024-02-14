@@ -5,7 +5,7 @@ import NotesRightMenu from "../components/NotesRightMenu";
 
 import "../styles/styles.css";
 import { useEffect, useRef, useState } from "react";
-import { getNote } from "../models/notes";
+import { getNote, patchNote } from "../models/notes";
 import { useParams } from "react-router-dom";
 import LoadingPage from "../components/LoadingPage";
 
@@ -52,15 +52,29 @@ function Notes(props) {
     }
   };
 
-  const handlePlaceholder = () => {
+  const updateNotes = async (propname, value) => {
+    const updateNotes = await patchNote(id, [
+      {
+        propName: propname,
+        value: value
+      }
+    ])
+    .catch(err => console.log(err.response.data.msg))
+    if (updateNotes.status === 200) {
+      console.log(updateNotes.data)
+    }
+  }
+
+  const handlePlaceholder = async () => {
+    updateNotes('mainText', notesRef.current.textContent)
     if (notesRef.current.textContent === "") {
       console.log("banger");
       notesRef.current.innerHTML = "";
     }
   };
 
-  const handleHealdine = () => {
-    setVirtualHeading(headlineRef.current.textContent)
+  const handleHealdine = async () => {
+    updateNotes('headline', headlineRef.current.textContent)
     if (headlineRef.current.textContent === "") {
       console.log("banger");
       headlineRef.current.innerHTML = "";

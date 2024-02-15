@@ -7,9 +7,9 @@ export const getNoteById = async (req: Request, res: Response) => {
     try {
         const { id } = req.params
         if (!id) return res.status(400).send({msg: 'Missing details'})
-        const todo = await Note.findOne({where: {id: id}})
-        if (!todo) return res.status(500).send({msg: 'Something went wrong'})
-        return res.status(200).send({msg: 'Note found', payload: todo})
+        const note = await Note.findOne({where: {id: id}})
+        if (!note) return res.status(500).send({msg: 'Something went wrong'})
+        return res.status(200).send({msg: 'Note found', payload: note})
     } catch (err) {
         console.log(err)
         res.status(500).send(err)

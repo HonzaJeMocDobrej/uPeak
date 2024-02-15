@@ -46,6 +46,7 @@ function Notes(props) {
       setHeading(note.data.headline);
       setVirtualHeading(note.data.headline);
       setMainText(note.data.mainText);
+      console.log(note.data, heading, mainText)
       setTimeout(() => {
         setIsLoaded(true);
       }, 500);
@@ -161,7 +162,7 @@ function Notes(props) {
 
   useEffect(() => {
     load();
-  }, []);
+  }, [id]);
 
   if (!isLoaded) {
     return (
@@ -191,7 +192,9 @@ function Notes(props) {
         <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
           <NotesRightMenu
             virtualHeading={virtualHeading}
+            setVirtualHeading={setVirtualHeading}
             paramsId={id}
+            loadData={load}
           />
           <div className="notesCont">
             <h2
@@ -203,7 +206,7 @@ function Notes(props) {
               contentEditable="true"
               className="notesHeadline"
             >
-              {heading}
+              {!heading ? '' : heading}
             </h2>
             <p
               onClick={() => handleCusorPostion(1, notesRef)}
@@ -214,7 +217,7 @@ function Notes(props) {
               className="inputP"
               ref={notesRef}
             >
-              {mainText}
+              {!mainText ? '' : mainText}
             </p>
           </div>
         </main>

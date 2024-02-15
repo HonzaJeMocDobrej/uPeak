@@ -2569,7 +2569,6 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.5rem;
   align-self: stretch;
   padding-bottom: 1.75rem;
 }
@@ -2606,10 +2605,20 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 .notesMenu .bottomCont .notesList {
   display: flex;
-  padding: 0rem 1rem 0rem 1.25rem;
+  padding: 0.25rem 1rem 0.25rem 1.25rem;
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
+  border-radius: 0.5rem 0 0 0.5rem;
+  margin: 0 0 0 0.5rem;
+}
+.notesMenu .bottomCont .notesList:nth-child(2) {
+  margin-top: 1.5rem;
+}
+.notesMenu .bottomCont .notesList:hover {
+  background-color: rgb(234, 247, 255);
+  transition: 250ms;
+  cursor: pointer;
 }
 @media (max-width: 480px) {
   .notesMenu .bottomCont .notesList {
@@ -2620,6 +2629,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  height: 100%;
 }
 @media (max-width: 1000px) {
   .notesMenu .bottomCont .notesList .leftCont {
@@ -2668,7 +2678,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   }
 }
 .notesMenu .bottomCont .notesList .leftCont .imgCont:hover {
-  background-color: rgb(234, 247, 255);
+  background-color: #CCECFF;
   transition: 350ms;
   cursor: pointer;
 }
@@ -2676,7 +2686,13 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   transform: scale(0.95);
   transition: 350ms;
 }
-.notesMenu .bottomCont .notesList .leftCont p {
+.notesMenu .bottomCont .notesList .leftCont .midCont {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.notesMenu .bottomCont .notesList .leftCont .midCont p {
   color: #09f;
   font-family: Open Sans;
   font-size: 1.25rem;
@@ -2689,14 +2705,14 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   width: 150px;
 }
 @media (max-width: 1000px) {
-  .notesMenu .bottomCont .notesList .leftCont p {
+  .notesMenu .bottomCont .notesList .leftCont .midCont p {
     font-size: 0.8rem;
     width: 70px;
   }
 }
 @media (max-width: 480px) {
-  .notesMenu .bottomCont .notesList .leftCont p {
-    font-size: 0.75rem;
+  .notesMenu .bottomCont .notesList .leftCont .midCont p {
+    font-size: 0.45rem;
     width: 50px;
   }
 }

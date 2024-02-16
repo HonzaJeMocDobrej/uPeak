@@ -161,8 +161,9 @@ function Notes(props) {
   }, [headlineFocused, notesFocused]);
 
   useEffect(() => {
-    load();
-  }, [id]);
+    load()
+    console.log('bomba')
+  }, [heading, id, mainText]);
 
   if (!isLoaded) {
     return (

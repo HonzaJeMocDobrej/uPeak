@@ -54,13 +54,15 @@ export const patchNoteImg = async (req: Request, res: Response) => {
 
 export const deleteNoteById = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params
-        if (!id) return res.status(400).send({msg: 'Missing details'})
+        const { id, userId } = req.params
+        if (!id || !userId) return res.status(400).send({msg: 'Missing details'})
+        const countTodos = await Note.count({distinct: 'id', where: {userId: userId}})
+        if (countTodos <= 1) return res.status(204).send({msg: 'Cant delete'})
         const todo = await Note.destroy({where: {id: id}})
         if (!todo) return res.status(500).send({msg: 'Something went wrong'})
-        const getLastTodo = await Note.findAll({where: {id: id}})
+        const todosPayload = await Note.findAll({where: {userId: userId}})
         // najit vsechny, foreach, checknout pozici, urcit navigate dopredu nebo dozadu
-        return res.status(200).send({msg: 'Note deleted', payload: getLastTodo})
+        return res.status(200).send({msg: 'Note deleted', payload: todosPayload})
     } catch (err) {
         console.log(err);
         res.status(500).send(err)

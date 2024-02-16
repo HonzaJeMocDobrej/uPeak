@@ -32,8 +32,10 @@ const NotesRightMenu = (props) => {
         ]
       })
       navigate(`/notes/${notes.data.id}`)
+      document.cookie = `last_note_id=${notes.data.id}; SameSite=None`
       setVirtualHeading('')
     }
+    loadNote()
   }
 
   useEffect(() => {

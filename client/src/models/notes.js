@@ -20,8 +20,8 @@ export const getNotes = async (userId) => {
     return notePayload(res)
 }
 
-export const deleteNote = async (id) => {
-    const res = await axios.delete(`http://localhost:3000/api/v1/note/${id}`)
+export const deleteNote = async (userId, id) => {
+    const res = await axios.delete(`http://localhost:3000/api/v1/note/${userId}/${id}`)
     return notePayload(res)
 }
 

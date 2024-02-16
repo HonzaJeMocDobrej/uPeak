@@ -9,7 +9,7 @@ import { uploadNotesImg } from '../../config/multer'
 router.get('/:id', noteController.getNoteById)
 router.patch('/:id', noteController.patchNote)
 router.patch('/img/:id', uploadNotesImg, noteController.patchNoteImg)
-router.delete('/:id', noteController.deleteNoteById)
+router.delete('/:userId/:id', noteController.deleteNoteById)
 
 
 module.exports = router

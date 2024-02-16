@@ -194,7 +194,7 @@ function Notes(props) {
             virtualHeading={virtualHeading}
             setVirtualHeading={setVirtualHeading}
             paramsId={id}
-            loadData={load}
+            loadNote={load}
           />
           <div className="notesCont">
             <h2

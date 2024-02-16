@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import db from "../../models";
 
 const Note = db.notes
+const Sequelize = db.Sequelize
 
 export const getNoteById = async (req: Request, res: Response) => {
     try {
@@ -57,7 +58,10 @@ export const deleteNoteById = async (req: Request, res: Response) => {
         if (!id) return res.status(400).send({msg: 'Missing details'})
         const todo = await Note.destroy({where: {id: id}})
         if (!todo) return res.status(500).send({msg: 'Something went wrong'})
-        return res.status(200).send({msg: 'Note deleted'})
+        const getLastTodo = await Note.findOne({
+            attributes: [Sequelize.fn('max', Sequelize.col('id'))],
+        })
+        return res.status(200).send({msg: 'Note deleted', id: getLastTodo})
     } catch (err) {
         console.log(err);
         res.status(500).send(err)

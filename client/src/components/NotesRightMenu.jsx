@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const NotesRightMenu = (props) => {
-  const { virtualHeading, setVirtualHeading, paramsId, loadData} = props;
+  const { virtualHeading, setVirtualHeading, paramsId, loadNote} = props;
   const auth = useAuthUser();
   let navigate = useNavigate()
 
@@ -33,7 +33,6 @@ const NotesRightMenu = (props) => {
       })
       navigate(`/notes/${notes.data.id}`)
       setVirtualHeading('')
-      loadData()
     }
   }
 
@@ -62,8 +61,8 @@ const NotesRightMenu = (props) => {
                             key={note.id}
                             id={note.id}
                             paramsId={paramsId}
-                            load={load}
-                            loadData={loadData}
+                            loadNotes={load}
+                            loadNote={loadNote}
                             notes={notes}
                         />
                     )

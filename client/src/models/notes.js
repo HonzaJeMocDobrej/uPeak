@@ -20,6 +20,11 @@ export const getNotes = async (userId) => {
     return notesPayload(res)
 }
 
+export const deleteNote = async (id) => {
+    const res = await axios.delete(`http://localhost:3000/api/v1/note/${id}`)
+    return notesPayload(res)
+}
+
 const notesPayload = (res) => {
     return {
         msg: res.data.msg,

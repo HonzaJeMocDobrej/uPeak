@@ -27,9 +27,12 @@ function NotesMenuChild(props) {
     }
 
     const handleDeleteNote = async () => {
-      await deleteNote(id)
-      loadNotes()
-      navigate(`/notes/$`)
+      const deletedNote = await deleteNote(id)
+      if (deletedNote.status == 200) {
+        navigate(`/notes/${deletedNote.data}`)
+        loadNotes()
+        loadNote()
+      } 
     }
 
     useEffect(() => {

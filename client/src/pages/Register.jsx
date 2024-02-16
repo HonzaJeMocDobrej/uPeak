@@ -100,7 +100,7 @@ function Register(props) {
       const notes = await createNotes(user.data.id)
       .catch(err => console.log(err.response.data.msg))
       if (notes.status === 201 && notes) {
-        // document.cookie = `last_note_id=${notes.data[0].id}; SameSite=None`
+        document.cookie = `last_note_id=${notes.notes[0].id}; SameSite=None`
       }
 
 

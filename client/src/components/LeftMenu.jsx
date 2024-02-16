@@ -60,7 +60,8 @@ function LeftMenu(props) {
     const idString = parts[count]
     const id = parseInt(idString.substring(13))
 
-    return id
+    if (id) return id
+    return 1
   }
 
   const load = async () => {

@@ -25,7 +25,7 @@ export const createNotes = async (req: Request, res: Response) => {
         if (!createdNotes) return res.status(500).send({msg: 'Something went wrong'})
         const notes = await Notes.findAll({where: {userId: userId}})
         if (!notes) return res.status(500).send({msg: 'Something went wrong'})
-        return res.status(201).send({msg: 'Note created', payload: createdNotes})
+        return res.status(201).send({msg: 'Note created', payload: createdNotes, notes})
     } catch (err) {
         console.log(err)
         res.status(500).send(err)

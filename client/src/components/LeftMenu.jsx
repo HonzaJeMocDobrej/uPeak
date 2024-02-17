@@ -25,6 +25,7 @@ import { useEffect, useState } from "react";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import { getTheFirstTodoPage } from "../models/todoPage";
 import { checkIfImgExists } from "../functions/functions";
+import { getTheFirstNote } from "../models/notes";
 
 function LeftMenu(props) {
   const { active, isEnglish, isBlack } = props;
@@ -37,6 +38,7 @@ function LeftMenu(props) {
   const [imgSrc, setImgSrc] = useState();
 
   const [firstTodoPageId, setFirstTodoPageId] = useState();
+  const [firstNoteId, setFirstNoteId] = useState();
 
   const univNavigate = (path) => {
     navigate(path);
@@ -47,21 +49,42 @@ function LeftMenu(props) {
     fontWeight: 700,
   };
 
+  const handleGetFirstNote = async () => {
+    const firstNote = await getTheFirstNote(auth.id)
+    if (firstNote.status == 200) {
+      setFirstNoteId(firstNote.data.id)
+    }
+  }
+
   const getNotesLastId = () => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; `)
-    let count = 0
+    let count = [0, 0]
     for (let part of parts){
-        if (part.startsWith('last_note_id=')) {
+        if (part.startsWith(`${auth.username}NoteId=`)) {
             break
         }
-        count = count + 1        
+        count[0] = count[0] + 1  //position in arr      
     }
-    const idString = parts[count]
-    const id = parseInt(idString.substring(13))
-
+    for (let part of parts){
+      if (part.startsWith(`${auth.username}=`)) {
+          break
+      }
+      count[1] = count[1] + 1  //position in arr
+  }
+    const idString = parts[count[0]]
+    const userString = parts[count[1]]
+    if (!idString || !userString) return firstNoteId
+    const idSplitter = auth.username.length + 7
+    const userSplitter = auth.username.length + 1
+    const id = parseInt(idString.substring(idSplitter))
+    const username = userString.substring(userSplitter)
+    console.log(id, username);
+    if (username != auth.username) {
+      return firstNoteId
+    }
     if (id) return id
-    return 1
+    return firstNoteId
   }
 
   const load = async () => {
@@ -81,6 +104,7 @@ function LeftMenu(props) {
 
   useEffect(() => {
     load();
+    handleGetFirstNote()
     getNotesLastId()
   }, []);
 

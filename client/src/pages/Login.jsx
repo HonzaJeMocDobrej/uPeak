@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import LoadingPage from "../components/LoadingPage";
 import { comparePasswords } from "../models/user";
 import useSignIn from 'react-auth-kit/hooks/useSignIn'
-import { deleteOldTodoPages } from "../models/todoPage";
+import { createTodoPage, deleteOldTodoPages } from "../models/todoPage";
+import { formatDate } from "../functions/functions";
 
 function Login(props) {
 
@@ -15,6 +16,15 @@ function Login(props) {
   let navigate = useNavigate()
 
   const signIn = useSignIn()
+
+  const now = new Date
+
+  const groupPageDateHandler = () => {
+    const day = now.getDate()
+    const month = now.getMonth() + 1 
+    const year = now.getFullYear()
+    return formatDate(now.getDay(), day, month, year)
+  }
 
   const loadDeleted = async (userId) => {
     const todoPage = await deleteOldTodoPages(userId);
@@ -72,7 +82,10 @@ function Login(props) {
         }
       })
       loadDeleted(user.data.id)
+      await createTodoPage(user.data.id, groupPageDateHandler())
+      .catch(err => setInfo(err.response.data.msg))
       console.log(user.token);
+      document.cookie = `user=${user.data.username}; SameSite=None`
       navigate(`/progress`)
       return
     }

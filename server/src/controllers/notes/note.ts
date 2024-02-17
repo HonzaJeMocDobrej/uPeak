@@ -16,6 +16,7 @@ export const getNoteById = async (req: Request, res: Response) => {
         res.status(500).send(err)
     }
 }
+
 export const patchNote = async (req: Request, res: Response) => {
     try {
         const { id } = req.params

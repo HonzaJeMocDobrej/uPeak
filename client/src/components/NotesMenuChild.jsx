@@ -3,7 +3,7 @@ import documentImg from "../assets/icons/document.svg";
 import binBlack from "../assets/icons/binBlack.svg";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { deleteNote, getNote } from "../models/notes";
+import { deleteNote } from "../models/notes";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 
 
@@ -27,7 +27,8 @@ function NotesMenuChild(props) {
       // if (paramsId == id) return
       loadNote()
       navigate(`/notes/${id}`)
-      document.cookie = `last_note_id=${id}; SameSite=None`    
+      document.cookie = `${auth.username}=${auth.username}; SameSite=None`
+      document.cookie = `${auth.username}NoteId=${id}; SameSite=None`   
     }
 
     const handleDeleteNote = async () => {
@@ -36,13 +37,13 @@ function NotesMenuChild(props) {
         const notesArr = deletedNote.data
         let index
         notesArr.forEach((note, i) => {
-          console.log(note, i)
           if (i == 0) {
             return index = note.id
           }
         });
         if (id == paramsId) {
-          document.cookie = `last_note_id=${index}; SameSite=None`
+          document.cookie = `${auth.username}=${auth.username}; SameSite=None`
+          document.cookie = `${auth.username}NoteId=${index}; SameSite=None`
           navigate(`/notes/${index}`)
         }
         loadNotes()

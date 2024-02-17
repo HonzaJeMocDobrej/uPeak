@@ -66,7 +66,7 @@ function Notes(props) {
   };
 
   const handlePlaceholder = async () => {
-    updateNotes("mainText", notesRef.current.textContent);
+    updateNotes("mainText", notesRef.current.innerHTML);
     if (notesRef.current.textContent === "") {
       console.log("banger");
       notesRef.current.innerHTML = "";
@@ -217,8 +217,8 @@ function Notes(props) {
               contentEditable="true"
               className="inputP"
               ref={notesRef}
+              dangerouslySetInnerHTML={!mainText ? {__html: ''} : {__html: mainText}}
             >
-              {!mainText ? '' : mainText}
             </p>
           </div>
         </main>

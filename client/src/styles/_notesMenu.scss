@@ -11,7 +11,6 @@
   border-left: 2px solid rgba(51, 51, 51, 0.09);
   position: fixed;
   right: 0rem;
-  overflow-y: auto;
 
   @media (max-width: 1000px) {
     width: 10rem;
@@ -21,26 +20,6 @@
   @media (max-width: 480px) {
     height: calc(100vh - 5.75rem);
     width: 7.5rem;
-}
-
-& {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(#0099FF, 0.3) #ffffff;
-}
-
-/* Chrome, Edge, and Safari */
-&::-webkit-scrollbar {
-  width: 12px;
-}
-
-&::-webkit-scrollbar-track {
-  background: #ffffff;
-}
-
-&::-webkit-scrollbar-thumb {
-  background-color: rgb(234, 247, 255);
-  border-radius: 10px;
-  border: 3px solid #ffffff;
 }
 
   .topCont {
@@ -171,6 +150,28 @@
     align-items: flex-start;
     align-self: stretch;
     padding-bottom: 1.75rem;
+    overflow-y: auto;
+    overflow-x:hidden;
+
+    & {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(#0099FF, 0.3) #ffffff;
+    }
+    
+    /* Chrome, Edge, and Safari */
+    &::-webkit-scrollbar {
+      width: 12px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: #ffffff;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background-color: rgb(234, 247, 255);
+      border-radius: 10px;
+      border: 3px solid #ffffff;
+    }
 
     @media (max-width: 1000px) {
       gap: .5rem;
@@ -258,7 +259,8 @@
           }
 
           img {
-            height: 1.5rem;
+            max-height: 1.5rem;
+            max-width: 2rem;
   
             @media (max-width: 1000px) {
               height: 1rem;

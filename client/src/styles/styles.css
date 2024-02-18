@@ -2407,8 +2407,6 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   border-left: 2px solid rgba(51, 51, 51, 0.09);
   position: fixed;
   right: 0rem;
-  overflow-y: auto;
-  /* Chrome, Edge, and Safari */
 }
 @media (max-width: 1000px) {
   .notesMenu {
@@ -2421,21 +2419,6 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
     height: calc(100vh - 5.75rem);
     width: 7.5rem;
   }
-}
-.notesMenu {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 153, 255, 0.3) #ffffff;
-}
-.notesMenu::-webkit-scrollbar {
-  width: 12px;
-}
-.notesMenu::-webkit-scrollbar-track {
-  background: #ffffff;
-}
-.notesMenu::-webkit-scrollbar-thumb {
-  background-color: rgb(234, 247, 255);
-  border-radius: 10px;
-  border: 3px solid #ffffff;
 }
 .notesMenu .topCont {
   display: flex;
@@ -2571,6 +2554,24 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   align-items: flex-start;
   align-self: stretch;
   padding-bottom: 1.75rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Chrome, Edge, and Safari */
+}
+.notesMenu .bottomCont {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 153, 255, 0.3) #ffffff;
+}
+.notesMenu .bottomCont::-webkit-scrollbar {
+  width: 12px;
+}
+.notesMenu .bottomCont::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+.notesMenu .bottomCont::-webkit-scrollbar-thumb {
+  background-color: rgb(234, 247, 255);
+  border-radius: 10px;
+  border: 3px solid #ffffff;
 }
 @media (max-width: 1000px) {
   .notesMenu .bottomCont {
@@ -2666,7 +2667,8 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   }
 }
 .notesMenu .bottomCont .notesList .leftCont .imgCont img {
-  height: 1.5rem;
+  max-height: 1.5rem;
+  max-width: 2rem;
 }
 @media (max-width: 1000px) {
   .notesMenu .bottomCont .notesList .leftCont .imgCont img {

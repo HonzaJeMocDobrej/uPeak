@@ -22,14 +22,14 @@ export const patchNote = async (req: Request, res: Response) => {
         const { id } = req.params
         const data = req.body
         if (!id || !data) return res.status(400).send({msg: 'Missing details'})
-        const todo = await Note.findOne({where: {id: id}})
-        if (!todo) return res.status(404).send({msg: 'Stats not found'})
+        const note = await Note.findOne({where: {id: id}})
+        if (!note) return res.status(404).send({msg: 'Notes not found'})
         for (const ops of data) {
-            todo[ops.propName] = ops.value
+            note[ops.propName] = ops.value
         }
-        const action = await todo.save()
+        const action = await note.save()
         if (!action) return res.status(500).send({msg: 'Something went wrong'})
-        return res.status(200).send({msg: 'Note patched', payload: todo})
+        return res.status(200).send({msg: 'Note patched', payload: note})
     } catch (err) {
         console.log(err)
         res.status(500).send(err)
@@ -39,6 +39,7 @@ export const patchNote = async (req: Request, res: Response) => {
 export const patchNoteImg = async (req: Request, res: Response) => {
     try {
         const { id } = req.params
+        console.log(req.file)
         if (!id || !req.file) return res.status(400).send({msg: 'Missing details'})
         const note = await Note.findOne({where: {id: id}})
         if (!note) return res.status(400).send({msg: 'Note not found'})

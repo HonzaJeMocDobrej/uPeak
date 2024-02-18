@@ -25,7 +25,7 @@ function Profile(props) {
   const [imgSrc ,setImgSrc] = useState()
 
   useEffect(() => {
-    checkIfImgExists(setImgSrc, auth)
+    checkIfImgExists(setImgSrc, auth.profilePic, basicProfilePic)
 }, [auth])
 
   return (

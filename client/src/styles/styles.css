@@ -2649,6 +2649,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   width: 2.5rem;
   transition: 350ms;
   border-radius: 0.5rem;
+  position: relative;
 }
 @media (max-width: 1000px) {
   .notesMenu .bottomCont .notesList .leftCont .imgCont {
@@ -2685,6 +2686,11 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 .notesMenu .bottomCont .notesList .leftCont .imgCont:active {
   transform: scale(0.95);
   transition: 350ms;
+}
+.notesMenu .bottomCont .notesList .leftCont .imgCont .notesInput {
+  height: 100%;
+  width: 100%;
+  position: absolute;
 }
 .notesMenu .bottomCont .notesList .leftCont .midCont {
   height: 100%;

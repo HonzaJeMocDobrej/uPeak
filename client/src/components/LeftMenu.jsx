@@ -16,6 +16,7 @@ import checkWhiteSvg from "../assets/icons/checkWhite.svg";
 import plusWhiteSvg from "../assets/icons/plusCircleWhite.svg";
 import clockWhiteSvg from "../assets/icons/clockWhite.svg";
 import userWhiteSvg from "../assets/icons/userCircleWhite.svg";
+import basicProfPic from '../assets/img/userPicBasic.svg'
 
 import "../styles/styles.css";
 
@@ -109,7 +110,7 @@ function LeftMenu(props) {
   }, []);
 
   useEffect(() => {
-    checkIfImgExists(setImgSrc, auth);
+    checkIfImgExists(setImgSrc, auth.profilePic, basicProfPic);
   }, [auth]);
 
   return (

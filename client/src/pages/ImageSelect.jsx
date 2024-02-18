@@ -5,6 +5,7 @@ import { patchImage } from "../models/user";
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import useSignIn from 'react-auth-kit/hooks/useSignIn'
 import { checkIfImgExists } from "../functions/functions";
+import basicProfPic from '../assets/img/userPicBasic.svg'
 
 function ImageSelect() {
   let navigate = useNavigate();
@@ -47,7 +48,7 @@ function ImageSelect() {
   }
 
   useEffect(() => {
-    checkIfImgExists(setImgSrc, auth)
+    checkIfImgExists(setImgSrc, auth.profilePic, basicProfPic)
 }, [auth])
 
   return (

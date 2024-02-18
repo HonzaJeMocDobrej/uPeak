@@ -3,8 +3,10 @@ import documentImg from "../assets/icons/document.svg";
 import binBlack from "../assets/icons/binBlack.svg";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { deleteNote } from "../models/notes";
+import { deleteNote, getNote, patchNoteImg } from "../models/notes";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
+import Files from 'react-files'
+import { checkIfImgExists } from "../functions/functions";
 
 
 function NotesMenuChild(props) {
@@ -12,6 +14,8 @@ function NotesMenuChild(props) {
     const {noteNames, paramsId, id, dataHeadline, loadNotes, loadNote} = props
     let navigate = useNavigate()
     const [rightHeadline, setRightHeadline] = useState(dataHeadline)
+    const [notesPic, setNotesPic] = useState()
+    const [notesPicUrl, setNotesPicUrl] = useState()
     const auth = useAuthUser()
     
     const determineRightHeadline = () => {
@@ -51,17 +55,60 @@ function NotesMenuChild(props) {
       } 
     }
 
+    const getImage = async (file) => {
+      const fileObj = file[0]
+      const img = URL.createObjectURL(fileObj)
+      console.log(img)
+      handlePatchImage(fileObj)
+    }
+
+    const handlePatchImage = async (file) => {
+      const data = new FormData
+      data.append('notesPic', file)
+    
+      const img = await patchNoteImg(id, data)
+      .catch(err => {
+        console.log(err.response.data.msg)
+      })
+
+      if (img.status == 200) {
+        setNotesPicUrl(img.data.image)
+      }
+    }
+
+    const loadImg = async () => {
+      const img = await getNote(id)
+      if (img.status == 200) {
+        setNotesPic(img.data.image)
+        checkIfImgExists(setNotesPicUrl, img.data.image, documentImg)
+      }
+    }
+
     useEffect(() => {
       determineRightHeadline()
       console.log(`noteNames: ${noteNames} data: ${dataHeadline}`)
     }, [noteNames])
+
+
+  useEffect(() => {
+    loadImg()
+  }, [notesPicUrl])
 
   return (
     <>
         <div className="notesList">
             <div className="leftCont">
               <div className="imgCont">
-                <img src={documentImg} />
+                <img src={notesPicUrl} />
+                <Files
+                  className='notesInput'
+                  accepts={['image/*']}
+                  maxFileSize={5000000}
+                  minFileSize={0}
+                  name='notesPic'
+                  onChange={getImage}
+                > 
+                </Files>
               </div>
               <div className="midCont" onClick={navToPageById}>
                 <p>{rightHeadline}</p>

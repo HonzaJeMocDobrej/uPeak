@@ -47,4 +47,4 @@ export const uploadNotesImg = multer({
         }
         callback(null, false)
     },
-}).single('notesImg')
+}).single('notesPic')

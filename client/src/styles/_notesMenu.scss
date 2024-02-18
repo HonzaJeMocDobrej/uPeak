@@ -244,6 +244,7 @@
           width: 2.5rem;
           transition: 350ms;
           border-radius: .5rem;
+          position: relative;
 
           @media (max-width: 1000px) {
             height: 1.5rem;
@@ -274,6 +275,12 @@
           &:active {
             transform: scale(.95);
             transition: 350ms;
+          }
+
+          .notesInput {
+            height: 100%;
+            width: 100%;
+            position: absolute;
           }
         }
 

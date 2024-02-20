@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import db from "../../models";
 
 const Notes = db.notes
+const { Op } = require("sequelize");
 
 export const getAllNotes = async (req: Request, res: Response) => {
     try {
@@ -9,6 +10,20 @@ export const getAllNotes = async (req: Request, res: Response) => {
         if (!userId) return res.status(400).send({msg: 'Missing details'})
         const notes = await Notes.findAll({where: {userId: userId}})
         if (!notes || notes.length == 0) return res.status(404).send({msg: 'Notes not found'})
+        return res.status(200).send({msg: 'Notes found', payload: notes})
+    } catch (err) {
+        console.log(err)
+        res.status(500).send(err)
+    }
+}
+
+export const searchNotes = async (req: Request, res: Response) => {
+    try {
+        const {userId} = req.params
+        const {searchVal} = req.body
+        if (!userId || !searchVal) return res.status(400).send({msg: 'Missing details'})
+        const notes = await Notes.findAll({where: {userId: userId, headline: {[Op.startsWith]: searchVal}}})
+        if (!notes || notes.length == 0) return res.status(204).send({msg: 'No notes'})
         return res.status(200).send({msg: 'Notes found', payload: notes})
     } catch (err) {
         console.log(err)

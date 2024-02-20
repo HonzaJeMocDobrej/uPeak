@@ -50,7 +50,7 @@ const NotesRightMenu = (props) => {
           <div className="notesBtn" onClick={handleCreateNotes}>New Note</div>
           <div className="item">
             <img src={magnifyingGlass} alt="" />
-            <p>Search</p>
+            <input type="text" placeholder="Search" />
           </div>
         </div>
         <div className="bottomCont">

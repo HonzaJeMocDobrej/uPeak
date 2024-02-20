@@ -2516,7 +2516,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
     padding: 0.25rem 0rem 0.25rem 0.75rem;
   }
 }
-.notesMenu .topCont .item p {
+.notesMenu .topCont .item p, .notesMenu .topCont .item input {
   margin: 0;
   color: #999;
   font-family: Open Sans;
@@ -2526,14 +2526,19 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   line-height: 93.682%;
 }
 @media (max-width: 1000px) {
-  .notesMenu .topCont .item p {
+  .notesMenu .topCont .item p, .notesMenu .topCont .item input {
     font-size: 0.9rem;
   }
 }
 @media (max-width: 480px) {
-  .notesMenu .topCont .item p {
+  .notesMenu .topCont .item p, .notesMenu .topCont .item input {
     font-size: 0.75rem;
   }
+}
+.notesMenu .topCont .item input {
+  border: 0;
+  outline: none;
+  width: 80%;
 }
 .notesMenu .topCont .item img {
   height: 1rem;

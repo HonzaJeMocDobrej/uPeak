@@ -30,6 +30,7 @@ function Notes(props) {
   const [notesFocused, setNotesFocused] = useState(false);
 
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isSearching, setIsSearching] = useState(false)
 
   const { id } = useParams();
 
@@ -76,6 +77,7 @@ function Notes(props) {
   const handleHealdine = async () => {
     setVirtualHeading(headlineRef.current.textContent);
     updateNotes("headline", headlineRef.current.textContent);
+    setIsSearching(false)
     if (headlineRef.current.textContent === "") {
       console.log("banger");
       headlineRef.current.innerHTML = "";
@@ -162,7 +164,7 @@ function Notes(props) {
 
   useEffect(() => {
     load()
-    console.log('bomba')
+    console.log(heading, virtualHeading)
   }, [heading, id, mainText]);
 
   if (!isLoaded) {
@@ -196,6 +198,8 @@ function Notes(props) {
             setVirtualHeading={setVirtualHeading}
             paramsId={id}
             loadNote={load}
+            isSearching={isSearching}
+            setIsSearching={setIsSearching}
           />
           <div className="notesCont">
             <h2

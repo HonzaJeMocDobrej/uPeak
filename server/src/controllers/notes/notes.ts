@@ -21,10 +21,12 @@ export const searchNotes = async (req: Request, res: Response) => {
     try {
         const {userId} = req.params
         const {searchVal} = req.body
-        if (!userId || !searchVal) return res.status(400).send({msg: 'Missing details'})
-        const notes = await Notes.findAll({where: {userId: userId, headline: {[Op.startsWith]: searchVal}}})
-        if (!notes || notes.length == 0) return res.status(204).send({msg: 'No notes'})
-        return res.status(200).send({msg: 'Notes found', payload: notes})
+        if (!userId && !searchVal) return res.status(400).send({msg: 'Missing details'})
+        const allNotes = await Notes.findAll({where: {userId: userId}})
+        if (searchVal == "") return res.status(200).send({msg: 'All notes', payload: allNotes})
+        const searchNotes = await Notes.findAll({where: {userId: userId, headline: {[Op.startsWith]: searchVal}}})
+        if (!searchNotes) return res.status(204).send({msg: 'No notes', payload: []})
+        return res.status(200).send({msg: 'Notes found', payload: searchNotes})
     } catch (err) {
         console.log(err)
         res.status(500).send(err)

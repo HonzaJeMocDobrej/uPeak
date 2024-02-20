@@ -11,7 +11,7 @@ import { checkIfImgExists } from "../functions/functions";
 
 function NotesMenuChild(props) {
 
-    const {noteNames, paramsId, id, dataHeadline, loadNotes, loadNote} = props
+    const {noteNames, paramsId, id, dataHeadline, loadNotes, loadNote, isSearching} = props
     let navigate = useNavigate()
     const [rightHeadline, setRightHeadline] = useState(dataHeadline)
     const [notesPic, setNotesPic] = useState()
@@ -19,12 +19,19 @@ function NotesMenuChild(props) {
     const auth = useAuthUser()
     
     const determineRightHeadline = () => {
-      loadNotes()
+      if (!isSearching) {
+        loadNotes()
+        if (!noteNames && dataHeadline && paramsId != id || !noteNames && dataHeadline && paramsId == id || noteNames && dataHeadline && paramsId != id) return setRightHeadline(dataHeadline)
+        if (noteNames && dataHeadline && paramsId == id) return setRightHeadline(noteNames)
+        if (!noteNames && !dataHeadline || noteNames && !dataHeadline) return setRightHeadline("Untitled")
+      }
+    if (isSearching) {
+      if (!noteNames && dataHeadline && paramsId != id || !noteNames && dataHeadline && paramsId == id || noteNames && dataHeadline && paramsId != id) return setRightHeadline(dataHeadline)
+        if (noteNames && dataHeadline && paramsId == id) return setRightHeadline(dataHeadline)
+        if (!noteNames && !dataHeadline || noteNames && !dataHeadline) return setRightHeadline("Untitled")
+    }
 
       // if (paramsId != id) return setRightHeadline(dataHeadline)
-      if (!noteNames && dataHeadline && paramsId != id || !noteNames && dataHeadline && paramsId == id || noteNames && dataHeadline && paramsId != id) return setRightHeadline(dataHeadline)
-      if (noteNames && dataHeadline && paramsId == id) return setRightHeadline(noteNames)
-      if (!noteNames && !dataHeadline || noteNames && !dataHeadline) return setRightHeadline("Untitled")
     }
 
     const navToPageById = () => {
@@ -86,7 +93,7 @@ function NotesMenuChild(props) {
 
     useEffect(() => {
       determineRightHeadline()
-      console.log(`noteNames: ${noteNames} data: ${dataHeadline}`)
+      // console.log(`noteNames: ${noteNames} data: ${dataHeadline}`)
     }, [noteNames])
 
 

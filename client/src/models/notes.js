@@ -5,6 +5,13 @@ export const createNotes = async (userId) => {
     return notesPayload(res)
 }
 
+export const searchNotes = async (userId, searchVal) => {
+    const res = await axios.post(`http://localhost:3000/api/v1/notes/search/${userId}`, {
+        searchVal: searchVal
+    })
+    return notePayload(res)
+}
+
 export const patchNote = async (id, data) => {
     const res = await axios.patch(`http://localhost:3000/api/v1/note/${id}`, data)
     return notePayload(res)

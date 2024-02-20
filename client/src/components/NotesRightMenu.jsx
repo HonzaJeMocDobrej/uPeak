@@ -2,23 +2,26 @@
 import "../styles/styles.css";
 import magnifyingGlass from "../assets/icons/magnifyingGlass.svg";
 import { useEffect, useState } from "react";
-import { createNotes, getNotes } from "../models/notes";
+import { createNotes, getNotes, searchNotes } from "../models/notes";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import NotesMenuChild from "./NotesMenuChild";
 import { useNavigate } from "react-router-dom";
 
 
 const NotesRightMenu = (props) => {
-  const { virtualHeading, setVirtualHeading, paramsId, loadNote} = props;
+  const { virtualHeading, setVirtualHeading, paramsId, loadNote, isSearching, setIsSearching} = props;
   const auth = useAuthUser();
   let navigate = useNavigate()
 
   const [notes, setNotes] = useState([]);
 
+
   const load = async () => {
     const notes = await getNotes(auth.id);
     if (notes.status === 200) {
         setNotes(notes.data)
+        // console.log('loaded')
+        console.log(isSearching)
     }
   };
 
@@ -39,6 +42,19 @@ const NotesRightMenu = (props) => {
     loadNote()
   }
 
+  const handleSearch = async (e) => {
+    const notes = await searchNotes(auth.id, e.target.value)
+    if (notes.status == 200) {
+      setNotes(notes.data)
+      setIsSearching(true)
+      setVirtualHeading('')
+    }
+    if (notes.status == 204) {
+      setNotes([])
+      setIsSearching(false)
+    }
+  }
+
   useEffect(() => {
     load()
   }, [])
@@ -50,7 +66,7 @@ const NotesRightMenu = (props) => {
           <div className="notesBtn" onClick={handleCreateNotes}>New Note</div>
           <div className="item">
             <img src={magnifyingGlass} alt="" />
-            <input type="text" placeholder="Search" />
+            <input type="text" placeholder="Search" onChange={handleSearch} />
           </div>
         </div>
         <div className="bottomCont">
@@ -67,6 +83,7 @@ const NotesRightMenu = (props) => {
                             loadNotes={load}
                             loadNote={loadNote}
                             notes={notes}
+                            isSearching={isSearching}
                         />
                     )
                 })

@@ -2563,6 +2563,66 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   overflow-x: hidden;
   /* Chrome, Edge, and Safari */
 }
+.notesMenu .bottomCont .spinnerCont {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.notesMenu .bottomCont .spinnerCont .spinner {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  animation: spinner-plncf9 2.4s infinite;
+  margin-top: 4rem;
+}
+@media (max-width: 1000px) {
+  .notesMenu .bottomCont .spinnerCont .spinner {
+    height: 24px;
+    width: 24px;
+    margin-top: 3rem;
+  }
+}
+@media (max-width: 480px) {
+  .notesMenu .bottomCont .spinnerCont .spinner {
+    height: 12px;
+    width: 12px;
+    margin-top: 2rem;
+  }
+}
+.notesMenu .bottomCont .spinnerCont .spinner::before,
+.notesMenu .bottomCont .spinnerCont .spinner::after {
+  content: "";
+  grid-area: 1/1;
+  border: 6px solid;
+  border-radius: 50%;
+  border-color: #0099ff #0099ff rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+  mix-blend-mode: darken;
+  animation: spinner-plncf9 0.6s infinite linear;
+}
+@media (max-width: 1000px) {
+  .notesMenu .bottomCont .spinnerCont .spinner::before,
+  .notesMenu .bottomCont .spinnerCont .spinner::after {
+    border: 4px solid;
+    border-color: #0099ff #0099ff rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+  }
+}
+@media (max-width: 480px) {
+  .notesMenu .bottomCont .spinnerCont .spinner::before,
+  .notesMenu .bottomCont .spinnerCont .spinner::after {
+    border: 2px solid;
+    border-color: #0099ff #0099ff rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+  }
+}
+.notesMenu .bottomCont .spinnerCont .spinner::after {
+  border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #dbdcef #dbdcef;
+  animation-direction: reverse;
+}
+@keyframes spinner-plncf9 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
 .notesMenu .bottomCont {
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 153, 255, 0.3) #ffffff;

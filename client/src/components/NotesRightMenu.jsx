@@ -14,6 +14,7 @@ const NotesRightMenu = (props) => {
   let navigate = useNavigate()
 
   const [notes, setNotes] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(true)
 
 
   const load = async () => {
@@ -47,7 +48,6 @@ const NotesRightMenu = (props) => {
     if (notes.status == 200) {
       setNotes(notes.data)
       setIsSearching(true)
-      setVirtualHeading('')
     }
     if (notes.status == 204) {
       setNotes([])
@@ -71,9 +71,19 @@ const NotesRightMenu = (props) => {
         </div>
         <div className="bottomCont">
           <p className="myNotes">My Notes</p>
+          {!isLoaded && 
+          <>
+            <div className="spinnerCont">
+              <div className="spinner"></div>
+            </div>
+          </>
+          }
             {
                 notes.map(note => {
-                    return(
+                   
+                    
+                  
+                  if (note.id == paramsId)  return(
                         <NotesMenuChild
                             noteNames={virtualHeading}
                             dataHeadline={note.headline}
@@ -84,6 +94,25 @@ const NotesRightMenu = (props) => {
                             loadNote={loadNote}
                             notes={notes}
                             isSearching={isSearching}
+                            correctHeadline={virtualHeading}
+                            isLoaded={isLoaded}
+                            setIsLoaded={setIsLoaded}
+                        />
+                    )
+                    return (
+                      <NotesMenuChild
+                            noteNames={virtualHeading}
+                            dataHeadline={note.headline}
+                            key={note.id}
+                            id={note.id}
+                            paramsId={paramsId}
+                            loadNotes={load}
+                            loadNote={loadNote}
+                            notes={notes}
+                            isSearching={isSearching}
+                            correctHeadline={note.headline}
+                            isLoaded={isLoaded}
+                            setIsLoaded={setIsLoaded}
                         />
                     )
                 })

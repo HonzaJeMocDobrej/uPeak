@@ -27,6 +27,10 @@ const NotesRightMenu = (props) => {
   };
 
   const handleCreateNotes = async () => {
+    setIsLoaded(false)
+    setTimeout(() => {
+      setIsLoaded(true)
+    }, 200)
     const notes = await createNotes(auth.id)
     if (notes.status == 201) {
       setNotes(prev => {

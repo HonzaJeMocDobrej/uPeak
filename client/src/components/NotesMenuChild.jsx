@@ -32,11 +32,11 @@ function NotesMenuChild(props) {
 
   const navToPageById = () => {
     // if (paramsId == id) return
-    setIsLoaded(false)
-    setTimeout(() => {
-      setIsLoaded(true)
-    }, 200)
     loadNote();
+    setIsLoaded(false);
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 200);
     navigate(`/notes/${id}`);
     document.cookie = `${auth.username}=${auth.username}; SameSite=None`;
     document.cookie = `${auth.username}NoteId=${id}; SameSite=None`;
@@ -52,6 +52,10 @@ function NotesMenuChild(props) {
           return (index = note.id);
         }
       });
+      setIsLoaded(false);
+      setTimeout(() => {
+        setIsLoaded(true);
+      }, 200);
       if (id == paramsId) {
         document.cookie = `${auth.username}=${auth.username}; SameSite=None`;
         document.cookie = `${auth.username}NoteId=${index}; SameSite=None`;
@@ -101,7 +105,10 @@ function NotesMenuChild(props) {
 
   return (
     <>
-      <div className="notesList" style={{display: isLoaded ? "flex" : "none"}}>
+      <div
+        className="notesList"
+        style={{ display: isLoaded ? "flex" : "none" }}
+      >
         <div className="leftCont">
           <div className="imgCont">
             <img src={notesPicUrl} />

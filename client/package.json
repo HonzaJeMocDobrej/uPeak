@@ -12,6 +12,7 @@
   "dependencies": {
     "@auth-kit/react-router": "^3.0.2-alpha.19",
     "axios": "^1.6.0",
+    "color-convert": "^2.0.1",
     "nanoid": "^5.0.3",
     "react": "^18.2.0",
     "react-auth-kit": "^3.0.2-alpha.19",

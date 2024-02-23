@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import LeftMenu from "../components/LeftMenu";
 import TopMenu from "../components/TopMenu";
 import { ChromePicker } from "react-color";
-import { formatDate } from "../functions/functions";
+import { convertToHSLDark, formatDate } from "../functions/functions";
 import pallette from "../assets/icons/Pallette.svg";
 
 import "../styles/styles.css";
@@ -287,10 +287,7 @@ function ToDo(props) {
                       <input
                         value={groupData.name}
                         onChange={updateHeadlineGroupVal}
-                        style={{
-                          color:
-                            groupData.color === "#333" ? null : groupData.color,
-                        }}
+                        style={{color: isBlack ? convertToHSLDark(groupData.color, false) : convertToHSLDark(groupData.color, true)}}
                         className="headline"
                         placeholder="Group Name..."
                         type="text"
@@ -337,10 +334,7 @@ function ToDo(props) {
                     <li
                       key={group.id}
                       style={{
-                        color:
-                          group.color === "#333"
-                            ? "rgba(51, 51, 51, 0.8)"
-                            : group.color,
+                        color: isBlack ? convertToHSLDark(group.color, false) : convertToHSLDark(group.color, true),
                         display: "flex",
                         justifyContent: "space-between",
                         alignItems: "center",
@@ -401,6 +395,7 @@ function ToDo(props) {
                     id={group.id}
                     name={group.name}
                     color={group.color}
+                    isBlack={isBlack}
                   />
                 );
               }

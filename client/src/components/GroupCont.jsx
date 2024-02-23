@@ -5,10 +5,11 @@ import ToDoListItem from './ToDoListItem';
 import { createTodo, getTodosById } from '../models/todos';
 import { nanoid } from 'nanoid'
 import AddToDo from './AddToDo';
+import { convertToHSLDark } from '../functions/functions';
 
 function GroupCont(props) {
 
-    const { univToggle, name, color, id} = props
+    const { univToggle, name, color, id, isBlack} = props
 
     const [todos, setTodos] = useState([]);
     const [isCreateTodoOpen, setIsCreateTodoOpen] = useState(false);
@@ -69,13 +70,14 @@ function GroupCont(props) {
 
       useEffect(() => {
         loadTodos()
+        console.log(...todos)
       }, [])
       
 
   return (
     <>
         <div className="groupCont">
-              <h2 className="groupHeadline" style={{color: color}}>{name}</h2>
+              <h2 className="groupHeadline" style={{color: isBlack ? convertToHSLDark(color, false) : convertToHSLDark(color, true)}}>{name}</h2>
               <div className="toDoListItemsCont">
               {
             todos && todos.map((todo) => {
@@ -111,6 +113,9 @@ function GroupCont(props) {
                       priorityCircleHoverClass={prioCircleHoverTernary}
                       headlineColor={todo.color}
                       univToggle={univToggle}
+                      isBlack={isBlack}
+                      lightColor={convertToHSLDark(todo.color, true)}
+                      darkColor={convertToHSLDark(todo.color, false)}
                     />
                   );
                 })}
@@ -128,6 +133,9 @@ function GroupCont(props) {
                   setIsCreateTodoOpen={setIsCreateTodoOpen}
                   univToggle={univToggle}
                   submitFunc={allTodosOnClick}
+                  isBlack={isBlack}
+                  lightColor={convertToHSLDark(todoData.color, true)}
+                  darkColor={convertToHSLDark(todoData.color, false)}
                 />
                 
               </div>

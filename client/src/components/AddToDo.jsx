@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChromePicker } from "react-color";
 
 
@@ -11,7 +11,7 @@ import priorityLightningOne from "../assets/icons/priorityLightningOne.svg";
 
 function AddToDo(props) {
 
-    const {todoData, setTodoData, isCreateTodoOpen, setIsCreateTodoOpen, univToggle, submitFunc, style, closeData} = props
+    const {todoData, setTodoData, isCreateTodoOpen, setIsCreateTodoOpen, univToggle, submitFunc, style, closeData, isBlack, darkColor, lightColor} = props
 
     const [isPalletteOpen, setIsPalletteOpen] = useState(false);
     const [isPrioOpen, setIsPrioOpen] = useState(false);
@@ -79,6 +79,10 @@ function AddToDo(props) {
       ? "lightPrio4"
       : "";
 
+      useEffect(() => {
+
+      }, [])
+
   return (
     <>
       <div
@@ -96,9 +100,7 @@ function AddToDo(props) {
             <input
               value={todoData.name}
               onChange={updateHeadlineTodoVal}
-              style={{
-                color: todoData.color === "#333" ? null : todoData.color,
-              }}
+              style={{ color: isBlack ? darkColor : lightColor }}
               className="headline"
               placeholder="Task Name..."
               type="text"

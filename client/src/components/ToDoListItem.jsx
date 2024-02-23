@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 import Bin from "../assets/icons/Bin.svg";
+import { convertToHSLDark } from "../functions/functions";
 import { deleteTodoById, getTodoById, submitTodoById, updateTodoById } from "../models/todos";
 import AddToDo from "./AddToDo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function ToDoListItem(props) {
-  const { id, loadTodos, univToggle } = props;
+  const { id, loadTodos, univToggle, headlineColor, isBlack, darkColor, lightColor } = props;
 
   const [isCreateTodoOpen, setIsCreateTodoOpen] = useState(false);
   const [ownTodoData, setOwnTodoData] = useState({
@@ -62,6 +63,10 @@ function ToDoListItem(props) {
     setIsCreateTodoOpen((prev) => !prev);
   };
 
+  useEffect(() => {
+    console.log(convertToHSLDark(headlineColor))
+  }, [])
+
   return (
     <>
       <div className="todoAndAddTodoCont" style={{ position: "relative" }}>
@@ -74,6 +79,9 @@ function ToDoListItem(props) {
           submitFunc={updateTodo}
           style={"3rem"}
           closeData={false}
+          isBlack={isBlack}
+          lightColor={convertToHSLDark(ownTodoData.color, true)}
+          darkColor={convertToHSLDark(ownTodoData.color, false)}
         />
         <div className="toDoListItem">
           <div className="btnAndTextCont">
@@ -93,7 +101,7 @@ function ToDoListItem(props) {
                 cursor: "pointer"
               }}
             >
-              <p style={{ color: props.headlineColor }}>{props.name}</p>
+              <p style={{ color: isBlack ? darkColor : lightColor }}>{props.name}</p>
             </div>
           </div>
           <div className="rightBtnsCont">

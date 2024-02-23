@@ -1,4 +1,4 @@
-
+import convert from 'color-convert'
 
 export const formatDate = (dayType, day, month, year) => {
     let dayFormatted
@@ -35,4 +35,34 @@ export const formatDate = (dayType, day, month, year) => {
             return setter(basicImg)
         }
     }).catch(err => console.log('Error:', err));
+}
+
+export const getRGBValues = (rgb) => {
+  console.log(rgb)
+  const split = rgb.substring(5, rgb.length-1).split(',')
+  const parseArr = split.map(e => {
+    return parseInt(e)
+  })
+  return parseArr
+}
+
+export const convertToHSLDark = (headlineColor, isLight ) => {
+  let rgb = getRGBValues(headlineColor)
+  console.log(rgb);
+  let value
+  if (headlineColor.startsWith('#')) {
+    value = convert.hex.hsl(headlineColor)
+  } else {
+    value = convert.rgb.hsl(rgb[0], rgb[1], rgb[2])
+  }
+
+  console.log(value)
+  let L = value[2]
+  let shouldBeReplaced
+  isLight ? shouldBeReplaced = L > 70 ? true : false : shouldBeReplaced = L < 30 ? true : false 
+  if (!shouldBeReplaced) return headlineColor
+  value = [value[0], value[1], 30]
+  const rgbBack = convert.hsl.rgb(value)
+  return `rgba(${rgbBack[0]}, ${rgbBack[1]}, ${rgbBack[2]}, 1)`
+  
 }

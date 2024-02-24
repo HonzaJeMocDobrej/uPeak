@@ -77,7 +77,7 @@ function Notes(props) {
   const handleHealdine = async () => {
     setVirtualHeading(headlineRef.current.textContent);
     updateNotes("headline", headlineRef.current.textContent);
-    setIsSearching(false)
+    // setIsSearching(false)
     if (headlineRef.current.textContent === "") {
       console.log("banger");
       headlineRef.current.innerHTML = "";
@@ -170,7 +170,7 @@ function Notes(props) {
   if (!isLoaded) {
     return (
       <>
-        <LoadingPage />
+        <LoadingPage/>
       </>
     );
   }

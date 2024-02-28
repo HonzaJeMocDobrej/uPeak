@@ -66,3 +66,30 @@ export const convertToHSLDark = (headlineColor, isLight ) => {
   return `rgba(${rgbBack[0]}, ${rgbBack[1]}, ${rgbBack[2]}, 1)`
   
 }
+
+export const convertDateAndGetMax = (from) => {
+  const dateStr = from.map(el => {
+    const updatedAt = el.updatedAt
+    const withSlash = updatedAt.substring(0, 10)
+    const split = withSlash.split('-')
+    const newString = `${split[0]}${split[1]}${split[2]}`
+    const toInt = parseInt(newString)
+    return toInt
+  })
+  return Math.max(...dateStr)
+}
+
+export const formatFullDate = (day, month, year) => {
+  if (day >= 10 && month >= 10){
+      return `${year}${month}${day}`
+    }
+    if (day < 10 && month >= 10){
+      return `${year}${month}0${day}`
+    }
+    if (day >= 10 && month < 10){
+      return `${year}0${month}${day}`
+    }
+    if (day < 10 && month < 10) {
+      return `${year}0${month}0${day}`
+    }
+}

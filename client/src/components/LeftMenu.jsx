@@ -25,8 +25,9 @@ import { useEffect, useState } from "react";
 
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import { getTheFirstTodoPage } from "../models/todoPage";
-import { checkIfImgExists } from "../functions/functions";
+import { checkIfImgExists, formatFullDate } from "../functions/functions";
 import { getTheFirstNote } from "../models/notes";
+import { getUserStats, patchStats } from "../models/stats";
 
 function LeftMenu(props) {
   const { active, isEnglish, isBlack } = props;
@@ -41,8 +42,134 @@ function LeftMenu(props) {
   const [firstTodoPageId, setFirstTodoPageId] = useState();
   const [firstNoteId, setFirstNoteId] = useState();
 
-  const univNavigate = (path) => {
+  const nowDate = new Date()
+
+  const handleNav = async (path) => {
     navigate(path);
+    const todaysDate = parseInt(formatFullDate(nowDate.getDate(), nowDate.getMonth() + 1, nowDate.getFullYear()))
+    console.log(todaysDate);
+
+    const getStats = await getUserStats(auth.id)
+    if (getStats == 200) return console.log(getStats.msg)
+    console.log(getStats.data)
+
+    if (path.startsWith('/todo')) {
+      if (todaysDate == getStats.data.todoLastLogin) return
+      if (todaysDate - getStats.data.todoLastLogin == 1) {
+        await patchStats(auth.id, [
+          {
+            propName: 'todoLastLogin',
+            value: `${todaysDate}`
+          },
+          {
+            propName: 'todoStreak',
+            value: getStats.data.todoStreak + 1
+          },
+          {
+            propName: 'todoTotal',
+            value: getStats.data.todoTotal + 1
+          }
+        ])
+      }
+      if (todaysDate - getStats.data.todoLastLogin >= 2) {
+        await patchStats(auth.id, [
+          {
+            propName: 'todoLastLogin',
+            value: `${todaysDate}`
+          },
+          {
+            propName: 'todoStart',
+            value: `${todaysDate}`
+          },
+          {
+            propName: 'todoStreak',
+            value: 0
+          },
+          {
+            propName: 'todoTotal',
+            value: getStats.data.todoTotal + 1
+          }
+        ])
+      }
+    }
+    if (path.startsWith('/notes')) {
+      if (todaysDate == getStats.data.notesLastLogin) return
+      if (todaysDate - getStats.data.notesLastLogin == 1) {
+        await patchStats(auth.id, [
+          {
+            propName: 'notesLastLogin',
+            value: `${todaysDate}`
+          },
+          {
+            propName: 'notesStreak',
+            value: getStats.data.notesStreak + 1
+          },
+          {
+            propName: 'notesTotal',
+            value: getStats.data.notesTotal + 1
+          }
+        ])
+      }
+      if (todaysDate - getStats.data.notesLastLogin >= 2) {
+        await patchStats(auth.id, [
+          {
+            propName: 'notesLastLogin',
+            value: `${todaysDate}`
+          },
+          {
+            propName: 'notesStart',
+            value: `${todaysDate}`
+          },
+          {
+            propName: 'notesStreak',
+            value: 0
+          },
+          {
+            propName: 'notesTotal',
+            value: getStats.data.notesTotal + 1
+          }
+        ])
+      }
+    }
+    if (path.startsWith('/pomodoro')) {
+      if (todaysDate == getStats.data.pomodoroLastLogin) return
+      if (todaysDate - getStats.data.pomodoroLastLogin == 1) {
+        await patchStats(auth.id, [
+          {
+            propName: 'pomodoroLastLogin',
+            value: `${todaysDate}`
+          },
+          {
+            propName: 'pomodoroStreak',
+            value: getStats.data.pomodoroStreak + 1
+          },
+          {
+            propName: 'pomodoroTotal',
+            value: getStats.data.pomodoroTotal + 1
+          }
+        ])
+      }
+      if (todaysDate - getStats.data.pomodoroLastLogin >= 2) {
+        await patchStats(auth.id, [
+          {
+            propName: 'pomodoroLastLogin',
+            value: `${todaysDate}`
+          },
+          {
+            propName: 'pomodoroStart',
+            value: `${todaysDate}`
+          },
+          {
+            propName: 'pomodoroStreak',
+            value: 0
+          },
+          {
+            propName: 'pomodoroTotal',
+            value: getStats.data.pomodoroTotal + 1
+          }
+        ])
+      }
+    }
   };
 
   const selectedStyle = {
@@ -134,7 +261,7 @@ function LeftMenu(props) {
           style={height <= 650 ? { height: `${height / 10}%` } : null}
           className="itemsCont"
         >
-          <li onMouseUp={() => univNavigate("/progress")} className="selected">
+          <li onMouseUp={() => handleNav("/progress")} className="selected">
             <img
               src={
                 active === "progress"
@@ -149,7 +276,7 @@ function LeftMenu(props) {
               {isEnglish ? "Progress" : "Progres"}
             </p>
           </li>
-          <li onMouseUp={() => univNavigate(`/todo/${firstTodoPageId}`)}>
+          <li onMouseUp={() => handleNav(`/todo/${firstTodoPageId}`)}>
             <img
               src={
                 active === "todo"
@@ -162,7 +289,7 @@ function LeftMenu(props) {
             />
             <p style={active === "todo" ? selectedStyle : null}>To-Do</p>
           </li>
-          <li onMouseUp={() => univNavigate(`/notes/${getNotesLastId()}`)}>
+          <li onMouseUp={() => handleNav(`/notes/${getNotesLastId()}`)}>
             <img
               src={
                 active === "notes"
@@ -177,7 +304,7 @@ function LeftMenu(props) {
               {isEnglish ? "Notes" : "Poznámky"}
             </p>
           </li>
-          <li onMouseUp={() => univNavigate("/pomodoro")}>
+          <li onMouseUp={() => handleNav("/pomodoro")}>
             <img
               src={
                 active === "pomodoro"
@@ -190,7 +317,7 @@ function LeftMenu(props) {
             />
             <p style={active === "pomodoro" ? selectedStyle : null}>Pomodoro</p>
           </li>
-          <li onMouseUp={() => univNavigate("/profile")}>
+          <li onMouseUp={() => handleNav("/profile")}>
             <img
               className="profilePic"
               src={

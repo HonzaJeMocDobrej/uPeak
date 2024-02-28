@@ -4,7 +4,7 @@ const { Op } = require('sequelize')
 
 const TodoPages = db.todoPage
 
-const formatFullDate = (dayNum:number, monthNum:number, year:number) => {
+export const formatFullDate = (dayNum:number, monthNum:number, year:number) => {
     if (dayNum >= 10 && monthNum >= 10){
         return `${year}${monthNum}${dayNum}` as string
       }

@@ -11,15 +11,33 @@ module.exports = (sequelize: any, Sequelize: any) => {
                 defaultValue: 0,
                 allowNull: false
             },
+            todoStart: {
+                type: Sequelize.STRING,
+            },
+            todoLastLogin: {
+                type: Sequelize.STRING,
+            },
             notesStreak: {
                 type: Sequelize.SMALLINT,
                 defaultValue: 0,
                 allowNull: false
             },
+            notesStart: {
+                type: Sequelize.STRING,
+            },
+            notesLastLogin: {
+                type: Sequelize.STRING,
+            },
             pomodoroStreak: {
                 type: Sequelize.SMALLINT,
                 defaultValue: 0,
                 allowNull: false
+            },
+            pomodoroStart: {
+                type: Sequelize.STRING,
+            },
+            pomodoroLastLogin: {
+                type: Sequelize.STRING,
             },
             todoTotal: {
                 type: Sequelize.SMALLINT,

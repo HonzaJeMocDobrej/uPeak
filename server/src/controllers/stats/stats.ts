@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import db from "../../models";
+import { formatFullDate } from "../todo/todoPages";
 
 const Stats = db.stats
 
@@ -18,13 +19,20 @@ export const getStatsById = async (req: Request, res: Response) => {
 
 export const createStats = async (req: Request, res: Response) => {
     try {
+        const nowDate: Date =  new Date()
         const { userId } = req.params
         console.log(userId)
         if (!userId) return res.status(400).send({msg: 'Missing details'})
         const stats = await Stats.findOne({where: {userId: userId}})
         if (stats) return res.status(400).send({msg: 'User already has stats'})
         const createdStats = await Stats.create({
-            userId: userId
+            userId: userId,
+            todoStart: formatFullDate(nowDate.getDate(), nowDate.getMonth() + 1, nowDate.getFullYear()),
+            todoLastLogin: formatFullDate(nowDate.getDate() - 1, nowDate.getMonth() + 1, nowDate.getFullYear()),
+            notesStart: formatFullDate(nowDate.getDate(), nowDate.getMonth() + 1, nowDate.getFullYear()),
+            notesLastLogin: formatFullDate(nowDate.getDate(), nowDate.getMonth() + 1, nowDate.getFullYear()),
+            pomodoroStart: formatFullDate(nowDate.getDate(), nowDate.getMonth() + 1, nowDate.getFullYear()),
+            pomodoroLastLogin: formatFullDate(nowDate.getDate(), nowDate.getMonth() + 1, nowDate.getFullYear()),
         })
         if (!createdStats) return res.status(500).send({msg: 'Something went wrong'})
         return res.status(201).send({msg: 'Stats created', payload: createdStats})

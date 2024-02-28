@@ -5,6 +5,11 @@ export const createStats = async (userId) => {
       return statsPayload(res)
 }
 
+export const patchStats = async (userId, data) => {
+    const res = await axios.patch(`http://localhost:3000/api/v1/stats/${userId}`, data)
+      return statsPayload(res)
+}
+
 export const getUserStats = async (userId) => {
     const res = await axios.get(`http://localhost:3000/api/v1/stats/${userId}`)
     return statsPayload(res)

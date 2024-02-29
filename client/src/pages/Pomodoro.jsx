@@ -11,6 +11,7 @@ import stop from "../assets/icons/stop.svg";
 
 import "../styles/styles.css";
 import { useEffect, useRef, useState } from "react";
+import LoadingPage from "../components/LoadingPage";
 
 function Pomodoro(props) {
   const {
@@ -31,6 +32,14 @@ function Pomodoro(props) {
   const [isPause, setIsPause] = useState(false);
   const [stage, setStage] = useState(1);
   const [stars, setStars] = useState(stars_stage_one)
+
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const load = () => {
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 500);
+  }
 
   const playBtnClick = () => {
     if (!isPlayClicked) {
@@ -94,6 +103,10 @@ function Pomodoro(props) {
     formatter();
   }, [time, isPause, stage]);
 
+  useEffect(() => {
+    load()
+  }, [])
+
   const formatter = () => {
     const minutesRaw = time / 60;
     const minutes = Math.floor(time / 60);
@@ -110,6 +123,14 @@ function Pomodoro(props) {
   };
 
   let headline;
+
+  if (!isLoaded) {
+    return (
+      <>
+        <LoadingPage />
+      </>
+    );
+  }
 
   if (isPause) {
     headline = (

@@ -9,6 +9,7 @@ import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import "../styles/styles.css";
 import { checkIfImgExists } from "../functions/functions";
 import { useEffect, useState } from "react";
+import LoadingPage from "../components/LoadingPage";
 
 function Profile(props) {
   const {
@@ -23,10 +24,29 @@ function Profile(props) {
 
   const auth = useAuthUser()
   const [imgSrc ,setImgSrc] = useState()
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  const load = () => {
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 500);
+  }
 
   useEffect(() => {
     checkIfImgExists(setImgSrc, auth.profilePic, basicProfilePic)
-}, [auth])
+  }, [auth])
+
+  useEffect(() => {
+    load()
+  }, [])
+
+  if (!isLoaded) {
+    return (
+      <>
+        <LoadingPage />
+      </>
+    );
+  }
 
   return (
     <>

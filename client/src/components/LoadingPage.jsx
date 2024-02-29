@@ -23,7 +23,9 @@ function LoadingPage() {
         <div className='loadingPage'>
           <h1 className='fullHeading'>u<span className='blackSpan'>Peak<div className="underline"></div></span></h1>
           <div className="spinner"></div>
-          <div style={{display: showMore ? 'block' : 'none'}} className="wholeNavCont">
+          <div style={{display: showMore ? 'block' : 'none'}} className="showMoreWrapper">
+            <h2>Yikes, It looks like something isn&apos;t quite right 😓</h2>
+          <div className="wholeNavCont">
           <div onClick={() => customNav('/')} className="navCont">
             <img src={arrowBack} alt="" />
             <p>Go Back</p>
@@ -35,6 +37,7 @@ function LoadingPage() {
           <div onClick={() => customNav('/signin')} className="navCont">
             <img src={userBlue} alt="" />
             <p>Signin</p>
+          </div>
           </div>
           </div>
         </div>

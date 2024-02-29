@@ -12,6 +12,7 @@ import Login from './pages/Login'
 import ImageSelect from './pages/ImageSelect'
 
 import AuthOutlet from '@auth-kit/react-router/AuthOutlet'
+import LoadingPage from './components/LoadingPage'
 
 function Path() {
 
@@ -104,6 +105,9 @@ function Path() {
                    switchStyle={switchStyle} 
                    setSwitchStyle={setSwitchStyle}/>
                 } />
+              </Route>
+
+              <Route path='*' element={<LoadingPage />}>
               </Route>
             </Routes>
         </Router>

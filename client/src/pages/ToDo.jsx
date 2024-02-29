@@ -66,7 +66,7 @@ function ToDo(props) {
   const [groups, setGroups] = useState([]);
 
   const loadTodoPages = async () => {
-    const todoPage = await getTodoPage(todoPageId);
+    const todoPage = await getTodoPage(auth.id ,todoPageId);
     if (todoPage.status === 500) return setIsLoaded(false);
     if (todoPage.status === 200) {
       setSelectedDate(todoPage.data);

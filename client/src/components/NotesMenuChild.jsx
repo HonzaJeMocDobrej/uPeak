@@ -87,7 +87,7 @@ function NotesMenuChild(props) {
   };
 
   const loadImg = async () => {
-    const img = await getNote(id);
+    const img = await getNote(auth.id, id);
     if (img.status == 200) {
       setNotesPic(img.data.image);
       checkIfImgExists(setNotesPicUrl, img.data.image, documentImg);

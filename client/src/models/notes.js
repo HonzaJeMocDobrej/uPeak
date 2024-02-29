@@ -17,8 +17,8 @@ export const patchNote = async (id, data) => {
     return notePayload(res)
 }
 
-export const getNote = async (id) => {
-    const res = await axios.get(`http://localhost:3000/api/v1/note/${id}`)
+export const getNote = async (userId, id) => {
+    const res = await axios.get(`http://localhost:3000/api/v1/note/${userId}/${id}`)
     return notePayload(res)
 }
 

@@ -3213,7 +3213,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 .pomodoroCont .bottomBtnsCont .playBtnCont .border {
   background-color: #09F;
-  width: calc(11rem + 11.5px);
+  width: calc(11.05rem + 11.5px);
   height: 8rem;
   position: absolute;
   top: 5.6rem;
@@ -3223,7 +3223,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 @media (max-width: 1300px) {
   .pomodoroCont .bottomBtnsCont .playBtnCont .border {
-    width: calc(8.8rem + 11.5px);
+    width: calc(8.85rem + 11.5px);
     height: 6.4rem;
     top: 4.48rem;
   }
@@ -3299,7 +3299,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 .pomodoroCont .bottomBtnsCont .pauseBtnCont .border {
   background-color: #333;
-  width: calc(7.5rem + 11.5px);
+  width: calc(7.55rem + 11.5px);
   height: 5.5rem;
   position: absolute;
   top: 4.1rem;
@@ -3309,7 +3309,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 @media (max-width: 1300px) {
   .pomodoroCont .bottomBtnsCont .pauseBtnCont .border {
-    width: calc(6rem + 11.5px);
+    width: calc(6.05rem + 11.5px);
     height: 4.4rem;
     top: 3.28rem;
   }
@@ -3379,7 +3379,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 .pomodoroCont .bottomBtnsCont .stopBtnCont .border {
   background-color: #333;
-  width: calc(7.5rem + 11.5px);
+  width: calc(7.55rem + 11.5px);
   height: 5.5rem;
   position: absolute;
   top: 4.1rem;
@@ -3389,7 +3389,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 @media (max-width: 1300px) {
   .pomodoroCont .bottomBtnsCont .stopBtnCont .border {
-    width: calc(6rem + 11.5px);
+    width: calc(6.05rem + 11.5px);
     height: 4.4rem;
     top: 3.28rem;
   }
@@ -3778,13 +3778,23 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   background-color: #333;
   animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
-.loadingPage .wholeNavCont {
+.loadingPage .showMoreWrapper {
   animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+.loadingPage .showMoreWrapper h2 {
+  font-family: Poppins;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #09f;
+  text-align: center;
+  margin-top: 0;
+}
+.loadingPage .showMoreWrapper .wholeNavCont {
   width: -moz-fit-content;
   width: fit-content;
-  margin: 0 auto;
+  margin: 0rem auto;
 }
-.loadingPage .wholeNavCont .navCont {
+.loadingPage .showMoreWrapper .wholeNavCont .navCont {
   display: flex;
   align-items: center;
   justify-content: left;
@@ -3793,24 +3803,24 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   cursor: pointer;
   transition: 300ms;
 }
-.loadingPage .wholeNavCont .navCont:nth-child(2) {
+.loadingPage .showMoreWrapper .wholeNavCont .navCont:nth-child(2) {
   margin-top: 2rem;
 }
-.loadingPage .wholeNavCont .navCont:hover {
+.loadingPage .showMoreWrapper .wholeNavCont .navCont:hover {
   transform: translateX(-0.5rem);
   transition: 300ms;
 }
-.loadingPage .wholeNavCont .navCont:active {
+.loadingPage .showMoreWrapper .wholeNavCont .navCont:active {
   transform: translateX(0rem);
   transition: 100ms;
 }
-.loadingPage .wholeNavCont .navCont:hover p {
+.loadingPage .showMoreWrapper .wholeNavCont .navCont:hover p {
   color: #0099ff;
 }
-.loadingPage .wholeNavCont .navCont:hover img {
+.loadingPage .showMoreWrapper .wholeNavCont .navCont:hover img {
   filter: invert(42%) sepia(81%) saturate(2575%) hue-rotate(182deg) brightness(102%) contrast(107%);
 }
-.loadingPage .wholeNavCont .navCont p {
+.loadingPage .showMoreWrapper .wholeNavCont .navCont p {
   font-family: Open Sans;
   font-size: 1.5rem;
   font-weight: 500;
@@ -3819,7 +3829,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   margin: 0;
   text-align: center;
 }
-.loadingPage .wholeNavCont .navCont img {
+.loadingPage .showMoreWrapper .wholeNavCont .navCont img {
   height: 1.5rem;
   margin-top: 0.1rem;
 }

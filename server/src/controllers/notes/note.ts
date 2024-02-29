@@ -6,9 +6,9 @@ const sequelize = db.sequelize
 
 export const getNoteById = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params
-        if (!id) return res.status(400).send({msg: 'Missing details'})
-        const note = await Note.findOne({where: {id: id}})
+        const { id, userId } = req.params
+        if (!id || !userId) return res.status(400).send({msg: 'Missing details'})
+        const note = await Note.findOne({where: {userId: userId, id: id}})
         if (!note) return res.status(500).send({msg: 'Something went wrong'})
         return res.status(200).send({msg: 'Note found', payload: note})
     } catch (err) {

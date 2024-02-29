@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { getNote, patchNote } from "../models/notes";
 import { useParams } from "react-router-dom";
 import LoadingPage from "../components/LoadingPage";
+import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 
 function Notes(props) {
   const {
@@ -34,8 +35,10 @@ function Notes(props) {
 
   const { id } = useParams();
 
+  const auth = useAuthUser()
+
   const load = async () => {
-    const note = await getNote(id);
+    const note = await getNote(auth.id, id);
     if (note.status === 500) {
       setIsLoaded(false);
       setHeading("");

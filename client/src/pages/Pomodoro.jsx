@@ -8,6 +8,8 @@ import stars_stage_four from "../assets/icons/stars_stage_four.svg";
 import pause from "../assets/icons/pause.svg";
 import play from "../assets/icons/play.svg";
 import stop from "../assets/icons/stop.svg";
+import pauseBlack from "../assets/icons/pauseBlack.svg";
+import stopBlack from "../assets/icons/stopBlack.svg";
 
 import "../styles/styles.css";
 import { useEffect, useRef, useState } from "react";
@@ -134,13 +136,17 @@ function Pomodoro(props) {
 
   if (isPause) {
     headline = (
-      <h2>
+      <h2 style={{
+        color: isBlack ? '#FFF' : '#333'
+      }}>
         R<span className="blueLetter">ES</span>T
       </h2>
     );
   } else if (!isPause) {
     headline = (
-      <h2>
+      <h2 style={{
+        color: isBlack ? '#FFF' : '#333'
+      }}>
         FO<span className="blueLetter">C</span>US
       </h2>
     );
@@ -179,10 +185,14 @@ function Pomodoro(props) {
             </div>
             <div className="bottomBtnsCont">
               <div className="pauseBtnCont" onClick={pauseBtnClick}>
-                <div className="pauseBtn">
-                  <img src={pause} alt="" />
+                <div style={{
+                  borderColor: isBlack ? '#4D4D4D' : '#333',
+                }} className="pauseBtn">
+                  <img src={isBlack ? pauseBlack : pause} alt="" />
                 </div>
-                <div className="border"></div>
+                <div style={{
+                  backgroundColor: isBlack ? '#4D4D4D' : '#333'
+                }} className="border"></div>
               </div>
               <div className="playBtnCont">
                 <div className="playBtn" onClick={playBtnClick}>
@@ -191,10 +201,14 @@ function Pomodoro(props) {
                 <div className="border"></div>
               </div>
               <div className="stopBtnCont" onClick={stopBtnClick}>
-                <div className="stopBtn">
-                  <img src={stop} alt="" />
+                <div style={{
+                  borderColor: isBlack ? '#4D4D4D' : '#333'
+                }}  className="stopBtn">
+                  <img src={isBlack ? stopBlack : stop} alt="" />
                 </div>
-                <div className="border"></div>
+                <div style={{
+                  backgroundColor: isBlack ? '#4D4D4D' : '#333'
+                }}  className="border" ></div>
               </div>
             </div>
           </div>

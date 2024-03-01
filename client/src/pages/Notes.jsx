@@ -203,6 +203,9 @@ function Notes(props) {
             loadNote={load}
             isSearching={isSearching}
             setIsSearching={setIsSearching}
+            myNotesColor={isBlack ? '#CCC' : '#666'}
+            bin={isBlack ? 'invert(100%)' : 'invert(0%)'}
+            notesListClass={isBlack ? 'notesList notesListBlack' : 'notesList'}
           />
           <div className="notesCont">
             <h2
@@ -213,6 +216,9 @@ function Notes(props) {
               spellCheck="false"
               contentEditable="true"
               className="notesHeadline"
+              style={{
+                color: isBlack ? '#FFF' : '#333'
+              }}
             >
               {!heading ? '' : heading}
             </h2>
@@ -225,6 +231,9 @@ function Notes(props) {
               className="inputP"
               ref={notesRef}
               dangerouslySetInnerHTML={!mainText ? {__html: ''} : {__html: mainText}}
+              style={{
+                color: isBlack ? '#FFF' : '#333'
+              }}
             >
             </p>
           </div>

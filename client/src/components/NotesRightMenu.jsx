@@ -8,8 +8,9 @@ import NotesMenuChild from "./NotesMenuChild";
 import { useNavigate } from "react-router-dom";
 
 
+
 const NotesRightMenu = (props) => {
-  const { virtualHeading, setVirtualHeading, paramsId, loadNote, isSearching, setIsSearching} = props;
+  const { virtualHeading, setVirtualHeading, paramsId, loadNote, isSearching, setIsSearching, myNotesColor} = props;
   const auth = useAuthUser();
   let navigate = useNavigate()
 
@@ -74,7 +75,7 @@ const NotesRightMenu = (props) => {
           </div>
         </div>
         <div className="bottomCont">
-          <p className="myNotes">My Notes</p>
+          <p style={{color: myNotesColor}} className="myNotes">My Notes</p>
           {!isLoaded && 
           <>
             <div className="spinnerCont">
@@ -101,6 +102,8 @@ const NotesRightMenu = (props) => {
                             correctHeadline={virtualHeading}
                             isLoaded={isLoaded}
                             setIsLoaded={setIsLoaded}
+                            bin={props.bin}
+                            notesListClass={props.notesListClass}
                         />
                     )
                     return (
@@ -117,6 +120,8 @@ const NotesRightMenu = (props) => {
                             correctHeadline={note.headline}
                             isLoaded={isLoaded}
                             setIsLoaded={setIsLoaded}
+                            bin={props.bin}
+                            notesListClass={props.notesListClass}
                         />
                     )
                 })

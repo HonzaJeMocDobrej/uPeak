@@ -33,7 +33,7 @@ function AddToDo(props) {
         setTodoData({
           name: "",
           shortDesc: "",
-          color: "#333",
+          color: "",
           priority: "",
           id: ""
         });
@@ -80,14 +80,21 @@ function AddToDo(props) {
       : "";
 
       useEffect(() => {
-
-      }, [])
+        if (todoData.color == '#333' || todoData.color == '#FFF' || !todoData.color) {
+          setTodoData(prev => {
+            return {
+              ...prev,
+              color: isBlack ? "#FFF" : "#333"
+            }
+          })
+        }
+      }, [isBlack, todoData.color])
 
   return (
     <>
       <div
         // style={isCreateTodoOpen ? { display: "block" } : { display: "none" }}
-        style={{display: isCreateTodoOpen ? "block" : "none", top: style}}
+        style={{display: isCreateTodoOpen ? "block" : "none", top: style, backgroundColor: isBlack ? '#333' : '#FFF'}}
         className="createToDo"
       >
         <div className="topInputCont">

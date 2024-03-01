@@ -60,10 +60,19 @@ function ToDo(props) {
 
   const [groupData, setGroupData] = useState({
     name: "",
-    color: isBlack ? "#FFF" : "#333",
+    color: '',
   });
 
   const [groups, setGroups] = useState([]);
+
+  // if (isBlack) {
+  //   setGroupData(prev => {
+  //     return {
+  //       ...prev,
+  //       color: "#FFF"
+  //     }
+  //   })
+  // }
 
   const loadTodoPages = async () => {
     const todoPage = await getTodoPage(auth.id ,todoPageId);
@@ -183,6 +192,17 @@ function ToDo(props) {
   useEffect(() => {
     loadGroups();
   }, [todoPageId]);
+
+  useEffect(() => {
+    if (groupData.color == '#333' || groupData.color == '#FFF' || !groupData.color) {
+      setGroupData(prev => {
+        return {
+          ...prev,
+          color: isBlack ? "#FFF" : "#333"
+        }
+      })
+    }
+  }, [isBlack, groupData.color])
 
   if (!isLoaded) {
     return (

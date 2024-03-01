@@ -106,7 +106,7 @@ function NotesMenuChild(props) {
   return (
     <>
       <div
-        className="notesList"
+        className={props.notesListClass}
         style={{ display: isLoaded ? "flex" : "none" }}
       >
         <div className="leftCont">
@@ -130,6 +130,10 @@ function NotesMenuChild(props) {
             className="bin"
             src={binBlack}
             onClick={handleDeleteNote}
+            style={{
+              background: 'transparent',
+              filter: props.bin,
+            }}
             alt=""
           />
         </div>

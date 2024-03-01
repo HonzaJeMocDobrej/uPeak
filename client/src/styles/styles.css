@@ -2554,6 +2554,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   border: 0;
   outline: none;
   width: 80%;
+  background: transparent;
 }
 .notesMenu .topCont .item img {
   height: 1rem;
@@ -2666,7 +2667,6 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 .notesMenu .bottomCont .myNotes {
   padding-left: 1.25rem;
   margin: 0;
-  color: #666;
   font-family: Poppins;
   font-size: 1.25rem;
   font-style: normal;
@@ -2683,6 +2683,12 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
     font-size: 0.65rem;
     padding-left: 0.75rem;
   }
+}
+.notesMenu .bottomCont .notesListBlack:hover {
+  background-color: rgba(244, 244, 244, 0.1) !important;
+}
+.notesMenu .bottomCont .notesListBlack .imgCont:hover {
+  background-color: #404040 !important;
 }
 .notesMenu .bottomCont .notesList {
   display: flex;
@@ -2835,7 +2841,6 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: normal;
-  transition: 500ms;
   margin: 2rem 2rem 0 4rem;
   outline: none;
   padding-bottom: 2rem;

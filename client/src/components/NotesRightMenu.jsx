@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const NotesRightMenu = (props) => {
-  const { virtualHeading, setVirtualHeading, paramsId, loadNote, isSearching, setIsSearching, myNotesColor} = props;
+  const { virtualHeading, setVirtualHeading, paramsId, loadNote, isSearching, setIsSearching, myNotesColor, loadNotes} = props;
   const auth = useAuthUser();
   let navigate = useNavigate()
 
@@ -46,6 +46,7 @@ const NotesRightMenu = (props) => {
       setVirtualHeading('')
     }
     loadNote()
+    load()
   }
 
   const handleSearch = async (e) => {

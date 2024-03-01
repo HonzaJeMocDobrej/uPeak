@@ -43,6 +43,10 @@
         margin-top: 2rem;
       }
 
+      &:nth-child(3) {
+        padding-bottom: 2rem;
+      }
+
       &:hover {
         transform: translateX(-0.5rem);
         transition: 300ms;

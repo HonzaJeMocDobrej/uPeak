@@ -28,7 +28,7 @@ export const createStats = async (req: Request, res: Response) => {
         const createdStats = await Stats.create({
             userId: userId,
             todoStart: formatFullDate(nowDate.getDate(), nowDate.getMonth() + 1, nowDate.getFullYear()),
-            todoLastLogin: formatFullDate(nowDate.getDate() - 1, nowDate.getMonth() + 1, nowDate.getFullYear()),
+            todoLastLogin: formatFullDate(nowDate.getDate(), nowDate.getMonth() + 1, nowDate.getFullYear()),
             notesStart: formatFullDate(nowDate.getDate(), nowDate.getMonth() + 1, nowDate.getFullYear()),
             notesLastLogin: formatFullDate(nowDate.getDate(), nowDate.getMonth() + 1, nowDate.getFullYear()),
             pomodoroStart: formatFullDate(nowDate.getDate(), nowDate.getMonth() + 1, nowDate.getFullYear()),

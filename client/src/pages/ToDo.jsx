@@ -60,7 +60,7 @@ function ToDo(props) {
 
   const [groupData, setGroupData] = useState({
     name: "",
-    color: "#333",
+    color: isBlack ? "#FFF" : "#333",
   });
 
   const [groups, setGroups] = useState([]);
@@ -151,7 +151,7 @@ function ToDo(props) {
     }
     setGroupData({
       name: "",
-      color: "#333",
+      color: isBlack ? "#FFF" : "#333",
     });
     setIsCreateGroupOpen(false);
   };
@@ -270,11 +270,16 @@ function ToDo(props) {
                   Create Group
                 </p>
                 <div
-                  style={
-                    isCreateGroupOpen
-                      ? { display: "block" }
-                      : { display: "none" }
-                  }
+                  // style={
+                  //   isCreateGroupOpen
+                  //     ? { display: "block" }
+                  //     : { display: "none" }
+                  // }
+                  style={{
+                    display: isCreateGroupOpen ? "block" : "none",
+                    backgroundColor: isBlack ? "#333" : "white"
+                  }}
+                  
                   className="createToDo createToDo2 createGroup"
                 >
                   <div className="topInputCont">
@@ -327,7 +332,10 @@ function ToDo(props) {
               </div>
               <ul
                 className="dropdownGroup"
-                style={{ display: isGroupAddOpen ? "block" : "none" }}
+                style={{ 
+                  display: isGroupAddOpen ? "block" : "none",
+                  backgroundColor: isBlack ? "#333" : "#FFF"
+                 }}
               >
                 {groups.map((group) => {
                   return (
@@ -360,7 +368,9 @@ function ToDo(props) {
                             alt=""
                           />
                         )}
-                        <p>{group.name}</p>
+                        <p className={isBlack ? 'blackHover' : ''}>
+                          {group.name}
+                          </p>
                       </div>
                       <div
                         className="rightCont"

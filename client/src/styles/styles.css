@@ -2360,10 +2360,15 @@ main .todoConts .dropdownGroup li {
 main .todoConts .dropdownGroup li p {
   margin: 0;
   max-width: 15ch;
+  transition: 300ms;
 }
 main .todoConts .dropdownGroup li:hover {
   background-color: rgb(234, 247, 255);
   cursor: pointer;
+  transition: 300ms;
+}
+main .todoConts .dropdownGroup li:hover .blackHover {
+  color: #333;
   transition: 300ms;
 }
 main .todoConts .dropdownGroup li .rightCont {
@@ -3805,6 +3810,9 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 .loadingPage .showMoreWrapper .wholeNavCont .navCont:nth-child(2) {
   margin-top: 2rem;
+}
+.loadingPage .showMoreWrapper .wholeNavCont .navCont:nth-child(3) {
+  padding-bottom: 2rem;
 }
 .loadingPage .showMoreWrapper .wholeNavCont .navCont:hover {
   transform: translateX(-0.5rem);

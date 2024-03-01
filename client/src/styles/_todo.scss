@@ -1066,13 +1066,20 @@ main {
           p {
             margin: 0;
             max-width: 15ch;
+            transition: 300ms;
           }
 
           &:hover {
             background-color: rgb(234, 247, 255);
                 cursor: pointer;
                 transition: 300ms;
+
+                .blackHover {
+                  color: #333;
+                  transition: 300ms;
+                }
           }
+
 
           .rightCont {
             cursor: url(../assets/icons/Bin.svg), auto;

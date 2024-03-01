@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import LeftMenu from "../components/LeftMenu";
 import TopMenu from "../components/TopMenu";
-import 'react-dropdown/style.css';
-import basicProfilePic from '../assets/img/userPicBasic.svg'
+import "react-dropdown/style.css";
+import basicProfilePic from "../assets/img/userPicBasic.svg";
 
-import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
+import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 
 import "../styles/styles.css";
 import { checkIfImgExists } from "../functions/functions";
@@ -22,23 +22,23 @@ function Profile(props) {
     setSwitchStyle,
   } = props;
 
-  const auth = useAuthUser()
-  const [imgSrc ,setImgSrc] = useState()
-  const [isLoaded, setIsLoaded] = useState(false)
+  const auth = useAuthUser();
+  const [imgSrc, setImgSrc] = useState();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const load = () => {
     setTimeout(() => {
       setIsLoaded(true);
     }, 500);
-  }
+  };
 
   useEffect(() => {
-    checkIfImgExists(setImgSrc, auth.profilePic, basicProfilePic)
-  }, [auth])
+    checkIfImgExists(setImgSrc, auth.profilePic, basicProfilePic);
+  }, [auth]);
 
   useEffect(() => {
-    load()
-  }, [])
+    load();
+  }, []);
 
   if (!isLoaded) {
     return (
@@ -67,29 +67,78 @@ function Profile(props) {
         />
         <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
           <div className="profileCont">
-            <h2 className="profileHeadline">
+            <h2
+              style={{
+                color: isBlack ? "#FFF" : "#333",
+              }}
+              className="profileHeadline"
+            >
               My Profile
             </h2>
-            <div className="profileInfoCont">
+            <div
+              style={{
+                backgroundColor: isBlack ? "#333" : "#FFF",
+              }}
+              className="profileInfoCont"
+            >
               <img src={imgSrc} alt="" />
-              <p>
-                    {isEnglish ? 'Hello' : 'Ahoj'} 
-                    <br /><span>{auth.username}</span>
-                </p>
-                <div className="uploadBtn">
-                  Upload a Picture
-                </div>
+              <p
+                style={{
+                  color: isBlack ? "#FFF" : "#333",
+                }}
+              >
+                {isEnglish ? "Hello" : "Ahoj"}
+                <br />
+                <span>{auth.username}</span>
+              </p>
+              <div className="uploadBtn">Upload a Picture</div>
             </div>
-            <p>Username</p>
-            <input maxLength={20} className="userInput" placeholder="Your Username"></input>
-            <p>Email</p>
-            <input maxLength={32} className="emailInput" placeholder="Your Email"></input>
-            <p>Password</p>
-            <input className="passInput" placeholder="Your Password"></input>
-            
-            <div className="saveBtn">
-              Save
-            </div>
+            <p
+              style={{
+                color: isBlack ? "#FFF" : "#333",
+              }}
+            >
+              Username
+            </p>
+            <input
+              style={{
+                color: isBlack ? "rgb(204, 204, 204)" : "#808080",
+              }}
+              maxLength={20}
+              className="userInput"
+              placeholder="Your Username"
+            ></input>
+            <p
+              style={{
+                color: isBlack ? "#FFF" : "#333",
+              }}
+            >
+              Email
+            </p>
+            <input
+              style={{
+                color: isBlack ? "rgb(204, 204, 204)" : "#808080",
+              }}
+              maxLength={32}
+              className="emailInput"
+              placeholder="Your Email"
+            ></input>
+            <p
+              style={{
+                color: isBlack ? "#FFF" : "#333",
+              }}
+            >
+              Password
+            </p>
+            <input
+              style={{
+                color: isBlack ? "rgb(204, 204, 204)" : "#808080",
+              }}
+              className="passInput"
+              placeholder="Your Password"
+            ></input>
+
+            <div className="saveBtn">Save</div>
           </div>
         </main>
       </div>

@@ -38,7 +38,6 @@ function Path() {
     <>
         <Router>
             <Routes>
-                
               <Route path='/signin' element={<Login
                 logData={logData}
                 setLogData={setLogData}              

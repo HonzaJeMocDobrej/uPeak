@@ -38,8 +38,8 @@ function NotesMenuChild(props) {
       setIsLoaded(true);
     }, 200);
     navigate(`/notes/${id}`);
-    document.cookie = `${auth.username}=${auth.username}; SameSite=None`;
-    document.cookie = `${auth.username}NoteId=${id}; SameSite=None`;
+    document.cookie = `${auth.username}=${auth.username}; SameSite=None; secure=false;`;
+    document.cookie = `${auth.username}NoteId=${id}; SameSite=None; secure=false;`;
   };
 
   const handleDeleteNote = async () => {

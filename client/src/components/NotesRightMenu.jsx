@@ -41,8 +41,8 @@ const NotesRightMenu = (props) => {
         ]
       })
       navigate(`/notes/${notes.data.id}`)
-      document.cookie = `${auth.username}=${auth.username}; SameSite=None`
-      document.cookie = `${auth.username}NoteId=${notes.data.id}; SameSite=None`
+      document.cookie = `${auth.username}=${auth.username}; SameSite=None; secure=false;`
+      document.cookie = `${auth.username}NoteId=${notes.data.id}; SameSite=None; secure=false;`
       setVirtualHeading('')
     }
     loadNote()

@@ -26,11 +26,13 @@ function TopMenu(props) {
     }
 
     const langClick = () => {
-        setIsEnglish(!isEnglish)
+        setIsEnglish(prevState => !prevState)
+        localStorage.setItem('isEnglish', !isEnglish)
     }
 
     const switchClick = () => {
         setIsBlack(prevState => !prevState)
+        localStorage.setItem('isBlack', !isBlack)
         if (isBlack === false) {
             setSwitchStyle(() => {
                 return {
@@ -51,6 +53,22 @@ function TopMenu(props) {
     useEffect(() => {
         checkIfImgExists(setImgSrc, auth.profilePic, basicProfPic)
     }, [auth])
+
+    useEffect(() => {
+        if (isBlack === false) {
+            setSwitchStyle(() => {
+                return {
+                    transform: 'translateX(0rem)'
+                }
+            })
+        } else {
+            setSwitchStyle(() => {
+                return {
+                    transform: 'translateX(1.5rem)'
+                }
+            })
+        }
+    }, [])
 
   return (
     <>

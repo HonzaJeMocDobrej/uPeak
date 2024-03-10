@@ -16,8 +16,8 @@ import LoadingPage from './components/LoadingPage'
 
 function Path() {
 
-  const [isEnglish, setIsEnglish] = useState(true)
-  const [isBlack, setIsBlack] = useState(false)
+  const [isEnglish, setIsEnglish] = useState()
+  const [isBlack, setIsBlack] = useState()
   const [switchStyle, setSwitchStyle] = useState({})  
   const [regData, setRegData] = useState({
     user: null,
@@ -31,8 +31,21 @@ function Path() {
   })
 
   useEffect(() => {
+    const isBlackStorage = localStorage.getItem('isBlack')
+    if (!isBlackStorage) return setIsBlack(false)
+    setIsBlack(JSON.parse(isBlackStorage))
+  }, [])
+
+  useEffect(() => {
+    const isEnglishStorage = localStorage.getItem('isEnglish')
+    if (!isEnglishStorage) return setIsEnglish(true)
+    setIsEnglish(JSON.parse(isEnglishStorage))
+  }, [])
+
+  useEffect(() => {
     isBlack ? document.body.classList.add('bodyScroll') : document.body.classList.remove('bodyScroll')
   }, [isBlack])
+
 
   return (
     <>

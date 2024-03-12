@@ -10,6 +10,9 @@ import "../styles/styles.css";
 import { checkIfImgExists } from "../functions/functions";
 import { useEffect, useState } from "react";
 import LoadingPage from "../components/LoadingPage";
+import Files from 'react-files'
+import { patchImage } from "../models/user";
+import useSignIn from "react-auth-kit/hooks/useSignIn";
 
 function Profile(props) {
   const {
@@ -25,11 +28,44 @@ function Profile(props) {
   const auth = useAuthUser();
   const [imgSrc, setImgSrc] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
+  const signIn = useSignIn()
 
   const load = () => {
     setTimeout(() => {
       setIsLoaded(true);
     }, 500);
+  };
+
+  const handlePatchImage = async (file) => {
+    const data = new FormData();
+    data.append("profilePic", file);
+
+    const img = await patchImage(auth.email, data).catch((err) => {
+      console.log(err.response.data.msg);
+    });
+
+    if (img.status == 200) {
+      setImgSrc(img.data.image);
+      signIn({
+        auth: {
+          token: img.token,
+          type: 'Bearer',
+        },
+        userState: {
+          id: img.data.id,
+          email: img.data.email,
+          username: img.data.username,
+          profilePic: img.profilePic
+        }
+      })
+    }
+  };
+
+  const getImage = async (file) => {
+    const fileObj = file[0];
+    const img = URL.createObjectURL(fileObj);
+    console.log(img);
+    handlePatchImage(fileObj);
   };
 
   useEffect(() => {
@@ -91,7 +127,16 @@ function Profile(props) {
                 <br />
                 <span>{auth.username}</span>
               </p>
-              <div className="uploadBtn">Upload a Picture</div>
+              <Files
+                    className='uploadBtn'
+                    accepts={['image/*']}
+                    maxFileSize={5000000}
+                    minFileSize={0}
+                    name='profilePic'
+                    onChange={getImage}
+                  >
+                    Your Image
+                  </Files>
             </div>
             <p
               style={{

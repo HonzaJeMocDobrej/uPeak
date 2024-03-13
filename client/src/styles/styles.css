@@ -784,8 +784,12 @@ main .progressConts .counterPurple h2 {
   align-items: center;
 }
 .tMenu .profCont .profile img {
-  max-width: 6rem;
-  max-height: 4rem;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  aspect-ratio: 1/1;
 }
 @media (max-width: 750px) {
   .tMenu .profCont .profile img {
@@ -3426,11 +3430,56 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   height: calc(100vh - 12rem);
   /* Chrome, Edge, and Safari */
 }
+.profileCont .border {
+  width: 54.125rem;
+  height: 1px;
+  background-color: #ccc;
+  margin-top: 1.5rem;
+}
+@media (max-width: 1400px) {
+  .profileCont .border {
+    width: calc(100% - 4.5rem);
+  }
+}
+@media (max-width: 1000px) {
+  .profileCont .border {
+    width: calc(100% - 3rem);
+  }
+}
+@media (max-width: 480px) {
+  .profileCont .border {
+    width: calc(100% - 2rem);
+  }
+}
+.profileCont h3 {
+  color: #333;
+  font-family: Poppins;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+}
 .profileCont .itemCont {
   width: 54.125rem;
   display: flex;
   justify-content: space-between;
   align-items: end;
+}
+@media (max-width: 1400px) {
+  .profileCont .itemCont {
+    width: calc(100% - 4.5rem);
+  }
+}
+@media (max-width: 1000px) {
+  .profileCont .itemCont {
+    width: calc(100% - 3rem);
+  }
+}
+@media (max-width: 480px) {
+  .profileCont .itemCont {
+    width: calc(100% - 2rem);
+  }
 }
 .profileCont .itemCont .headlineValueCont .pValue {
   font-size: 1rem;
@@ -3445,8 +3494,34 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   font-size: 0.8rem;
   font-weight: 500;
   border-radius: 0.5rem;
-  border: 1px solid #333;
+  border: 1px solid #666;
   background-color: transparent;
+  color: #666;
+  cursor: pointer;
+  transition: 300ms;
+}
+.profileCont .itemCont .changeBtn:hover {
+  background-color: #F2F2F2;
+  transition: 300ms;
+}
+@media (max-width: 750px) {
+  .profileCont .itemCont .changeBtn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.51rem;
+  }
+}
+@media (max-width: 480px) {
+  .profileCont .itemCont .changeBtn {
+    height: 1rem;
+    font-size: 0.34rem;
+    border-radius: 0.25rem;
+    right: 1.4rem;
+    padding: 0 0.25rem;
+  }
+}
+.profileCont .itemCont .changeBtnBlack:hover {
+  background-color: #404040;
+  transition: 300ms;
 }
 @media (max-width: 1400px) {
   .profileCont {
@@ -3484,6 +3559,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   font-size: 2.5rem;
   font-style: normal;
   font-weight: 600;
+  margin: 1.5rem 0;
 }
 @media (max-width: 1400px) {
   .profileCont .profileHeadline {
@@ -3515,7 +3591,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: 1rem;
 }
 @media (max-width: 1400px) {
   .profileCont .profileInfoCont {
@@ -3542,20 +3618,23 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 .profileCont .profileInfoCont img {
   margin-left: 2rem;
-  max-height: 4rem;
-  max-width: 5rem;
+  height: 4.5rem;
+  width: 4.5rem;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  aspect-ratio: 1/1;
 }
 @media (max-width: 750px) {
   .profileCont .profileInfoCont img {
-    max-height: 3rem;
-    max-width: 4rem;
-    margin-left: 1.2rem;
+    height: 3rem;
+    width: 3rem;
   }
 }
 @media (max-width: 480px) {
   .profileCont .profileInfoCont img {
-    max-height: 2rem;
-    max-width: 3rem;
+    height: 2rem;
+    width: 2rem;
   }
 }
 .profileCont .profileInfoCont p {
@@ -3588,7 +3667,6 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 .profileCont .profileInfoCont .uploadBtn {
   position: absolute;
   right: 3.5rem;
-  bottom: 1rem;
   padding: 0 1rem;
   height: 2rem;
   background-color: #0099ff;

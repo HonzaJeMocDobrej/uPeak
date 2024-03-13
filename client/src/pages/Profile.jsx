@@ -138,6 +138,11 @@ function Profile(props) {
                 Your Image
               </Files>
             </div>
+            <h3
+              style={{
+                color: isBlack ? "#FFF" : "#333",
+              }}
+            >Account Settings</h3>
             <div className="border"></div>
             <div className="itemCont">
               <div className="headlineValueCont">
@@ -149,9 +154,18 @@ function Profile(props) {
                   Username
                 </p>
 
-                <p className="pValue">honzak</p>
+                <p className="pValue"
+                style={{
+                  color: isBlack ? "#CCC" : "#666",
+                }}
+                >{auth.username}</p>
               </div>
-              <button className="changeBtn">Change username</button>
+              <button className={`changeBtn ${isBlack ? 'changeBtnBlack' : ''}`}
+                style={{
+                  color: isBlack ? "#CCC" : "#666",
+                  borderColor: isBlack ? "#CCC" : "#666",
+                }}
+              >Change username</button>
             </div>
             {/* <input
               style={{
@@ -171,9 +185,18 @@ function Profile(props) {
                 >
                   Email
                 </p>
-                <p className="pValue">email@gmail.com</p>
+                <p className="pValue"
+                  style={{
+                    color: isBlack ? "#CCC" : "#666",
+                  }}
+                >{auth.email}</p>
               </div>
-              <button className="changeBtn">Change email</button>
+              <button className={`changeBtn ${isBlack ? 'changeBtnBlack' : ''}`}
+                style={{
+                  color: isBlack ? "#CCC" : "#666",
+                  borderColor: isBlack ? "#CCC" : "#666",
+                }}
+              >Change email</button>
             </div>
             {/* <input
               style={{
@@ -183,22 +206,37 @@ function Profile(props) {
               className="emailInput"
               placeholder="Your Email"
             ></input> */}
-            <p
-              style={{
-                color: isBlack ? "#FFF" : "#333",
-              }}
-            >
-              Password
-            </p>
-            <input
+            <div className="itemCont">
+              <div className="headlineValueCont">
+                <p
+                  style={{
+                    color: isBlack ? "#FFF" : "#333",
+                  }}
+                >
+                  Password
+                </p>
+                <div className="pValue"
+                  style={{
+                  color: isBlack ? "#CCC" : "#666",
+                }}
+                >******</div>
+              </div>
+              <button className={`changeBtn ${isBlack ? 'changeBtnBlack' : ''}`}
+                style={{
+                  color: isBlack ? "#CCC" : "#666",
+                  borderColor: isBlack ? "#CCC" : "#666",
+                }}
+              >Change Password</button>
+            </div>
+            {/* <input
               style={{
                 color: isBlack ? "rgb(204, 204, 204)" : "#808080",
               }}
               className="passInput"
               placeholder="Your Password"
-            ></input>
+            ></input> */}
 
-            <div className="saveBtn">Save</div>
+            {/* <div className="saveBtn">Save</div> */}
           </div>
         </main>
       </div>

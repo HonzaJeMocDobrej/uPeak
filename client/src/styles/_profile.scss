@@ -4,18 +4,54 @@
   overflow-y: auto;
   height: calc(100vh - 12rem);
 
-  // .border {
-  //   width: 54.125rem;
-  //   height: 1px;
-  //   background-color: #ccc;
-  //   margin-top: 3rem;
-  // }
+  .border {
+    width: 54.125rem;
+    height: 1px;
+    background-color: #ccc;
+    margin-top: 1.5rem;
+    
+    @media (max-width: 1400px) {
+      width: calc(100% - 4.5rem);
+    }
+
+    @media (max-width: 1000px) {
+      width: calc(100% - 3rem);
+    }
+
+    @media (max-width: 480px) {
+      width: calc(100% - 2rem);
+    }
+
+  }
+
+  h3 {
+    color: #333;
+    font-family: Poppins;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+  }
 
   .itemCont {
     width: 54.125rem;
     display: flex;
     justify-content: space-between;
     align-items: end;
+
+    @media (max-width: 1400px) {
+      width: calc(100% - 4.5rem);
+    }
+
+    @media (max-width: 1000px) {
+      width: calc(100% - 3rem);
+    }
+
+    @media (max-width: 480px) {
+      width: calc(100% - 2rem);
+    }
+
     .headlineValueCont {
       .pValue {
         font-size: 1rem;
@@ -30,9 +66,38 @@
       font-size: 0.8rem;
       font-weight: 500;
       border-radius: .5rem;
-      border: 1px solid #333;
+      border: 1px solid #666;
       background-color: transparent;
+      color: #666;
+      cursor: pointer;
+      transition: 300ms;
+
+      &:hover {
+        background-color: #F2F2F2;
+        transition: 300ms;
+      }
+
+      @media (max-width: 750px) {
+        padding: .25rem .5rem;
+        font-size: 0.51rem;
+      }
+
+      @media (max-width: 480px) {
+        height: 1rem;
+        font-size: .34rem;
+        border-radius: 0.25rem;
+        right: 1.4rem;
+        padding: 0 .25rem;
+      }
     }
+
+    .changeBtnBlack {
+      &:hover {
+        background-color: #404040;
+        transition: 300ms;
+      }
+    }
+
   }
 
 
@@ -74,6 +139,7 @@
     font-size: 2.5rem;
     font-style: normal;
     font-weight: 600;
+    margin: 1.5rem 0;
 
     @media (max-width: 1400px) {
       font-size: 2rem;
@@ -102,7 +168,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    gap: 1.75rem;
+    gap: 1rem;
 
     @media (max-width: 1400px) {
       width: calc(100% - 4.5rem);
@@ -127,18 +193,22 @@
 
     img {
       margin-left: 2rem;
-      max-height: 4rem;
-      max-width: 5rem;
+      height: 4.5rem;
+      width: 4.5rem;
+      border-radius: 50%;
+      // border: #09F 3px solid;
+
+      object-fit: cover;
+      aspect-ratio: 1/1;
 
       @media (max-width: 750px) {
-        max-height: 3rem;
-        max-width: 4rem;
-        margin-left: 1.2rem;
+        height: 3rem;
+        width: 3rem;
       }
 
       @media (max-width: 480px) {
-        max-height: 2rem;
-        max-width: 3rem;
+        height: 2rem;
+        width: 2rem;
       }
     }
 
@@ -172,7 +242,6 @@
     .uploadBtn {
       position: absolute;
       right: 3.5rem;
-      bottom: 1rem;
       padding: 0 1rem;
       height: 2rem;
       background-color: #0099ff;

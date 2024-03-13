@@ -4,6 +4,38 @@
   overflow-y: auto;
   height: calc(100vh - 12rem);
 
+  // .border {
+  //   width: 54.125rem;
+  //   height: 1px;
+  //   background-color: #ccc;
+  //   margin-top: 3rem;
+  // }
+
+  .itemCont {
+    width: 54.125rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    .headlineValueCont {
+      .pValue {
+        font-size: 1rem;
+        color: #666666;
+        margin-top: .5rem;
+      }
+    }
+    .changeBtn {
+      height: fit-content;
+      padding: .4rem 1rem;
+      font-family: Poppins;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border-radius: .5rem;
+      border: 1px solid #333;
+      background-color: transparent;
+    }
+  }
+
+
   @media (max-width: 1400px) {
     padding-left: 4.5rem;
   }

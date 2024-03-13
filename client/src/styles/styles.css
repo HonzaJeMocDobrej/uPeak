@@ -3426,6 +3426,28 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   height: calc(100vh - 12rem);
   /* Chrome, Edge, and Safari */
 }
+.profileCont .itemCont {
+  width: 54.125rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+.profileCont .itemCont .headlineValueCont .pValue {
+  font-size: 1rem;
+  color: #666666;
+  margin-top: 0.5rem;
+}
+.profileCont .itemCont .changeBtn {
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 0.4rem 1rem;
+  font-family: Poppins;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  border: 1px solid #333;
+  background-color: transparent;
+}
 @media (max-width: 1400px) {
   .profileCont {
     padding-left: 4.5rem;

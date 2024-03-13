@@ -10,7 +10,7 @@ import "../styles/styles.css";
 import { checkIfImgExists } from "../functions/functions";
 import { useEffect, useState } from "react";
 import LoadingPage from "../components/LoadingPage";
-import Files from 'react-files'
+import Files from "react-files";
 import { patchImage } from "../models/user";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
 
@@ -28,7 +28,7 @@ function Profile(props) {
   const auth = useAuthUser();
   const [imgSrc, setImgSrc] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
-  const signIn = useSignIn()
+  const signIn = useSignIn();
 
   const load = () => {
     setTimeout(() => {
@@ -49,15 +49,15 @@ function Profile(props) {
       signIn({
         auth: {
           token: img.token,
-          type: 'Bearer',
+          type: "Bearer",
         },
         userState: {
           id: img.data.id,
           email: img.data.email,
           username: img.data.username,
-          profilePic: img.profilePic
-        }
-      })
+          profilePic: img.profilePic,
+        },
+      });
     }
   };
 
@@ -128,46 +128,61 @@ function Profile(props) {
                 <span>{auth.username}</span>
               </p>
               <Files
-                    className='uploadBtn'
-                    accepts={['image/*']}
-                    maxFileSize={5000000}
-                    minFileSize={0}
-                    name='profilePic'
-                    onChange={getImage}
-                  >
-                    Your Image
-                  </Files>
+                className="uploadBtn"
+                accepts={["image/*"]}
+                maxFileSize={5000000}
+                minFileSize={0}
+                name="profilePic"
+                onChange={getImage}
+              >
+                Your Image
+              </Files>
             </div>
-            <p
-              style={{
-                color: isBlack ? "#FFF" : "#333",
-              }}
-            >
-              Username
-            </p>
-            <input
+            <div className="border"></div>
+            <div className="itemCont">
+              <div className="headlineValueCont">
+                <p
+                  style={{
+                    color: isBlack ? "#FFF" : "#333",
+                  }}
+                >
+                  Username
+                </p>
+
+                <p className="pValue">honzak</p>
+              </div>
+              <button className="changeBtn">Change username</button>
+            </div>
+            {/* <input
               style={{
                 color: isBlack ? "rgb(204, 204, 204)" : "#808080",
               }}
               maxLength={20}
               className="userInput"
               placeholder="Your Username"
-            ></input>
-            <p
-              style={{
-                color: isBlack ? "#FFF" : "#333",
-              }}
-            >
-              Email
-            </p>
-            <input
+            ></input> */}
+
+            <div className="itemCont">
+              <div className="headlineValueCont">
+                <p
+                  style={{
+                    color: isBlack ? "#FFF" : "#333",
+                  }}
+                >
+                  Email
+                </p>
+                <p className="pValue">email@gmail.com</p>
+              </div>
+              <button className="changeBtn">Change email</button>
+            </div>
+            {/* <input
               style={{
                 color: isBlack ? "rgb(204, 204, 204)" : "#808080",
               }}
               maxLength={32}
               className="emailInput"
               placeholder="Your Email"
-            ></input>
+            ></input> */}
             <p
               style={{
                 color: isBlack ? "#FFF" : "#333",

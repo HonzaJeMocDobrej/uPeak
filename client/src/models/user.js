@@ -9,6 +9,11 @@ export const createUser = async (regData) => {
       return tokenUserPayload(res)
 }
 
+export const updateUser = async (id, data) => {
+    const res = await axios.patch(`http://localhost:3000/api/v1/users/${id}`, data)
+    return userPayload(res)
+}
+
 export const comparePasswords = async (logData) => {
     const res = await axios.post('http://localhost:3000/api/v1/users/compare', {
         email: logData.email,
@@ -29,6 +34,14 @@ const profilePicPayload =  (res) => {
         status: res.status,
         token: res.data.token,
         profilePic: res.data.profilePic
+    }
+}
+
+const userPayload =  (res) => {
+    return{
+        msg: res.data.msg,
+        data: res.data.payload,
+        status: res.status,
     }
 }
 

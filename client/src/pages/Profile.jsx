@@ -11,8 +11,9 @@ import { checkIfImgExists } from "../functions/functions";
 import { useEffect, useState } from "react";
 import LoadingPage from "../components/LoadingPage";
 import Files from "react-files";
-import { patchImage } from "../models/user";
+import { patchImage, updateUser } from "../models/user";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
+import ProfilePopup from "../components/ProfilePopup";
 
 function Profile(props) {
   const {
@@ -38,6 +39,14 @@ function Profile(props) {
       setIsLoaded(true);
     }, 500);
   };
+
+  // const handleUpdate = () => {
+  //   updateUser(auth.id, [
+  //     {
+  //       'propName': 
+  //     }
+  //   ])
+  // }
 
   const handlePatchImage = async (file) => {
     const data = new FormData();
@@ -111,11 +120,13 @@ function Profile(props) {
         <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
           <div className="profileMenuCont">
           <div onClick={() => {
-            if (isUsernameOpen) {
+            if (isUsernameOpen || isEmailOpen || isPasswordOpen) {
               setIsUsernameOpen(false)
+              setIsEmailOpen(false)
+              setIsPasswordOpen(false)
             }
             return
-          }} className={`profileCont ${isUsernameOpen ? "profileContOpen" : null}`}>
+          }} className={`profileCont ${isUsernameOpen || isEmailOpen || isPasswordOpen ? "profileContOpen" : null}`}>
             <h2
               style={{
                 color: isBlack ? "#FFF" : "#333",
@@ -181,14 +192,7 @@ function Profile(props) {
                 onClick={() => univHandler(setIsUsernameOpen)}
               >Change username</button>
             </div>
-            {/* <input
-              style={{
-                color: isBlack ? "rgb(204, 204, 204)" : "#808080",
-              }}
-              maxLength={20}
-              className="userInput"
-              placeholder="Your Username"
-            ></input> */}
+            
 
             <div className="itemCont">
               <div className="headlineValueCont">
@@ -210,7 +214,7 @@ function Profile(props) {
                   color: isBlack ? "#CCC" : "#666",
                   borderColor: isBlack ? "#CCC" : "#666",
                 }}
-                onClick={() => univHandler(setIsUsernameOpen)}
+                onClick={() => univHandler(setIsEmailOpen)}
               >Change email</button>
             </div>
             {/* <input
@@ -241,28 +245,15 @@ function Profile(props) {
                   color: isBlack ? "#CCC" : "#666",
                   borderColor: isBlack ? "#CCC" : "#666",
                 }}
-                onClick={() => univHandler(setIsUsernameOpen)}
+                onClick={() => univHandler(setIsPasswordOpen)}
               >Change Password</button>
             </div>
-            {/* <input
-              style={{
-                color: isBlack ? "rgb(204, 204, 204)" : "#808080",
-              }}
-              className="passInput"
-              placeholder="Your Password"
-            ></input> */}
-
-            {/* <div className="saveBtn">Save</div> */}
+            
+            
           </div>
-            <div style={{
-              display: isUsernameOpen ? 'block' : 'none'
-            }} className="popup"></div>
-            <div style={{
-              display: isEmailOpen ? 'block' : 'none'
-            }} className="popup"></div>
-            <div style={{
-              display: isPasswordOpen ? 'block' : 'none'
-            }} className="popup"></div>
+            <ProfilePopup isBlack={isBlack} toggle={isUsernameOpen} setToggle={setIsUsernameOpen} change={'Username'}></ProfilePopup>
+            <ProfilePopup isBlack={isBlack} toggle={isEmailOpen} setToggle={setIsEmailOpen} change={'Email'}></ProfilePopup>
+            <ProfilePopup isBlack={isBlack} toggle={isPasswordOpen} setToggle={setIsPasswordOpen} change={'Password'}></ProfilePopup>
           </div>
         </main>
       </div>

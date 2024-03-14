@@ -101,15 +101,19 @@ export const updateUserProfilePic =async (req: Request, res: Response) => {
 
 export const updateUser = async (req: Request, res: Response) => {
     try {
-        console.log(req.file?.path)
         const { id } = req.params
         const data = req.body
         if (!id || !data) return res.status(400).send({msg: 'Missing details'})
         const user = await User.findOne({where: {id: id}})
         if (!user) return res.status(400).send({msg: 'User not found'})
+        let comparedPassword
         for (const ops of data) {
             user[ops.propName] = ops.value
+            if (ops.propName == 'password') {
+                comparedPassword = compare(ops.value, user.passwordHash)
+            }
         }
+        if (!comparedPassword) return res.status(400).send({msg: 'Invalid password'})
         const action = await user.save()
         if (!action) return res.status(500).send({msg: 'Something went wrong'})
         return res.status(200).send({msg: 'User updated', payload: user})

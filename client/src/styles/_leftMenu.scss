@@ -172,6 +172,17 @@
 
             @media (max-width: 750px) {
                 display: block;
+                width: 2.5rem;
+                height: 2.5rem;
+                border-radius: 50%;
+
+                object-fit: cover;
+                aspect-ratio: 1/1;
+            }
+
+            @media (max-width: 480px) {
+                width: 2rem;
+                height: 2rem;
             }
         }
         

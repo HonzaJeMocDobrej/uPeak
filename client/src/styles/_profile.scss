@@ -1,8 +1,25 @@
+.profileMenuCont {
+  position: relative;
+
+  .popup {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
 .profileCont {
   padding-left: 6.5rem;
   padding-bottom: 5rem;
   overflow-y: auto;
   height: calc(100vh - 12rem);
+  transition: 300ms;
+
+  
 
   .border {
     width: 54.125rem;
@@ -32,6 +49,14 @@
     font-weight: 600;
     margin-top: 1.5rem;
     margin-bottom: 0;
+
+    @media (max-width: 750px) {
+      font-size: 1rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: .8rem;
+    }
   }
 
   .itemCont {
@@ -39,6 +64,8 @@
     display: flex;
     justify-content: space-between;
     align-items: end;
+    position: relative;
+  
 
     @media (max-width: 1400px) {
       width: calc(100% - 4.5rem);
@@ -57,6 +84,14 @@
         font-size: 1rem;
         color: #666666;
         margin-top: .5rem;
+
+        @media (max-width: 750px) {
+          font-size: .75rem;
+        }
+    
+        @media (max-width: 480px) {
+          font-size: .55rem;
+        }
       }
     }
     .changeBtn {
@@ -97,6 +132,7 @@
         transition: 300ms;
       }
     }
+
 
   }
 
@@ -268,7 +304,7 @@
       }
 
       @media (max-width: 750px) {
-        height: 1.5rem;
+        height: 1.35rem;
         font-size: 0.51rem;
         right: 2.1rem;
       }
@@ -334,12 +370,12 @@
     margin: 1.5rem 0 0 0;
 
     @media (max-width: 750px) {
-      font-size: .72rem;
+      font-size: .9rem;
       margin: 1rem 0 0 0;
     }
 
     @media (max-width: 480px) {
-      font-size: .48rem;
+      font-size: .7rem;
       margin: .75rem 0 0 0;
     }
   }
@@ -476,4 +512,15 @@
   .dropdownPlaceholder {
     color: #b6b6b6;
   }
+}
+
+.profileContOpen {
+  transition: 300ms;
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+
+  button, .uploadBtn {
+    pointer-events: none;
+  }
+  user-select: none;
 }

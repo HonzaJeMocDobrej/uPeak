@@ -579,6 +579,18 @@ main .progressConts .counterPurple h2 {
 @media (max-width: 750px) {
   .lMenu .itemsCont .honzak {
     display: block;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    aspect-ratio: 1/1;
+  }
+}
+@media (max-width: 480px) {
+  .lMenu .itemsCont .honzak {
+    width: 2rem;
+    height: 2rem;
   }
 }
 .lMenu .itemsCont li {
@@ -3423,11 +3435,26 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   }
 }
 
+.profileMenuCont {
+  position: relative;
+}
+.profileMenuCont .popup {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .profileCont {
   padding-left: 6.5rem;
   padding-bottom: 5rem;
   overflow-y: auto;
   height: calc(100vh - 12rem);
+  transition: 300ms;
   /* Chrome, Edge, and Safari */
 }
 .profileCont .border {
@@ -3460,11 +3487,22 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   margin-top: 1.5rem;
   margin-bottom: 0;
 }
+@media (max-width: 750px) {
+  .profileCont h3 {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .profileCont h3 {
+    font-size: 0.8rem;
+  }
+}
 .profileCont .itemCont {
   width: 54.125rem;
   display: flex;
   justify-content: space-between;
   align-items: end;
+  position: relative;
 }
 @media (max-width: 1400px) {
   .profileCont .itemCont {
@@ -3485,6 +3523,16 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   font-size: 1rem;
   color: #666666;
   margin-top: 0.5rem;
+}
+@media (max-width: 750px) {
+  .profileCont .itemCont .headlineValueCont .pValue {
+    font-size: 0.75rem;
+  }
+}
+@media (max-width: 480px) {
+  .profileCont .itemCont .headlineValueCont .pValue {
+    font-size: 0.55rem;
+  }
 }
 .profileCont .itemCont .changeBtn {
   height: -moz-fit-content;
@@ -3692,7 +3740,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 @media (max-width: 750px) {
   .profileCont .profileInfoCont .uploadBtn {
-    height: 1.5rem;
+    height: 1.35rem;
     font-size: 0.51rem;
     right: 2.1rem;
   }
@@ -3758,13 +3806,13 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 @media (max-width: 750px) {
   .profileCont p {
-    font-size: 0.72rem;
+    font-size: 0.9rem;
     margin: 1rem 0 0 0;
   }
 }
 @media (max-width: 480px) {
   .profileCont p {
-    font-size: 0.48rem;
+    font-size: 0.7rem;
     margin: 0.75rem 0 0 0;
   }
 }
@@ -3887,6 +3935,17 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 .profileCont .dropdownPlaceholder {
   color: #b6b6b6;
+}
+
+.profileContOpen {
+  transition: 300ms;
+  filter: blur(2px);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.profileContOpen button, .profileContOpen .uploadBtn {
+  pointer-events: none;
 }
 
 .loadingPage {

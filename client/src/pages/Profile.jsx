@@ -28,6 +28,9 @@ function Profile(props) {
   const auth = useAuthUser();
   const [imgSrc, setImgSrc] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isUsernameOpen, setIsUsernameOpen] = useState(false)
+  const [isEmailOpen, setIsEmailOpen] = useState(false)
+  const [isPasswordOpen, setIsPasswordOpen] = useState(false)
   const signIn = useSignIn();
 
   const load = () => {
@@ -60,6 +63,10 @@ function Profile(props) {
       });
     }
   };
+
+  const univHandler = (setter) => {
+    setter(prev => !prev)
+  }
 
   const getImage = async (file) => {
     const fileObj = file[0];
@@ -102,7 +109,13 @@ function Profile(props) {
           setSwitchStyle={setSwitchStyle}
         />
         <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
-          <div className="profileCont">
+          <div className="profileMenuCont">
+          <div onClick={() => {
+            if (isUsernameOpen) {
+              setIsUsernameOpen(false)
+            }
+            return
+          }} className={`profileCont ${isUsernameOpen ? "profileContOpen" : null}`}>
             <h2
               style={{
                 color: isBlack ? "#FFF" : "#333",
@@ -165,6 +178,7 @@ function Profile(props) {
                   color: isBlack ? "#CCC" : "#666",
                   borderColor: isBlack ? "#CCC" : "#666",
                 }}
+                onClick={() => univHandler(setIsUsernameOpen)}
               >Change username</button>
             </div>
             {/* <input
@@ -196,6 +210,7 @@ function Profile(props) {
                   color: isBlack ? "#CCC" : "#666",
                   borderColor: isBlack ? "#CCC" : "#666",
                 }}
+                onClick={() => univHandler(setIsUsernameOpen)}
               >Change email</button>
             </div>
             {/* <input
@@ -226,6 +241,7 @@ function Profile(props) {
                   color: isBlack ? "#CCC" : "#666",
                   borderColor: isBlack ? "#CCC" : "#666",
                 }}
+                onClick={() => univHandler(setIsUsernameOpen)}
               >Change Password</button>
             </div>
             {/* <input
@@ -237,6 +253,16 @@ function Profile(props) {
             ></input> */}
 
             {/* <div className="saveBtn">Save</div> */}
+          </div>
+            <div style={{
+              display: isUsernameOpen ? 'block' : 'none'
+            }} className="popup"></div>
+            <div style={{
+              display: isEmailOpen ? 'block' : 'none'
+            }} className="popup"></div>
+            <div style={{
+              display: isPasswordOpen ? 'block' : 'none'
+            }} className="popup"></div>
           </div>
         </main>
       </div>

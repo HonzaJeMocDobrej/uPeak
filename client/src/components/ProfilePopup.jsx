@@ -1,11 +1,49 @@
 /* eslint-disable react/prop-types */
 
+import useAuthUser from "react-auth-kit/hooks/useAuthUser"
+import { updateUser } from "../models/user"
+import useSignIn from "react-auth-kit/hooks/useSignIn"
+
 function ProfilePopup(props) {
+
+  const auth = useAuthUser()
+  const signIn = useSignIn()
 
     const {toggle,setToggle, isBlack, change, setNew, newInput, setTypePassword, typePassword} = props
 
     const handleChange = (e, setter) => {
       setter(e.target.value)
+    }
+
+    const handleClick = async () => {
+      setToggle(false)
+
+      if (change == 'Username') {
+        const user = await updateUser(auth.id, [
+          {
+            'propName': 'username',
+            'value': newInput
+          },
+          {
+            'propName': 'password',
+            'value': typePassword
+          }
+        ])
+        signIn({
+          auth: {
+            token: user.token,
+            type: 'Bearer',
+          },
+          userState: {
+            username: user.data.username,
+            email: user.data.email,
+            id: user.data.id
+          }
+        })
+        
+      }
+      setNew('')
+      setTypePassword('')
     }
 
   return (
@@ -40,7 +78,7 @@ function ProfilePopup(props) {
               type="password"
             ></input>
 
-            <div onClick={() => setToggle(false)} className="saveBtn">Save</div>
+            <div onClick={handleClick} className="saveBtn">Save</div>
 
       </div>
   )

@@ -11,7 +11,7 @@ export const createUser = async (regData) => {
 
 export const updateUser = async (id, data) => {
     const res = await axios.patch(`http://localhost:3000/api/v1/users/${id}`, data)
-    return userPayload(res)
+    return tokenUserPayload(res)
 }
 
 export const comparePasswords = async (logData) => {

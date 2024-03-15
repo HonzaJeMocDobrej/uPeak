@@ -116,7 +116,8 @@ export const updateUser = async (req: Request, res: Response) => {
         if (!comparedPassword) return res.status(400).send({msg: 'Invalid password'})
         const action = await user.save()
         if (!action) return res.status(500).send({msg: 'Something went wrong'})
-        return res.status(200).send({msg: 'User updated', payload: user})
+        const token = jwt.sign({id: user.id, email: user.email, username: user.username, profilePic: user.profilePic}, process.env.JWT_SECRET as Secret, { expiresIn: '1h' })
+        return res.status(200).send({msg: 'User updated', payload: user, token: token})
     } catch (err) {
         console.log(err);
         res.status(500).send(err)

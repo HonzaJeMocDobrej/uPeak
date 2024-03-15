@@ -3452,6 +3452,23 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   padding: 4rem 3rem;
   flex-direction: column;
 }
+@media (min-width: 1400px) {
+  .profileMenuCont .popup {
+    width: 50rem;
+  }
+}
+@media (max-width: 750px) {
+  .profileMenuCont .popup {
+    padding: 2rem 2rem;
+    border-radius: 1.5rem;
+  }
+}
+@media (max-width: 480px) {
+  .profileMenuCont .popup {
+    padding: 1.25rem 1.5rem;
+    border-radius: 1rem;
+  }
+}
 .profileMenuCont .popup input {
   width: calc(100% - 1rem);
   height: 51.6px;
@@ -3469,6 +3486,24 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 .profileMenuCont .popup input:focus {
   outline: #0099ff 2px solid;
 }
+@media (max-width: 750px) {
+  .profileMenuCont .popup input {
+    width: calc(100% - 0.8rem);
+    height: 30.96px;
+    font-size: 0.72rem;
+    border-radius: 7.2px;
+    padding: 0 0 0 0.75rem;
+  }
+}
+@media (max-width: 480px) {
+  .profileMenuCont .popup input {
+    width: calc(100% - 0.55rem);
+    height: 20.64px;
+    font-size: 0.48rem;
+    border-radius: 4.8px;
+    padding: 0 0 0 0.5rem;
+  }
+}
 .profileMenuCont .popup p {
   color: #333;
   font-family: Open Sans;
@@ -3481,15 +3516,18 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   margin-top: 1rem;
 }
 @media (max-width: 750px) {
+  .profileMenuCont .popup p:nth-child(3) {
+    margin-top: 0.5rem;
+  }
+}
+@media (max-width: 750px) {
   .profileMenuCont .popup p {
     font-size: 0.9rem;
-    margin: 1rem 0 0 0;
   }
 }
 @media (max-width: 480px) {
   .profileMenuCont .popup p {
     font-size: 0.7rem;
-    margin: 0.75rem 0 0 0;
   }
 }
 .profileMenuCont .popup .saveBtn {

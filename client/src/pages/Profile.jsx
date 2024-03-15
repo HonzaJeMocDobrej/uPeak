@@ -29,10 +29,13 @@ function Profile(props) {
   const auth = useAuthUser();
   const [imgSrc, setImgSrc] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isUsernameOpen, setIsUsernameOpen] = useState(false)
-  const [isEmailOpen, setIsEmailOpen] = useState(false)
-  const [isPasswordOpen, setIsPasswordOpen] = useState(false)
+  const [isUsernameOpen, setIsUsernameOpen] = useState(false);
+  const [isEmailOpen, setIsEmailOpen] = useState(false);
+  const [isPasswordOpen, setIsPasswordOpen] = useState(false);
   const signIn = useSignIn();
+
+  const [newInput, setNewInput] = useState("");
+  const [typePassword, setTypePassword] = useState("");
 
   const load = () => {
     setTimeout(() => {
@@ -43,7 +46,7 @@ function Profile(props) {
   // const handleUpdate = () => {
   //   updateUser(auth.id, [
   //     {
-  //       'propName': 
+  //       'propName':
   //     }
   //   ])
   // }
@@ -74,8 +77,8 @@ function Profile(props) {
   };
 
   const univHandler = (setter) => {
-    setter(prev => !prev)
-  }
+    setter((prev) => !prev);
+  };
 
   const getImage = async (file) => {
     const fileObj = file[0];
@@ -119,105 +122,126 @@ function Profile(props) {
         />
         <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
           <div className="profileMenuCont">
-          <div onClick={() => {
-            if (isUsernameOpen || isEmailOpen || isPasswordOpen) {
-              setIsUsernameOpen(false)
-              setIsEmailOpen(false)
-              setIsPasswordOpen(false)
-            }
-            return
-          }} className={`profileCont ${isUsernameOpen || isEmailOpen || isPasswordOpen ? "profileContOpen" : null}`}>
-            <h2
-              style={{
-                color: isBlack ? "#FFF" : "#333",
-              }}
-              className="profileHeadline"
-            >
-              My Profile
-            </h2>
             <div
-              style={{
-                backgroundColor: isBlack ? "#333" : "#FFF",
+              onClick={() => {
+                if (isUsernameOpen || isEmailOpen || isPasswordOpen) {
+                  setIsUsernameOpen(false);
+                  setIsEmailOpen(false);
+                  setIsPasswordOpen(false);
+                  setNewInput("");
+                  setTypePassword('')
+                }
               }}
-              className="profileInfoCont"
+              className={`profileCont ${
+                isUsernameOpen || isEmailOpen || isPasswordOpen
+                  ? "profileContOpen"
+                  : null
+              }`}
             >
-              <img src={imgSrc} alt="" />
-              <p
+              <h2
+                style={{
+                  color: isBlack ? "#FFF" : "#333",
+                }}
+                className="profileHeadline"
+              >
+                My Profile
+              </h2>
+              <div
+                style={{
+                  backgroundColor: isBlack ? "#333" : "#FFF",
+                }}
+                className="profileInfoCont"
+              >
+                <img src={imgSrc} alt="" />
+                <p
+                  style={{
+                    color: isBlack ? "#FFF" : "#333",
+                  }}
+                >
+                  {isEnglish ? "Hello" : "Ahoj"}
+                  <br />
+                  <span>{auth.username}</span>
+                </p>
+                <Files
+                  className="uploadBtn"
+                  accepts={["image/*"]}
+                  maxFileSize={5000000}
+                  minFileSize={0}
+                  name="profilePic"
+                  onChange={getImage}
+                >
+                  Your Image
+                </Files>
+              </div>
+              <h3
                 style={{
                   color: isBlack ? "#FFF" : "#333",
                 }}
               >
-                {isEnglish ? "Hello" : "Ahoj"}
-                <br />
-                <span>{auth.username}</span>
-              </p>
-              <Files
-                className="uploadBtn"
-                accepts={["image/*"]}
-                maxFileSize={5000000}
-                minFileSize={0}
-                name="profilePic"
-                onChange={getImage}
-              >
-                Your Image
-              </Files>
-            </div>
-            <h3
-              style={{
-                color: isBlack ? "#FFF" : "#333",
-              }}
-            >Account Settings</h3>
-            <div className="border"></div>
-            <div className="itemCont">
-              <div className="headlineValueCont">
-                <p
-                  style={{
-                    color: isBlack ? "#FFF" : "#333",
-                  }}
-                >
-                  Username
-                </p>
+                Account Settings
+              </h3>
+              <div className="border"></div>
+              <div className="itemCont">
+                <div className="headlineValueCont">
+                  <p
+                    style={{
+                      color: isBlack ? "#FFF" : "#333",
+                    }}
+                  >
+                    Username
+                  </p>
 
-                <p className="pValue"
-                style={{
-                  color: isBlack ? "#CCC" : "#666",
-                }}
-                >{auth.username}</p>
-              </div>
-              <button className={`changeBtn ${isBlack ? 'changeBtnBlack' : ''}`}
-                style={{
-                  color: isBlack ? "#CCC" : "#666",
-                  borderColor: isBlack ? "#CCC" : "#666",
-                }}
-                onClick={() => univHandler(setIsUsernameOpen)}
-              >Change username</button>
-            </div>
-            
-
-            <div className="itemCont">
-              <div className="headlineValueCont">
-                <p
-                  style={{
-                    color: isBlack ? "#FFF" : "#333",
-                  }}
-                >
-                  Email
-                </p>
-                <p className="pValue"
+                  <p
+                    className="pValue"
+                    style={{
+                      color: isBlack ? "#CCC" : "#666",
+                    }}
+                  >
+                    {auth.username}
+                  </p>
+                </div>
+                <button
+                  className={`changeBtn ${isBlack ? "changeBtnBlack" : ""}`}
                   style={{
                     color: isBlack ? "#CCC" : "#666",
+                    borderColor: isBlack ? "#CCC" : "#666",
                   }}
-                >{auth.email}</p>
+                  onClick={() => univHandler(setIsUsernameOpen)}
+                >
+                  Change username
+                </button>
               </div>
-              <button className={`changeBtn ${isBlack ? 'changeBtnBlack' : ''}`}
-                style={{
-                  color: isBlack ? "#CCC" : "#666",
-                  borderColor: isBlack ? "#CCC" : "#666",
-                }}
-                onClick={() => univHandler(setIsEmailOpen)}
-              >Change email</button>
-            </div>
-            {/* <input
+
+              <div className="itemCont">
+                <div className="headlineValueCont">
+                  <p
+                    style={{
+                      color: isBlack ? "#FFF" : "#333",
+                    }}
+                  >
+                    Email
+                  </p>
+                  <p
+                    className="pValue"
+                    style={{
+                      color: isBlack ? "#CCC" : "#666",
+                    }}
+                  >
+                    {auth.email}
+                  </p>
+                </div>
+                <button
+                  className={`changeBtn ${isBlack ? "changeBtnBlack" : ""}`}
+                  style={{
+                    color: isBlack ? "#CCC" : "#666",
+                    borderColor: isBlack ? "#CCC" : "#666",
+                  }}
+                  onClick={() => univHandler(setIsEmailOpen)}
+                >
+                  Change email
+                </button>
+              </div>
+              {/* <input
               style={{
                 color: isBlack ? "rgb(204, 204, 204)" : "#808080",
               }}
@@ -225,35 +249,66 @@ function Profile(props) {
               className="emailInput"
               placeholder="Your Email"
             ></input> */}
-            <div className="itemCont">
-              <div className="headlineValueCont">
-                <p
+              <div className="itemCont">
+                <div className="headlineValueCont">
+                  <p
+                    style={{
+                      color: isBlack ? "#FFF" : "#333",
+                    }}
+                  >
+                    Password
+                  </p>
+                  <div
+                    className="pValue"
+                    style={{
+                      color: isBlack ? "#CCC" : "#666",
+                    }}
+                  >
+                    ******
+                  </div>
+                </div>
+                <button
+                  className={`changeBtn ${isBlack ? "changeBtnBlack" : ""}`}
                   style={{
-                    color: isBlack ? "#FFF" : "#333",
+                    color: isBlack ? "#CCC" : "#666",
+                    borderColor: isBlack ? "#CCC" : "#666",
                   }}
+                  onClick={() => univHandler(setIsPasswordOpen)}
                 >
-                  Password
-                </p>
-                <div className="pValue"
-                  style={{
-                  color: isBlack ? "#CCC" : "#666",
-                }}
-                >******</div>
+                  Change Password
+                </button>
               </div>
-              <button className={`changeBtn ${isBlack ? 'changeBtnBlack' : ''}`}
-                style={{
-                  color: isBlack ? "#CCC" : "#666",
-                  borderColor: isBlack ? "#CCC" : "#666",
-                }}
-                onClick={() => univHandler(setIsPasswordOpen)}
-              >Change Password</button>
             </div>
-            
-            
-          </div>
-            <ProfilePopup isBlack={isBlack} toggle={isUsernameOpen} setToggle={setIsUsernameOpen} change={'Username'}></ProfilePopup>
-            <ProfilePopup isBlack={isBlack} toggle={isEmailOpen} setToggle={setIsEmailOpen} change={'Email'}></ProfilePopup>
-            <ProfilePopup isBlack={isBlack} toggle={isPasswordOpen} setToggle={setIsPasswordOpen} change={'Password'}></ProfilePopup>
+            <ProfilePopup
+              isBlack={isBlack}
+              toggle={isUsernameOpen}
+              setToggle={setIsUsernameOpen}
+              change={"Username"}
+              setNew={setNewInput}
+              newInput={newInput}
+              setTypePassword={setTypePassword}
+              typePassword={typePassword}
+            ></ProfilePopup>
+            <ProfilePopup
+              isBlack={isBlack}
+              toggle={isEmailOpen}
+              setToggle={setIsEmailOpen}
+              change={"Email"}
+              setNew={setNewInput}
+              newInput={newInput}
+              setTypePassword={setTypePassword}
+              typePassword={typePassword}
+            ></ProfilePopup>
+            <ProfilePopup
+              isBlack={isBlack}
+              toggle={isPasswordOpen}
+              setToggle={setIsPasswordOpen}
+              change={"Password"}
+              setNew={setNewInput}
+              newInput={newInput}
+              setTypePassword={setTypePassword}
+              typePassword={typePassword}
+            ></ProfilePopup>
           </div>
         </main>
       </div>

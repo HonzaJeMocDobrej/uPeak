@@ -2,7 +2,11 @@
 
 function ProfilePopup(props) {
 
-    const {toggle,setToggle, isBlack, change} = props
+    const {toggle,setToggle, isBlack, change, setNew, newInput, setTypePassword, typePassword} = props
+
+    const handleChange = (e, setter) => {
+      setter(e.target.value)
+    }
 
   return (
     <div  style={{
@@ -18,6 +22,9 @@ function ProfilePopup(props) {
               maxLength={20}
               className="userInput"
               placeholder={`New ${change}`}
+              onChange={() => handleChange(event, setNew)}
+              value={newInput}
+              type={change == 'Password' ? 'password' : 'text'}
             ></input>
             <p>
             {change == 'Password' ? "Old Password" : "Password"}
@@ -28,6 +35,9 @@ function ProfilePopup(props) {
               }}
               className="passInput"
               placeholder={change == 'Password' ? "Old Password" : "Password"}
+              onChange={() => handleChange(event, setTypePassword)}
+              value={typePassword}
+              type="password"
             ></input>
 
             <div onClick={() => setToggle(false)} className="saveBtn">Save</div>

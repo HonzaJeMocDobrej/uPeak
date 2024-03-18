@@ -124,6 +124,28 @@ export const updateUser = async (req: Request, res: Response) => {
     }
 }
 
+export const updateUserPassword = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+        const {oldPass, newPass} = req.body
+        if (!id || !oldPass || !newPass) return res.status(400).send({msg: 'Missing details'})
+        const user = await User.findOne({where: {id: id}})
+        if (!user) return res.status(400).send({msg: 'User not found'})
+        const comparedPassword = await compare(oldPass, user.passwordHash)
+        if (!comparedPassword) return res.status(400).send({msg: 'Invalid password'})
+        const salt = await genSalt(12)
+        const passwordHash = await hash(newPass, salt)
+        user.passwordHash = passwordHash
+        const action = await user.save()
+        if (!action) return res.status(500).send({msg: 'Something went wrong'})
+        const token = jwt.sign({id: user.id, email: user.email, username: user.username, profilePic: user.profilePic}, process.env.JWT_SECRET as Secret, { expiresIn: '1h' })
+        return res.status(200).send({msg: 'User updated', payload: user, token: token})
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err)
+    }
+}
+
 export const deleteUser = async (req: Request, res: Response) => {
     try {
         const { id } = req.params

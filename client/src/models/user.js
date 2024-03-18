@@ -14,6 +14,11 @@ export const updateUser = async (id, data) => {
     return tokenUserPayload(res)
 }
 
+export const updateUserPassword = async (id, data) => {
+    const res = await axios.patch(`http://localhost:3000/api/v1/users/${id}/password`, data)
+    return tokenUserPayload(res)
+}
+
 export const comparePasswords = async (logData) => {
     const res = await axios.post('http://localhost:3000/api/v1/users/compare', {
         email: logData.email,

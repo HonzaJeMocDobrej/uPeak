@@ -42,14 +42,6 @@ const profilePicPayload =  (res) => {
     }
 }
 
-const userPayload =  (res) => {
-    return{
-        msg: res.data.msg,
-        data: res.data.payload,
-        status: res.status,
-    }
-}
-
 const tokenUserPayload =  (res) => {
     return{
         msg: res.data.msg,

@@ -13,7 +13,6 @@
   .lLogin {
     min-height: 100vh;
     width: clamp(30rem, 45vw, 50rem);
-    background-color: aqua;
     background-image: url(../assets/img/rocks.svg);
     /* background by SVGBackgrounds.com */
     background-position: center;
@@ -162,9 +161,22 @@
               margin-top: 0rem;
             }
           }
+          
+        }
 
+        .inputH {
           @media (max-width: 1320px) {
             display: none;
+          }
+        }
+
+        .err {
+          margin-left: 0;
+          margin-right: 2.4rem;
+          text-align: center;
+          @media (max-width: 1320px) {
+            font-size: 1rem;
+            margin-left: 3rem;
           }
         }
 

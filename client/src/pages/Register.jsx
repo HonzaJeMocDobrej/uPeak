@@ -156,10 +156,7 @@ function Register(props) {
                 <input onChange={() => univInpChange(event, "repPass")} value={regData.repPass} placeholder='Your Password Again' type="password" />
                 {/* <input onChange={() => univInpChange(event, "country")} value={regData.country} placeholder='Country' type="text" /> */}
                 <button onClick={submit}>Sign Up</button>
-                <p style={{
-                  marginLeft: 0,
-                  marginRight: '2.4rem',
-                  textAlign: "center",
+                <p className="err" style={{
                   color: '#FF3D00'
                 }}>
                   {info}

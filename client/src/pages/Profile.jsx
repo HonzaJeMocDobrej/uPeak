@@ -14,6 +14,10 @@ import Files from "react-files";
 import { patchImage, updateUser } from "../models/user";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
 import ProfilePopup from "../components/ProfilePopup";
+import exit from '../assets/icons/exit.svg'
+
+import useSignOut from 'react-auth-kit/hooks/useSignOut'
+import { useNavigate } from "react-router-dom";
 
 function Profile(props) {
   const {
@@ -37,6 +41,9 @@ function Profile(props) {
   const [newInput, setNewInput] = useState("");
   const [typePassword, setTypePassword] = useState("");
 
+  const signOut = useSignOut()
+  let navigate = useNavigate()
+
   const load = () => {
     setTimeout(() => {
       setIsLoaded(true);
@@ -56,7 +63,7 @@ function Profile(props) {
     data.append("profilePic", file);
 
     const img = await patchImage(auth.email, data).catch((err) => {
-      console.log(err.response.data.msg);
+      // console.log(err.response.data.msg);
     });
 
     if (img.status == 200) {
@@ -83,7 +90,7 @@ function Profile(props) {
   const getImage = async (file) => {
     const fileObj = file[0];
     const img = URL.createObjectURL(fileObj);
-    console.log(img);
+    // console.log(img);
     handlePatchImage(fileObj);
   };
 
@@ -278,6 +285,15 @@ function Profile(props) {
                   Change Password
                 </button>
               </div>
+              <div onClick={() => {
+                signOut()
+                navigate('/signin')
+              }} className="logoutBtn" style={{
+                pointerEvents: isEmailOpen || isPasswordOpen || isUsernameOpen ? 'none' : null
+              }}>
+                <img src={exit} alt="" />
+                <p className="logoutP">Sign out</p>
+            </div>
             </div>
             <ProfilePopup
               isBlack={isBlack}

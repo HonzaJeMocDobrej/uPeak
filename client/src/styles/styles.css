@@ -950,7 +950,6 @@ main .progressConts .counterPurple h2 {
 .login .lLogin {
   min-height: 100vh;
   width: clamp(30rem, 45vw, 50rem);
-  background-color: aqua;
   background-image: url(../assets/img/rocks.svg);
   /* background by SVGBackgrounds.com */
   background-position: center;
@@ -1097,8 +1096,19 @@ main .progressConts .counterPurple h2 {
   }
 }
 @media (max-width: 1320px) {
-  .login .rLogin .centerD .signUp p {
+  .login .rLogin .centerD .signUp .inputH {
     display: none;
+  }
+}
+.login .rLogin .centerD .signUp .err {
+  margin-left: 0;
+  margin-right: 2.4rem;
+  text-align: center;
+}
+@media (max-width: 1320px) {
+  .login .rLogin .centerD .signUp .err {
+    font-size: 1rem;
+    margin-left: 3rem;
   }
 }
 .login .rLogin .centerD .signUp input {
@@ -3571,8 +3581,8 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 .profileMenuCont .popup .saveBtn:hover {
   background-color: transparent;
-  color: #0099FF;
-  border: solid 2px #0099FF;
+  color: #0099ff;
+  border: solid 2px #0099ff;
   transition: 400ms background-color, color;
 }
 .profileMenuCont .popup .saveBtn:active {
@@ -3680,7 +3690,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   transition: 300ms;
 }
 .profileCont .itemCont .changeBtn:hover {
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   transition: 300ms;
 }
 @media (max-width: 750px) {
@@ -3814,6 +3824,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   .profileCont .profileInfoCont img {
     height: 2rem;
     width: 2rem;
+    margin-left: 1.4rem;
   }
 }
 .profileCont .profileInfoCont p {
@@ -3976,6 +3987,74 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 .profileCont .dropdownPlaceholder {
   color: #b6b6b6;
 }
+.profileCont .logoutBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  transition: 250ms;
+  width: -moz-fit-content;
+  width: fit-content;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+@media (max-width: 750px) {
+  .profileCont .logoutBtn {
+    gap: 0.375rem;
+    margin-top: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .profileCont .logoutBtn {
+    gap: 0.26rem;
+    margin-top: 0.75rem;
+  }
+}
+.profileCont .logoutBtn:hover {
+  transition: 250ms;
+  cursor: pointer;
+  padding-left: 0.5rem;
+}
+@media (max-width: 750px) {
+  .profileCont .logoutBtn:hover {
+    padding-left: 0.375rem;
+  }
+}
+@media (max-width: 480px) {
+  .profileCont .logoutBtn:hover {
+    padding-left: 0.26rem;
+  }
+}
+@media (max-width: 750px) {
+  .profileCont .logoutBtn img {
+    height: 0.75rem;
+  }
+}
+@media (max-width: 480px) {
+  .profileCont .logoutBtn img {
+    height: 0.55rem;
+  }
+}
+.profileCont .logoutBtn .logoutP {
+  margin: 0;
+  color: #ff0000;
+  font-weight: 400;
+  font-family: Poppins;
+  font-size: 1rem;
+  margin-bottom: 0.1rem;
+}
+@media (max-width: 750px) {
+  .profileCont .logoutBtn .logoutP {
+    font-size: 0.75rem;
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 480px) {
+  .profileCont .logoutBtn .logoutP {
+    font-size: 0.55rem;
+  }
+}
 
 .profileContOpen {
   transition: 300ms;
@@ -3984,7 +4063,8 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
      -moz-user-select: none;
           user-select: none;
 }
-.profileContOpen button, .profileContOpen .uploadBtn {
+.profileContOpen button,
+.profileContOpen .uploadBtn {
   pointer-events: none;
 }
 

@@ -132,10 +132,7 @@ function Login(props) {
                 <p className="inputH">Password</p>
                 <input onChange={() => univInpChange(event, "pass")} value={logData.pass} placeholder='Your Password' type="password" />
                 <button onClick={submit} className="signInB">Sign In</button>
-                <p style={{
-                  marginLeft: 0,
-                  marginRight: '2.4rem',
-                  textAlign: "center",
+                <p className="err" style={{
                   color: '#FF3D00'
                 }}>
                   {info}

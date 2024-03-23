@@ -161,7 +161,7 @@ return (
             </div>
             {/* <h2>{displayedTime == 'days' ? isEnglish ? 'DAYS' : 'DNŮ' : isEnglish ? 'MONTHS' : 'MĚSÍCŮ'}</h2> */}
             {
-              displayedTime == 'days' && <h2>{isEnglish ? 'DAYS' : 'DNŮ'}</h2>
+              displayedTime == 'days' && <h2>{isEnglish ? 'DAYS' : formattedNum == 1 ? 'DEN' : formattedNum > 1 && formattedNum < 5 ? 'DNY' : 'DNŮ'}</h2>
             }
             {
               displayedTime == 'months' && <h2>{isEnglish ? 'MONTHS' : 'MĚSÍCŮ'}</h2>

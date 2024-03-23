@@ -149,7 +149,7 @@ function ToDo(props) {
 
   const allGroupsOnClick = async () => {
     const group = await createGroup(todoPageId, {
-      name: groupData.name === "" ? "Group Name" : groupData.name,
+      name: groupData.name === "" ? "Group" : groupData.name,
       color: groupData.color === "333" ? "#333" : groupData.color,
     }).catch((err) => console.log(err.response.data.msg));
 
@@ -287,7 +287,7 @@ function ToDo(props) {
                   onClick={() => univToggle(setIsCreateGroupOpen)}
                   className="ctaGroupTodo"
                 >
-                  Create Group
+                  {isEnglish ? 'Create Group' : 'Nová Skupina'}
                 </p>
                 <div
                   // style={
@@ -314,7 +314,7 @@ function ToDo(props) {
                         onChange={updateHeadlineGroupVal}
                         style={{color: isBlack ? convertToHSLDark(groupData.color, false) : convertToHSLDark(groupData.color, true)}}
                         className="headline"
-                        placeholder="Group Name..."
+                        placeholder={isEnglish ? "Group Name..." : 'Název Skupiny...'}
                         type="text"
                         maxLength={15}
                       />
@@ -348,7 +348,7 @@ function ToDo(props) {
                 onClick={() => univToggle(setIsGroupAddOpen)}
                 className="ctaGroupTodo leftCtaGroupTodo"
               >
-                Add Group
+                {isEnglish ? 'Add Group' : 'Přidat Skupinu'}
               </div>
               <ul
                 className="dropdownGroup"
@@ -426,6 +426,7 @@ function ToDo(props) {
                     name={group.name}
                     color={group.color}
                     isBlack={isBlack}
+                    isEnglish={isEnglish}
                   />
                 );
               }

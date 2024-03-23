@@ -14,6 +14,8 @@ import stopBlack from "../assets/icons/stopBlack.svg";
 import "../styles/styles.css";
 import { useEffect, useRef, useState } from "react";
 import LoadingPage from "../components/LoadingPage";
+import successAudio from '../assets/audio/pomodoroSuccess.mp3'
+import sessionAudio from '../assets/audio/pomodoroSession.mp3'
 
 function Pomodoro(props) {
   const {
@@ -36,6 +38,17 @@ function Pomodoro(props) {
   const [stars, setStars] = useState(stars_stage_one)
 
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const playSuccessAudio = () => {
+    let src
+    if (stage < 4 || stage == 4 && !isPause) {
+      src = successAudio
+    }
+    if (stage == 4 && isPause) {
+      src = sessionAudio
+    }
+    new Audio(src).play()
+  }
 
   const load = () => {
     setTimeout(() => {
@@ -71,15 +84,17 @@ function Pomodoro(props) {
 
   useEffect(() => {
     if (time <= 0 && !isPause) {
+      playSuccessAudio()
       setTime(300);
       setIsPause(true);
       return;
     }
 
     if (time <= 0 && isPause) {
+      playSuccessAudio()
+      setStage(prev => prev + 1)
       setTime(1500);
       setIsPause(false);
-      setStage(prev => prev + 1)
       return;
     }
 
@@ -151,11 +166,7 @@ function Pomodoro(props) {
       </h2>
     );
   }
-
   
-
-  
-
   return (
     <>
       <div className={`menuCont ${isBlack ? "menuBlack" : null}`}>

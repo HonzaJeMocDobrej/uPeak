@@ -9,7 +9,7 @@ import { convertToHSLDark } from '../functions/functions';
 
 function GroupCont(props) {
 
-    const { univToggle, name, color, id, isBlack} = props
+    const { univToggle, name, color, id, isBlack, isEnglish} = props
 
     const [todos, setTodos] = useState([]);
     const [isCreateTodoOpen, setIsCreateTodoOpen] = useState(false);
@@ -123,7 +123,7 @@ function GroupCont(props) {
                   onClick={() => univToggle(setIsCreateTodoOpen)}
                   className="ctaGroupTodo leftCtaGroupTodo"
                 >
-                  Add To-Do
+                  {isEnglish ? 'Add To-Do' : 'Přidat To-Do'}
                 </h2>
                 
                 <AddToDo
@@ -134,6 +134,7 @@ function GroupCont(props) {
                   univToggle={univToggle}
                   submitFunc={allTodosOnClick}
                   isBlack={isBlack}
+                  isEnglish={isEnglish}
                   lightColor={convertToHSLDark(todoData.color, true)}
                   darkColor={convertToHSLDark(todoData.color, false)}
                 />

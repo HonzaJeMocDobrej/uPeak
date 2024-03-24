@@ -151,7 +151,7 @@ function Profile(props) {
                 }}
                 className="profileHeadline"
               >
-                My Profile
+                {isEnglish ? 'My Profile' : 'Můj Profil'}
               </h2>
               <div
                 style={{
@@ -177,7 +177,7 @@ function Profile(props) {
                   name="profilePic"
                   onChange={getImage}
                 >
-                  Your Image
+                  {isEnglish ? 'Your Image' : 'Změnit Obrázek'}
                 </Files>
               </div>
               <h3
@@ -185,7 +185,7 @@ function Profile(props) {
                   color: isBlack ? "#FFF" : "#333",
                 }}
               >
-                Account Settings
+                {isEnglish ? 'Account Settings' : 'Nastavení Účtu'}
               </h3>
               <div className="border"></div>
               <div className="itemCont">
@@ -215,7 +215,7 @@ function Profile(props) {
                   }}
                   onClick={() => univHandler(setIsUsernameOpen)}
                 >
-                  Change username
+                  {isEnglish ? 'Change' : 'Změnit'} username
                 </button>
               </div>
 
@@ -245,7 +245,7 @@ function Profile(props) {
                   }}
                   onClick={() => univHandler(setIsEmailOpen)}
                 >
-                  Change email
+                  {isEnglish ? 'Change' : 'Změnit'} email
                 </button>
               </div>
               {/* <input
@@ -263,7 +263,7 @@ function Profile(props) {
                       color: isBlack ? "#FFF" : "#333",
                     }}
                   >
-                    Password
+                    {isEnglish ? 'Password' : 'Heslo'}
                   </p>
                   <div
                     className="pValue"
@@ -282,7 +282,7 @@ function Profile(props) {
                   }}
                   onClick={() => univHandler(setIsPasswordOpen)}
                 >
-                  Change Password
+                  {isEnglish ? 'Change password' : 'Změnit heslo'}
                 </button>
               </div>
               <div onClick={() => {
@@ -292,7 +292,7 @@ function Profile(props) {
                 pointerEvents: isEmailOpen || isPasswordOpen || isUsernameOpen ? 'none' : null
               }}>
                 <img src={exit} alt="" />
-                <p className="logoutP">Sign out</p>
+                <p className="logoutP">{isEnglish ? 'Sign out' : 'Odhlásit se'}</p>
             </div>
             </div>
             <ProfilePopup
@@ -304,6 +304,7 @@ function Profile(props) {
               newInput={newInput}
               setTypePassword={setTypePassword}
               typePassword={typePassword}
+              isEnglish={isEnglish}
             ></ProfilePopup>
             <ProfilePopup
               isBlack={isBlack}
@@ -314,6 +315,7 @@ function Profile(props) {
               newInput={newInput}
               setTypePassword={setTypePassword}
               typePassword={typePassword}
+              isEnglish={isEnglish}
             ></ProfilePopup>
             <ProfilePopup
               isBlack={isBlack}
@@ -324,6 +326,7 @@ function Profile(props) {
               newInput={newInput}
               setTypePassword={setTypePassword}
               typePassword={typePassword}
+              isEnglish={isEnglish}
             ></ProfilePopup>
           </div>
         </main>

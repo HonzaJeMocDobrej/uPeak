@@ -206,13 +206,15 @@ function Notes(props) {
             myNotesColor={isBlack ? '#CCC' : '#666'}
             bin={isBlack ? 'invert(100%)' : 'invert(0%)'}
             notesListClass={isBlack ? 'notesList notesListBlack' : 'notesList'}
+            isEnglish={isEnglish}
+            isBlack={isBlack}
           />
           <div className="notesCont">
             <h2
               onClick={() => handleCusorPostion(1, headlineRef)}
               onInput={handleHealdine}
               ref={headlineRef}
-              data-ph="Untitled"
+              data-ph={isEnglish ? "Untitled" : 'Bez Názvu'}
               spellCheck="false"
               contentEditable="true"
               className="notesHeadline"
@@ -225,7 +227,7 @@ function Notes(props) {
             <p
               onClick={() => handleCusorPostion(1, notesRef)}
               onInput={handlePlaceholder}
-              data-ph="Start Typing..."
+              data-ph={isEnglish ? "Start Typing..." : 'Začít Psát...'}
               spellCheck="false"
               contentEditable="true"
               className="inputP"

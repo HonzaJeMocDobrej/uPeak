@@ -19,6 +19,7 @@ function ProfilePopup(props) {
     newInput,
     setTypePassword,
     typePassword,
+    isEnglish
   } = props;
 
   const handleChange = (e, setter) => {
@@ -151,7 +152,7 @@ function ProfilePopup(props) {
           color: isBlack ? "#fff" : null,
         }}
       >
-        New {change}
+        {isEnglish ? `New ${change}` : change == 'Password' || change == 'Heslo' ? `Nové Heslo` : `Nový ${change}`}
       </p>
       <input
         style={{
@@ -159,7 +160,7 @@ function ProfilePopup(props) {
         }}
         maxLength={20}
         className="userInput"
-        placeholder={`New ${change}`}
+        placeholder={isEnglish ? `New ${change}` : change == 'Password' || change == 'Heslo' ? `Nové Heslo` : `Nový ${change}`}
         onChange={() => handleChange(event, setNew)}
         value={newInput}
         type={change == "Password" ? "password" : "text"}
@@ -169,14 +170,14 @@ function ProfilePopup(props) {
           color: isBlack ? "#fff" : null,
         }}
       >
-        {change == "Password" ? "Old Password" : "Password"}
+        {isEnglish ? change == "Password" ? "Old Password" : "Password" : change == 'Password' ? 'Staré Heslo' : 'Heslo'}
       </p>
       <input
         style={{
           color: isBlack ? "#F2F2F2" : "#808080",
         }}
         className="passInput"
-        placeholder={change == "Password" ? "Old Password" : "Password"}
+        placeholder={isEnglish ? change == "Password" ? "Old Password" : "Password" : change == 'Password' ? 'Staré Heslo' : 'Heslo'}
         onChange={() => handleChange(event, setTypePassword)}
         value={typePassword}
         type="password"

@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const NotesRightMenu = (props) => {
-  const { virtualHeading, setVirtualHeading, paramsId, loadNote, isSearching, setIsSearching, myNotesColor, loadNotes} = props;
+  const { virtualHeading, setVirtualHeading, paramsId, loadNote, isSearching, setIsSearching, myNotesColor, loadNotes, isEnglish, isBlack} = props;
   const auth = useAuthUser();
   let navigate = useNavigate()
 
@@ -67,16 +67,19 @@ const NotesRightMenu = (props) => {
 
   return (
     <>
-      <div className="notesMenu">
+      <div style={{
+        borderRightColor: isBlack ? 'rgba(255, 255, 255, 0.22)' : 'rgba(51, 51, 51, 0.09)',
+        borderLeftColor: isBlack ? 'rgba(255, 255, 255, 0.22)' : 'rgba(51, 51, 51, 0.09)',
+      }} className="notesMenu">
         <div className="topCont">
-          <div className="notesBtn" onClick={handleCreateNotes}>New Note</div>
+          <div className="notesBtn" onClick={handleCreateNotes}>{isEnglish ? 'New Note' : 'Přidat'}</div>
           <div className="item">
             <img src={magnifyingGlass} alt="" />
-            <input type="text" placeholder="Search" onChange={handleSearch} />
+            <input type="text" placeholder={isEnglish ? "Search" : 'Hledat'} onChange={handleSearch} />
           </div>
         </div>
         <div className="bottomCont">
-          <p style={{color: myNotesColor}} className="myNotes">My Notes</p>
+          <p style={{color: myNotesColor}} className="myNotes">{isEnglish ? 'My Notes' : 'Moje Poznámky'}</p>
           {!isLoaded && 
           <>
             <div className="spinnerCont">

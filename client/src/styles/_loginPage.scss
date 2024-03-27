@@ -373,6 +373,7 @@
 
         height: auto;
         padding: 2rem 0;
+        
 
         h2 {
             text-align: center;
@@ -438,8 +439,11 @@
             align-items: center;
 
             img {
-              max-width: 6rem;
-              max-height: 4rem;
+              border-radius: 50%;
+              object-fit: cover;
+              aspect-ratio: 1/1;
+              height: 4rem;
+              width: 4rem;
             }
 
             p {

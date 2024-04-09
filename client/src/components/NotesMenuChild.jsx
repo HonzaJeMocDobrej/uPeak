@@ -30,9 +30,9 @@ function NotesMenuChild(props) {
     if (!isSearching) return loadNotes();
   };
 
-  const navToPageById = () => {
+  const navToPageById = async () => {
     // if (paramsId == id) return
-    loadNote();
+    await loadNote();
     setIsLoaded(false);
     setTimeout(() => {
       setIsLoaded(true);

@@ -60,13 +60,13 @@ function Progress(props) {
       setDisplayedTime('months')
       setCounterClass('counterRed')
     }
-    if (displayedNum >= 91 && displayedNum < 360) {
+    if (displayedNum >= 91 && displayedNum < 365) {
       setFormattedNum(Math.floor(displayedNum / 31))
       setDisplayedTime('months')
       setCounterClass('counterPurple')
     }
-    if (displayedNum >= 360) {
-      setFormattedNum(Math.floor(displayedNum / 360))
+    if (displayedNum >= 365) {
+      setFormattedNum(Math.floor(displayedNum / 365))
       setDisplayedTime('years')
       setCounterClass('counterPurple')
     }

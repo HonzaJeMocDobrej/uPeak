@@ -43,13 +43,13 @@ function Progress(props) {
 
 
   const counterFormatter = () => {
-    if (displayedNum < 14) {
+    if (displayedNum < 7) {
       setCounterClass('counterYellow')
       setDisplayedTime('days')
       setFormattedNum(displayedNum)
     }
 
-    if (displayedNum >= 14 && displayedNum < 31) {
+    if (displayedNum >= 7 && displayedNum < 31) {
       setCounterClass('counterOrange')
       setDisplayedTime('days')
       setFormattedNum(displayedNum)
@@ -161,13 +161,13 @@ return (
             </div>
             {/* <h2>{displayedTime == 'days' ? isEnglish ? 'DAYS' : 'DNŮ' : isEnglish ? 'MONTHS' : 'MĚSÍCŮ'}</h2> */}
             {
-              displayedTime == 'days' && <h2>{isEnglish ? 'DAYS' : formattedNum == 1 ? 'DEN' : formattedNum > 1 && formattedNum < 5 ? 'DNY' : 'DNŮ'}</h2>
+              displayedTime == 'days' && <h2>{isEnglish ? formattedNum == 1 ? 'DAY' : 'DAYS' : formattedNum == 1 ? 'DEN' : formattedNum > 1 && formattedNum < 5 ? 'DNY' : 'DNŮ'}</h2>
             }
             {
-              displayedTime == 'months' && <h2>{isEnglish ? 'MONTHS' : 'MĚSÍCŮ'}</h2>
+              displayedTime == 'months' && <h2>{isEnglish ? formattedNum == 1 ? 'MONTH' : 'MONTHS' : formattedNum == 1 ? 'MĚSÍC' : formattedNum > 1 && formattedNum < 5 ? 'MĚSÍCE' : 'MĚSÍCŮ'}</h2>
             }
             {
-              displayedTime == 'years' && <h2>{isEnglish ? 'YEARS' : 'ROKŮ'}</h2>
+              displayedTime == 'years' && <h2>{isEnglish ? formattedNum == 1 ? 'YEAR' : 'YEARS' : formattedNum == 1 ? 'ROK' : formattedNum > 1 && formattedNum < 5 ? 'ROKY' : 'ROKŮ'}</h2>
             }
           </div>
           <div className="selectTypeCont">

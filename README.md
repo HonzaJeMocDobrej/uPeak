@@ -9,7 +9,7 @@
 ## Requirements
 - NodeJS
 - XAMPP
-- A lot of patience during the instalation process
+- A lot of patience during the installation process xd
 
 ## Installation Guide
 ### Server

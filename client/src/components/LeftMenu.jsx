@@ -24,8 +24,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
-import { getTheFirstTodoPage } from "../models/todoPage";
-import { checkIfImgExists, formatFullDate } from "../functions/functions";
+import { createTodoPage, getTheFirstTodoPage } from "../models/todoPage";
+import { checkIfImgExists, formatDate, formatFullDate } from "../functions/functions";
 import { getTheFirstNote } from "../models/notes";
 import { getUserStats, patchStats } from "../models/stats";
 
@@ -44,7 +44,15 @@ function LeftMenu(props) {
 
   const nowDate = new Date()
 
+  const groupPageDateHandler = () => {
+    const day = nowDate.getDate()
+    const month = nowDate.getMonth() + 1 
+    const year = nowDate.getFullYear()
+    return formatDate(nowDate.getDay(), day, month, year)
+  }
+
   const handleNav = async (path) => {
+    await createTodoPageOnLoad()
     navigate(path);
     const todaysDate = parseInt(formatFullDate(nowDate.getDate(), nowDate.getMonth() + 1, nowDate.getFullYear()))
     console.log(todaysDate);
@@ -221,6 +229,12 @@ function LeftMenu(props) {
       setFirstTodoPageId(todoPages.data.id);
     }
   };
+
+  const createTodoPageOnLoad = async () => {
+    const createdTodoPage = await createTodoPage(auth.id, groupPageDateHandler())
+    setFirstTodoPageId(createdTodoPage.data.id)
+    return
+  }
 
   useEffect(() => {
     const handleResize = () => {

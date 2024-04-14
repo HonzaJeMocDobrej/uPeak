@@ -23,9 +23,10 @@ export const getTheFirstTodoPage =async (req:Request, res: Response) => {
     try {
         const {userId} = req.params
         if (!userId) return res.status(400).send({msg: 'Missing details'})
-        const todoPages = await TodoPages.findOne({where: {userId: userId}})
-        if (!todoPages) return res.status(404).send({msg: 'First Todo Page not found'})
-        return res.status(200).send({msg: 'First Todo Page found', payload: todoPages})
+        const minFullDate = await TodoPages.min('fullDate', {where: {userId: userId}})
+        if (!minFullDate) return res.status(404).send({msg: 'First Todo Page not found'})
+        const todoPage = await TodoPages.findOne({where: {userId: userId, fullDate: minFullDate}})
+        return res.status(200).send({msg: 'First Todo Page found', payload: todoPage})
     } catch (err) {
         console.log(err)
         res.status(500).send(err)

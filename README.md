@@ -16,7 +16,7 @@
 #### First of all open XAMPP
 #### Click these buttons
 ![App Screenshot](https://i.ibb.co/D1HbwRs/Xampp-snippet.png)
-#### In the phpmyadmin left menu click new and create database with the name uPeak and type utf8_bin
+#### In the phpmyadmin left menu click new and create database with the name `uPeak` and type `utf8_bin`
 ![App Screenshot](https://i.ibb.co/9c4Cb57/Xampp-snippet2.png)
 
 #### In cmd clone the repo
@@ -28,7 +28,11 @@
   cd uPeak
   code .
 ```
-#### On the top menu go to Terminal > New Terminal
+#### Go to the folder structure menu on the left and copy paste the `.env.template` to the root of the server dir
+#### Rename it from `.env.template` to `.env`
+#### Make sure you have the same values written as below
+![App Screenshot](https://i.ibb.co/cQKSRdr/xampp-screenshot.png)
+#### On the top menu go to `Terminal > New Terminal`
 #### In the terminal go to the server folder, install the modules and run the server
 ```bash
   cd server
@@ -48,6 +52,6 @@
   npm i
   npm run dev
 ```
-#### In the terminal type --host or open the link below
+#### In the terminal type `--host` or open the link below
 - http://localhost:5173
 

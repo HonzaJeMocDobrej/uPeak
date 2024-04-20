@@ -5,7 +5,7 @@ import ToDoListItem from './ToDoListItem';
 import { createTodo, getTodosById } from '../models/todos';
 import { nanoid } from 'nanoid'
 import AddToDo from './AddToDo';
-import { convertToHSLDark } from '../functions/functions';
+import { convertToHSL } from '../functions/functions';
 
 function GroupCont(props) {
 
@@ -77,7 +77,7 @@ function GroupCont(props) {
   return (
     <>
         <div className="groupCont">
-              <h2 className="groupHeadline" style={{color: isBlack ? convertToHSLDark(color, false) : convertToHSLDark(color, true)}}>{name}</h2>
+              <h2 className="groupHeadline" style={{color: isBlack ? convertToHSL(color, false) : convertToHSL(color, true)}}>{name}</h2>
               <div className="toDoListItemsCont">
               {
             todos && todos.map((todo) => {
@@ -114,8 +114,8 @@ function GroupCont(props) {
                       headlineColor={todo.color}
                       univToggle={univToggle}
                       isBlack={isBlack}
-                      lightColor={convertToHSLDark(todo.color, true)}
-                      darkColor={convertToHSLDark(todo.color, false)}
+                      lightColor={convertToHSL(todo.color, true)}
+                      darkColor={convertToHSL(todo.color, false)}
                     />
                   );
                 })}
@@ -135,8 +135,8 @@ function GroupCont(props) {
                   submitFunc={allTodosOnClick}
                   isBlack={isBlack}
                   isEnglish={isEnglish}
-                  lightColor={convertToHSLDark(todoData.color, true)}
-                  darkColor={convertToHSLDark(todoData.color, false)}
+                  lightColor={convertToHSL(todoData.color, true)}
+                  darkColor={convertToHSL(todoData.color, false)}
                 />
                 
               </div>

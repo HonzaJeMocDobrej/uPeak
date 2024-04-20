@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import Bin from "../assets/icons/Bin.svg";
-import { convertToHSLDark } from "../functions/functions";
+import { convertToHSL } from "../functions/functions";
 import { deleteTodoById, getTodoById, submitTodoById, updateTodoById } from "../models/todos";
 import AddToDo from "./AddToDo";
 import { useEffect, useState } from "react";
@@ -64,7 +64,7 @@ function ToDoListItem(props) {
   };
 
   useEffect(() => {
-    console.log(convertToHSLDark(headlineColor))
+    console.log(convertToHSL(headlineColor))
   }, [])
 
   return (
@@ -80,8 +80,8 @@ function ToDoListItem(props) {
           style={"3rem"}
           closeData={false}
           isBlack={isBlack}
-          lightColor={convertToHSLDark(ownTodoData.color, true)}
-          darkColor={convertToHSLDark(ownTodoData.color, false)}
+          lightColor={convertToHSL(ownTodoData.color, true)}
+          darkColor={convertToHSL(ownTodoData.color, false)}
         />
         <div className="toDoListItem">
           <div className="btnAndTextCont">

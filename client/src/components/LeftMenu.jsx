@@ -24,7 +24,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
-import { createTodoPage, getTheFirstTodoPage } from "../models/todoPage";
+import { createTodoPage, deleteOldTodoPages, getTheFirstTodoPage } from "../models/todoPage";
 import { checkIfImgExists, formatDate, formatFullDate } from "../functions/functions";
 import { getTheFirstNote } from "../models/notes";
 import { getUserStats, patchStats } from "../models/stats";
@@ -43,6 +43,13 @@ function LeftMenu(props) {
   const [firstNoteId, setFirstNoteId] = useState();
 
   const nowDate = new Date()
+
+  const loadDeleted = async (userId) => {
+    const todoPage = await deleteOldTodoPages(userId);
+    if (todoPage.status === 200) {
+      console.log(todoPage.msg);
+    }
+  };
 
   const groupPageDateHandler = () => {
     const day = nowDate.getDate()
@@ -248,6 +255,7 @@ function LeftMenu(props) {
     load();
     handleGetFirstNote()
     getNotesLastId()
+    loadDeleted()
   }, []);
 
   useEffect(() => {

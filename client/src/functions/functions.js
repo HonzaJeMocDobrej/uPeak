@@ -46,7 +46,7 @@ export const getRGBValues = (rgb) => {
   return parseArr
 }
 
-export const convertToHSLDark = (headlineColor, isLight ) => {
+export const convertToHSL = (headlineColor, isLight ) => {
   let rgb = getRGBValues(headlineColor)
   console.log(rgb);
   let value

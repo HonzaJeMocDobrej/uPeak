@@ -9,7 +9,7 @@ export const formatFullDate = (dayNum:number, monthNum:number, year:number) => {
         return `${year}${monthNum}${dayNum}` as string
       }
       if (dayNum < 10 && monthNum >= 10){
-        return `0${year}${monthNum}${dayNum}` as string
+        return `${year}${monthNum}0${dayNum}` as string
       }
       if (dayNum >= 10 && monthNum < 10){
         return `${year}0${monthNum}${dayNum}` as string

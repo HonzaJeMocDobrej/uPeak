@@ -34,11 +34,12 @@ export const formatDate = (dayType, day, month, year) => {
         } else {
             return setter(basicImg)
         }
-    }).catch(err => console.log('Error:', err));
+    })
+    // .catch(err => console.log('Error:', err));
 }
 
 export const getRGBValues = (rgb) => {
-  console.log(rgb)
+  // console.log(rgb)
   const split = rgb.substring(5, rgb.length-1).split(',')
   const parseArr = split.map(e => {
     return parseInt(e)
@@ -48,7 +49,7 @@ export const getRGBValues = (rgb) => {
 
 export const convertToHSL = (headlineColor, isLight ) => {
   let rgb = getRGBValues(headlineColor)
-  console.log(rgb);
+  // console.log(rgb);
   let value
   if (headlineColor.startsWith('#')) {
     value = convert.hex.hsl(headlineColor)
@@ -56,7 +57,7 @@ export const convertToHSL = (headlineColor, isLight ) => {
     value = convert.rgb.hsl(rgb[0], rgb[1], rgb[2])
   }
 
-  console.log(value)
+  // console.log(value)
   let L = value[2]
   let shouldBeReplaced
   isLight ? shouldBeReplaced = L > 70 ? true : false : shouldBeReplaced = L < 30 ? true : false 

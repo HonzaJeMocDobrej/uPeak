@@ -47,7 +47,7 @@ function LeftMenu(props) {
   const loadDeleted = async (userId) => {
     const todoPage = await deleteOldTodoPages(userId);
     if (todoPage.status === 200) {
-      console.log(todoPage.msg);
+      // console.log(todoPage.msg);
     }
   };
 
@@ -59,14 +59,13 @@ function LeftMenu(props) {
   }
 
   const handleNav = async (path) => {
-    await createTodoPageOnLoad()
     navigate(path);
     const todaysDate = parseInt(formatFullDate(nowDate.getDate(), nowDate.getMonth() + 1, nowDate.getFullYear()))
-    console.log(todaysDate);
+    // console.log(todaysDate);
 
     const getStats = await getUserStats(auth.id)
-    if (getStats == 200) return console.log(getStats.msg)
-    console.log(getStats.data)
+    if (getStats == 200) return // console.log(getStats.msg)
+    // console.log(getStats.data)
 
     if (path.startsWith('/todo')) {
       if (todaysDate == getStats.data.todoLastLogin) return
@@ -222,7 +221,7 @@ function LeftMenu(props) {
     const userSplitter = auth.username.length + 1
     const id = parseInt(idString.substring(idSplitter))
     const username = userString.substring(userSplitter)
-    console.log(id, username);
+    // console.log(id, username);
     if (username != auth.username) {
       return firstNoteId
     }
@@ -240,6 +239,7 @@ function LeftMenu(props) {
   const createTodoPageOnLoad = async () => {
     const createdTodoPage = await createTodoPage(auth.id, groupPageDateHandler())
     setFirstTodoPageId(createdTodoPage.data.id)
+    // console.log('create')
     return
   }
 
@@ -256,6 +256,7 @@ function LeftMenu(props) {
     handleGetFirstNote()
     getNotesLastId()
     loadDeleted()
+    createTodoPageOnLoad()
   }, []);
 
   useEffect(() => {

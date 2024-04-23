@@ -29,7 +29,7 @@ function Login(props) {
   const loadDeleted = async (userId) => {
     const todoPage = await deleteOldTodoPages(userId);
     if (todoPage.status === 200) {
-      console.log(todoPage.msg);
+      // console.log(todoPage.msg);
     }
   };
   
@@ -84,7 +84,7 @@ function Login(props) {
       loadDeleted(user.data.id)
       await createTodoPage(user.data.id, groupPageDateHandler())
       .catch(err => setInfo(err.response.data.msg))
-      console.log(user.token);
+      // console.log(user.token);
       document.cookie = `user=${user.data.username}; SameSite=None`
       navigate(`/progress`)
       return

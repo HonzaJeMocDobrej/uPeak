@@ -99,7 +99,7 @@ function ToDo(props) {
     const groups = await getAllGroups(todoPageId);
     if (groups.status === 500) {
       setIsLoaded(false);
-      console.log(groups.msg);
+      // console.log(groups.msg);
     }
     if (groups.status === 200) {
       setGroups(groups.data);
@@ -117,7 +117,7 @@ function ToDo(props) {
   const loadDeleted = async () => {
     const todoPage = await deleteOldTodoPages(auth.id);
     if (todoPage.status === 200) {
-      console.log(todoPage.msg);
+      // console.log(todoPage.msg);
     }
   };
 
@@ -151,7 +151,8 @@ function ToDo(props) {
     const group = await createGroup(todoPageId, {
       name: groupData.name === "" ? "Group" : groupData.name,
       color: groupData.color === "333" ? "#333" : groupData.color,
-    }).catch((err) => console.log(err.response.data.msg));
+    })
+    // .catch((err) => console.log(err.response.data.msg));
 
     if (group.status === 201) {
       setGroups((prev) => {
@@ -247,10 +248,11 @@ function ToDo(props) {
                   const todoPage = await createTodoPage(
                     auth.id,
                     formatDate(value.getDay(), day, month, year)
-                  ).catch((err) => console.log(err.response.data.msg));
+                  )
+                  // .catch((err) => console.log(err.response.data.msg));
 
                   if (todoPage.status === 200 || todoPage.status === 201) {
-                    console.log("created or exists");
+                    // console.log("created or exists");
                     navigate(`/todo/${todoPage.data.id}`);
                     closeAll();
 

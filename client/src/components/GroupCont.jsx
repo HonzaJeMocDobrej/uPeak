@@ -25,7 +25,7 @@ function GroupCont(props) {
     const loadTodos = async () => {
       const todos = await getTodosById(id)
       if (todos.status === 200 || todos.status === 204) {
-        console.log(todos.data)
+        // console.log(todos.data)
         setTodos(todos.data)
       }
     }
@@ -58,7 +58,7 @@ function GroupCont(props) {
         });
         setIsCreateTodoOpen(false);
         loadTodos()
-        console.log(todos);
+        // console.log(todos);
       };
 
       const prioCircleStyles = {
@@ -70,7 +70,7 @@ function GroupCont(props) {
 
       useEffect(() => {
         loadTodos()
-        console.log(...todos)
+        // console.log(...todos)
       }, [])
       
 

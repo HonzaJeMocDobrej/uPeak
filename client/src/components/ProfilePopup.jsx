@@ -46,7 +46,7 @@ function ProfilePopup(props) {
 
       if (user.status == 200) {
         setToggle(false);
-        console.log(user.profilePic)
+        // console.log(user.profilePic)
         signIn({
           auth: {
             token: user.token,

@@ -21,10 +21,10 @@ function ImageSelect() {
     data.append('profilePic', profilePic)
     
     const img = await patchImage(auth.email, data)
-    .catch(err => {
-      console.log(err.response.data.msg)
-    })
-    console.log(img);
+    // .catch(err => {
+    //   console.log(err.response.data.msg)
+    // })
+    // console.log(img);
     signIn({
       auth: {
         token: img.token,
@@ -43,7 +43,7 @@ function ImageSelect() {
   const getImage = async (file) => {
     const fileObj = file[0]
     const img = URL.createObjectURL(fileObj)
-    console.log(img)
+    // console.log(img)
     setProfilePic(fileObj)
   }
 

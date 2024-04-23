@@ -35,7 +35,7 @@ function AddToDo(props) {
       };
     });
     setIsPrioOpen((prev) => !prev);
-    console.log(todoData);
+    // console.log(todoData);
   };
 
   const closeCreateTodo = () => {

@@ -19,7 +19,7 @@ function ToDoListItem(props) {
 
   const deleteTodo = async () => {
     const deletedTodo = await deleteTodoById(id);
-    console.log(deletedTodo.msg)
+    // console.log(deletedTodo.msg)
     loadTodos();
   };
 
@@ -40,7 +40,7 @@ function ToDoListItem(props) {
       color: ownTodoData.color,
       priority: ownTodoData.priority === "" ? 4 : ownTodoData.priority,
     })
-    .catch(err => console.log(err.response.data))
+    // .catch(err => console.log(err.response.data))
     if (createdTodo.status === 200) {
         // setTodos((prev) => {
         //   return [...prev, {
@@ -64,7 +64,7 @@ function ToDoListItem(props) {
   };
 
   useEffect(() => {
-    console.log(convertToHSL(headlineColor))
+    // console.log(convertToHSL(headlineColor))
   }, [])
 
   return (

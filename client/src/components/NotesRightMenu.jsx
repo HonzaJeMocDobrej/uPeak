@@ -23,7 +23,7 @@ const NotesRightMenu = (props) => {
     if (notes.status === 200) {
         setNotes(notes.data)
         // console.log('loaded')
-        console.log(isSearching)
+        // console.log(isSearching)
     }
   };
 

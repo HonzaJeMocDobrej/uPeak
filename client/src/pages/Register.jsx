@@ -98,7 +98,7 @@ function Register(props) {
       await createTodoPage(user.data.id, groupPageDateHandler())
       .catch(err => setInfo(err.response.data.msg))
       const notes = await createNotes(user.data.id)
-      .catch(err => console.log(err.response.data.msg))
+      // .catch(err => console.log(err.response.data.msg))
       if (notes.status === 201 && notes) {
         document.cookie = `${user.data.username}=${user.data.username}; SameSite=None; secure=false;`
         document.cookie = `${user.data.username}NoteId=${notes.notes[0].id}; SameSite=None; secure=false;`

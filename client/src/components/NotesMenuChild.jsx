@@ -69,7 +69,7 @@ function NotesMenuChild(props) {
   const getImage = async (file) => {
     const fileObj = file[0];
     const img = URL.createObjectURL(fileObj);
-    console.log(img);
+    // console.log(img);
     handlePatchImage(fileObj);
   };
 
@@ -78,7 +78,7 @@ function NotesMenuChild(props) {
     data.append("notesPic", file);
 
     const img = await patchNoteImg(id, data).catch((err) => {
-      console.log(err.response.data.msg);
+      // console.log(err.response.data.msg);
     });
 
     if (img.status == 200) {

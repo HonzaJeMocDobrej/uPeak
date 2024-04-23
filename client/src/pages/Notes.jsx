@@ -50,7 +50,7 @@ function Notes(props) {
       setHeading(note.data.headline);
       setVirtualHeading(note.data.headline);
       setMainText(note.data.mainText);
-      console.log(note.data, heading, mainText)
+      // console.log(note.data, heading, mainText)
       setTimeout(() => {
         setIsLoaded(true);
       }, 500);
@@ -63,16 +63,17 @@ function Notes(props) {
         propName: propname,
         value: value,
       },
-    ]).catch((err) => console.log(err.response.data.msg));
+    ])
+    // .catch((err) => console.log(err.response.data.msg));
     if (updateNotes.status === 200) {
-      console.log(updateNotes.data);
+      // console.log(updateNotes.data);
     }
   };
 
   const handlePlaceholder = async () => {
     updateNotes("mainText", notesRef.current.innerHTML);
     if (notesRef.current.textContent === "") {
-      console.log("banger");
+      // console.log("banger");
       notesRef.current.innerHTML = "";
     }
   };
@@ -82,7 +83,7 @@ function Notes(props) {
     updateNotes("headline", headlineRef.current.textContent);
     // setIsSearching(false)
     if (headlineRef.current.textContent === "") {
-      console.log("banger");
+      // console.log("banger");
       headlineRef.current.innerHTML = "";
     }
   };
@@ -167,7 +168,7 @@ function Notes(props) {
 
   useEffect(() => {
     load()
-    console.log(heading, virtualHeading)
+    // console.log(heading, virtualHeading)
   }, [heading, id, mainText]);
 
   if (!isLoaded) {

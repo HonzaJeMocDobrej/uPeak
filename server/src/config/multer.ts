@@ -23,7 +23,7 @@ export const uploadUserProfilePic = multer({
     storage: userStorage,
     limits: { fileSize: 5000000 },
     fileFilter(req, file, callback) {
-        const fileTypes = /jpeg|jpg|png|gif|svg/
+        const fileTypes = /jpeg|jpg|png|gif|PNG|JPG|JPEG|GIF|SVG|svg/
         const mimeType = fileTypes.test(file.mimetype)
         const extName = fileTypes.test(path.extname(file.originalname))
 
@@ -38,7 +38,7 @@ export const uploadNotesImg = multer({
     storage: notesStorage,
     limits: { fileSize: 5000000 },
     fileFilter(req, file, callback) {
-        const fileTypes = /jpeg|jpg|png|gif|svg/
+        const fileTypes = /jpeg|jpg|png|gif|PNG|JPG|JPEG|GIF|SVG|svg/
         const mimeType = fileTypes.test(file.mimetype)
         const extName = fileTypes.test(path.extname(file.originalname))
 

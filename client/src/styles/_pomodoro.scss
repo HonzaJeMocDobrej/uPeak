@@ -293,10 +293,10 @@
             }
 
             .border {
-                @include buttonBefore(#09F, calc(11.05rem + 11.5px), 8rem, 5.6rem);
+                @include buttonBefore(#09F, calc(11rem + 11.5px), 8rem, 5.6rem);
 
                 @media (max-width: 1300px) {
-                    width: calc(8.85rem + 11.5px);
+                    width: calc(8.8rem + 11.5px);
                     height: 6.4rem;
                     top: 4.48rem;
                 }
@@ -373,10 +373,10 @@
             }
 
             .border {
-                @include buttonBefore(#333, calc(7.55rem + 11.5px), 5.5rem, 4.1rem);
+                @include buttonBefore(#333, calc(7.5rem + 11.5px), 5.5rem, 4.1rem);
 
                 @media (max-width: 1300px) {
-                    width: calc(6.05rem + 11.5px);
+                    width: calc(6rem + 11.5px);
                     height: 4.4rem;
                     top: 3.28rem;
                 }
@@ -446,10 +446,10 @@
             }
 
             .border {
-                @include buttonBefore(#333, calc(7.55rem + 11.5px), 5.5rem, 4.1rem);
+                @include buttonBefore(#333, calc(7.5rem + 11.5px), 5.5rem, 4.1rem);
 
                 @media (max-width: 1300px) {
-                    width: calc(6.05rem + 11.5px);
+                    width: calc(6rem + 11.5px);
                     height: 4.4rem;
                     top: 3.28rem;
                 }

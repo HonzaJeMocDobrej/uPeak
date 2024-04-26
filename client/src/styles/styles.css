@@ -3296,7 +3296,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 .pomodoroCont .bottomBtnsCont .playBtnCont .border {
   background-color: #09F;
-  width: calc(11.05rem + 11.5px);
+  width: calc(11rem + 11.5px);
   height: 8rem;
   position: absolute;
   top: 5.6rem;
@@ -3306,7 +3306,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 @media (max-width: 1300px) {
   .pomodoroCont .bottomBtnsCont .playBtnCont .border {
-    width: calc(8.85rem + 11.5px);
+    width: calc(8.8rem + 11.5px);
     height: 6.4rem;
     top: 4.48rem;
   }
@@ -3382,7 +3382,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 .pomodoroCont .bottomBtnsCont .pauseBtnCont .border {
   background-color: #333;
-  width: calc(7.55rem + 11.5px);
+  width: calc(7.5rem + 11.5px);
   height: 5.5rem;
   position: absolute;
   top: 4.1rem;
@@ -3392,7 +3392,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 @media (max-width: 1300px) {
   .pomodoroCont .bottomBtnsCont .pauseBtnCont .border {
-    width: calc(6.05rem + 11.5px);
+    width: calc(6rem + 11.5px);
     height: 4.4rem;
     top: 3.28rem;
   }
@@ -3462,7 +3462,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 .pomodoroCont .bottomBtnsCont .stopBtnCont .border {
   background-color: #333;
-  width: calc(7.55rem + 11.5px);
+  width: calc(7.5rem + 11.5px);
   height: 5.5rem;
   position: absolute;
   top: 4.1rem;
@@ -3472,7 +3472,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
 }
 @media (max-width: 1300px) {
   .pomodoroCont .bottomBtnsCont .stopBtnCont .border {
-    width: calc(6.05rem + 11.5px);
+    width: calc(6rem + 11.5px);
     height: 4.4rem;
     top: 3.28rem;
   }

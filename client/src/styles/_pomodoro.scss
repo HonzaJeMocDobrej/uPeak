@@ -293,22 +293,19 @@
             }
 
             .border {
-                @include buttonBefore(#09F, calc(11rem + 11.5px), 8rem, 5.6rem);
+                @include buttonBefore(#09F, 100%, 8rem, 5.6rem);
 
                 @media (max-width: 1300px) {
-                    width: calc(8.8rem + 11.5px);
                     height: 6.4rem;
                     top: 4.48rem;
                 }
 
                 @media (max-width: 750px) {
-                    width: calc(6.6rem + 8px);
                     height: 4.8rem;
                     top: 3.36rem;
                 }
                 
                 @media (max-width: 480px) {
-                    width: calc(4.4rem + 4.9px);
                     height: 3.2rem;
                     top: 2.24rem;
                 }
@@ -373,22 +370,19 @@
             }
 
             .border {
-                @include buttonBefore(#333, calc(7.5rem + 11.5px), 5.5rem, 4.1rem);
+                @include buttonBefore(#333, 100%, 5.5rem, 4.1rem);
 
                 @media (max-width: 1300px) {
-                    width: calc(6rem + 11.5px);
                     height: 4.4rem;
                     top: 3.28rem;
                 }
 
                 @media (max-width: 750px) {
-                    width: calc(4.5rem + 8px);
                     height: 3.3rem;
                     top: 2.46rem;
                 }
 
                 @media (max-width: 480px) {
-                    width: calc(3rem + 4.9px);
                     height: 2.2rem;
                     top: 1.64rem;
                 }
@@ -446,22 +440,19 @@
             }
 
             .border {
-                @include buttonBefore(#333, calc(7.5rem + 11.5px), 5.5rem, 4.1rem);
+                @include buttonBefore(#333, 100%, 5.5rem, 4.1rem);
 
                 @media (max-width: 1300px) {
-                    width: calc(6rem + 11.5px);
                     height: 4.4rem;
                     top: 3.28rem;
                 }
 
                 @media (max-width: 750px) {
-                    width: calc(4.5rem + 8px);
                     height: 3.3rem;
                     top: 2.46rem;
                 }
 
                 @media (max-width: 480px) {
-                    width: calc(3rem + 4.9px);
                     height: 2.2rem;
                     top: 1.64rem;
                 }

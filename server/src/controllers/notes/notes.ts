@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import db from "../../models";
+import { Sequelize } from "sequelize";
 
 const Notes = db.notes
 const { Op } = require("sequelize");
@@ -21,10 +22,11 @@ export const searchNotes = async (req: Request, res: Response) => {
     try {
         const {userId} = req.params
         const {searchVal} = req.body
+        const caseInsensitiveSearchVal = searchVal.toLowerCase()
         if (!userId && !searchVal) return res.status(400).send({msg: 'Missing details'})
         const allNotes = await Notes.findAll({where: {userId: userId}})
         if (searchVal == "") return res.status(200).send({msg: 'All notes', payload: allNotes})
-        const searchNotes = await Notes.findAll({where: {userId: userId, headline: {[Op.startsWith]: searchVal}}})
+        const searchNotes = await Notes.findAll({where: {userId: userId, headline: Sequelize.where(Sequelize.fn('LOWER', Sequelize.col('headline')), 'LIKE', '%' + caseInsensitiveSearchVal + '%') }})
         const untitledNotes = await Notes.findAll({where: {[Op.or]: [{userId: userId, headline: ''}, {userId: userId, headline: null}, {userId: userId, headline: {[Op.startsWith]: searchVal}}]}})
         if (searchVal == 'U' || searchVal == 'Un' || searchVal == 'Unt'
         || searchVal == 'Unti' || searchVal == 'Untit' || searchVal == 'Untitl' || searchVal == 'Untitle' || searchVal == 'Untitled')

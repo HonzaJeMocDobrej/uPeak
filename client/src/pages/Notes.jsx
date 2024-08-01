@@ -4,11 +4,16 @@ import TopMenu from "../components/TopMenu";
 import NotesRightMenu from "../components/NotesRightMenu";
 
 import "../styles/styles.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { getNote, patchNote } from "../models/notes";
 import { useParams } from "react-router-dom";
 import LoadingPage from "../components/LoadingPage";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
+
+import "@blocknote/core/fonts/inter.css";
+import { BlockNoteView } from "@blocknote/mantine";
+import "@blocknote/mantine/style.css";
+import { BlockNoteEditor } from "@blocknote/core";
 
 function Notes(props) {
   const {
@@ -32,6 +37,8 @@ function Notes(props) {
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [isSearching, setIsSearching] = useState(false)
+
+  const [initialContent, setInitialContent] = useState("loading");
 
   const { id } = useParams();
 
@@ -93,47 +100,90 @@ function Notes(props) {
     setHeadlineFocused(true);
   };
 
+  const save = () => {
+    //post to db
+    // console.log(JSON.stringify(editor.document));
+    // localStorage.setItem("notes", JSON.stringify(editor?.document as Block[]));
+    patchNote(id,[
+      {
+        propName: 'value',
+        value: JSON.stringify(editor?.document)
+      }
+    ])
+    .then(data => console.log(data.data))
+    console.log(JSON.stringify(editor?.document));
+  };
+
+  const loadBlocknote = async () => {
+    console.log(JSON.parse(localStorage.getItem("notes")));
+
+    const gotNote = await getNote(auth.id, id);
+    if (gotNote.status === 500) {
+      setIsLoaded(false);
+      setHeading("");
+      setVirtualHeading("");
+      setMainText("");
+      return;
+    }
+    if (gotNote.status === 200) {
+      setHeading(gotNote.data.headline);
+      setVirtualHeading(gotNote.data.headline);
+      setMainText(gotNote.data.mainText);
+      // console.log(gotNote.data)
+      setTimeout(() => {
+        setIsLoaded(true);
+      }, 500);
+    }
+    const storageString = gotNote.data.value
+    return storageString
+      ? (JSON.parse(storageString))
+      : undefined;
+      
+  };
+
+  
+
   useEffect(() => {
     function handleKeyDown(e) {
-      if (e.keyCode === 13) {
-        if (!headlineFocused && !notesFocused) {
-          setHeadlineFocused(true);
-          headlineRef.current.focus();
-          e.preventDefault();
-        }
+      // if (e.keyCode === 13) {
+      //   if (!headlineFocused && !notesFocused) {
+      //     setHeadlineFocused(true);
+      //     headlineRef.current.focus();
+      //     e.preventDefault();
+      //   }
 
-        if (
-          (headlineFocused && !notesFocused) ||
-          (headlineFocused && notesFocused)
-        ) {
-          setNotesFocused(true);
-          notesRef.current.focus();
-        }
-      }
+      //   if (
+      //     (headlineFocused && !notesFocused) ||
+      //     (headlineFocused && notesFocused)
+      //   ) {
+      //     setNotesFocused(true);
+      //     notesRef.current.focus();
+      //   }
+      // }
 
-      if (e.keyCode === 40) {
-        if (!headlineFocused && !notesFocused) {
-          setHeadlineFocused(true);
-          headlineRef.current.focus();
-          e.preventDefault();
-        }
+      // if (e.keyCode === 40) {
+      //   if (!headlineFocused && !notesFocused) {
+      //     setHeadlineFocused(true);
+      //     headlineRef.current.focus();
+      //     e.preventDefault();
+      //   }
 
-        if (
-          (headlineFocused && !notesFocused) ||
-          (headlineFocused && notesFocused)
-        ) {
-          setNotesFocused(true);
-          notesRef.current.focus();
-        }
-      }
+      //   if (
+      //     (headlineFocused && !notesFocused) ||
+      //     (headlineFocused && notesFocused)
+      //   ) {
+      //     setNotesFocused(true);
+      //     notesRef.current.focus();
+      //   }
+      // }
 
-      if (e.keyCode === 38) {
-        if (!headlineFocused && !notesFocused) {
-          setHeadlineFocused(true);
-          notesRef.current.focus();
-          e.preventDefault();
-        }
-      }
+      // if (e.keyCode === 38) {
+      //   if (!headlineFocused && !notesFocused) {
+      //     setHeadlineFocused(true);
+      //     notesRef.current.focus();
+      //     e.preventDefault();
+      //   }
+      // }
 
       // 1 key
       if (e.keyCode === 49 && e.ctrlKey) {
@@ -167,9 +217,30 @@ function Notes(props) {
   }, [headlineFocused, notesFocused]);
 
   useEffect(() => {
-    load()
+    // load()
     // console.log(heading, virtualHeading)
   }, [heading, id, mainText]);
+
+  useEffect(() => {
+    console.log(initialContent);
+    loadBlocknote()
+    .then(content => setInitialContent(content))
+  }, [heading, id]);
+
+  const editor = useMemo(() => {
+    if (initialContent === "loading" && !isLoaded) {
+      return undefined
+    }
+    return BlockNoteEditor.create({ initialContent });
+  }, [initialContent, isLoaded]);
+
+  if (editor === undefined) {
+    return (
+          <>
+            <LoadingPage/>
+          </>
+        );
+  }
 
   if (!isLoaded) {
     return (
@@ -225,20 +296,7 @@ function Notes(props) {
             >
               {!heading ? '' : heading}
             </h2>
-            <p
-              onClick={() => handleCusorPostion(1, notesRef)}
-              onInput={handlePlaceholder}
-              data-ph={isEnglish ? "Start Typing..." : 'Začít Psát...'}
-              spellCheck="false"
-              contentEditable="true"
-              className="inputP"
-              ref={notesRef}
-              dangerouslySetInnerHTML={!mainText ? {__html: ''} : {__html: mainText}}
-              style={{
-                color: isBlack ? '#FFF' : '#333'
-              }}
-            >
-            </p>
+            <BlockNoteView style={{marginTop: '1rem'}} editor={editor} data-color-scheme="light" onChange={save} />
           </div>
         </main>
       </div>

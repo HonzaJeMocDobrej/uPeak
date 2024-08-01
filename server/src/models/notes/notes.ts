@@ -14,8 +14,8 @@ module.exports = (sequelize: any, Sequelize: any) => {
             headline: {
                 type: Sequelize.STRING,
             },
-            mainText: {
-                type: Sequelize.TEXT('medium'),
+            value: {
+                type: Sequelize.TEXT('long'),
             },
             image: {
                 type: Sequelize.STRING,

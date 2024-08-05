@@ -35,6 +35,181 @@
 //   }
 // }
 
+
+.bn-side-menu[data-block-type="heading"][data-level="1"] {
+  @media (max-width: 1000px) {
+    height: 3rem !important;
+  }
+}
+
+.bn-side-menu[data-block-type="heading"][data-level="2"] {
+  @media (max-width: 1000px) {
+    height: 36px !important;
+  }
+}
+
+.bn-side-menu {
+  @media (max-width: 1000px) {
+    display: none !important;
+  }
+}
+
+.bn-toolbar {
+  @media (max-width: 480px) {
+    border: none;
+  }
+}
+
+div:has(> .bn-toolbar) {
+
+  @media (max-width: 1000px) {
+    left: 50% !important;
+    top: 97% !important;
+    transform: translate(-50%, -50%) !important;
+    display: flex !important;
+  }
+
+  @media (max-width: 480px) {
+    width: 15rem;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    border: var(--bn-border);
+    border-radius: var(--bn-border-radius-medium)
+  }
+
+}
+
+.bn-block-content {
+
+  @media (max-width: 1000px) {
+    font-size: .8rem !important;
+  }
+
+  @media (max-width: 480px) {
+    font-size: .6rem !important;
+  }
+
+  input {
+    @media (max-width: 480px) {
+      height: .6rem !important;
+    }
+  }
+
+}
+
+// .bn-inline-content {
+//   &::before {
+//     @media (max-width: 380px) {
+//       content: "Type text or '/'" !important;
+//     }
+
+//     @media (min-width: 480px) and (max-width: 540px) {
+//       overflow: hidden;
+//     }
+//   }
+// }
+
+.bn-block-content[data-is-empty-and-focused] .bn-inline-content:has(> .ProseMirror-trailingBreak:only-child) {
+  &::before {
+    @media (max-width: 380px) {
+      content: "Enter text or '/'" !important;
+    }
+
+    @media (min-width: 480px) and (max-width: 540px) {
+      content: "Enter text or '/'" !important;
+    }
+  }
+}
+
+.notesContBlack {
+  .bn-block-content[data-is-empty-and-focused] .bn-inline-content:has(> .ProseMirror-trailingBreak:only-child) {
+    &::before {
+      color: #999;
+    }
+  }
+}
+
+.bn-block-outer {
+  overflow-y: hidden !important;
+}
+
+.tableWrapper {
+  @media (max-width: 1000px) {
+    font-size: .8rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: .6rem;
+  }
+
+  table {
+    @media (max-width: 1000px) {
+      min-width: 200px !important;
+    }
+  
+    @media (max-width: 480px) {
+      min-width: 100px !important;
+    }
+  }
+}
+
+.bn-editor {
+  margin-left: .8rem;
+  margin-right: .8rem;
+  font-family: 'Poppins' !important;
+
+  @media (max-width: 1000px) {
+    padding: 0 !important;
+    margin-left: 3rem !important;
+  }
+
+  @media (max-width: 600px) {
+    padding: 0 !important;
+    margin-left: 1rem !important;
+  }
+
+  
+
+  h1 {
+    font-size: 2.5rem !important;
+
+    @media (max-width: 1000px) {
+      font-size: 1.75rem !important;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1rem !important;
+    }
+
+  }
+
+  h2 {
+    @media (max-width: 1000px) {
+      font-size: 1.25rem !important;
+    }
+
+    @media (max-width: 480px) {
+      font-size: .8rem !important;
+    }
+  }
+
+  h3 {
+    @media (max-width: 1000px) {
+      font-size: 1rem !important;
+    }
+
+    @media (max-width: 480px) {
+      font-size: .65rem !important;
+    }
+  }
+}
+
+.bn-panel {
+  @media (max-width: 480px) {
+    width: 15rem !important;
+  }
+}
+
 .inputP {
   color: #333;
   width: calc(100% - 20%);
@@ -74,7 +249,7 @@
   font-family: Poppins;
   font-size: 2.5rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 700;
   line-height: normal;
   outline: none;
   word-break: break-all;
@@ -85,6 +260,10 @@
     margin: 4rem 2rem 0 3rem;
     width: calc(100% - 3rem - 10%);
     font-size: 1.75rem;
+  }
+
+  @media (max-width: 600px) {
+    margin-left: 1rem;
   }
 
   @media (max-width: 480px) {

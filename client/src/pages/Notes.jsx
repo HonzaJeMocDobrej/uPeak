@@ -14,6 +14,7 @@ import "@blocknote/core/fonts/inter.css";
 import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
 import { BlockNoteEditor } from "@blocknote/core";
+import { darkDefaultTheme, lightDefaultTheme} from "@blocknote/mantine";
 
 function Notes(props) {
   const {
@@ -43,6 +44,37 @@ function Notes(props) {
   const { id } = useParams();
 
   const auth = useAuthUser()
+
+  const darkOwnTheme = {
+    ...darkDefaultTheme,
+    colors: {
+      ...darkDefaultTheme.colors,
+      editor: {
+        text: "#ffffff",
+        background: "#333333",
+      },
+      sideMenu: "#ffffff",
+      highlights: darkDefaultTheme.colors.highlights,
+    },
+  };
+
+  const lightOwnTheme = {
+    ...lightDefaultTheme,
+    colors: {
+      ...lightDefaultTheme.colors,
+      editor: {
+        text: "#333333",
+        background: "#ffffff",
+      },
+      sideMenu: lightDefaultTheme.colors.sideMenu,
+      highlights: lightDefaultTheme.colors.highlights,
+    },
+  };
+
+  const lightDarkTheme = {
+    light: lightOwnTheme,
+    dark: darkOwnTheme
+  }
 
   const load = async () => {
     const note = await getNote(auth.id, id);
@@ -281,7 +313,7 @@ function Notes(props) {
             isEnglish={isEnglish}
             isBlack={isBlack}
           />
-          <div className="notesCont">
+          <div className={`notesCont ${isBlack ? 'notesContBlack' : null}`}>
             <h2
               onClick={() => handleCusorPostion(1, headlineRef)}
               onInput={handleHealdine}
@@ -296,7 +328,7 @@ function Notes(props) {
             >
               {!heading ? '' : heading}
             </h2>
-            <BlockNoteView style={{marginTop: '1rem'}} editor={editor} data-color-scheme="light" onChange={save} />
+            <BlockNoteView style={{marginTop: '1rem'}} editor={editor} theme={isBlack ? lightDarkTheme.dark : lightDarkTheme.light} onChange={save} />
           </div>
         </main>
       </div>

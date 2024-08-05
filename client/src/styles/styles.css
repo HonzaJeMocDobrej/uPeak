@@ -2903,6 +2903,161 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   }
 }
 
+@media (max-width: 1000px) {
+  .bn-side-menu[data-block-type=heading][data-level="1"] {
+    height: 3rem !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .bn-side-menu[data-block-type=heading][data-level="2"] {
+    height: 36px !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .bn-side-menu {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .bn-toolbar {
+    border: none;
+  }
+}
+
+@media (max-width: 1000px) {
+  div:has(> .bn-toolbar) {
+    left: 50% !important;
+    top: 97% !important;
+    transform: translate(-50%, -50%) !important;
+    display: flex !important;
+  }
+}
+@media (max-width: 480px) {
+  div:has(> .bn-toolbar) {
+    width: 15rem;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    border: var(--bn-border);
+    border-radius: var(--bn-border-radius-medium);
+  }
+}
+
+@media (max-width: 1000px) {
+  .bn-block-content {
+    font-size: 0.8rem !important;
+  }
+}
+@media (max-width: 480px) {
+  .bn-block-content {
+    font-size: 0.6rem !important;
+  }
+}
+@media (max-width: 480px) {
+  .bn-block-content input {
+    height: 0.6rem !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .bn-block-content[data-is-empty-and-focused] .bn-inline-content:has(> .ProseMirror-trailingBreak:only-child)::before {
+    content: "Enter text or '/'" !important;
+  }
+}
+@media (min-width: 480px) and (max-width: 540px) {
+  .bn-block-content[data-is-empty-and-focused] .bn-inline-content:has(> .ProseMirror-trailingBreak:only-child)::before {
+    content: "Enter text or '/'" !important;
+  }
+}
+
+.notesContBlack .bn-block-content[data-is-empty-and-focused] .bn-inline-content:has(> .ProseMirror-trailingBreak:only-child)::before {
+  color: #999;
+}
+
+.bn-block-outer {
+  overflow-y: hidden !important;
+}
+
+@media (max-width: 1000px) {
+  .tableWrapper {
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 480px) {
+  .tableWrapper {
+    font-size: 0.6rem;
+  }
+}
+@media (max-width: 1000px) {
+  .tableWrapper table {
+    min-width: 200px !important;
+  }
+}
+@media (max-width: 480px) {
+  .tableWrapper table {
+    min-width: 100px !important;
+  }
+}
+
+.bn-editor {
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
+  font-family: "Poppins" !important;
+}
+@media (max-width: 1000px) {
+  .bn-editor {
+    padding: 0 !important;
+    margin-left: 3rem !important;
+  }
+}
+@media (max-width: 600px) {
+  .bn-editor {
+    padding: 0 !important;
+    margin-left: 1rem !important;
+  }
+}
+.bn-editor h1 {
+  font-size: 2.5rem !important;
+}
+@media (max-width: 1000px) {
+  .bn-editor h1 {
+    font-size: 1.75rem !important;
+  }
+}
+@media (max-width: 480px) {
+  .bn-editor h1 {
+    font-size: 1rem !important;
+  }
+}
+@media (max-width: 1000px) {
+  .bn-editor h2 {
+    font-size: 1.25rem !important;
+  }
+}
+@media (max-width: 480px) {
+  .bn-editor h2 {
+    font-size: 0.8rem !important;
+  }
+}
+@media (max-width: 1000px) {
+  .bn-editor h3 {
+    font-size: 1rem !important;
+  }
+}
+@media (max-width: 480px) {
+  .bn-editor h3 {
+    font-size: 0.65rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .bn-panel {
+    width: 15rem !important;
+  }
+}
+
 .inputP {
   color: #333;
   width: 80%;
@@ -2944,7 +3099,7 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   font-family: Poppins;
   font-size: 2.5rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 700;
   line-height: normal;
   outline: none;
   word-break: break-all;
@@ -2956,6 +3111,11 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
     margin: 4rem 2rem 0 3rem;
     width: calc(100% - 3rem - 10%);
     font-size: 1.75rem;
+  }
+}
+@media (max-width: 600px) {
+  .notesHeadline {
+    margin-left: 1rem;
   }
 }
 @media (max-width: 480px) {

@@ -25,6 +25,8 @@ let db = {
     todo: require('./todo/todo')(sequelize, Sequelize),
 
     notes: require('./notes/notes')(sequelize, Sequelize),
+    
+    notifications: require('./notifications/notifications')(sequelize, Sequelize),
 }
 
 db.stats.belongsTo(db.users, {
@@ -49,6 +51,11 @@ db.group.hasMany(db.todo, {
 })
 
 db.users.hasMany(db.notes, {
+    foreignKey: 'userId',
+    onDelete: 'cascade'
+})
+
+db.users.hasMany(db.notifications, {
     foreignKey: 'userId',
     onDelete: 'cascade'
 })

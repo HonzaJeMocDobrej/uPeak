@@ -14,6 +14,9 @@ module.exports = (sequelize: any, Sequelize: any) => {
             value: {
                 type: Sequelize.STRING,
             },
+            page: {
+                type: Sequelize.STRING,
+            },
             createdAt: {
                 type: Sequelize.DATE
             },

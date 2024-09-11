@@ -147,8 +147,6 @@ function Notes(props) {
   };
 
   const loadBlocknote = async () => {
-    console.log(JSON.parse(localStorage.getItem("notes")));
-
     const gotNote = await getNote(auth.id, id);
     if (gotNote.status === 500) {
       setIsLoaded(false);
@@ -160,8 +158,8 @@ function Notes(props) {
     if (gotNote.status === 200) {
       setHeading(gotNote.data.headline);
       setVirtualHeading(gotNote.data.headline);
-      setMainText(gotNote.data.mainText);
-      // console.log(gotNote.data)
+      setInitialContent("");
+      console.log(gotNote.data)
       setTimeout(() => {
         setIsLoaded(true);
       }, 500);
@@ -304,7 +302,7 @@ function Notes(props) {
             virtualHeading={virtualHeading}
             setVirtualHeading={setVirtualHeading}
             paramsId={id}
-            loadNote={load}
+            loadNote={loadBlocknote}
             isSearching={isSearching}
             setIsSearching={setIsSearching}
             myNotesColor={isBlack ? '#CCC' : '#666'}

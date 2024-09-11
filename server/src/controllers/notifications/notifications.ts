@@ -33,11 +33,12 @@ export const getNotifications = async (req: Request, res: Response) => {
 export const createNotifications = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params
-        const { value } = req.body
-        if (!userId || !value) return res.status(400).send({msg: 'Missing details'})
+        const { value, page } = req.body
+        if (!userId || !value || !page) return res.status(400).send({msg: 'Missing details'})
         const createdNotifications = await Notifications.create({
             userId: userId,
-            value: value
+            value: value,
+            page: page
         })
         if (!createdNotifications) return res.status(500).send({msg: 'Something went wrong'})
         return res.status(201).send({msg: 'Notification created', payload: createdNotifications})

@@ -158,7 +158,7 @@ function Notes(props) {
     if (gotNote.status === 200) {
       setHeading(gotNote.data.headline);
       setVirtualHeading(gotNote.data.headline);
-      setInitialContent("");
+      setInitialContent(JSON.parse(gotNote.data.value));
       console.log(gotNote.data)
       setTimeout(() => {
         setIsLoaded(true);

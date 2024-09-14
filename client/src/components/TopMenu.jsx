@@ -6,6 +6,7 @@ import notificWhite from '../assets/icons/notificNormalWhite.svg'
 import basicProfPic from '../assets/img/userPicBasic.svg'
 import greenCheck from '../assets/icons/greenCheckFill.svg'
 import bin from '../assets/icons/Bin.svg'
+import checkFill from '../assets/icons/checkFill.svg'
 
 
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
@@ -92,7 +93,7 @@ function TopMenu(props) {
             </div>
         </div>
         <div className="bellCont">
-            <img onClick={() => setIsNotificOpen(prev => !prev)} src={isBlack ? notificWhite : notific} alt="" />
+            <img onClick={() => setIsNotificOpen(prev => !prev)} src={isBlack ? notificWhite : notific} className='notificImg' alt="" />
             <div style={{
                 display: isNotificOpen ? 'flex' : 'none',
                 backgroundColor: isBlack ? '#333' : '#FFF',
@@ -107,56 +108,67 @@ function TopMenu(props) {
                         // </div>
                     }
 
-                        <div className="row">
-                            <div className="leftCont">
-                                <img src="" alt="" />
+                        <div className={`row ${isBlack ? 'rowBlack' : ''}`}>
+                            <div className="topCont">
+                                <img src={checkFill} className='imgPage' alt="" />
+                                <div className="rightCont">
+                                    <p className='pInfo'>Congrats! You have created 50 todos in Todo</p>
+                                    <img className='imgBin' src={bin} alt="" />
+                                </div>
                             </div>
-                            <div className="midCont">
-                                <p></p>
-                                <p></p>
-                            </div>
-                            {/* <img src={bin} alt="" /> */}
+                                <p className='pTime'>5 minutes ago</p>
                         </div>
-                        <div className="row">
-                            <div className="leftCont">
-                                <img src="" alt="" />
+                        <div className={`row ${isBlack ? 'rowBlack' : ''}`}>
+                            <div className="topCont">
+                                <img src={checkFill} className='imgPage' alt="" />
+                                <div className="rightCont">
+                                    <p className='pInfo'>Congrats!</p>
+                                    <img className='imgBin' src={bin} alt="" />
+                                </div>
                             </div>
-                            <div className="midCont">
-                                <p></p>
-                                <p></p>
-                            </div>
-                            {/* <img src={bin} alt="" /> */}
+                                <p className='pTime'>5 minutes ago</p>
                         </div>
-                        <div className="row">
-                            <div className="leftCont">
-                                <img src="" alt="" />
+                        <div className={`row ${isBlack ? 'rowBlack' : ''}`}>
+                            <div className="topCont">
+                                <img src={checkFill} className='imgPage' alt="" />
+                                <div className="rightCont">
+                                    <p className='pInfo'>Congrats! You have created 50 todos in Todo</p>
+                                    <img className='imgBin' src={bin} alt="" />
+                                </div>
                             </div>
-                            <div className="midCont">
-                                <p></p>
-                                <p></p>
-                            </div>
-                            {/* <img src={bin} alt="" /> */}
+                                <p className='pTime'>5 minutes ago</p>
                         </div>
-                        <div className="row">
-                            <div className="leftCont">
-                                <img src="" alt="" />
+                        <div className={`row ${isBlack ? 'rowBlack' : ''}`}>
+                            <div className="topCont">
+                                <img src={checkFill} className='imgPage' alt="" />
+                                <div className="rightCont">
+                                    <p className='pInfo'>Congrats! You have created 50 todos in Todo</p>
+                                    <img className='imgBin' src={bin} alt="" />
+                                </div>
                             </div>
-                            <div className="midCont">
-                                <p></p>
-                                <p></p>
-                            </div>
-                            {/* <img src={bin} alt="" /> */}
+                                <p className='pTime'>5 minutes ago</p>
                         </div>
-                        <div className="row">
-                            <div className="leftCont">
-                                <img src="" alt="" />
+                        <div className={`row ${isBlack ? 'rowBlack' : ''}`}>
+                            <div className="topCont">
+                                <img src={checkFill} className='imgPage' alt="" />
+                                <div className="rightCont">
+                                    <p className='pInfo'>Congrats! You have created 50 todos in Todo</p>
+                                    <img className='imgBin' src={bin} alt="" />
+                                </div>
                             </div>
-                            <div className="midCont">
-                                <p></p>
-                                <p></p>
-                            </div>
-                            {/* <img src={bin} alt="" /> */}
+                                <p className='pTime'>5 minutes ago</p>
                         </div>
+                        <div className={`row ${isBlack ? 'rowBlack' : ''}`}>
+                            <div className="topCont">
+                                <img src={checkFill} className='imgPage' alt="" />
+                                <div className="rightCont">
+                                    <p className='pInfo'>Congrats! You have created 50 todos in Todo</p>
+                                    <img className='imgBin' src={bin} alt="" />
+                                </div>
+                            </div>
+                                <p className='pTime'>5 minutes ago</p>
+                        </div>
+                        
                         
                         
                         

@@ -328,12 +328,20 @@
                         }
                     }
 
+                    .notificSpan {
+                        color: #4d4d4d;
+                    }
+
                     
                 
             }
 
             .rowBlack {
                 border-bottom: 2px solid rgba(255, 255, 255, 0.22);
+
+                .notificSpan {
+                    color: white;
+                }
             }
 
             @media (max-width: 480px) {

@@ -983,8 +983,14 @@ main .progressConts .counterPurple h2 {
     margin-left: 2.7rem;
   }
 }
+.tMenu .bellCont .bellPopup .row .notificSpan {
+  color: #4d4d4d;
+}
 .tMenu .bellCont .bellPopup .rowBlack {
   border-bottom: 2px solid rgba(255, 255, 255, 0.22);
+}
+.tMenu .bellCont .bellPopup .rowBlack .notificSpan {
+  color: white;
 }
 @media (max-width: 480px) {
   .tMenu .bellCont .bellPopup {

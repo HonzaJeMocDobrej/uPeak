@@ -5,7 +5,6 @@ import notific from '../assets/icons/notificNormal.svg'
 import notificWhite from '../assets/icons/notificNormalWhite.svg'
 import basicProfPic from '../assets/img/userPicBasic.svg'
 import greenCheck from '../assets/icons/greenCheckFill.svg'
-import bin from '../assets/icons/Bin.svg'
 import checkFill from '../assets/icons/checkFill.svg'
 
 
@@ -15,6 +14,8 @@ import '../styles/styles.css'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { checkIfImgExists } from '../functions/functions';
+import NotificationsRow from './NotificationsRow'
+import { getNotificationsById } from '../models/notifications'
 
 function TopMenu(props) {
     
@@ -24,6 +25,8 @@ function TopMenu(props) {
     const auth = useAuthUser()
     const [imgSrc, setImgSrc] = useState()
     const [isNotificOpen, setIsNotificOpen] = useState(false)
+
+    const [notifData, setNotificData] = useState([])
 
     const handleProfileClick = () => {
         navigate('/profile')
@@ -52,6 +55,11 @@ function TopMenu(props) {
         }
     }
 
+    const getNotific = async () => {
+        const notific = await getNotificationsById(auth.id)
+        setNotificData(notific.data.reverse())
+    }
+
     
 
     useEffect(() => {
@@ -72,6 +80,9 @@ function TopMenu(props) {
                 }
             })
         }
+
+        getNotific()
+
     }, [])
 
   return (
@@ -108,7 +119,7 @@ function TopMenu(props) {
                         // </div>
                     }
 
-                        <div className={`row ${isBlack ? 'rowBlack' : ''}`}>
+                        {/* <div className={`row ${isBlack ? 'rowBlack' : ''}`}>
                             <div className="topCont">
                                 <img src={checkFill} className='imgPage' alt="" />
                                 <div className="rightCont">
@@ -167,11 +178,24 @@ function TopMenu(props) {
                                 </div>
                             </div>
                                 <p className='pTime'>5 minutes ago</p>
-                        </div>
-                        
-                        
-                        
-                        
+                        </div> */}
+
+                        {
+                            notifData.map(e => {
+                                return (
+                                    <NotificationsRow 
+                                        isBlack={isBlack}
+                                        img={checkFill}
+                                        value={e.value}
+                                        time={e.createdAt}
+                                        page={e.page}
+                                        key={e.id}
+                                        isNotificOpen={isNotificOpen}
+                                        getNotific={getNotific}
+                                    />
+                                )
+                            })
+                        }
                         
             </div>
         </div>

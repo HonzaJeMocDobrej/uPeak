@@ -17,6 +17,9 @@ module.exports = (sequelize: any, Sequelize: any) => {
             page: {
                 type: Sequelize.STRING,
             },
+            isShown: {
+                type: Sequelize.BOOLEAN
+            },
             createdAt: {
                 type: Sequelize.DATE
             },

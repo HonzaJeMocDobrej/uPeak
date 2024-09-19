@@ -1019,6 +1019,10 @@ main .progressConts .counterPurple h2 {
   }
 }
 
+.noNotific {
+  height: 100%;
+}
+
 .tBlack {
   background-color: #333;
   border-bottom: 2px solid rgba(255, 255, 255, 0.22);
@@ -3045,6 +3049,24 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   }
 }
 
+div:has(> .bn-toolbar) {
+  /* Chrome, Edge, and Safari */
+}
+div:has(> .bn-toolbar) {
+  scrollbar-width: thin;
+  scrollbar-color: #0099ff white;
+}
+div:has(> .bn-toolbar)::-webkit-scrollbar {
+  width: 12px;
+}
+div:has(> .bn-toolbar)::-webkit-scrollbar-track {
+  background: white;
+}
+div:has(> .bn-toolbar)::-webkit-scrollbar-thumb {
+  background-color: #0099ff;
+  border-radius: 12px;
+  border: 3px solid white;
+}
 @media (max-width: 1000px) {
   div:has(> .bn-toolbar) {
     left: 50% !important;
@@ -3079,9 +3101,9 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 480px) {
   .bn-block-content[data-is-empty-and-focused] .bn-inline-content:has(> .ProseMirror-trailingBreak:only-child)::before {
-    content: "Enter text or '/'" !important;
+    content: "Enter text" !important;
   }
 }
 @media (min-width: 480px) and (max-width: 540px) {
@@ -3278,6 +3300,30 @@ main .todoConts .dropdownGroup .dropdownPlaceholder {
   border: 3px solid white;
 }
 
+.bn-container .bn-suggestion-menu {
+  /* Chrome, Edge, and Safari */
+}
+.bn-container .bn-suggestion-menu {
+  scrollbar-width: thin;
+  scrollbar-color: #0099ff white;
+}
+.bn-container .bn-suggestion-menu::-webkit-scrollbar {
+  width: 12px;
+}
+.bn-container .bn-suggestion-menu::-webkit-scrollbar-track {
+  background: white;
+}
+.bn-container .bn-suggestion-menu::-webkit-scrollbar-thumb {
+  background-color: #0099ff;
+  border-radius: 12px;
+  border: 3px solid white;
+}
+
+@media (max-width: 480px) {
+  .bn-container .bn-suggestion-menu {
+    display: none;
+  }
+}
 .pomodoroCont {
   padding-bottom: 4rem;
   -webkit-user-select: none;

@@ -10,6 +10,11 @@ export const getNotificationsById = async (userId) => {
       return notificationsPayload(res)
 }
 
+export const patchNotification = async (id, data) => {
+    const res = await axios.patch(`http://localhost:3000/api/v1/notifications/${id}`, data)
+      return notificationsPayload(res)
+}
+
 const notificationsPayload = (res) => {
     return {
         msg: res.data.msg,

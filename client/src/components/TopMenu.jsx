@@ -3,6 +3,8 @@ import sun from '../assets/icons/sun.svg'
 import moon from '../assets/icons/moon.svg'
 import notific from '../assets/icons/notificNormal.svg'
 import notificWhite from '../assets/icons/notificNormalWhite.svg'
+import notificActiveWhite from '../assets/icons/notificWhite.svg'
+import notificActiveBlack from '../assets/icons/notific.svg'
 import basicProfPic from '../assets/img/userPicBasic.svg'
 import greenCheck from '../assets/icons/greenCheckFill.svg'
 import checkFill from '../assets/icons/checkFill.svg'
@@ -57,7 +59,9 @@ function TopMenu(props) {
 
     const getNotific = async () => {
         const notific = await getNotificationsById(auth.id)
+        if (!notific.data) return setNotificData([])
         setNotificData(notific.data.reverse())
+        console.log(notific.data)
     }
 
     
@@ -81,9 +85,11 @@ function TopMenu(props) {
             })
         }
 
-        getNotific()
-
     }, [])
+
+    useEffect(() => {
+        getNotific()
+    }, [isNotificOpen])
 
   return (
     <>
@@ -113,10 +119,11 @@ function TopMenu(props) {
                 borderBottom: isBlack ? 'solid 2px rgba(255, 255, 255, 0.22)' :'solid 2px rgba(51, 51, 51, 0.09)',
                 }} className="bellPopup">
                     {
-                        // <div className="noNotific" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
-                        //     <img src={greenCheck} alt="" />
-                        //     <p>{isEnglish ? 'All sorted' : 'Nic nového'}</p>
-                        // </div>
+                        notifData.length == 0 &&
+                        <div className="noNotific" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+                            <img src={greenCheck} alt="" />
+                            <p>{isEnglish ? 'All sorted' : 'Nic nového'}</p>
+                        </div>
                     }
 
                         {/* <div className={`row ${isBlack ? 'rowBlack' : ''}`}>
@@ -190,6 +197,7 @@ function TopMenu(props) {
                                         time={e.createdAt}
                                         page={e.page}
                                         key={e.id}
+                                        id={e.id}
                                         isNotificOpen={isNotificOpen}
                                         getNotific={getNotific}
                                     />

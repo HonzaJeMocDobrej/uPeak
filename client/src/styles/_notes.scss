@@ -62,6 +62,26 @@
 
 div:has(> .bn-toolbar) {
 
+  & {
+    scrollbar-width: thin;
+    scrollbar-color: #0099ff white;
+  }
+
+  /* Chrome, Edge, and Safari */
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: white;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #0099ff;
+    border-radius: 12px;
+    border: 3px solid white;
+  }
+
   @media (max-width: 1000px) {
     left: 50% !important;
     top: 97% !important;
@@ -111,8 +131,8 @@ div:has(> .bn-toolbar) {
 
 .bn-block-content[data-is-empty-and-focused] .bn-inline-content:has(> .ProseMirror-trailingBreak:only-child) {
   &::before {
-    @media (max-width: 380px) {
-      content: "Enter text or '/'" !important;
+    @media (max-width: 480px) {
+      content: "Enter text" !important;
     }
 
     @media (min-width: 480px) and (max-width: 540px) {
@@ -210,6 +230,8 @@ div:has(> .bn-toolbar) {
   }
 }
 
+
+
 .inputP {
   color: #333;
   width: calc(100% - 20%);
@@ -306,5 +328,37 @@ div:has(> .bn-toolbar) {
     background-color: #0099ff;
     border-radius: 12px;
     border: 3px solid white;
+  }
+}
+
+.bn-container {
+  .bn-suggestion-menu {
+    & {
+      scrollbar-width: thin;
+      scrollbar-color: #0099ff white;
+    }
+  
+    /* Chrome, Edge, and Safari */
+    &::-webkit-scrollbar {
+      width: 12px;
+    }
+  
+    &::-webkit-scrollbar-track {
+      background: white;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background-color: #0099ff;
+      border-radius: 12px;
+      border: 3px solid white;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .bn-container {
+    .bn-suggestion-menu {
+      display: none;
+    }
   }
 }

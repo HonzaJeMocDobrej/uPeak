@@ -24,6 +24,7 @@ app.use(`/api/v${process.env.API_VER}/group`, require('./routes/todo/group'))
 app.use(`/api/v${process.env.API_VER}/notes`, require('./routes/notes/notes'))
 app.use(`/api/v${process.env.API_VER}/note`, require('./routes/notes/note'))
 app.use(`/api/v${process.env.API_VER}/notifications`, require('./routes/notifications/notifications'))
+app.use(`/api/v${process.env.API_VER}/achievements`, require('./routes/notifications/notifAchievements'))
 
 app.use('/images',express.static('images'));
 

@@ -27,9 +27,15 @@ let db = {
     notes: require('./notes/notes')(sequelize, Sequelize),
     
     notifications: require('./notifications/notifications')(sequelize, Sequelize),
+    notifAchievements: require('./notifications/notifAchievements')(sequelize, Sequelize),
 }
 
 db.stats.belongsTo(db.users, {
+    foreignKey: 'userId',
+    onDelete: 'cascade'
+})
+
+db.notifAchievements.belongsTo(db.users, {
     foreignKey: 'userId',
     onDelete: 'cascade'
 })

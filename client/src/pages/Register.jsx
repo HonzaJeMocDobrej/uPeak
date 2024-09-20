@@ -7,9 +7,10 @@ import LoadingPage from "../components/LoadingPage";
 import useSignIn from 'react-auth-kit/hooks/useSignIn'
 import { createStats } from "../models/stats";
 import { formatDate } from "../functions/functions";
-import { createTodoPage } from "../models/todoPage";
 
+import { createTodoPage } from "../models/todoPage";
 import { createNotes } from "../models/notes";
+import { createAchievements } from "../models/achievements";
 
 function Register(props) {
 
@@ -94,6 +95,8 @@ function Register(props) {
         }
       })
       await createStats(user.data.id)
+      .catch(err => setInfo(err.response.data.msg))
+      await createAchievements(user.data.id)
       .catch(err => setInfo(err.response.data.msg))
       await createTodoPage(user.data.id, groupPageDateHandler())
       .catch(err => setInfo(err.response.data.msg))

@@ -10,6 +10,11 @@ export const patchAchievements = async (userId, data) => {
       return achievementsPayload(res)
 }
 
+export const addAchievementsCount = async (userId, data) => {
+    const res = await axios.patch(`http://localhost:3000/api/v1/achievements/count/${userId}`, data)
+    return achievementsPayload(res)
+}
+
 export const getUserAchievements = async (userId) => {
     const res = await axios.get(`http://localhost:3000/api/v1/achievements/${userId}`)
     return achievementsPayload(res)

@@ -7,6 +7,6 @@ router.get('/:userId', achievementsController.getAchievements)
 router.post('/:userId', achievementsController.createAchievements)
 router.patch('/:userId', achievementsController.patchAchievements)
 router.get('/notescount/:userId', achievementsController.getCreatedNotesCount)
-router.get('/todoscount/:userId', achievementsController.getCreatedTodosCount)
+router.patch('/count/:userId', achievementsController.addAchievementsCount)
 
 module.exports = router

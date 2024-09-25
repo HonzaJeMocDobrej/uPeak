@@ -6,10 +6,11 @@ import { createTodo, getTodosById } from '../models/todos';
 import { nanoid } from 'nanoid'
 import AddToDo from './AddToDo';
 import { convertToHSL } from '../functions/functions';
+import { addAchievementsCount } from '../models/achievements';
 
 function GroupCont(props) {
 
-    const { univToggle, name, color, id, isBlack, isEnglish} = props
+    const { univToggle, name, color, id, isBlack, isEnglish, auth} = props
 
     const [todos, setTodos] = useState([]);
     const [isCreateTodoOpen, setIsCreateTodoOpen] = useState(false);
@@ -47,6 +48,9 @@ function GroupCont(props) {
                 id: nanoid()
               }];
             });
+            await addAchievementsCount(auth.id, {
+              value: 'todosCreatedCount'
+            })
         }
         
         setTodoData({

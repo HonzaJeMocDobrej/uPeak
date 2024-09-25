@@ -15,7 +15,7 @@ module.exports = (sequelize: any, Sequelize: any) => {
                 type: Sequelize.SMALLINT,
                 defaultValue: 0,
             },
-            pomodoroTimeCount: {
+            pomodoroWholeSessionsCount: {
                 type: Sequelize.INTEGER,
                 defaultValue: 0,
             },

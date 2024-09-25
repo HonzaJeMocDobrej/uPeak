@@ -429,6 +429,7 @@ function ToDo(props) {
                     color={group.color}
                     isBlack={isBlack}
                     isEnglish={isEnglish}
+                    auth={auth}
                   />
                 );
               }

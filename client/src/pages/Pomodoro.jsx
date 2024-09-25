@@ -16,6 +16,8 @@ import { useEffect, useRef, useState } from "react";
 import LoadingPage from "../components/LoadingPage";
 import successAudio from '../assets/audio/pomodoroSuccess.mp3'
 import sessionAudio from '../assets/audio/pomodoroSession.mp3'
+import { addAchievementsCount } from "../models/achievements";
+import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 
 function Pomodoro(props) {
   const {
@@ -39,6 +41,8 @@ function Pomodoro(props) {
 
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const auth = useAuthUser()
+
   const playSuccessAudio = () => {
     let src
     if (stage < 4 || stage == 4 && !isPause) {
@@ -54,6 +58,12 @@ function Pomodoro(props) {
     setTimeout(() => {
       setIsLoaded(true);
     }, 500);
+  }
+
+  const addPomodoroCount = async () => {
+    await addAchievementsCount(auth.id, {
+      value: 'pomodoroWholeSessionsCount'
+    })
   }
 
   const playBtnClick = () => {
@@ -115,6 +125,7 @@ function Pomodoro(props) {
       setStage(1)
       clearInterval(decrement.current)
       setIsPlayClicked(false);
+      addPomodoroCount()
     }
 
     formatter();

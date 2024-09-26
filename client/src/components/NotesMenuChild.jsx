@@ -40,6 +40,7 @@ function NotesMenuChild(props) {
     navigate(`/notes/${id}`);
     document.cookie = `${auth.username}=${auth.username}; SameSite=None; secure=false;`;
     document.cookie = `${auth.username}NoteId=${id}; SameSite=None; secure=false;`;
+    
   };
 
   const handleDeleteNote = async () => {
@@ -57,9 +58,9 @@ function NotesMenuChild(props) {
         setIsLoaded(true);
       }, 200);
       if (id == paramsId) {
-        document.cookie = `${auth.username}=${auth.username}; SameSite=None`;
-        document.cookie = `${auth.username}NoteId=${index}; SameSite=None`;
         navigate(`/notes/${index}`);
+        document.cookie = `${auth.username}=${auth.username}; SameSite=None; secure=false;`
+        document.cookie = `${auth.username}NoteId=${index}; SameSite=None; secure=false;`
       }
       loadNotes();
       loadNote();

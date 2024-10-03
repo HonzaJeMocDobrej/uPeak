@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import bin from '../assets/icons/Bin.svg'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
@@ -8,9 +8,15 @@ import plusFill from '../assets/icons/plusCircleFill.svg'
 import clockFill from '../assets/icons/clockFill.svg'
 import { patchNotification } from '../models/notifications';
 
+import emojisJSON from '../data/emoji.json'
+
+
 function NotificationsRow(props) {
 
     const {isBlack, img, value, time, page, isNotificOpen, getNotific, id} = props
+
+    const [emoji, setEmoji] = useState('😎')
+
 
     const formatTime = () => {
         dayjs.extend(relativeTime)
@@ -35,8 +41,14 @@ function NotificationsRow(props) {
       getNotific()
     }
 
+    const chooseRandomEmoji = () => {
+      let randomNum = Math.floor(Math.random() * emojisJSON.length)
+      setEmoji(emojisJSON[randomNum])
+  }
+
     useEffect(() => {
         formatTime()
+        chooseRandomEmoji()
     }, [isNotificOpen])
 
   return (
@@ -45,7 +57,7 @@ function NotificationsRow(props) {
         <div className="topCont">
           <img src={returnRightImg()} className="imgPage" alt="" />
           <div className="rightCont">
-            <p className="pInfo" dangerouslySetInnerHTML={{__html: value}}></p>
+            <p className="pInfo" dangerouslySetInnerHTML={{__html: `${value} ${emoji}`}}></p>
             <img onClick={deleteNotification} className="imgBin" src={bin} alt="" />
           </div>
         </div>

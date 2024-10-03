@@ -30,6 +30,9 @@ function TopMenu(props) {
 
     const [notifData, setNotificData] = useState([])
 
+
+    
+
     const handleProfileClick = () => {
         navigate('/profile')
     }

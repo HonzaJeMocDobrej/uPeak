@@ -7,6 +7,7 @@ import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import NotesMenuChild from "./NotesMenuChild";
 import { useNavigate } from "react-router-dom";
 import { addAchievementsCount } from "../models/achievements";
+import { createNotesNotification } from "../models/notifications";
 
 
 
@@ -44,6 +45,7 @@ const NotesRightMenu = (props) => {
       await addAchievementsCount(auth.id, {
         value: 'notesCreatedCount'
       })
+      await createNotesNotification(auth.id)
       navigate(`/notes/${notes.data.id}`)
       document.cookie = `${auth.username}=${auth.username}; SameSite=None; secure=false;`
       document.cookie = `${auth.username}NoteId=${notes.data.id}; SameSite=None; secure=false;`

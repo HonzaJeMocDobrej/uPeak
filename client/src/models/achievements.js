@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-export const createAchievements = async (userId) => {
-    const res = await axios.post(`http://localhost:3000/api/v1/achievements/${userId}`)
+export const createAchievements = async (userId, data) => {
+    const res = await axios.post(`http://localhost:3000/api/v1/achievements/${userId}`, data)
       return achievementsPayload(res)
 }
 

@@ -3,6 +3,7 @@ import db from "../../models";
 import { formatFullDate } from "../todo/todoPages";
 
 const Notifications = db.notifications
+const Achievements = db.notifAchievements
 
 export const getNotificationById = async (req: Request, res: Response) => {
     try {
@@ -40,6 +41,28 @@ export const createNotifications = async (req: Request, res: Response) => {
             value: value,
             page: page,
             isShown: isShown 
+        })
+        if (!createdNotifications) return res.status(500).send({msg: 'Something went wrong'})
+        return res.status(201).send({msg: 'Notification created', payload: createdNotifications})
+    } catch (err) {
+        console.log(err)
+        res.status(500).send(err)
+    }
+}
+
+export const createNoteNotification = async (req: Request, res: Response) => {
+    try {
+        const { userId } = req.params
+        const { value } = req.body
+        if (!userId) return res.status(400).send({msg: 'Missing details'})
+        const achievements = await Achievements.findOne({where: {userId: userId}})
+        if (!achievements) return res.status(500).send({msg: 'Something went wrong'})
+        if (achievements.notesCreatedCount % 10 != 0) return res.status(204).send({msg: 'Not enough created notes'}) 
+        const createdNotifications = await Notifications.create({
+            userId: userId,
+            value: `Congrats for <span class='notificSpan'>${achievements.notesCreatedCount}</span> created notes`,
+            page: 'Notes',
+            isShown: true 
         })
         if (!createdNotifications) return res.status(500).send({msg: 'Something went wrong'})
         return res.status(201).send({msg: 'Notification created', payload: createdNotifications})

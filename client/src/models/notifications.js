@@ -10,6 +10,16 @@ export const createNotesNotification = async (userId) => {
       return notificationsPayload(res)
 }
 
+export const createTodoNotification = async (userId) => {
+    const res = await axios.post(`http://localhost:3000/api/v1/notifications/todos/${userId}`)
+      return notificationsPayload(res)
+}
+
+export const createPomodoroNotification = async (userId) => {
+    const res = await axios.post(`http://localhost:3000/api/v1/notifications/pomodoro/${userId}`)
+      return notificationsPayload(res)
+}
+
 export const getNotificationsById = async (userId) => {
     const res = await axios.get(`http://localhost:3000/api/v1/notifications/${userId}`)
       return notificationsPayload(res)

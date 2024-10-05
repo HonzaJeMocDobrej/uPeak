@@ -18,6 +18,7 @@ import successAudio from '../assets/audio/pomodoroSuccess.mp3'
 import sessionAudio from '../assets/audio/pomodoroSession.mp3'
 import { addAchievementsCount } from "../models/achievements";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
+import { createPomodoroNotification } from "../models/notifications";
 
 function Pomodoro(props) {
   const {
@@ -64,6 +65,11 @@ function Pomodoro(props) {
     await addAchievementsCount(auth.id, {
       value: 'pomodoroWholeSessionsCount'
     })
+    await pomodoroNotification()
+  }
+
+  const pomodoroNotification = async () => {
+    await createPomodoroNotification(auth.id)
   }
 
   const playBtnClick = () => {

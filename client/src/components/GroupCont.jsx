@@ -7,6 +7,7 @@ import { nanoid } from 'nanoid'
 import AddToDo from './AddToDo';
 import { convertToHSL } from '../functions/functions';
 import { addAchievementsCount } from '../models/achievements';
+import { createTodoNotification } from '../models/notifications';
 
 function GroupCont(props) {
 
@@ -48,9 +49,13 @@ function GroupCont(props) {
                 id: nanoid()
               }];
             });
-            await addAchievementsCount(auth.id, {
-              value: 'todosCreatedCount'
-            })
+        }
+
+        if (createdTodo.status == 201) {
+          await addAchievementsCount(auth.id, {
+            value: 'todosCreatedCount'
+          })
+          await createTodoNotification(auth.id)
         }
         
         setTodoData({

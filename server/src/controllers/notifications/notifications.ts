@@ -53,7 +53,6 @@ export const createNotifications = async (req: Request, res: Response) => {
 export const createNoteNotification = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params
-        const { value } = req.body
         if (!userId) return res.status(400).send({msg: 'Missing details'})
         const achievements = await Achievements.findOne({where: {userId: userId}})
         if (!achievements) return res.status(500).send({msg: 'Something went wrong'})
@@ -62,6 +61,48 @@ export const createNoteNotification = async (req: Request, res: Response) => {
             userId: userId,
             value: `Congrats for <span class='notificSpan'>${achievements.notesCreatedCount}</span> created notes`,
             page: 'Notes',
+            isShown: true 
+        })
+        if (!createdNotifications) return res.status(500).send({msg: 'Something went wrong'})
+        return res.status(201).send({msg: 'Notification created', payload: createdNotifications})
+    } catch (err) {
+        console.log(err)
+        res.status(500).send(err)
+    }
+}
+
+export const createTodoNotification = async (req: Request, res: Response) => {
+    try {
+        const { userId } = req.params
+        if (!userId) return res.status(400).send({msg: 'Missing details'})
+        const achievements = await Achievements.findOne({where: {userId: userId}})
+        if (!achievements) return res.status(500).send({msg: 'Something went wrong'})
+        if (achievements.todosCreatedCount % 20 != 0) return res.status(204).send({msg: 'Not enough created todos'}) 
+        const createdNotifications = await Notifications.create({
+            userId: userId,
+            value: `Congrats for <span class='notificSpan'>${achievements.todosCreatedCount}</span> created todos`,
+            page: 'Todo',
+            isShown: true 
+        })
+        if (!createdNotifications) return res.status(500).send({msg: 'Something went wrong'})
+        return res.status(201).send({msg: 'Notification created', payload: createdNotifications})
+    } catch (err) {
+        console.log(err)
+        res.status(500).send(err)
+    }
+}
+
+export const createPomodoroNotification = async (req: Request, res: Response) => {
+    try {
+        const { userId } = req.params
+        if (!userId) return res.status(400).send({msg: 'Missing details'})
+        const achievements = await Achievements.findOne({where: {userId: userId}})
+        if (!achievements) return res.status(500).send({msg: 'Something went wrong'})
+        if (achievements.pomodoroWholeSessionsCount % 5 != 0) return res.status(204).send({msg: 'Not enough pomodoro sessinos'}) 
+        const createdNotifications = await Notifications.create({
+            userId: userId,
+            value: `Congrats for <span class='notificSpan'>${achievements.pomodoroWholeSessionsCount}</span> completed Pomodoro sessions`,
+            page: 'Pomodoro',
             isShown: true 
         })
         if (!createdNotifications) return res.status(500).send({msg: 'Something went wrong'})

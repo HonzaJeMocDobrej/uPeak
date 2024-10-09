@@ -18,10 +18,11 @@ import { useEffect, useState } from 'react'
 import { checkIfImgExists } from '../functions/functions';
 import NotificationsRow from './NotificationsRow'
 import { getNotificationsById } from '../models/notifications'
+import { getUserAchievements, patchAchievements } from '../models/achievements'
 
 function TopMenu(props) {
     
-    const {isEnglish, setIsEnglish, isBlack, setIsBlack, switchStyle, setSwitchStyle} = props
+    const {isEnglish, setIsEnglish, isBlack, setIsBlack, switchStyle, setSwitchStyle, setIsNotificationRead, isNotificationRead} = props
     const navigate = useNavigate()
 
     const auth = useAuthUser()
@@ -29,9 +30,17 @@ function TopMenu(props) {
     const [isNotificOpen, setIsNotificOpen] = useState(false)
 
     const [notifData, setNotificData] = useState([])
-
-
     
+
+
+    const openNotificMenu = () => {
+        setIsNotificOpen(prev => !prev)
+        patchAchievements(auth.id, [{
+            propName: 'isNotificationRead',
+            value: true
+        }])
+
+    }
 
     const handleProfileClick = () => {
         navigate('/profile')
@@ -67,6 +76,13 @@ function TopMenu(props) {
         console.log(notific.data)
     }
 
+    const getAchievements = async () => {
+        const achievements = await getUserAchievements(auth.id)
+        if (!achievements.data) return setIsNotificationRead(false)
+        setIsNotificationRead(achievements.data.isNotificationRead)
+        console.log(achievements.data.isNotificationRead)
+    }
+
     
 
     useEffect(() => {
@@ -92,6 +108,7 @@ function TopMenu(props) {
 
     useEffect(() => {
         getNotific()
+        getAchievements()
     }, [isNotificOpen])
 
   return (
@@ -113,7 +130,8 @@ function TopMenu(props) {
             </div>
         </div>
         <div className="bellCont">
-            <img onClick={() => setIsNotificOpen(prev => !prev)} src={isBlack ? notificWhite : notific} className='notificImg' alt="" />
+            {/* <img onClick={openNotificMenu} src={isBlack ? notificWhite : notific} className='notificImg' alt="" /> */}
+            <img onClick={openNotificMenu} src={isBlack & isNotificationRead ? notificWhite : isBlack & !isNotificationRead ? notificActiveWhite : !isBlack & isNotificationRead ? notific : !isBlack & !isNotificationRead ? notificActiveBlack : null} className='notificImg' alt="" />
             <div style={{
                 display: isNotificOpen ? 'flex' : 'none',
                 backgroundColor: isBlack ? '#333' : '#FFF',

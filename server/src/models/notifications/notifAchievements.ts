@@ -28,6 +28,10 @@ module.exports = (sequelize: any, Sequelize: any) => {
             },
             updatedAt: {
                 type: Sequelize.DATE
+            },
+            isNotificationRead: {
+                type: Sequelize.BOOLEAN,
+                defaultValue: true
             }
         },
         {

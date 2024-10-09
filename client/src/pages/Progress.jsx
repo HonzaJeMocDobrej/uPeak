@@ -11,7 +11,7 @@ import LoadingPage from "../components/LoadingPage";
 
 function Progress(props) {
 
-  const {active, isEnglish, setIsEnglish, isBlack, setIsBlack, switchStyle, setSwitchStyle} = props
+  const {active, isEnglish, setIsEnglish, isBlack, setIsBlack, switchStyle, setSwitchStyle, setIsNotificationRead, isNotificationRead} = props
 
   const [isPageOpen, setIsPageOpen] = useState(false)
   const [isTypeOpen, setIsTypeOpen] = useState(false)
@@ -142,6 +142,8 @@ return (
         setIsBlack={setIsBlack}
         switchStyle={switchStyle}
         setSwitchStyle={setSwitchStyle}
+        setIsNotificationRead={setIsNotificationRead}
+        isNotificationRead={isNotificationRead}
       />
       <main className={`mainStuff ${isBlack ? 'mainBlack' : null}`}>
         <div className="progressConts">

@@ -11,7 +11,7 @@ export const getAchievements = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params
         if (!userId) return res.status(400).send({msg: 'Missing details'})
-        const achievements = await Achievements.findAll({where: {userId: userId}})
+        const achievements = await Achievements.findOne({where: {userId: userId}})
         if (!achievements || achievements.length == 0) return res.status(404).send({msg: 'Achievements not found'})
         return res.status(200).send({msg: 'Achievements found', payload: achievements})
     } catch (err) {
@@ -37,10 +37,10 @@ export const createAchievements = async (req: Request, res: Response) => {
 
 export const patchAchievements = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params
+        const { userId } = req.params
         const data = req.body
-        if (!id || !data) return res.status(400).send({msg: 'Missing details'})
-        const achievements = await Achievements.findOne({where: {id: id}})
+        if (!userId || !data) return res.status(400).send({msg: 'Missing details'})
+        const achievements = await Achievements.findOne({where: {userId: userId}})
         if (!achievements) return res.status(404).send({msg: 'Achievements not found'})
         for (const ops of data) {
             achievements[ops.propName] = ops.value

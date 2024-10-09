@@ -7,17 +7,17 @@ export const createNotifications = async (userId, data) => {
 
 export const createNotesNotification = async (userId) => {
     const res = await axios.post(`http://localhost:3000/api/v1/notifications/notes/${userId}`)
-      return notificationsPayload(res)
+      return extendedNotificationsPayload(res)
 }
 
 export const createTodoNotification = async (userId) => {
     const res = await axios.post(`http://localhost:3000/api/v1/notifications/todos/${userId}`)
-      return notificationsPayload(res)
+      return extendedNotificationsPayload(res)
 }
 
 export const createPomodoroNotification = async (userId) => {
     const res = await axios.post(`http://localhost:3000/api/v1/notifications/pomodoro/${userId}`)
-      return notificationsPayload(res)
+      return extendedNotificationsPayload(res)
 }
 
 export const getNotificationsById = async (userId) => {
@@ -35,5 +35,14 @@ const notificationsPayload = (res) => {
         msg: res.data.msg,
         data: res.data.payload,
         status: res.status,
+    }
+}
+
+const extendedNotificationsPayload = (res) => {
+    return {
+        msg: res.data.msg,
+        data: res.data.payload,
+        status: res.status,
+        isNotificationRead: res.data.isNotificationRead
     }
 }

@@ -33,6 +33,8 @@ function ToDo(props) {
     setIsBlack,
     switchStyle,
     setSwitchStyle,
+    setIsNotificationRead,
+    isNotificationRead
   } = props;
 
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
@@ -229,6 +231,8 @@ function ToDo(props) {
           setIsBlack={setIsBlack}
           switchStyle={switchStyle}
           setSwitchStyle={setSwitchStyle}
+          setIsNotificationRead={setIsNotificationRead}
+          isNotificationRead={isNotificationRead}
         />
         <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
           <div className="todoConts">

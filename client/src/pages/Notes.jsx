@@ -25,6 +25,8 @@ function Notes(props) {
     setIsBlack,
     switchStyle,
     setSwitchStyle,
+    setIsNotificationRead,
+    isNotificationRead
   } = props;
 
   const [heading, setHeading] = useState("");
@@ -296,6 +298,8 @@ function Notes(props) {
           setIsBlack={setIsBlack}
           switchStyle={switchStyle}
           setSwitchStyle={setSwitchStyle}
+          setIsNotificationRead={setIsNotificationRead}
+          isNotificationRead={isNotificationRead}
         />
         <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
           <NotesRightMenu
@@ -310,6 +314,8 @@ function Notes(props) {
             notesListClass={isBlack ? 'notesList notesListBlack' : 'notesList'}
             isEnglish={isEnglish}
             isBlack={isBlack}
+            setIsNotificationRead={setIsNotificationRead}
+            isNotificationRead={isNotificationRead}
           />
           <div className={`notesCont ${isBlack ? 'notesContBlack' : null}`}>
             <h2

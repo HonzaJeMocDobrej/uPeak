@@ -64,7 +64,10 @@ export const createNoteNotification = async (req: Request, res: Response) => {
             isShown: true 
         })
         if (!createdNotifications) return res.status(500).send({msg: 'Something went wrong'})
-        return res.status(201).send({msg: 'Notification created', payload: createdNotifications})
+        achievements.isNotificationRead = false
+        const action = await achievements.save()
+        if (!action) return res.status(500).send('Something went wrong')
+        return res.status(201).send({msg: 'Notification created', payload: createdNotifications, isNotificationRead: achievements.isNotificationRead})
     } catch (err) {
         console.log(err)
         res.status(500).send(err)
@@ -85,7 +88,10 @@ export const createTodoNotification = async (req: Request, res: Response) => {
             isShown: true 
         })
         if (!createdNotifications) return res.status(500).send({msg: 'Something went wrong'})
-        return res.status(201).send({msg: 'Notification created', payload: createdNotifications})
+        achievements.isNotificationRead = false
+        const action = await achievements.save()
+        if (!action) return res.status(500).send('Something went wrong')
+        return res.status(201).send({msg: 'Notification created', payload: createdNotifications, isNotificationRead: achievements.isNotificationRead})
     } catch (err) {
         console.log(err)
         res.status(500).send(err)
@@ -106,7 +112,10 @@ export const createPomodoroNotification = async (req: Request, res: Response) =>
             isShown: true 
         })
         if (!createdNotifications) return res.status(500).send({msg: 'Something went wrong'})
-        return res.status(201).send({msg: 'Notification created', payload: createdNotifications})
+        achievements.isNotificationRead = false
+        const action = await achievements.save()
+        if (!action) return res.status(500).send('Something went wrong')
+        return res.status(201).send({msg: 'Notification created', payload: createdNotifications, isNotificationRead: achievements.isNotificationRead})
     } catch (err) {
         console.log(err)
         res.status(500).send(err)

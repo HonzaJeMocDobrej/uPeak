@@ -30,6 +30,8 @@ function Path() {
     pass: null,
   })
 
+  const [isNotificationRead, setIsNotificationRead] = useState([])
+
   useEffect(() => {
     const isBlackStorage = localStorage.getItem('isBlack')
     if (!isBlackStorage) return setIsBlack(false)
@@ -75,7 +77,10 @@ function Path() {
                    isBlack={isBlack}
                    setIsBlack={setIsBlack}
                    switchStyle={switchStyle} 
-                   setSwitchStyle={setSwitchStyle}/>
+                   setSwitchStyle={setSwitchStyle}
+                   setIsNotificationRead={setIsNotificationRead}
+                   isNotificationRead={isNotificationRead}
+                   />
                 } />
                 <Route path='/todo/:todoPageId' element={
                   <ToDo
@@ -85,7 +90,10 @@ function Path() {
                    isBlack={isBlack}
                    setIsBlack={setIsBlack}
                    switchStyle={switchStyle} 
-                   setSwitchStyle={setSwitchStyle}/>
+                   setSwitchStyle={setSwitchStyle}
+                   setIsNotificationRead={setIsNotificationRead}
+                   isNotificationRead={isNotificationRead}
+                   />
                 } />
                 <Route path='/notes/:id' element={
                   <Notes
@@ -95,7 +103,10 @@ function Path() {
                    isBlack={isBlack}
                    setIsBlack={setIsBlack}
                    switchStyle={switchStyle} 
-                   setSwitchStyle={setSwitchStyle} />
+                   setSwitchStyle={setSwitchStyle} 
+                   setIsNotificationRead={setIsNotificationRead}
+                   isNotificationRead={isNotificationRead}
+                   />
                 } />
                 <Route path='/pomodoro' element={
                   <Pomodoro
@@ -105,7 +116,10 @@ function Path() {
                    isBlack={isBlack}
                    setIsBlack={setIsBlack}
                    switchStyle={switchStyle} 
-                   setSwitchStyle={setSwitchStyle}/>
+                   setSwitchStyle={setSwitchStyle}
+                   setIsNotificationRead={setIsNotificationRead}
+                   isNotificationRead={isNotificationRead}
+                   />
                 } />
                 <Route path='/profile' element={
                   <Profile
@@ -115,7 +129,10 @@ function Path() {
                    isBlack={isBlack}
                    setIsBlack={setIsBlack}
                    switchStyle={switchStyle} 
-                   setSwitchStyle={setSwitchStyle}/>
+                   setSwitchStyle={setSwitchStyle}
+                   setIsNotificationRead={setIsNotificationRead}
+                   isNotificationRead={isNotificationRead}
+                   />
                 } />
               </Route>
 

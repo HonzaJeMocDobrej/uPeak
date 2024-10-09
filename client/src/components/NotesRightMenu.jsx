@@ -6,13 +6,13 @@ import { createNotes, getNotes, searchNotes } from "../models/notes";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import NotesMenuChild from "./NotesMenuChild";
 import { useNavigate } from "react-router-dom";
-import { addAchievementsCount } from "../models/achievements";
+import { addAchievementsCount, patchAchievements } from "../models/achievements";
 import { createNotesNotification } from "../models/notifications";
 
 
 
 const NotesRightMenu = (props) => {
-  const { virtualHeading, setVirtualHeading, paramsId, loadNote, isSearching, setIsSearching, myNotesColor, loadNotes, isEnglish, isBlack} = props;
+  const { virtualHeading, setVirtualHeading, paramsId, loadNote, isSearching, setIsSearching, myNotesColor, loadNotes, isEnglish, isBlack, setIsNotificationRead, isNotificationRead} = props;
   const auth = useAuthUser();
   let navigate = useNavigate()
 
@@ -45,7 +45,10 @@ const NotesRightMenu = (props) => {
       await addAchievementsCount(auth.id, {
         value: 'notesCreatedCount'
       })
-      await createNotesNotification(auth.id)
+      const notifications = await createNotesNotification(auth.id)
+      if (notifications.status == 201) {
+        setIsNotificationRead(notifications.isNotificationRead)
+      }
       navigate(`/notes/${notes.data.id}`)
       document.cookie = `${auth.username}=${auth.username}; SameSite=None; secure=false;`
       document.cookie = `${auth.username}NoteId=${notes.data.id}; SameSite=None; secure=false;`

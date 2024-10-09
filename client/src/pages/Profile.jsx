@@ -28,6 +28,8 @@ function Profile(props) {
     setIsBlack,
     switchStyle,
     setSwitchStyle,
+    setIsNotificationRead,
+    isNotificationRead
   } = props;
 
   const auth = useAuthUser();
@@ -126,6 +128,8 @@ function Profile(props) {
           setIsBlack={setIsBlack}
           switchStyle={switchStyle}
           setSwitchStyle={setSwitchStyle}
+          setIsNotificationRead={setIsNotificationRead}
+          isNotificationRead={isNotificationRead}
         />
         <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
           <div className="profileMenuCont">

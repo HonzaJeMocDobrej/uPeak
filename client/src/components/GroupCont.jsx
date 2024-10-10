@@ -11,7 +11,7 @@ import { createTodoNotification } from '../models/notifications';
 
 function GroupCont(props) {
 
-    const { univToggle, name, color, id, isBlack, isEnglish, auth} = props
+    const { univToggle, name, color, id, isBlack, isEnglish, auth, setIsNotificationRead} = props
 
     const [todos, setTodos] = useState([]);
     const [isCreateTodoOpen, setIsCreateTodoOpen] = useState(false);
@@ -55,7 +55,10 @@ function GroupCont(props) {
           await addAchievementsCount(auth.id, {
             value: 'todosCreatedCount'
           })
-          await createTodoNotification(auth.id)
+          const notifications = await createTodoNotification(auth.id)
+          if (notifications.status == 201) {
+            setIsNotificationRead(notifications.isNotificationRead)
+          }
         }
         
         setTodoData({

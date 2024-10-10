@@ -57,12 +57,13 @@ export const convertToHSL = (headlineColor, isLight ) => {
     value = convert.rgb.hsl(rgb[0], rgb[1], rgb[2])
   }
 
-  // console.log(value)
+  console.log(value)
   let L = value[2]
   let shouldBeReplaced
   isLight ? shouldBeReplaced = L > 70 ? true : false : shouldBeReplaced = L < 30 ? true : false 
   if (!shouldBeReplaced) return headlineColor
-  value = [value[0], value[1], 30]
+  if (isLight) value = value = [value[0], value[1], 20]
+  if (!isLight) value = value = [value[0], value[1], 100]
   const rgbBack = convert.hsl.rgb(value)
   return `rgba(${rgbBack[0]}, ${rgbBack[1]}, ${rgbBack[2]}, 1)`
   

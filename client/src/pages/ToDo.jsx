@@ -434,6 +434,7 @@ function ToDo(props) {
                     isBlack={isBlack}
                     isEnglish={isEnglish}
                     auth={auth}
+                    setIsNotificationRead={setIsNotificationRead}
                   />
                 );
               }

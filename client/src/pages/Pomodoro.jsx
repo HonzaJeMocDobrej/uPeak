@@ -67,7 +67,10 @@ function Pomodoro(props) {
     await addAchievementsCount(auth.id, {
       value: 'pomodoroWholeSessionsCount'
     })
-    await pomodoroNotification()
+    const notifications = await pomodoroNotification()
+    if (notifications.status == 201) {
+      setIsNotificationRead(notifications.isNotificationRead)
+    }
   }
 
   const pomodoroNotification = async () => {

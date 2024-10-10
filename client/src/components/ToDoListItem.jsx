@@ -81,7 +81,7 @@ function ToDoListItem(props) {
           closeData={false}
           isBlack={isBlack}
           lightColor={convertToHSL(ownTodoData.color, true)}
-          darkColor={convertToHSL(ownTodoData.color, false)}
+          darkColor={convertToHSL(ownTodoData.color, true)}
         />
         <div className="toDoListItem">
           <div className="btnAndTextCont">

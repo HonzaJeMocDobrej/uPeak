@@ -8,6 +8,7 @@ import '../styles/styles.css'
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import { getUserStats } from "../models/stats";
 import LoadingPage from "../components/LoadingPage";
+import InfoCircle from "../components/InfoCircle";
 
 function Progress(props) {
 
@@ -181,6 +182,9 @@ return (
               </ul>
             </div>
           </div>
+          <InfoCircle
+            isBlack={isBlack}
+          />
         </div>
       </main>
   </div>

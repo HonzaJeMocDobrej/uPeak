@@ -4,6 +4,7 @@ main {
     padding-bottom: 3rem;
     overflow-y: auto;
     height: calc(100vh - 7rem);
+    position: relative;
 
     & {
       scrollbar-width: thin;

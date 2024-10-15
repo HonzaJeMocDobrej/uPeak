@@ -15,6 +15,7 @@ import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
 import { BlockNoteEditor } from "@blocknote/core";
 import { darkDefaultTheme, lightDefaultTheme} from "@blocknote/mantine";
+import InfoCircle from "../components/InfoCircle";
 
 function Notes(props) {
   const {
@@ -318,6 +319,9 @@ function Notes(props) {
             isNotificationRead={isNotificationRead}
           />
           <div className={`notesCont ${isBlack ? 'notesContBlack' : null}`}>
+            <InfoCircle
+              isBlack={isBlack}
+            />
             <h2
               onClick={() => handleCusorPostion(1, headlineRef)}
               onInput={handleHealdine}

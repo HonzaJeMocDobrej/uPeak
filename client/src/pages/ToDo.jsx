@@ -23,6 +23,7 @@ import LoadingPage from "../components/LoadingPage";
 import GroupCont from "../components/GroupCont";
 import greenCheckFill from "../assets/icons/greenCheckFill.svg";
 import bin from "../assets/icons/Bin.svg";
+import InfoCircle from "../components/InfoCircle";
 
 function ToDo(props) {
   const {
@@ -236,6 +237,9 @@ function ToDo(props) {
         />
         <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
           <div className="todoConts">
+          <InfoCircle
+            isBlack={isBlack}
+          />
             <div className="topCont">
               <Calendar
                 style={

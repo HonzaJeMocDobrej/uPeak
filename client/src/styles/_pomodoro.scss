@@ -16,6 +16,7 @@
 
     overflow-y: auto;
     height: calc(100vh - 11rem);
+    position: relative;
 
     & {
         scrollbar-width: thin;

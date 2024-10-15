@@ -19,6 +19,7 @@ import sessionAudio from '../assets/audio/pomodoroSession.mp3'
 import { addAchievementsCount } from "../models/achievements";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import { createPomodoroNotification } from "../models/notifications";
+import InfoCircle from "../components/InfoCircle";
 
 function Pomodoro(props) {
   const {
@@ -246,6 +247,9 @@ function Pomodoro(props) {
                 }}  className="border" ></div>
               </div>
             </div>
+            <InfoCircle
+              isBlack={isBlack}
+            />
           </div>
         </main>
       </div>

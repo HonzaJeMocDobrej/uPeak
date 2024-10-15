@@ -300,6 +300,7 @@ div:has(> .bn-toolbar) {
   overflow-y: auto;
   overflow-x: hidden;
   height: calc(100vh - 7rem);
+  position: relative;
   
   @media (max-width: 1000px) {
     width: calc(100% - 10rem);

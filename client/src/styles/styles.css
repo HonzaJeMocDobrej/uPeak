@@ -3,6 +3,7 @@ main .progressConts {
   overflow-y: auto;
   height: calc(100vh - 7rem);
   display: flex;
+  position: relative;
   /* Chrome, Edge, and Safari */
 }
 main .progressConts {
@@ -872,6 +873,7 @@ main .progressConts .counterPurple h2 {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  z-index: 10;
   /* Chrome, Edge, and Safari */
 }
 .tMenu .bellCont .bellPopup {
@@ -1580,6 +1582,7 @@ main .todoConts {
   padding-bottom: 3rem;
   overflow-y: auto;
   height: calc(100vh - 7rem);
+  position: relative;
   /* Chrome, Edge, and Safari */
 }
 main .todoConts {
@@ -3271,6 +3274,7 @@ div:has(> .bn-toolbar)::-webkit-scrollbar-thumb {
   overflow-y: auto;
   overflow-x: hidden;
   height: calc(100vh - 7rem);
+  position: relative;
   /* Chrome, Edge, and Safari */
 }
 @media (max-width: 1000px) {
@@ -3331,6 +3335,7 @@ div:has(> .bn-toolbar)::-webkit-scrollbar-thumb {
           user-select: none;
   overflow-y: auto;
   height: calc(100vh - 11rem);
+  position: relative;
   /* Chrome, Edge, and Safari */
 }
 .pomodoroCont {
@@ -4609,4 +4614,63 @@ html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
   background-color: #0099ff;
   border-radius: 12px;
   border: 3px solid #333 !important;
+}
+
+.outerContOpen {
+  transition: 300ms;
+  filter: blur(2px);
+}
+
+.outerCont {
+  position: absolute;
+  z-index: 2;
+  top: 1rem;
+  right: 1rem;
+}
+@media (max-width: 480px) {
+  .outerCont {
+    height: 1rem;
+    width: 1rem;
+  }
+}
+.outerCont .infoCircle {
+  height: 1.5rem !important;
+  width: 1.5rem;
+  background-color: #99D5FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  transition: 400ms;
+}
+.outerCont .infoCircle:hover {
+  transition: 400ms;
+  transform: scale(1.05);
+}
+.outerCont .infoCircle:active {
+  transition: 400ms;
+  transform: scale(1);
+}
+.outerCont .infoPopup {
+  height: 5rem;
+  width: 10rem;
+  background-color: #0099ff;
+  position: absolute;
+  right: 3rem;
+  top: 2rem;
+}
+.outerCont p {
+  font-family: "Poppins";
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 500;
+}
+@media (max-width: 480px) {
+  .outerCont p {
+    font-size: 0.66rem;
+  }
 }/*# sourceMappingURL=styles.css.map */

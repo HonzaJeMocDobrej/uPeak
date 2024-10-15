@@ -18,6 +18,7 @@ import exit from '../assets/icons/exit.svg'
 
 import useSignOut from 'react-auth-kit/hooks/useSignOut'
 import { useNavigate } from "react-router-dom";
+import InfoCircle from "../components/InfoCircle";
 
 function Profile(props) {
   const {
@@ -133,6 +134,12 @@ function Profile(props) {
         />
         <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
           <div className="profileMenuCont">
+          <InfoCircle
+            isEmailOpen={isEmailOpen}
+            isPasswordOpen={isPasswordOpen}
+            isUsernameOpen={isUsernameOpen}
+            isBlack={isBlack}
+          />
             <div
               onClick={() => {
                 if (isUsernameOpen || isEmailOpen || isPasswordOpen) {
@@ -149,6 +156,7 @@ function Profile(props) {
                   : null
               }`}
             >
+          
               <h2
                 style={{
                   color: isBlack ? "#FFF" : "#333",

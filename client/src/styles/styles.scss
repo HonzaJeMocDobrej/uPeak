@@ -77,11 +77,6 @@ html, body {
   top: 1rem;
   right: 1rem;
 
-  @media (max-width: 480px) {
-    height: 1rem;
-    width: 1rem;
-  }
-
   .infoCircle {
     height: 1.5rem !important;
     width: 1.5rem;
@@ -93,6 +88,11 @@ html, body {
     user-select: none;
     cursor: pointer;
     transition: 400ms;
+
+    @media (max-width: 480px) {
+      height: 1rem !important;
+      width: 1rem;
+    }
 
     &:hover {
       transition: 400ms;
@@ -106,12 +106,84 @@ html, body {
   }
 
   .infoPopup {
-    height: 5rem;
-    width: 10rem;
-    background-color: #0099ff;
+    background-color: #99D5FF;
     position: absolute;
     right: 3rem;
     top: 2rem;
+    padding: 1rem 1.5rem;
+    width: 17rem;
+    min-height: 4.5rem;
+    color: white;
+    border-radius: 1rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    user-select: none;
+
+    @media (max-width: 750px) {
+      width: 12rem;
+      min-height: 3.5rem;
+      padding: .75rem 1rem;
+      border-radius: .75rem;
+    }
+
+    @media (max-width: 480px) {
+      width: 9rem;
+      min-height: 2.5rem;
+      padding: .5rem .8rem;
+      border-radius: .6rem;
+      right: 1.5rem;
+      top: 1.5rem;
+    }
+    
+    p {
+      font-size: .75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @media (max-width: 750px) {
+        font-size: .5rem;
+      }
+
+      @media (max-width: 480px) {
+        font-size: .4rem;
+      }
+
+    }
+  }
+
+  .notesPopup {
+    @media (max-width: 600px) {
+      width: 9rem;
+      min-height: 2.5rem;
+      padding: .5rem .8rem;
+      border-radius: .6rem;
+      right: -.5rem;
+      top: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      top: 1.5rem;
+    }
+
+    @media (max-width: 370px) {
+      width: 8rem;
+    }
+
+    @media (max-width: 350px) {
+      width: 6rem;
+      border-radius: .5rem;
+      padding: .5rem .7rem;
+    }
+
+    p {
+      @media (max-width: 480px) {
+        font-size: .4rem;
+      }
+
+      @media (max-width: 350px) {
+        font-size: .35rem;
+      }
+    }
   }
 
   p {

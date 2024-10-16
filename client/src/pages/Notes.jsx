@@ -321,6 +321,7 @@ function Notes(props) {
           <div className={`notesCont ${isBlack ? 'notesContBlack' : null}`}>
             <InfoCircle
               isBlack={isBlack}
+              pageClass={'notesPopup'}
             />
             <h2
               onClick={() => handleCusorPostion(1, headlineRef)}

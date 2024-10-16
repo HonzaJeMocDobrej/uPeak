@@ -4627,12 +4627,6 @@ html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
   top: 1rem;
   right: 1rem;
 }
-@media (max-width: 480px) {
-  .outerCont {
-    height: 1rem;
-    width: 1rem;
-  }
-}
 .outerCont .infoCircle {
   height: 1.5rem !important;
   width: 1.5rem;
@@ -4647,6 +4641,12 @@ html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
   cursor: pointer;
   transition: 400ms;
 }
+@media (max-width: 480px) {
+  .outerCont .infoCircle {
+    height: 1rem !important;
+    width: 1rem;
+  }
+}
 .outerCont .infoCircle:hover {
   transition: 400ms;
   transform: scale(1.05);
@@ -4656,12 +4656,90 @@ html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
   transform: scale(1);
 }
 .outerCont .infoPopup {
-  height: 5rem;
-  width: 10rem;
-  background-color: #0099ff;
+  background-color: #99D5FF;
   position: absolute;
   right: 3rem;
   top: 2rem;
+  padding: 1rem 1.5rem;
+  width: 17rem;
+  min-height: 4.5rem;
+  color: white;
+  border-radius: 1rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+@media (max-width: 750px) {
+  .outerCont .infoPopup {
+    width: 12rem;
+    min-height: 3.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+  }
+}
+@media (max-width: 480px) {
+  .outerCont .infoPopup {
+    width: 9rem;
+    min-height: 2.5rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.6rem;
+    right: 1.5rem;
+    top: 1.5rem;
+  }
+}
+.outerCont .infoPopup p {
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 750px) {
+  .outerCont .infoPopup p {
+    font-size: 0.5rem;
+  }
+}
+@media (max-width: 480px) {
+  .outerCont .infoPopup p {
+    font-size: 0.4rem;
+  }
+}
+@media (max-width: 600px) {
+  .outerCont .notesPopup {
+    width: 9rem;
+    min-height: 2.5rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.6rem;
+    right: -0.5rem;
+    top: 2rem;
+  }
+}
+@media (max-width: 480px) {
+  .outerCont .notesPopup {
+    top: 1.5rem;
+  }
+}
+@media (max-width: 370px) {
+  .outerCont .notesPopup {
+    width: 8rem;
+  }
+}
+@media (max-width: 350px) {
+  .outerCont .notesPopup {
+    width: 6rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.7rem;
+  }
+}
+@media (max-width: 480px) {
+  .outerCont .notesPopup p {
+    font-size: 0.4rem;
+  }
+}
+@media (max-width: 350px) {
+  .outerCont .notesPopup p {
+    font-size: 0.35rem;
+  }
 }
 .outerCont p {
   font-family: "Poppins";

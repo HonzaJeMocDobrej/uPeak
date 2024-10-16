@@ -239,6 +239,7 @@ function ToDo(props) {
           <div className="todoConts">
           <InfoCircle
             isBlack={isBlack}
+            text={'Welcome to the To-Do Page. Here, you can manage all your daily tasks, so you won’t forget to do them. You can customise them and set them a priority. You can also group them into different categories.'}
           />
             <div className="topCont">
               <Calendar

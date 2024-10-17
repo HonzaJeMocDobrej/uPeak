@@ -249,6 +249,9 @@ function Pomodoro(props) {
             </div>
             <InfoCircle
               isBlack={isBlack}
+              isEnglish={isEnglish}
+              textEn={"Pomodoro is a special timer, that divides your work into sessions. There are 4 sessions of working for 25 minutes each and 4 rests for 5 minutes each. You will be notified after every session so you don't miss out. "}
+              textCz={'Pomodoro je speciální timer, který rozděluje vaši práci do úseků. Jsou zde 4 úseky po 25 minutách, po kterých pracujete a 4 úseky po 5 minutách, kdy můžete odpočívat. Po skončení úseků dostanete oznámení.'}
             />
           </div>
         </main>

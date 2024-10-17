@@ -139,6 +139,9 @@ function Profile(props) {
             isPasswordOpen={isPasswordOpen}
             isUsernameOpen={isUsernameOpen}
             isBlack={isBlack}
+            isEnglish={isEnglish}
+            textEn={'Profile is really straightforward. You basically manage all your user information here including a profile picture. You can also log out and delete your account.'}
+            textCz={'Stránka profil poměrně mluví sama za sebe. V podstatě zde upravujete veškeré své uživatelské informace, včetně změny obrázku. Můžete se zde také odhlásit, nebo smazat úcet.'}
           />
             <div
               onClick={() => {

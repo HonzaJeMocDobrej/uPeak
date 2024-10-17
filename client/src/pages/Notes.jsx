@@ -322,6 +322,9 @@ function Notes(props) {
             <InfoCircle
               isBlack={isBlack}
               pageClass={'notesPopup'}
+              isEnglish={isEnglish}
+              textEn={'Now, you are at the Notes page. Manage them on the right side, write into them on the left side. If you select a text, you can apply different styles to it. If you have a lot of notes, you can search them by the headline on the right side.'}
+              textCz={'Nyní se nacházíte na stránce s Poznámkami. Na pravé straně s nimi můžete provádět různé operace, na levé straně do nich můžete psát. Pokud označíte text, můžete ho stylovat. Máte-li velké množství poznámek, můžete je pomocí nadpisu hledat v pravém menu.'}
             />
             <h2
               onClick={() => handleCusorPostion(1, headlineRef)}

@@ -34,7 +34,7 @@ function InfoCircle(props) {
           className={`infoPopup ${props.pageClass}`}
         >
           <p style={{ color: props.isBlack ? "#333" : "#FFF" }}>
-            {props.text}
+            {props.isEnglish ? props.textEn : props.textCz}
           </p>
         </div>
       </div>

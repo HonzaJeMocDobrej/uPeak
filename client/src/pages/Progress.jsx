@@ -184,6 +184,9 @@ return (
           </div>
           <InfoCircle
             isBlack={isBlack}
+            isEnglish={isEnglish}
+            textEn={'Progress page is where you see your daily usage of the applications. There are two modes, streak and total. Streak captures the days in a row you have been active on each page, Total just counts all your active days.'}
+            textCz={'Progres je stránka, kde vidíte, jak dlouho aplikaci používáte. Nachází se zde dva módy, streak a total. Streak zachycuje po sobě jdoucí dny, kdy jste na každé stránce aktivní, Total počítá všechny dny, kdy jste byli aktivní'}
           />
         </div>
       </main>

@@ -90,7 +90,7 @@ div:has(> .bn-toolbar) {
   }
 
   @media (max-width: 480px) {
-    width: 15rem;
+    width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
     border: var(--bn-border);

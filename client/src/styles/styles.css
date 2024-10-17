@@ -3080,7 +3080,7 @@ div:has(> .bn-toolbar)::-webkit-scrollbar-thumb {
 }
 @media (max-width: 480px) {
   div:has(> .bn-toolbar) {
-    width: 15rem;
+    width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
     border: var(--bn-border);

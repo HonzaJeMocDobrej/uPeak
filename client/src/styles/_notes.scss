@@ -89,14 +89,13 @@ div:has(> .bn-toolbar) {
     display: flex !important;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 750px) {
     width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
     border: var(--bn-border);
     border-radius: var(--bn-border-radius-medium)
   }
-
 }
 
 .bn-block-content {
@@ -358,8 +357,8 @@ div:has(> .bn-toolbar) {
 
 @media (max-width: 480px) {
   .bn-container {
-    .bn-suggestion-menu {
-      display: none;
-    }
+    // .bn-suggestion-menu {
+    //   display: none;
+    // }
   }
 }

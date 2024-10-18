@@ -3078,7 +3078,7 @@ div:has(> .bn-toolbar)::-webkit-scrollbar-thumb {
     display: flex !important;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 750px) {
   div:has(> .bn-toolbar) {
     width: 100%;
     overflow-x: scroll;
@@ -3323,11 +3323,6 @@ div:has(> .bn-toolbar)::-webkit-scrollbar-thumb {
   border: 3px solid white;
 }
 
-@media (max-width: 480px) {
-  .bn-container .bn-suggestion-menu {
-    display: none;
-  }
-}
 .pomodoroCont {
   padding-bottom: 4rem;
   -webkit-user-select: none;

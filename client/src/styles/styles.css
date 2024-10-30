@@ -608,6 +608,7 @@ main .progressConts .counterPurple h2 {
     padding-left: 0;
     width: 100%;
     justify-content: center;
+    position: relative;
   }
 }
 .lMenu .itemsCont li p {
@@ -637,6 +638,24 @@ main .progressConts .counterPurple h2 {
 }
 .lMenu .itemsCont li:active {
   transform: scale(0.95);
+}
+.lMenu .itemsCont li .fire {
+  height: 1.5rem;
+}
+@media (max-width: 1000px) {
+  .lMenu .itemsCont li .fire {
+    position: absolute;
+    top: 0.25rem;
+    right: 1.6rem;
+    transform: rotate(45deg);
+  }
+}
+@media (max-width: 480px) {
+  .lMenu .itemsCont li .fire {
+    height: 1rem;
+    top: 0.75rem;
+    right: 0.15rem;
+  }
 }
 
 .lBlack {

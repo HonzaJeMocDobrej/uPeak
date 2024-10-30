@@ -18,6 +18,11 @@ import clockWhiteSvg from "../assets/icons/clockWhite.svg";
 import userWhiteSvg from "../assets/icons/userCircleWhite.svg";
 import basicProfPic from '../assets/img/userPicBasic.svg'
 
+import fireYellow from '../assets/icons/fire_yellow.svg'
+import fireOrange from '../assets/icons/fire_orange.svg'
+import fireRed from '../assets/icons/fire_red.svg'
+import firePurple from '../assets/icons/fire_purple.svg'
+
 import "../styles/styles.css";
 
 import { useNavigate } from "react-router-dom";
@@ -41,6 +46,9 @@ function LeftMenu(props) {
 
   const [firstTodoPageId, setFirstTodoPageId] = useState();
   const [firstNoteId, setFirstNoteId] = useState();
+
+  const [progressData, setProgressData] = useState({})
+  const [fireType, setFireType] = useState({})
 
   const nowDate = new Date()
 
@@ -234,6 +242,12 @@ function LeftMenu(props) {
     if (todoPages.status === 200) {
       setFirstTodoPageId(todoPages.data.id);
     }
+
+    const stats = await getUserStats(auth.id)
+    if(stats.status === 500) return;
+      if(stats.status === 200){
+        setProgressData(stats.data);
+      }
   };
 
   const createTodoPageOnLoad = async () => {
@@ -242,6 +256,67 @@ function LeftMenu(props) {
     // console.log('create')
     return
   }
+
+  const determineFireType = () => {
+    const counterFormatter = (streakNum, setPage) => {
+      if (streakNum < 1) {
+        setFireType(prev => {
+          return {
+            ...prev,
+            [setPage]: '' 
+          }
+        })
+      }
+      if (streakNum >= 1 && streakNum < 7) {
+        setFireType(prev => {
+          return {
+            ...prev,
+            [setPage]: fireYellow 
+          }
+        })
+      }
+  
+      if (streakNum >= 7 && streakNum < 31) {
+        setFireType(prev => {
+          return {
+            ...prev,
+            [setPage]: fireOrange 
+          }
+        })
+      }
+  
+      if (streakNum >= 31 && streakNum < 91) {
+        setFireType(prev => {
+          return {
+            ...prev,
+            [setPage]: fireRed 
+          }
+        })
+      }
+      if (streakNum >= 91) {
+        setFireType(prev => {
+          return {
+            ...prev,
+            [setPage]: firePurple 
+          }
+        })
+      }
+    }
+
+
+    for (const key in progressData) {
+        console.log(`${key}: ${progressData[key]}`)
+        if (key == 'todoStreak') {
+          counterFormatter(progressData[key], 'todo')
+        }
+        if (key == 'notesStreak') {
+          counterFormatter(progressData[key], 'notes')
+        }
+        if (key == 'pomodoroStreak') {
+          counterFormatter(progressData[key], 'pomodoro')
+        }
+      }
+    }
 
   useEffect(() => {
     const handleResize = () => {
@@ -257,11 +332,18 @@ function LeftMenu(props) {
     getNotesLastId()
     loadDeleted()
     createTodoPageOnLoad()
+    console.log(fireType)
   }, []);
+  
+  useEffect(() => {
+    determineFireType()
+  }, [progressData])
 
   useEffect(() => {
     checkIfImgExists(setImgSrc, auth.profilePic, basicProfPic);
   }, [auth]);
+
+  
 
   return (
     <>
@@ -311,6 +393,7 @@ function LeftMenu(props) {
               alt=""
             />
             <p style={active === "todo" ? selectedStyle : null}>To-Do</p>
+            <img style={{display: !fireType.todo ? 'none' : 'block'}} className="fire" src={fireType.todo} alt="" />
           </li>
           <li onMouseUp={() => handleNav(`/notes/${getNotesLastId()}`)}>
             <img
@@ -326,6 +409,7 @@ function LeftMenu(props) {
             <p style={active === "notes" ? selectedStyle : null}>
               {isEnglish ? "Notes" : "Poznámky"}
             </p>
+            <img style={{display: !fireType.notes ? 'none' : 'block'}} className="fire" src={fireType.notes} alt="" />
           </li>
           <li onMouseUp={() => handleNav("/pomodoro")}>
             <img
@@ -339,6 +423,7 @@ function LeftMenu(props) {
               alt=""
             />
             <p style={active === "pomodoro" ? selectedStyle : null}>Pomodoro</p>
+            <img style={{display: !fireType.pomodoro ? 'none' : 'block'}} className="fire" src={fireType.pomodoro} alt="" />
           </li>
           <li onMouseUp={() => handleNav("/profile")}>
             <img

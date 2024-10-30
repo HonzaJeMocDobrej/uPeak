@@ -199,6 +199,7 @@
                 padding-left: 0;
                 width: 100%;
                 justify-content: center;
+                position: relative;
             }
 
             p {
@@ -230,6 +231,24 @@
             &:active {
                 transform: scale(.95);
             }
+
+            .fire {
+                height: 1.5rem;
+
+                @media (max-width: 1000px) {
+                    position: absolute;
+                    top: .25rem;
+                    right: 1.6rem;
+                    transform: rotate(45deg);
+                }
+
+                @media (max-width: 480px) {
+                    height: 1rem;
+                    top: .75rem;
+                    right: .15rem;
+                }
+            }
+
         }
 
         // .selected {

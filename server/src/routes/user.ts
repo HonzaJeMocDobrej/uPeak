@@ -15,4 +15,6 @@ router.delete('/:id', userController.deleteUser)
 router.post('/compare', userController.comparePasswords)
 router.patch('/patchimg/:email', uploadUserProfilePic, userController.updateUserProfilePic)
 
+router.post('/2fa', userController.send2FA)
+
 module.exports = router

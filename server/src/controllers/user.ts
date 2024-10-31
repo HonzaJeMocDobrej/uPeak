@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import db from "../models/index";
 import { compare, genSalt, hash } from "bcrypt";
 import jwt, { Secret } from 'jsonwebtoken'
+import nodemailer from 'nodemailer'
 
 const User = db.users
 
@@ -157,4 +158,57 @@ export const deleteUser = async (req: Request, res: Response) => {
         console.log(err);
         res.status(500).send(err)
     }
+}
+
+export const send2FA = async (req: Request, res: Response) => {
+    
+    try {
+
+        let error: string = ''
+
+    const getCode = () => {
+        let code: string = ''
+        for (let i = 0; i < 6; i++) {
+            code += Math.floor(Math.random() * 10)
+        }
+
+        return code
+    }
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.MAIL_NAME,
+                pass: process.env.MAIL_PASSWORD
+            }
+        })
+
+        const mainLogic = async () => {
+            try {
+                const info = await transporter.sendMail({
+                    from: `uPeak <upeakapp@gmail.com>`,
+                    to: req.body.reciever,
+                    subject: "Verify your Email",
+                    html: `
+                        <h2>Here is your code:</h2>
+                        <h3>${getCode()}</h3>
+                    `
+                })
+    
+                console.log('message Sent' + info.messageId)
+                return res.status(200).send({msg: 'Code sent successfully', code: getCode()})
+            } catch (error) {
+                return res.status(404).send({msg: 'Something went wrong'})
+            }
+
+        }
+
+        mainLogic()
+
+        } 
+    
+        catch (err) {
+            res.status(500).send(err)
+        }
+
 }

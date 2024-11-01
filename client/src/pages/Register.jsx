@@ -70,6 +70,8 @@ function Register(props) {
     }
 
     groupPageDateHandler()
+
+    //get user and find similar
     
     const user = await createUser(regData)
     .catch(err => {
@@ -108,7 +110,7 @@ function Register(props) {
       }
 
 
-      navigate(`/signup/imageselect`)
+      navigate(`/signup/validate`)
       return
     }
   }

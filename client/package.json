@@ -19,6 +19,7 @@
     "dayjs": "^1.11.13",
     "nanoid": "^5.0.3",
     "react": "^18.2.0",
+    "react-auth-code-input": "^3.2.1",
     "react-auth-kit": "^3.0.2-alpha.19",
     "react-calendar": "^4.8.0",
     "react-color": "^2.19.3",

@@ -1596,6 +1596,63 @@ main .progressConts .counterPurple h2 {
   }
 }
 
+div.validate.login .rLogin h2 {
+  margin-left: 0 !important;
+  text-align: center;
+}
+div.validate.login .rLogin .signUp {
+  height: auto !important;
+}
+div.validate.login .rLogin button {
+  margin-bottom: 4rem;
+  margin-left: auto !important;
+  margin-right: auto;
+  margin-top: 3.5rem !important;
+  display: table;
+}
+div.validate.login .rLogin .authCodeCont {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+div.validate.login .rLogin .authCodeCont input {
+  width: 3rem !important;
+  height: auto !important;
+  border-radius: 0 !important;
+  padding-left: 0 !important;
+  text-align: center;
+  margin-left: 1rem !important;
+  border: none !important;
+  outline: none !important;
+  font-size: 2.5rem;
+  color: #66C2FF;
+  box-sizing: border-box;
+}
+div.validate.login .rLogin .authCodeCont input:nth-child(1) {
+  margin-left: 0 !important;
+}
+div.validate.login .rLogin .bottomCodeDivs {
+  display: flex;
+  justify-content: center;
+  margin-top: 0rem;
+  position: relative;
+  top: -0.5rem;
+}
+div.validate.login .rLogin .bottomCodeDivs div {
+  width: 3rem;
+  height: 0.25rem;
+  border-radius: 2px;
+  padding-left: 0;
+  text-align: center;
+  margin-left: 1rem;
+  border: none;
+  outline: none;
+  background-color: #66C2FF;
+}
+div.validate.login .rLogin .bottomCodeDivs div:nth-child(1) {
+  margin-left: 0;
+}
+
 main .todoConts {
   box-sizing: border-box;
   padding-bottom: 3rem;

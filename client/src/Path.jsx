@@ -13,6 +13,7 @@ import ImageSelect from './pages/ImageSelect'
 
 import AuthOutlet from '@auth-kit/react-router/AuthOutlet'
 import LoadingPage from './components/LoadingPage'
+import Validate from './pages/Validate'
 
 function Path() {
 
@@ -63,6 +64,7 @@ function Path() {
                 setRegData={setRegData}
                 />}>
               </Route>
+              <Route path='/signup/validate' element={<Validate/>}></Route>
               <Route element={<AuthOutlet fallbackPath='/signin' />}>
                 <Route path='/signup/imageselect' element={<ImageSelect
 

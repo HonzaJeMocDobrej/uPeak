@@ -1610,6 +1610,10 @@ div.validate.login .rLogin button {
   margin-top: 3.5rem !important;
   display: table;
 }
+div.validate.login .rLogin .err {
+  width: 100%;
+  margin-bottom: 1rem;
+}
 div.validate.login .rLogin .authCodeCont {
   display: flex;
   justify-content: center;

@@ -7,6 +7,7 @@ import { uploadUserProfilePic } from '../config/multer'
 
 router.get('/', userController.getAllUsers)
 router.get('/:id', userController.getUserById)
+router.post('/duplicate', userController.checkForDuplicateUsers)
 router.post('/', userController.createUser)
 router.patch('/:id', userController.updateUser)
 router.patch('/:id/password', userController.updateUserPassword)

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom"
 import 'react-dropdown/style.css';
-import { createUser } from "../models/user";
+import { checkForDuplicateUsers, createUser, send2FA } from "../models/user";
 import { useEffect, useState } from "react";
 import LoadingPage from "../components/LoadingPage";
 import useSignIn from 'react-auth-kit/hooks/useSignIn'
@@ -14,7 +14,7 @@ import { createAchievements } from "../models/achievements";
 
 function Register(props) {
 
-  const {regData, setRegData} = props
+  const {regData, setRegData, setVerificationCode} = props
 
   let navigate = useNavigate()
   const [info, setInfo] = useState('')
@@ -72,47 +72,36 @@ function Register(props) {
     groupPageDateHandler()
 
     //get user and find similar
-    
-    const user = await createUser(regData)
+
+    const user = await checkForDuplicateUsers({
+      email: regData.email
+    })
     .catch(err => {
       setInfo(err.response.data.msg)
-      setRegData({
-        user: '',
-        pass: '',
-        repPass: '',
-        email: ''
+      setRegData(prev => {
+        return {
+          ...prev,
+          email: ''
+        }
       })
     })
 
-    if (user.status === 201) {
-      signIn({
-        auth: {
-          token: user.token,
-          type: 'Bearer',
-        },
-        userState: {
-          username: user.data.username,
-          email: user.data.email,
-          id: user.data.id
-        }
+    if (user.status == 200) {
+      const sentCode = await send2FA({
+        email: regData.email
       })
-      await createStats(user.data.id)
-      .catch(err => setInfo(err.response.data.msg))
-      await createAchievements(user.data.id)
-      .catch(err => setInfo(err.response.data.msg))
-      await createTodoPage(user.data.id, groupPageDateHandler())
-      .catch(err => setInfo(err.response.data.msg))
-      const notes = await createNotes(user.data.id)
-      // .catch(err => console.log(err.response.data.msg))
-      if (notes.status === 201 && notes) {
-        document.cookie = `${user.data.username}=${user.data.username}; SameSite=None; secure=false;`
-        document.cookie = `${user.data.username}NoteId=${notes.notes[0].id}; SameSite=None; secure=false;`
+      .catch(err => {
+        setInfo(err.response.data.msg)
+      })
+
+      if (sentCode.status == 200) {
+        setVerificationCode(sentCode.code)
+        navigate('/signup/validate')
       }
 
-
-      navigate(`/signup/validate`)
-      return
     }
+    
+    
   }
 
   useEffect(() => {

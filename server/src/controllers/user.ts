@@ -30,6 +30,20 @@ export const getUserById = async (req: Request, res: Response) => {
     }
 }
 
+export const checkForDuplicateUsers = async (req: Request, res: Response) => {
+    try {
+        const { email } = req.body
+        console.log(email)
+        if (!email) return res.status(404).send({msg: 'Missing details lmao'})
+        const user = await User.findOne({where: {email: email}})
+        if (user) return res.status(404).send({msg: 'User already exists'})
+        return res.status(200).send({msg: 'Success, no users found'})
+    } catch (err) {
+        console.log(err)
+        res.status(500).send(err)
+    }
+}
+
 export const createUser = async (req: Request, res: Response) => {
     try {
         const { email, username, password } = req.body
@@ -165,15 +179,15 @@ export const send2FA = async (req: Request, res: Response) => {
     try {
 
         let error: string = ''
-
-    const getCode = () => {
         let code: string = ''
+
+    const setCode = () => {
+        code = ''
         for (let i = 0; i < 6; i++) {
             code += Math.floor(Math.random() * 10)
         }
-
-        return code
     }
+
 
         const transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -184,19 +198,22 @@ export const send2FA = async (req: Request, res: Response) => {
         })
 
         const mainLogic = async () => {
+
+            setCode()
+
             try {
                 const info = await transporter.sendMail({
                     from: `uPeak <upeakapp@gmail.com>`,
-                    to: req.body.reciever,
+                    to: req.body.email,
                     subject: "Verify your Email",
                     html: `
                         <h2>Here is your code:</h2>
-                        <h3>${getCode()}</h3>
+                        <h3>${code}</h3>
                     `
                 })
     
                 console.log('message Sent' + info.messageId)
-                return res.status(200).send({msg: 'Code sent successfully', code: getCode()})
+                return res.status(200).send({msg: 'Code sent successfully', code: code})
             } catch (error) {
                 return res.status(404).send({msg: 'Something went wrong'})
             }

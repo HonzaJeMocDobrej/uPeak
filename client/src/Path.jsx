@@ -30,8 +30,9 @@ function Path() {
     email: null,
     pass: null,
   })
-
+  
   const [isNotificationRead, setIsNotificationRead] = useState([])
+  const [verificationCode, setVerificationCode] = useState()
 
   useEffect(() => {
     const isBlackStorage = localStorage.getItem('isBlack')
@@ -62,9 +63,16 @@ function Path() {
               <Route path='/signup' element={<Register
                 regData={regData}
                 setRegData={setRegData}
+                setVerificationCode={setVerificationCode}
                 />}>
               </Route>
-              <Route path='/signup/validate' element={<Validate/>}></Route>
+              <Route path='/signup/validate' element={<Validate
+                regData={regData}
+                setRegData={setRegData}
+                verificationCode={verificationCode}
+                setVerificationCode={setVerificationCode}
+              />}>
+              </Route>
               <Route element={<AuthOutlet fallbackPath='/signin' />}>
                 <Route path='/signup/imageselect' element={<ImageSelect
 

@@ -15,6 +15,7 @@ import { patchImage, updateUser } from "../models/user";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
 import ProfilePopup from "../components/ProfilePopup";
 import exit from '../assets/icons/exit.svg'
+import deleteAccount from '../assets/icons/deleteAccount.svg'
 
 import useSignOut from 'react-auth-kit/hooks/useSignOut'
 import { useNavigate } from "react-router-dom";
@@ -308,6 +309,16 @@ function Profile(props) {
               }}>
                 <img src={exit} alt="" />
                 <p className="logoutP">{isEnglish ? 'Sign out' : 'Odhlásit se'}</p>
+            </div>
+            <div className="border"></div>
+            <div onClick={() => {
+                signOut()
+                navigate('/signin')
+              }} className="logoutBtn" style={{
+                pointerEvents: isEmailOpen || isPasswordOpen || isUsernameOpen ? 'none' : null
+              }}>
+                <img src={deleteAccount} alt="" />
+                <p className="logoutP">{isEnglish ? 'Delete Account' : 'Smazat Účet'}</p>
             </div>
             </div>
             <ProfilePopup

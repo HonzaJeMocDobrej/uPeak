@@ -3186,7 +3186,7 @@ div:has(> .bn-toolbar)::-webkit-scrollbar-thumb {
 
 @media (max-width: 480px) {
   .bn-block-content[data-is-empty-and-focused] .bn-inline-content:has(> .ProseMirror-trailingBreak:only-child)::before {
-    content: "Enter text" !important;
+    content: "Enter text or '/'" !important;
   }
 }
 @media (min-width: 480px) and (max-width: 540px) {
@@ -3275,9 +3275,14 @@ div:has(> .bn-toolbar)::-webkit-scrollbar-thumb {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 800px) {
   .bn-panel {
     width: 15rem !important;
+  }
+}
+@media (max-width: 480px) {
+  .bn-panel {
+    width: 10rem !important;
   }
 }
 
@@ -3403,6 +3408,11 @@ div:has(> .bn-toolbar)::-webkit-scrollbar-thumb {
   border: 3px solid white;
 }
 
+@media (max-width: 480px) {
+  div:has(.bn-suggestion-menu) .bn-suggestion-menu .bn-mt-suggestion-menu-item-section {
+    display: none !important;
+  }
+}
 .pomodoroCont {
   padding-bottom: 4rem;
   -webkit-user-select: none;

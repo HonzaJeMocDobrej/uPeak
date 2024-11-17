@@ -131,7 +131,7 @@ div:has(> .bn-toolbar) {
 .bn-block-content[data-is-empty-and-focused] .bn-inline-content:has(> .ProseMirror-trailingBreak:only-child) {
   &::before {
     @media (max-width: 480px) {
-      content: "Enter text" !important;
+      content: "Enter text or '/'" !important;
     }
 
     @media (min-width: 480px) and (max-width: 540px) {
@@ -224,9 +224,18 @@ div:has(> .bn-toolbar) {
 }
 
 .bn-panel {
-  @media (max-width: 480px) {
+
+  @media (max-width: 800px) {
     width: 15rem !important;
   }
+
+  @media (max-width: 480px) {
+    width: 10rem !important;
+  }
+
+  // @media (max-width: 600px) {
+  //   width: 14rem !important;
+  // }
 }
 
 
@@ -356,9 +365,11 @@ div:has(> .bn-toolbar) {
 }
 
 @media (max-width: 480px) {
-  .bn-container {
-    // .bn-suggestion-menu {
-    //   display: none;
-    // }
+  div:has(.bn-suggestion-menu) {
+    .bn-suggestion-menu {
+      .bn-mt-suggestion-menu-item-section {
+        display: none !important;
+      }
+    }
   }
 }

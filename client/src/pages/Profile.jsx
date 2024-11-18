@@ -11,7 +11,7 @@ import { checkIfImgExists } from "../functions/functions";
 import { useEffect, useState } from "react";
 import LoadingPage from "../components/LoadingPage";
 import Files from "react-files";
-import { patchImage, updateUser } from "../models/user";
+import { deleteUser, patchImage, updateUser } from "../models/user";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
 import ProfilePopup from "../components/ProfilePopup";
 import exit from '../assets/icons/exit.svg'
@@ -97,6 +97,16 @@ function Profile(props) {
     // console.log(img);
     handlePatchImage(fileObj);
   };
+
+  const removeAcc = async () => {
+    console.log(auth.id)
+    const deleteAcc = await deleteUser(auth.id)
+    .catch(err => {
+      console.log(err.response.data.msg)
+    })
+    if (deleteAcc.status == 200) return navigate('/signup')
+    
+  }
 
   useEffect(() => {
     checkIfImgExists(setImgSrc, auth.profilePic, basicProfilePic);
@@ -312,8 +322,7 @@ function Profile(props) {
             </div>
             <div className="border"></div>
             <div onClick={() => {
-                signOut()
-                navigate('/signin')
+                removeAcc()
               }} className="logoutBtn" style={{
                 pointerEvents: isEmailOpen || isPasswordOpen || isUsernameOpen ? 'none' : null
               }}>

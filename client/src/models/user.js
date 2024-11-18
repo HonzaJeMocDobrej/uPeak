@@ -49,6 +49,11 @@ export const patchImage = async (email, data) => {
       return profilePicPayload(res)
 }
 
+export const deleteUser = async (id) => {
+    const res = await axios.delete(`http://localhost:3000/api/v1/users/${id}`)
+    return normalUserPayload(res)
+}
+
 const profilePicPayload =  (res) => {
     return{
         msg: res.data.msg,

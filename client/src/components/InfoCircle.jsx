@@ -12,7 +12,7 @@ function InfoCircle(props) {
     <>
       <div
         className={`outerCont ${
-          props.isEmailOpen || props.isPasswordOpen || props.isUsernameOpen
+          props.isEmailOpen || props.isPasswordOpen || props.isUsernameOpen || props.isCodeOpen
             ? "outerContOpen"
             : ""
         }`}
@@ -20,7 +20,7 @@ function InfoCircle(props) {
         <div
           style={{
             pointerEvents:
-              props.isEmailOpen || props.isPasswordOpen || props.isUsernameOpen
+              props.isEmailOpen || props.isPasswordOpen || props.isUsernameOpen || props.isCodeOpen
                 ? "none"
                 : null,
           }}

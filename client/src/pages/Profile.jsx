@@ -8,7 +8,7 @@ import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 
 import "../styles/styles.css";
 import { checkIfImgExists } from "../functions/functions";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import LoadingPage from "../components/LoadingPage";
 import Files from "react-files";
 import { deleteUser, patchImage, updateUser } from "../models/user";
@@ -20,6 +20,7 @@ import deleteAccount from '../assets/icons/deleteAccount.svg'
 import useSignOut from 'react-auth-kit/hooks/useSignOut'
 import { useNavigate } from "react-router-dom";
 import InfoCircle from "../components/InfoCircle";
+import AuthCode from "react-auth-code-input";
 
 function Profile(props) {
   const {
@@ -31,7 +32,9 @@ function Profile(props) {
     switchStyle,
     setSwitchStyle,
     setIsNotificationRead,
-    isNotificationRead
+    isNotificationRead,
+    setVerificationCode,
+    verificationCode
   } = props;
 
   const auth = useAuthUser();
@@ -40,6 +43,7 @@ function Profile(props) {
   const [isUsernameOpen, setIsUsernameOpen] = useState(false);
   const [isEmailOpen, setIsEmailOpen] = useState(false);
   const [isPasswordOpen, setIsPasswordOpen] = useState(false);
+  const [isCodeOpen, setIsCodeOpen] = useState(false)
   const signIn = useSignIn();
 
   const [newInput, setNewInput] = useState("");
@@ -47,6 +51,12 @@ function Profile(props) {
 
   const signOut = useSignOut()
   let navigate = useNavigate()
+
+  const [info, setInfo] = useState('')
+  const [codeInput, setCodeInput] = useState('')
+
+  const authInputRef = useRef(null)
+
 
   const load = () => {
     setTimeout(() => {
@@ -108,6 +118,19 @@ function Profile(props) {
     
   }
 
+  const submit = async () => {
+
+    if (verificationCode != codeInput) {
+      setInfo('Wrong code')
+      setCodeInput('')
+      authInputRef.current?.clear()
+      return
+    } 
+
+      navigate(`/signup/imageselect`)
+      return
+    }
+
   useEffect(() => {
     checkIfImgExists(setImgSrc, auth.profilePic, basicProfilePic);
   }, [auth]);
@@ -149,6 +172,7 @@ function Profile(props) {
             isEmailOpen={isEmailOpen}
             isPasswordOpen={isPasswordOpen}
             isUsernameOpen={isUsernameOpen}
+            isCodeOpen={isCodeOpen}
             isBlack={isBlack}
             isEnglish={isEnglish}
             textEn={'Profile is really straightforward. You basically manage all your user information here including a profile picture. You can also log out and delete your account.'}
@@ -156,16 +180,17 @@ function Profile(props) {
           />
             <div
               onClick={() => {
-                if (isUsernameOpen || isEmailOpen || isPasswordOpen) {
+                if (isUsernameOpen || isEmailOpen || isPasswordOpen || isCodeOpen) {
                   setIsUsernameOpen(false);
                   setIsEmailOpen(false);
                   setIsPasswordOpen(false);
+                  setIsCodeOpen(false);
                   setNewInput("");
                   setTypePassword('')
                 }
               }}
               className={`profileCont ${
-                isUsernameOpen || isEmailOpen || isPasswordOpen
+                isUsernameOpen || isEmailOpen || isPasswordOpen || isCodeOpen
                   ? "profileContOpen"
                   : null
               }`}
@@ -315,19 +340,39 @@ function Profile(props) {
                 signOut()
                 navigate('/signin')
               }} className="logoutBtn" style={{
-                pointerEvents: isEmailOpen || isPasswordOpen || isUsernameOpen ? 'none' : null
+                pointerEvents: isEmailOpen || isPasswordOpen || isUsernameOpen || isCodeOpen ? 'none' : null
               }}>
                 <img src={exit} alt="" />
                 <p className="logoutP">{isEnglish ? 'Sign out' : 'Odhlásit se'}</p>
             </div>
             <div className="border"></div>
             <div onClick={() => {
-                removeAcc()
+                setIsCodeOpen(prev => !prev)
               }} className="logoutBtn" style={{
-                pointerEvents: isEmailOpen || isPasswordOpen || isUsernameOpen ? 'none' : null
+                pointerEvents: isEmailOpen || isPasswordOpen || isUsernameOpen || isCodeOpen ? 'none' : null
               }}>
                 <img src={deleteAccount} alt="" />
                 <p className="logoutP">{isEnglish ? 'Delete Account' : 'Smazat Účet'}</p>
+            </div>
+            </div>
+            <div className="profileValidate">
+            <div style={{display: isCodeOpen ? 'block' : 'none'}} className="signUp">
+                <h2>Enter your code</h2>
+                <AuthCode ref={authInputRef} onChange={(res) => setCodeInput(res)} containerClassName='authCodeCont' allowedCharacters='numeric' />
+                <div className="bottomCodeDivs">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <button onClick={submit}>Submit</button>
+                <p className="err" style={{
+                  color: '#FF3D00'
+                }}>
+                  {info}
+                </p>
             </div>
             </div>
             <ProfilePopup

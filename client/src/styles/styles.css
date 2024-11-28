@@ -4768,7 +4768,7 @@ div:has(> .bn-toolbar)::-webkit-scrollbar-thumb {
   height: auto !important;
 }
 .profileValidate button {
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   margin-left: auto !important;
   margin-right: auto;
   margin-top: 3.5rem !important;
@@ -4872,6 +4872,126 @@ div:has(> .bn-toolbar)::-webkit-scrollbar-thumb {
 .profileContOpen button,
 .profileContOpen .uploadBtn {
   pointer-events: none;
+}
+
+.profileDeletePopup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20rem;
+  height: 9rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: white;
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15));
+  font-family: Poppins;
+}
+@media (max-width: 480px) {
+  .profileDeletePopup {
+    width: 15rem;
+    height: 6.75rem;
+  }
+}
+.profileDeletePopup h3 {
+  font-size: 1.35rem;
+  font-weight: 500;
+  text-align: center;
+}
+@media (max-width: 480px) {
+  .profileDeletePopup h3 {
+    font-size: 1.0125rem;
+  }
+}
+.profileDeletePopup .buttonCont {
+  width: calc(100% - 4rem);
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 1rem 2rem 0 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 480px) {
+  .profileDeletePopup .buttonCont {
+    width: calc(100% - 3rem);
+    margin: 0.75rem 1.5rem 0 1.5rem;
+  }
+}
+.profileDeletePopup .buttonCont button {
+  border: none;
+  outline: none;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 7rem;
+  height: 2.5rem;
+  font-size: 1rem;
+  font-family: Poppins;
+  font-weight: 400;
+  cursor: pointer;
+}
+@media (max-width: 480px) {
+  .profileDeletePopup .buttonCont button {
+    width: 5.25rem;
+    height: 1.875rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+  }
+}
+.profileDeletePopup .buttonCont .buttonDelete {
+  background-color: #FF2E00;
+  color: white;
+  border: none;
+  transition: 300ms;
+}
+.profileDeletePopup .buttonCont .buttonDelete:hover {
+  background-color: #FF5833;
+  transition: 300ms;
+}
+.profileDeletePopup .buttonCont .buttonCancel {
+  transition: 300ms;
+}
+.profileDeletePopup .buttonCont .buttonCancel:hover {
+  background-color: #f2f2f2;
+  transition: 300ms;
+}
+
+.profileAccountInfo {
+  margin: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  margin-bottom: 3rem !important;
+  color: #999;
+  font-family: Open Sans;
+  font-size: 1.2rem;
+  font-weight: 400 !important;
+  align-items: center;
+  margin-left: 0 !important;
+  color: #999 !important;
+}
+@media (max-width: 1320px) {
+  .profileAccountInfo {
+    font-size: 0.9rem !important;
+    margin-top: 1.5rem !important;
+    padding-bottom: 1rem !important;
+  }
+}
+.profileAccountInfo pre {
+  margin: 0;
+  color: #333;
+  font-family: Open Sans;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  cursor: pointer;
+}
+@media (max-width: 1320px) {
+  .profileAccountInfo pre {
+    font-size: 0.9rem;
+  }
 }
 
 .loadingPage {

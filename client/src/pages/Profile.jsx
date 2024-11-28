@@ -11,7 +11,7 @@ import { checkIfImgExists } from "../functions/functions";
 import { useEffect, useRef, useState } from "react";
 import LoadingPage from "../components/LoadingPage";
 import Files from "react-files";
-import { deleteUser, patchImage, updateUser } from "../models/user";
+import { deleteUser, patchImage, send2FA, updateUser } from "../models/user";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
 import ProfilePopup from "../components/ProfilePopup";
 import exit from '../assets/icons/exit.svg'
@@ -43,6 +43,7 @@ function Profile(props) {
   const [isUsernameOpen, setIsUsernameOpen] = useState(false);
   const [isEmailOpen, setIsEmailOpen] = useState(false);
   const [isPasswordOpen, setIsPasswordOpen] = useState(false);
+  const [isDeleteAccOpen, setIsDeleteAccOpen] = useState('')
   const [isCodeOpen, setIsCodeOpen] = useState(false)
   const signIn = useSignIn();
 
@@ -118,6 +119,21 @@ function Profile(props) {
     
   }
 
+  const sendCode = async () => {
+    const sentCode = await send2FA({
+      email: auth.email
+    })
+    .catch(err => {
+      setInfo(err.response.data.msg)
+    })
+    
+    setIsDeleteAccOpen(false)
+    setIsCodeOpen(true)
+    if (sentCode.status == 200) {
+      setVerificationCode(sentCode.code)
+    }
+  }
+
   const submit = async () => {
 
     if (verificationCode != codeInput) {
@@ -127,8 +143,34 @@ function Profile(props) {
       return
     } 
 
-      navigate(`/signup/imageselect`)
+      removeAcc()
+      navigate(`/signup`)
       return
+    }
+
+    const disableClick = () => {
+      if (isUsernameOpen || isEmailOpen || isPasswordOpen || isCodeOpen || isDeleteAccOpen) {
+        setIsUsernameOpen(false);
+        setIsEmailOpen(false);
+        setIsPasswordOpen(false);
+        setIsCodeOpen(false);
+        setIsDeleteAccOpen(false)
+        setNewInput("");
+        setTypePassword('')
+      }
+    }
+
+    const resendCode = async () => {
+      const sentCode = await send2FA({
+        email: auth.email
+      })
+      .catch(err => {
+        setInfo(err.response.data.msg)
+      })
+  
+      if (sentCode.status == 200) {
+        setVerificationCode(sentCode.code)
+      }
     }
 
   useEffect(() => {
@@ -179,18 +221,9 @@ function Profile(props) {
             textCz={'Stránka profil poměrně mluví sama za sebe. V podstatě zde upravujete veškeré své uživatelské informace, včetně změny obrázku. Můžete se zde také odhlásit, nebo smazat úcet.'}
           />
             <div
-              onClick={() => {
-                if (isUsernameOpen || isEmailOpen || isPasswordOpen || isCodeOpen) {
-                  setIsUsernameOpen(false);
-                  setIsEmailOpen(false);
-                  setIsPasswordOpen(false);
-                  setIsCodeOpen(false);
-                  setNewInput("");
-                  setTypePassword('')
-                }
-              }}
+              onClick={disableClick}
               className={`profileCont ${
-                isUsernameOpen || isEmailOpen || isPasswordOpen || isCodeOpen
+                isUsernameOpen || isEmailOpen || isPasswordOpen || isCodeOpen || isDeleteAccOpen
                   ? "profileContOpen"
                   : null
               }`}
@@ -340,20 +373,27 @@ function Profile(props) {
                 signOut()
                 navigate('/signin')
               }} className="logoutBtn" style={{
-                pointerEvents: isEmailOpen || isPasswordOpen || isUsernameOpen || isCodeOpen ? 'none' : null
+                pointerEvents: isEmailOpen || isPasswordOpen || isUsernameOpen || isCodeOpen || isDeleteAccOpen ? 'none' : null
               }}>
                 <img src={exit} alt="" />
                 <p className="logoutP">{isEnglish ? 'Sign out' : 'Odhlásit se'}</p>
             </div>
             <div className="border"></div>
             <div onClick={() => {
-                setIsCodeOpen(prev => !prev)
+                setIsDeleteAccOpen(prev => !prev)
               }} className="logoutBtn" style={{
-                pointerEvents: isEmailOpen || isPasswordOpen || isUsernameOpen || isCodeOpen ? 'none' : null
+                pointerEvents: isEmailOpen || isPasswordOpen || isUsernameOpen || isCodeOpen || isDeleteAccOpen ? 'none' : null
               }}>
                 <img src={deleteAccount} alt="" />
                 <p className="logoutP">{isEnglish ? 'Delete Account' : 'Smazat Účet'}</p>
             </div>
+            </div>
+            <div style={{display: isDeleteAccOpen ? 'block' : 'none'}} className="profileDeletePopup">
+              <h3>Delete Account?</h3>
+              <div className="buttonCont">
+                <button onClick={sendCode} className="buttonDelete">Delete</button>
+                <button onClick={disableClick} className="buttonCancel">Cancel</button>
+              </div>
             </div>
             <div className="profileValidate">
             <div style={{display: isCodeOpen ? 'block' : 'none'}} className="signUp">
@@ -368,6 +408,7 @@ function Profile(props) {
                     <div></div>
                 </div>
                 <button onClick={submit}>Submit</button>
+              <p className='profileAccountInfo'>Didn&apos;t get the code? <pre onClick={resendCode}> Resend it</pre></p>
                 <p className="err" style={{
                   color: '#FF3D00'
                 }}>

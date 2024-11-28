@@ -142,6 +142,8 @@ function Path() {
                    setSwitchStyle={setSwitchStyle}
                    setIsNotificationRead={setIsNotificationRead}
                    isNotificationRead={isNotificationRead}
+                   verificationCode={verificationCode}
+                   setVerificationCode={setVerificationCode}
                    />
                 } />
               </Route>

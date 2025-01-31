@@ -73,14 +73,14 @@ function TopMenu(props) {
         const notific = await getNotificationsById(auth.id)
         if (!notific.data) return setNotificData([])
         setNotificData(notific.data.reverse())
-        console.log(notific.data)
+        // console.log(notific.data)
     }
 
     const getAchievements = async () => {
         const achievements = await getUserAchievements(auth.id)
         if (!achievements.data) return setIsNotificationRead(false)
         setIsNotificationRead(achievements.data.isNotificationRead)
-        console.log(achievements.data.isNotificationRead)
+        // console.log(achievements.data.isNotificationRead)
     }
 
     

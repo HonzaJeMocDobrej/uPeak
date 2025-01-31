@@ -97,8 +97,8 @@ function Validate(props) {
   }
 
   useEffect(() => {
-    console.log(verificationCode)
-    console.log(codeInput)
+    // console.log(verificationCode)
+    // console.log(codeInput)
   }, [verificationCode, codeInput])
 
   useEffect(() => {

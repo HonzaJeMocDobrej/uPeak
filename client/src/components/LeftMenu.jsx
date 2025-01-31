@@ -305,7 +305,7 @@ function LeftMenu(props) {
 
 
     for (const key in progressData) {
-        console.log(`${key}: ${progressData[key]}`)
+        // console.log(`${key}: ${progressData[key]}`)
         if (key == 'todoStreak') {
           counterFormatter(progressData[key], 'todo')
         }
@@ -332,7 +332,7 @@ function LeftMenu(props) {
     getNotesLastId()
     loadDeleted()
     createTodoPageOnLoad()
-    console.log(fireType)
+    // console.log(fireType)
   }, []);
   
   useEffect(() => {

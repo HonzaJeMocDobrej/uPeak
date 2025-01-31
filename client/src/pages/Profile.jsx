@@ -110,10 +110,9 @@ function Profile(props) {
   };
 
   const removeAcc = async () => {
-    console.log(auth.id)
     const deleteAcc = await deleteUser(auth.id)
     .catch(err => {
-      console.log(err.response.data.msg)
+      // console.log(err.response.data.msg)
     })
     if (deleteAcc.status == 200) return navigate('/signup')
     

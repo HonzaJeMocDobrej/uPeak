@@ -57,7 +57,7 @@ export const convertToHSL = (headlineColor, isLight ) => {
     value = convert.rgb.hsl(rgb[0], rgb[1], rgb[2])
   }
 
-  console.log(value)
+  // console.log(value)
   let L = value[2]
   let shouldBeReplaced
   isLight ? shouldBeReplaced = L > 70 ? true : false : shouldBeReplaced = L < 30 ? true : false 

@@ -145,8 +145,8 @@ function Notes(props) {
         value: JSON.stringify(editor?.document)
       }
     ])
-    .then(data => console.log(data.data))
-    console.log(JSON.stringify(editor?.document));
+    // .then(data => console.log(data.data))
+    // console.log(JSON.stringify(editor?.document));
   };
 
   const loadBlocknote = async () => {
@@ -162,7 +162,7 @@ function Notes(props) {
       setHeading(gotNote.data.headline);
       setVirtualHeading(gotNote.data.headline);
       setInitialContent(JSON.parse(gotNote.data.value));
-      console.log(gotNote.data)
+      // console.log(gotNote.data)
       setTimeout(() => {
         setIsLoaded(true);
       }, 500);
@@ -255,7 +255,7 @@ function Notes(props) {
   }, [heading, id, mainText]);
 
   useEffect(() => {
-    console.log(initialContent);
+    // console.log(initialContent);
     loadBlocknote()
     .then(content => setInitialContent(content))
   }, [heading, id]);

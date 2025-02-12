@@ -15,6 +15,7 @@ import AuthOutlet from '@auth-kit/react-router/AuthOutlet'
 import LoadingPage from './components/LoadingPage'
 import Validate from './pages/Validate'
 import ForgotPassword from './pages/ForgotPassword'
+import ValidateForgotPassword from './pages/ValidateForgotPassword'
 
 function Path() {
 
@@ -63,9 +64,18 @@ function Path() {
               </Route>
               <Route path='/signin/sendcode' element={<ForgotPassword
                 logData={logData}
-                setLogData={setLogData}              
+                setLogData={setLogData} 
+                verificationCode={verificationCode}
+                setVerificationCode={setVerificationCode}             
                 />}>
               </Route>
+              <Route path='/signin/validate' element={<ValidateForgotPassword
+                logData={logData}
+                setLogData={setLogData}
+                verificationCode={verificationCode}
+                setVerificationCode={setVerificationCode}
+                pageType='signIn'      
+                />}></Route>
               <Route path='/signup' element={<Register
                 regData={regData}
                 setRegData={setRegData}

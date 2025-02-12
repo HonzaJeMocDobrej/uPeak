@@ -30,6 +30,19 @@ export const getUserById = async (req: Request, res: Response) => {
     }
 }
 
+export const getUserByEmail = async (req: Request, res: Response) => {
+    try {
+        const { email } = req.params
+        if (!email) return res.status(400).send({msg: 'Missing details'})
+        const user = await User.findOne({where: { email: email }})
+        if (!user) return res.status(404).send({msg: 'User not found'})
+        return res.status(200).send({msg: 'User found', payload: user})
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err)
+    }
+}
+
 export const checkForDuplicateUsers = async (req: Request, res: Response) => {
     try {
         const { email } = req.body
@@ -129,6 +142,26 @@ export const updateUser = async (req: Request, res: Response) => {
             }
         }
         if (!comparedPassword) return res.status(400).send({msg: 'Invalid password'})
+        const action = await user.save()
+        if (!action) return res.status(500).send({msg: 'Something went wrong'})
+        const token = jwt.sign({id: user.id, email: user.email, username: user.username, profilePic: user.profilePic}, process.env.JWT_SECRET as Secret, { expiresIn: '7d' })
+        return res.status(200).send({msg: 'User updated', payload: user, token: token})
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err)
+    }
+}
+
+export const updateUserPasswordCode = async (req: Request, res: Response) => {
+    try {
+        const {newPass, email} = req.body
+        console.log(req.body)
+        if (!email || !newPass) return res.status(400).send({msg: 'Missing details'})
+        const user = await User.findOne({where: {email: email}})
+        if (!user) return res.status(400).send({msg: 'User not found'})
+        const salt = await genSalt(12)
+        const passwordHash = await hash(newPass, salt)
+        user.passwordHash = passwordHash
         const action = await user.save()
         if (!action) return res.status(500).send({msg: 'Something went wrong'})
         const token = jwt.sign({id: user.id, email: user.email, username: user.username, profilePic: user.profilePic}, process.env.JWT_SECRET as Secret, { expiresIn: '7d' })

@@ -9,6 +9,7 @@ export const createUser = async (regData) => {
       return tokenUserPayload(res)
 }
 
+
 export const updateUser = async (id, data) => {
     const res = await axios.patch(`http://localhost:3000/api/v1/users/${id}`, data)
     return tokenUserPayload(res)
@@ -19,6 +20,10 @@ export const checkForDuplicateUsers = async (data) => {
     return normalUserPayload(res)
 }
 
+export const getUserByEmail = async (email) => {
+    const res = await axios.get(`http://localhost:3000/api/v1/users/code/${email}`)
+    return normalUserPayload(res)
+}
 
 export const send2FA = async (data) => {
     const res = await axios.post(`http://localhost:3000/api/v1/users/2fa`, data)
@@ -33,6 +38,11 @@ export const send2FA = async (data) => {
 
 export const updateUserPassword = async (id, data) => {
     const res = await axios.patch(`http://localhost:3000/api/v1/users/${id}/password`, data)
+    return tokenUserPayload(res)
+}
+
+export const updateUserPasswordCode = async (data) => {
+    const res = await axios.patch(`http://localhost:3000/api/v1/users/password/code`, data)
     return tokenUserPayload(res)
 }
 

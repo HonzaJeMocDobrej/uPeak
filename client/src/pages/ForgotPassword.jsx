@@ -2,14 +2,14 @@
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 import LoadingPage from "../components/LoadingPage";
-import { comparePasswords, send2FA } from "../models/user";
+import { comparePasswords, getUserByEmail, send2FA } from "../models/user";
 import useSignIn from 'react-auth-kit/hooks/useSignIn'
 import { createTodoPage, deleteOldTodoPages } from "../models/todoPage";
 import { formatDate } from "../functions/functions";
 
 function ForgotPassword(props) {
 
-  const {logData, setLogData} = props;
+  const {logData, setLogData, verificationCode, setVerificationCode} = props;
   const [info, setInfo] = useState('')
   const [isLoaded, setIsLoaded] = useState(false) 
 
@@ -18,20 +18,6 @@ function ForgotPassword(props) {
   const signIn = useSignIn()
 
   const now = new Date
-
-  // const sendCode = async () => {
-  //   const sentCode = await send2FA({
-  //           email: regData.email
-  //         })
-  //         .catch(err => {
-  //           setInfo(err.response.data.msg)
-  //         })
-    
-  //         if (sentCode.status == 200) {
-  //           setVerificationCode(sentCode.code)
-  //           navigate('/signup/validate')
-  //         }
-  // }
 
   const groupPageDateHandler = () => {
     const day = now.getDate()
@@ -63,44 +49,44 @@ function ForgotPassword(props) {
 
   const submit = async () => {
 
-    const user = await comparePasswords(logData)
+    const user = await getUserByEmail(logData.email)
     .catch(err => {
-      if (err.response.data.failed === 'email') {
         setLogData({
           email: '',
           pass: ''
         })
-      }
-      if (err.response.data.failed === 'password') {
-        setLogData(prev => {
-          return {
-            ...prev,
-            pass: ''
-          }
-        })
-      }
       setInfo(err.response.data.msg)
     })
 
     if (user.status == 200) {
-      signIn({
-        auth: {
-          token: user.token,
-          type: 'Bearer',
-        },
-        userState: {
-          id: user.data.id,
-          email: user.data.email,
-          username: user.data.username,
-          profilePic: user.data.profilePic
-        }
-      })
-      loadDeleted(user.data.id)
-      await createTodoPage(user.data.id, groupPageDateHandler())
-      .catch(err => setInfo(err.response.data.msg))
-      // console.log(user.token);
-      document.cookie = `user=${user.data.username}; SameSite=None`
-      navigate(`/progress`)
+      // signIn({
+      //   auth: {
+      //     token: user.token,
+      //     type: 'Bearer',
+      //   },
+      //   userState: {
+      //     id: user.data.id,
+      //     email: user.data.email,
+      //     username: user.data.username,
+      //     profilePic: user.data.profilePic
+      //   }
+      // })
+      // loadDeleted(user.data.id)
+      // await createTodoPage(user.data.id, groupPageDateHandler())
+      // .catch(err => setInfo(err.response.data.msg))
+      // document.cookie = `user=${user.data.username}; SameSite=None`
+      
+      const sentCode = await send2FA({
+              email: logData.email
+            })
+            .catch(err => {
+              setInfo(err.response.data.msg)
+            })
+          
+            if (sentCode.status == 200) {
+              setVerificationCode(sentCode.code)
+              navigate('/signin/validate')
+            }
       return
     }
   }

@@ -153,7 +153,13 @@ function Login(props) {
                 </p>
             </div>
             <p className='accountInfo'>Do not have an account yet? <pre onClick={signUpClick}> Sign up</pre></p>
-            <p className="accountInfo forgotAccount" onClick={() => navigate('/signin/sendcode')}>Forgot Password?</p>
+            <p className="accountInfo forgotAccount" onClick={() => {
+              setLogData({
+                pass: '',
+                email: ''
+              })
+              navigate('/signin/sendcode')
+            }}>Forgot Password?</p>
           </div>
         </div>
     </div>

@@ -35,6 +35,10 @@
     background-image: url(../assets//img/poly-grid.svg);
   }
 
+  .imgCodeBg {
+    background-image: url(../assets//img/blob.svg);
+  }
+
   .fullHeading {
     margin-top: 3.75rem;
     font-family: Poppins;
@@ -255,6 +259,16 @@
             color: white;
             border: none;
             transition: 400ms background-color, color ease-in;
+          }
+        }
+
+        .codeB {
+          color: #00B232 !important;
+          border-color: #00B232 !important;
+
+          &:hover {
+            background-color: #00B232 !important;
+            color: white !important;
           }
         }
 
@@ -504,6 +518,14 @@
       }
     }
   }
+
+  .forgotAccount {
+    margin-top: .5rem !important;
+    color: rgb(255, 61, 0) !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+  }
+
 }
 
 div.validate.login {

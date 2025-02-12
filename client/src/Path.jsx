@@ -14,6 +14,7 @@ import ImageSelect from './pages/ImageSelect'
 import AuthOutlet from '@auth-kit/react-router/AuthOutlet'
 import LoadingPage from './components/LoadingPage'
 import Validate from './pages/Validate'
+import ForgotPassword from './pages/ForgotPassword'
 
 function Path() {
 
@@ -56,6 +57,11 @@ function Path() {
         <Router>
             <Routes>
               <Route path='/signin' element={<Login
+                logData={logData}
+                setLogData={setLogData}              
+                />}>
+              </Route>
+              <Route path='/signin/sendcode' element={<ForgotPassword
                 logData={logData}
                 setLogData={setLogData}              
                 />}>

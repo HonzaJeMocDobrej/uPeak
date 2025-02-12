@@ -1157,6 +1157,9 @@ main .progressConts .counterPurple h2 {
 .login .imgSelBg {
   background-image: url(../assets//img/poly-grid.svg);
 }
+.login .imgCodeBg {
+  background-image: url(../assets//img/blob.svg);
+}
 .login .fullHeading {
   margin-top: 3.75rem;
   font-family: Poppins;
@@ -1367,6 +1370,14 @@ main .progressConts .counterPurple h2 {
   color: white;
   border: none;
   transition: 400ms background-color, color ease-in;
+}
+.login .rLogin .centerD .signUp .codeB {
+  color: #00B232 !important;
+  border-color: #00B232 !important;
+}
+.login .rLogin .centerD .signUp .codeB:hover {
+  background-color: #00B232 !important;
+  color: white !important;
 }
 .login .rLogin .centerD .signUp .dropdownRoot {
   display: flex;
@@ -1594,6 +1605,12 @@ main .progressConts .counterPurple h2 {
   .login .rLogin .accountInfo pre {
     font-size: 0.9rem;
   }
+}
+.login .forgotAccount {
+  margin-top: 0.5rem !important;
+  color: rgb(255, 61, 0) !important;
+  font-weight: 600 !important;
+  cursor: pointer;
 }
 
 div.validate.login .rLogin h2 {

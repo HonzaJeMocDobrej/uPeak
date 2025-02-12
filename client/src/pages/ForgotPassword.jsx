@@ -7,7 +7,7 @@ import useSignIn from 'react-auth-kit/hooks/useSignIn'
 import { createTodoPage, deleteOldTodoPages } from "../models/todoPage";
 import { formatDate } from "../functions/functions";
 
-function Login(props) {
+function ForgotPassword(props) {
 
   const {logData, setLogData} = props;
   const [info, setInfo] = useState('')
@@ -131,7 +131,7 @@ function Login(props) {
   return (
     <>
     <div className="login">
-        <div className="lLogin logBg">
+        <div className="lLogin imgCodeBg">
             <h1 className='fullHeading'>u<span className='blackSpan'>Peak<div className="underline"></div></span></h1>
         </div>
         <div className="media1300">
@@ -140,12 +140,12 @@ function Login(props) {
         <div className="rLogin">
           <div className="centerD">
             <div className="signUp signIn">
-                <h2>Sign in</h2>
+                <h2>Reset Password</h2>
                 <p className="inputH">Email</p>
                 <input onChange={() => univInpChange(event, "email")} value={logData.email} placeholder='Your Email' type="email" />
-                <p className="inputH">Password</p>
-                <input onChange={() => univInpChange(event, "pass")} value={logData.pass} placeholder='Your Password' type="password" />
-                <button onClick={submit} className="signInB">Sign In</button>
+                <p className="inputH">New Password</p>
+                <input onChange={() => univInpChange(event, "pass")} value={logData.pass} placeholder='New Password' type="password" />
+                <button onClick={submit} className="signInB codeB">Reset Password</button>
                 <p className="err" style={{
                   color: '#FF3D00'
                 }}>
@@ -153,7 +153,6 @@ function Login(props) {
                 </p>
             </div>
             <p className='accountInfo'>Do not have an account yet? <pre onClick={signUpClick}> Sign up</pre></p>
-            <p className="accountInfo forgotAccount" onClick={() => navigate('/signin/sendcode')}>Forgot Password?</p>
           </div>
         </div>
     </div>
@@ -161,4 +160,4 @@ function Login(props) {
   )
 }
 
-export default Login
+export default ForgotPassword

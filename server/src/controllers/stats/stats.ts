@@ -4,6 +4,69 @@ import { formatFullDate } from "../todo/todoPages";
 
 const Stats = db.stats
 
+/**
+ * @swagger
+ * /api/v1/stats/{userId}:
+ *   get:
+ *     summary: Get the stats of a user
+ *     description: Returns the stats of a user
+ *     tags:
+ *       - Stats
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The id of the user
+ *     responses:
+ *       200:
+ *         description: The stats of the user
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                     userId:
+ *                       type: string
+ *                     todoStart:
+ *                       type: string
+ *                     todoLastLogin:
+ *                       type: string
+ *                     notesStart:
+ *                       type: string
+ *                     notesLastLogin:
+ *                       type: string
+ *                     pomodoroStart:
+ *                       type: string
+ *                     pomodoroLastLogin:
+ *                       type: string
+ *                     todosCreatedCount:
+ *                       type: number
+ *                     notesCreatedCount:
+ *                       type: number
+ *                     pomodoroWholeSessionsCount:
+ *                       type: number
+ *                     isNotificationRead:
+ *                       type: boolean
+ *                     createdAt:
+ *                       type: string
+ *                     updatedAt:
+ *                       type: string
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: Stats not found
+ *       500:
+ *         description: Something went wrong
+ */
 export const getStatsById = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params
@@ -17,6 +80,59 @@ export const getStatsById = async (req: Request, res: Response) => {
     }
 }
 
+/**
+ * @swagger
+ * /api/v1/stats/{userId}:
+ *   post:
+ *     summary: Create the stats of a user
+ *     description: Creates the stats of a user
+ *     tags:
+ *       - Stats
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The id of the user
+ *     responses:
+ *       201:
+ *         description: The stats of the user
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   type: object
+ *                   properties:
+ *                     userId:
+ *                       type: string
+ *                     todoStart:
+ *                       type: string
+ *                     todoLastLogin:
+ *                       type: string
+ *                     notesStart:
+ *                       type: string
+ *                     notesLastLogin:
+ *                       type: string
+ *                     pomodoroStart:
+ *                       type: string
+ *                     pomodoroLastLogin:
+ *                       type: string
+ *                     createdAt:
+ *                       type: string
+ *                     updatedAt:
+ *                       type: string
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: Stats not found
+ *       500:
+ *         description: Something went wrong
+ */
 export const createStats = async (req: Request, res: Response) => {
     try {
         const nowDate: Date =  new Date()
@@ -42,6 +158,74 @@ export const createStats = async (req: Request, res: Response) => {
     }
 }
 
+/**
+ * @swagger
+ * /api/v1/stats/{userId}:
+ *   patch:
+ *     summary: Patch the stats of a user
+ *     description: Patches the stats of a user
+ *     tags:
+ *       - Stats
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The id of the user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *               type: object
+ *               properties:
+ *                 propName:
+ *                   type: string
+ *                 value:
+ *                   type: string
+ *     responses:
+ *       200:
+ *         description: Stats patched
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                     userId:
+ *                       type: string
+ *                     todoStart:
+ *                       type: string
+ *                     todoLastLogin:
+ *                       type: string
+ *                     notesStart:
+ *                       type: string
+ *                     notesLastLogin:
+ *                       type: string
+ *                     pomodoroStart:
+ *                       type: string
+ *                     pomodoroLastLogin:
+ *                       type: string
+ *                     createdAt:
+ *                       type: string
+ *                     updatedAt:
+ *                       type: string
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: Stats not found
+ *       500:
+ *         description: Something went wrong
+ */
 export const patchStats = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params
@@ -61,6 +245,38 @@ export const patchStats = async (req: Request, res: Response) => {
     }
 }
 
+/**
+ * @swagger
+ * /api/v1/stats/{userId}:
+ *   delete:
+ *     summary: Delete the stats of a user
+ *     description: Deletes the stats of a user
+ *     tags:
+ *       - Stats
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The id of the user
+ *     responses:
+ *       200:
+ *         description: Stats deleted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: Stats not found
+ *       500:
+ *         description: Something went wrong
+ */
 export const deleteStats = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params

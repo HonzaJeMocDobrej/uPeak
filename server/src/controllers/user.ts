@@ -17,6 +17,55 @@ export const getAllUsers = async (req: Request, res: Response) => {
     }
 }
 
+/**
+ * @swagger
+ * /api/v1/users/{id}:
+ *   get:
+ *     summary: Get the user by id
+ *     description: Returns the user by id
+ *     tags:
+ *       - Users
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The id of the user
+ *     responses:
+ *       200:
+ *         description: The user
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                     email:
+ *                       type: string
+ *                     password:
+ *                       type: string
+ *                     firstName:
+ *                       type: string
+ *                     lastName:
+ *                       type: string
+ *                     createdAt:
+ *                       type: string
+ *                     updatedAt:
+ *                       type: string
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Something went wrong
+ */
 export const getUserById = async (req: Request, res: Response) => {
     try {
         const { id } = req.params
@@ -43,6 +92,41 @@ export const getUserByEmail = async (req: Request, res: Response) => {
     }
 }
 
+/**
+ * @swagger
+ * /api/v1/users/duplicate:
+ *   post:
+ *     summary: Check if a user already exists
+ *     description: Checks if a user already exists
+ *     tags:
+ *       - Users
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: User does not exist
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: User already exists
+ *       500:
+ *         description: Something went wrong
+ */
+
 export const checkForDuplicateUsers = async (req: Request, res: Response) => {
     try {
         const { email } = req.body
@@ -57,6 +141,68 @@ export const checkForDuplicateUsers = async (req: Request, res: Response) => {
     }
 }
 
+/**
+ * @swagger
+ * /api/v1/users:
+ *   post:
+ *     summary: Creates a new user
+ *     description: Creates a new user
+ *     tags:
+ *       - Users
+ *     requestBody:
+ *       description: User details
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: example@example.com
+ *               username:
+ *                 type: string
+ *                 example: example
+ *               password:
+ *                 type: string
+ *                 format: password
+ *                 example: password
+ *     responses:
+ *       201:
+ *         description: User created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 token:
+ *                   type: string
+ *                   format: bearer
+ *                 payload:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                     email:
+ *                       type: string
+ *                     username:
+ *                       type: string
+ *                     profilePic:
+ *                       type: string
+ *                     createdAt:
+ *                       type: string
+ *                     updatedAt:
+ *                       type: string
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: Email is already used
+ *       500:
+ *         description: Something went wrong
+ */
 export const createUser = async (req: Request, res: Response) => {
     try {
         const { email, username, password } = req.body
@@ -83,6 +229,65 @@ export const createUser = async (req: Request, res: Response) => {
     }
 }
 
+/**
+ * @swagger
+ * /api/v1/users/compare:
+ *   post:
+ *     summary: Compares a password with the user's password
+ *     description: Compares a password with the user's password
+ *     tags:
+ *       - Users
+ *     requestBody:
+ *       description: User details
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: example@example.com
+ *               password:
+ *                 type: string
+ *                 format: password
+ *                 example: password
+ *     responses:
+ *       200:
+ *         description: Successfully logged in
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 token:
+ *                   type: string
+ *                   format: bearer
+ *                 payload:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                     email:
+ *                       type: string
+ *                     username:
+ *                       type: string
+ *                     profilePic:
+ *                       type: string
+ *                     createdAt:
+ *                       type: string
+ *                     updatedAt:
+ *                       type: string
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: Email not registered yet
+ *       500:
+ *         description: Something went wrong
+ */
 export const comparePasswords = async (req: Request, res: Response) => {
     try {
         const { email, password } = req.body
@@ -101,6 +306,68 @@ export const comparePasswords = async (req: Request, res: Response) => {
     }
 }
 
+/**
+ * @swagger
+ * /api/v1/users/updateProfilePic/{email}:
+ *   patch:
+ *     summary: Update user's profile picture
+ *     description: Updates the profile picture of a user
+ *     tags:
+ *       - Users
+ *     parameters:
+ *       - in: path
+ *         name: email
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The email of the user
+ *     requestBody:
+ *       required: false
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               profilePic:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       200:
+ *         description: Successfully updated profile picture
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                     email:
+ *                       type: string
+ *                     username:
+ *                       type: string
+ *                     profilePic:
+ *                       type: string
+ *                     createdAt:
+ *                       type: string
+ *                     updatedAt:
+ *                       type: string
+ *                 token:
+ *                   type: string
+ *                   format: bearer
+ *                 profilePic:
+ *                   type: string
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Something went wrong
+ */
 export const updateUserProfilePic =async (req: Request, res: Response) => {
     try {
         let updatedUser
@@ -127,6 +394,69 @@ export const updateUserProfilePic =async (req: Request, res: Response) => {
     }
 }
 
+/**
+ * @swagger
+ * /api/v1/users/{id}:
+ *   patch:
+ *     summary: Update a user
+ *     description: Updates a user
+ *     tags:
+ *       - Users
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The id of the user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *               type: object
+ *               properties:
+ *                 propName:
+ *                   type: string
+ *                 value:
+ *                   type: string
+ *     responses:
+ *       200:
+ *         description: User updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                     email:
+ *                       type: string
+ *                     username:
+ *                       type: string
+ *                     profilePic:
+ *                       type: string
+ *                     createdAt:
+ *                       type: string
+ *                     updatedAt:
+ *                       type: string
+ *                 token:
+ *                   type: string
+ *                   format: bearer
+ *       400:
+ *         description: Missing details or invalid password
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Something went wrong
+ */
 export const updateUser = async (req: Request, res: Response) => {
     try {
         const { id } = req.params
@@ -152,6 +482,62 @@ export const updateUser = async (req: Request, res: Response) => {
     }
 }
 
+/**
+ * @swagger
+ * /api/v1/users/password/code:
+ *   patch:
+ *     summary: Updates the password of a user with a code
+ *     description: Updates the password of a user with a code
+ *     tags:
+ *       - User
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               newPass:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: The user
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                     email:
+ *                       type: string
+ *                     username:
+ *                       type: string
+ *                     profilePic:
+ *                       type: string
+ *                     passwordHash:
+ *                       type: string
+ *                     createdAt:
+ *                       type: string
+ *                     updatedAt:
+ *                       type: string
+ *                 token:
+ *                   type: string
+ *                   format: bearer
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Something went wrong
+ */
 export const updateUserPasswordCode = async (req: Request, res: Response) => {
     try {
         const {newPass, email} = req.body
@@ -172,6 +558,63 @@ export const updateUserPasswordCode = async (req: Request, res: Response) => {
     }
 }
 
+/**
+ * @swagger
+ * /api/v1/users/{id}/password:
+ *   patch:
+ *     summary: Update the password of a user
+ *     description: Updates the password of a user
+ *     tags:
+ *       - Users
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The id of the user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               oldPass:
+ *                 type: string
+ *               newPass:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: User updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                     email:
+ *                       type: string
+ *                     username:
+ *                       type: string
+ *                     profilePic:
+ *                       type: string
+ *                 token:
+ *                   type: string
+ *                   format: bearer
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Something went wrong
+ */
 export const updateUserPassword = async (req: Request, res: Response) => {
     try {
         const { id } = req.params
@@ -194,6 +637,38 @@ export const updateUserPassword = async (req: Request, res: Response) => {
     }
 }
 
+/**
+ * @swagger
+ * /api/v1/users/{id}:
+ *   delete:
+ *     summary: Delete a user
+ *     description: Deletes a user
+ *     tags:
+ *       - User
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The id of the user
+ *     responses:
+ *       200:
+ *         description: User deleted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Something went wrong
+ */
 export const deleteUser = async (req: Request, res: Response) => {
     try {
         const { id } = req.params
@@ -207,6 +682,40 @@ export const deleteUser = async (req: Request, res: Response) => {
     }
 }
 
+/**
+ * @swagger
+ * /api/v1/users/2fa:
+ *   post:
+ *     summary: Send 2FA code to the user
+ *     description: Sends a 6-digit code to the user's email
+ *     tags:
+ *       - User
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Code sent successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 code:
+ *                   type: string
+ *       404:
+ *         description: Something went wrong
+ *       500:
+ *         description: Server error
+ */
 export const send2FA = async (req: Request, res: Response) => {
     
     try {

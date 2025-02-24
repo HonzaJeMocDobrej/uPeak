@@ -31,3 +31,8 @@ app.use('/images',express.static('images'));
 app.listen(PORT, () => {
     console.log(`App is running on port ${PORT}`)
 })
+
+import swaggerUi from 'swagger-ui-express'
+import { specs } from './config/swagger'
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))

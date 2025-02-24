@@ -70,3 +70,156 @@ export const deleteNoteById = async (req: Request, res: Response) => {
         res.status(500).send(err)
     }
 }
+
+/**
+ * @swagger
+ * /api/v1/note/{userId}/{id}:
+ *   get:
+ *     summary: Get a note by ID
+ *     tags: [Note]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Note found successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   example: Note found
+ *                 payload:
+ *                   $ref: '#/components/schemas/Note'
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: Note not found
+ *       500:
+ *         description: Server error
+ */
+
+/**
+ * @swagger
+ * /api/v1/note/{id}:
+ *   patch:
+ *     summary: Update a note's details
+ *     tags: [Note]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *               type: object
+ *               properties:
+ *                 propName:
+ *                   type: string
+ *                 value:
+ *                   type: string
+ *     responses:
+ *       200:
+ *         description: Note updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   example: Note patched
+ *                 payload:
+ *                   $ref: '#/components/schemas/Note'
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: Note not found
+ *       500:
+ *         description: Server error
+ */
+
+/**
+ * @swagger
+ * /api/v1/note/img/{id}:
+ *   patch:
+ *     summary: Update a note's image
+ *     tags: [Note]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               image:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       200:
+ *         description: Note image updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   example: Note image updated
+ *                 payload:
+ *                   $ref: '#/components/schemas/Note'
+ *       400:
+ *         description: Missing details or invalid file type
+ *       404:
+ *         description: Note not found
+ *       500:
+ *         description: Server error
+ */
+
+/**
+ * @swagger
+ * /api/v1/note/{userId}/{id}:
+ *   delete:
+ *     summary: Delete a note by ID
+ *     tags: [Note]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Note deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   example: Note deleted
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: Note not found
+ *       500:
+ *         description: Server error
+ */

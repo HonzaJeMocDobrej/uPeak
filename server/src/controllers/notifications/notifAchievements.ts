@@ -7,6 +7,56 @@ const TodoPages = db.todoPage
 const Groups = db.group
 const Todos = db.todo
 
+/**
+ * @swagger
+ * tags:
+ *   name: Notifiactions Achievements
+ *   description: API endpoints for notifications achievements
+ */
+
+/**
+ * @swagger
+ * /api/v1/achievements/{userId}:
+ *   get:
+ *     summary: Get the achievements of a user
+ *     description: Returns the achievements of a user
+ *     tags:
+ *       - Notifiactions Achievements
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The id of the user
+ *     responses:
+ *       200:
+ *         description: The achievements of the user
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   type: object
+ *                   properties:
+ *                     notesCreatedCount:
+ *                       type: number
+ *                     todosCreatedCount:
+ *                       type: number
+ *                     pomodoroWholeSessionsCount:
+ *                       type: number
+ *                     isNotificationRead:
+ *                       type: boolean
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: Achievements not found
+ *       500:
+ *         description: Something went wrong
+ */
 export const getAchievements = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params
@@ -20,6 +70,51 @@ export const getAchievements = async (req: Request, res: Response) => {
     }
 }
 
+/**
+ * @swagger
+ * /api/v1/achievements/{userId}:
+ *   post:
+ *     summary: Create the achievements of a user
+ *     description: Creates the achievements of a user
+ *     tags:
+ *       - Notifiactions Achievements
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The id of the user
+ *     responses:
+ *       200:
+ *         description: The achievements of the user
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   type: object
+ *                   properties:
+ *                     userId:
+ *                       type: string
+ *                     notesCreatedCount:
+ *                       type: number
+ *                     todosCreatedCount:
+ *                       type: number
+ *                     pomodoroWholeSessionsCount:
+ *                       type: number
+ *                     isNotificationRead:
+ *                       type: boolean
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: Achievements not found
+ *       500:
+ *         description: Something went wrong
+ */
 export const createAchievements = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params
@@ -34,6 +129,64 @@ export const createAchievements = async (req: Request, res: Response) => {
         res.status(500).send(err)
     }
 }
+
+/**
+ * @swagger
+ * /api/v1/achievements/{userId}:
+ *   patch:
+ *     summary: Patch the achievements of a user
+ *     description: Patch the achievements of a user
+ *     tags:
+ *       - Notifiactions Achievements
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The id of the user
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *               type: object
+ *               properties:
+ *                 propName:
+ *                   type: string
+ *                 value:
+ *                   type: number
+ *     responses:
+ *       200:
+ *         description: The achievements of the user
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   type: object
+ *                   properties:
+ *                     userId:
+ *                       type: string
+ *                     notesCreatedCount:
+ *                       type: number
+ *                     todosCreatedCount:
+ *                       type: number
+ *                     pomodoroWholeSessionsCount:
+ *                       type: number
+ *                     isNotificationRead:
+ *                       type: boolean
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: Achievements not found
+ *       500:
+ *         description: Something went wrong
+ */
 
 export const patchAchievements = async (req: Request, res: Response) => {
     try {
@@ -53,6 +206,40 @@ export const patchAchievements = async (req: Request, res: Response) => {
     }
 }
 
+/**
+ * @swagger
+ * /api/v1/achievements/notescount/{userId}:
+ *   get:
+ *     summary: Get the count of created notes of a user
+ *     description: Get the count of created notes of a user
+ *     tags:
+ *       - Notifiactions Achievements
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The id of the user
+ *     responses:
+ *       200:
+ *         description: The count of created notes of the user
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   type: number
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: Notes not found
+ *       500:
+ *         description: Something went wrong
+ */
 export const getCreatedNotesCount = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params

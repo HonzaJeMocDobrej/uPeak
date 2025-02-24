@@ -80,3 +80,196 @@ export const deleteAllNotes = async (req: Request, res: Response) => {
         res.status(500).send(err)
     }
 }
+
+
+/**
+ * @swagger
+ * tags:
+ *   name: Notes
+ *   description: Notes management API
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Note:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *         userId:
+ *           type: string
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *         updatedAt:
+ *           type: string
+ *           format: date-time
+ */
+
+/**
+ * @swagger
+ * /api/v1/notes/{userId}:
+ *   get:
+ *     summary: Get all notes for a user
+ *     tags: [Notes]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Notes found successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   example: Notes found
+ *                 payload:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Note'
+ *       404:
+ *         description: Notes not found
+ *       400:
+ *         description: Missing details
+ *       500:
+ *         description: Server error
+ */
+
+/**
+ * @swagger
+ * /api/v1/notes/search/{userId}:
+ *   post:
+ *     summary: Search notes by query
+ *     tags: [Notes]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: q
+ *         schema:
+ *           type: string
+ *         description: Search query
+ *     responses:
+ *       200:
+ *         description: Notes found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Note'
+ *       404:
+ *         description: No notes found
+ *       500:
+ *         description: Server error
+ */
+
+/**
+ * @swagger
+ * /api/v1/notes/first/{userId}:
+ *   get:
+ *     summary: Get the first note of a user
+ *     tags: [Notes]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: First note found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   $ref: '#/components/schemas/Note'
+ *       404:
+ *         description: Note not found
+ *       500:
+ *         description: Server error
+ */
+
+/**
+ * @swagger
+ * /api/v1/notes/create/{userId}:
+ *   post:
+ *     summary: Create a new note
+ *     tags: [Notes]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       201:
+ *         description: Note created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   example: Note created
+ *                 payload:
+ *                   $ref: '#/components/schemas/Note'
+ *                 notes:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Note'
+ *       400:
+ *         description: Missing details
+ *       500:
+ *         description: Server error
+ */
+
+/**
+ * @swagger
+ * /api/v1/notes/{userId}:
+ *   delete:
+ *     summary: Delete all notes for a user
+ *     tags: [Notes]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Notes deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   example: Notes deleted
+ *       400:
+ *         description: Missing details
+ *       500:
+ *         description: Server error
+ */

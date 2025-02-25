@@ -6,6 +6,13 @@ const Stats = db.stats
 
 /**
  * @swagger
+ * tags:
+ *   name: Stats
+ *   description: Stats API
+ */
+
+/**
+ * @swagger
  * /api/v1/stats/{userId}:
  *   get:
  *     summary: Get the stats of a user

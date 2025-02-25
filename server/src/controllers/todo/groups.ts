@@ -3,6 +3,62 @@ import db from "../../models";
 
 const Groups = db.group
 
+/**
+ * @swagger
+ * tags:
+ *   name: Groups
+ *   description: Groups API
+ */
+
+/**
+ * @swagger
+ * /api/v1/groups/{selectedPageId}:
+ *   get:
+ *     summary: Get all groups of a page
+ *     description: Returns all groups of a page
+ *     tags:
+ *       - Groups
+ *     parameters:
+ *       - in: path
+ *         name: selectedPageId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The id of the page
+ *     responses:
+ *       200:
+ *         description: Groups of the page
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                       name:
+ *                         type: string
+ *                       color:
+ *                         type: string
+ *                       selectedPageId:
+ *                         type: string
+ *                       createdAt:
+ *                         type: string
+ *                       updatedAt:
+ *                         type: string
+ *       204:
+ *         description: Doesnt exist yet
+ *       400:
+ *         description: Missing details
+ *       500:
+ *         description: Something went wrong
+ */
 export const getAllGroups = async (req: Request, res: Response) => {
     try {
         const {selectedPageId} = req.params
@@ -15,6 +71,62 @@ export const getAllGroups = async (req: Request, res: Response) => {
         res.status(500).send(err)
     }
 }
+/**
+ * @swagger
+ * /api/v1/groups/{selectedPageId}:
+ *   post:
+ *     summary: Create a group for a page
+ *     description: Creates a group for a page
+ *     tags:
+ *       - Groups
+ *     parameters:
+ *       - in: path
+ *         name: selectedPageId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The id of the page
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               color:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Group created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                     name:
+ *                       type: string
+ *                     color:
+ *                       type: string
+ *                     selectedPageId:
+ *                       type: string
+ *                     createdAt:
+ *                       type: string
+ *                     updatedAt:
+ *                       type: string
+ *       400:
+ *         description: Missing details
+ *       500:
+ *         description: Something went wrong
+ */
 export const createGroup = async (req: Request, res: Response) => {
     try {
         const {selectedPageId} = req.params
@@ -35,6 +147,36 @@ export const createGroup = async (req: Request, res: Response) => {
         res.status(500).send(err)
     }
 }
+/**
+ * @swagger
+ * /api/v1/groups/{selectedPageId}:
+ *   delete:
+ *     summary: Delete all groups for a page
+ *     description: Deletes all groups for a page
+ *     tags:
+ *       - Groups
+ *     parameters:
+ *       - in: path
+ *         name: selectedPageId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The id of the page
+ *     responses:
+ *       200:
+ *         description: Groups deleted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *       400:
+ *         description: Missing details
+ *       500:
+ *         description: Something went wrong
+ */
 export const deleteAllGroups = async (req: Request, res: Response) => {
     try {
         const { selectedPageId } = req.params

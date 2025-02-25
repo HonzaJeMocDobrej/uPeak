@@ -7,6 +7,13 @@ const Achievements = db.notifAchievements
 
 /**
  * @swagger
+ * tags:
+ *   name: Notifications
+ *   description: API endpoints for notifications
+ */
+
+/**
+ * @swagger
  * /api/v1/notifications/{userId}/{id}:
  *   get:
  *     summary: Get the notification by user id and notification id

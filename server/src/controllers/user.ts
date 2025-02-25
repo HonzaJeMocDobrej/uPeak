@@ -19,6 +19,13 @@ export const getAllUsers = async (req: Request, res: Response) => {
 
 /**
  * @swagger
+ * tags:
+ *   name: Users
+ *   description: Users API
+ */
+
+/**
+ * @swagger
  * /api/v1/users/{id}:
  *   get:
  *     summary: Get the user by id

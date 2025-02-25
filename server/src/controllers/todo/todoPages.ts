@@ -19,6 +19,64 @@ export const formatFullDate = (dayNum:number, monthNum:number, year:number) => {
       }
 }
 
+/**
+ * @swagger
+ * tags:
+ *   name: Todo Pages
+ *   description: Todo Pages API
+ */
+
+/**
+ * @swagger
+ * /api/v1/todoPages/{userId}:
+ *   get:
+ *     summary: Get the first todo page by userId
+ *     description: Returns the first todo page by userId
+ *     tags:
+ *       - Todo Pages
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The id of the user
+ *     responses:
+ *       200:
+ *         description: The first todo page
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                     userId:
+ *                       type: string
+ *                     dayNum:
+ *                       type: string
+ *                     dayName:
+ *                       type: string
+ *                     monthNum:
+ *                       type: string
+ *                     monthName:
+ *                       type: string
+ *                     year:
+ *                       type: string
+ *                     fullDate:
+ *                       type: string
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: First Todo Page not found
+ *       500:
+ *         description: Something went wrong
+ */
 export const getTheFirstTodoPage =async (req:Request, res: Response) => {
     try {
         const {userId} = req.params
@@ -33,6 +91,75 @@ export const getTheFirstTodoPage =async (req:Request, res: Response) => {
     }
 }
 
+/**
+ * @swagger
+ * /api/v1/todoPages/{userId}:
+ *   post:
+ *     summary: Create a todo page by userId
+ *     description: Creates a todo page by userId
+ *     tags:
+ *       - Todo Pages
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The id of the user
+ *     requestBody:
+ *       description: The todo page to be created
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               dayNum:
+ *                 type: string
+ *               dayName:
+ *                 type: string
+ *               monthNum:
+ *                 type: string
+ *               monthName:
+ *                 type: string
+ *               year:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Todo Page created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                     userId:
+ *                       type: string
+ *                     dayNum:
+ *                       type: string
+ *                     dayName:
+ *                       type: string
+ *                     monthNum:
+ *                       type: string
+ *                     monthName:
+ *                       type: string
+ *                     year:
+ *                       type: string
+ *                     fullDate:
+ *                       type: string
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: First Todo Page not found
+ *       500:
+ *         description: Something went wrong
+ */
 export const createTodoPage =async (req:Request, res: Response) => {
     try {
         const {userId} = req.params
@@ -60,6 +187,58 @@ export const createTodoPage =async (req:Request, res: Response) => {
         res.status(500).send(err)
     }
 }
+
+/**
+ * @swagger
+ * /api/v1/todoPages/{userId}:
+ *   delete:
+ *     summary: Delete all todo pages of a user that are older than today
+ *     description: Delete all todo pages of a user that are older than today
+ *     tags:
+ *       - Todo Pages
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The id of the user
+ *     responses:
+ *       200:
+ *         description: All old Todo Pages deleted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                 payload:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                     userId:
+ *                       type: string
+ *                     dayNum:
+ *                       type: string
+ *                     dayName:
+ *                       type: string
+ *                     monthNum:
+ *                       type: string
+ *                     monthName:
+ *                       type: string
+ *                     year:
+ *                       type: string
+ *                     fullDate:
+ *                       type: string
+ *       400:
+ *         description: Missing details
+ *       404:
+ *         description: First Todo Page not found
+ *       500:
+ *         description: Something went wrong
+ */
 
 export const deleteOldTodoPages =async (req:Request, res: Response) => {
     try {

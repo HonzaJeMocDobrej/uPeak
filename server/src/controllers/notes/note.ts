@@ -73,6 +73,13 @@ export const deleteNoteById = async (req: Request, res: Response) => {
 
 /**
  * @swagger
+ * tags:
+ *   name: Note
+ *   description: Note API
+ */
+
+/**
+ * @swagger
  * /api/v1/note/{userId}/{id}:
  *   get:
  *     summary: Get a note by ID

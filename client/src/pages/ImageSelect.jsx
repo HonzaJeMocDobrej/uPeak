@@ -7,6 +7,16 @@ import useSignIn from 'react-auth-kit/hooks/useSignIn'
 import { checkIfImgExists } from "../functions/functions";
 import basicProfPic from '../assets/img/userPicBasic.svg'
 
+/**
+ * The ImageSelect component is a page that allows the user to upload a
+ * profile picture. It renders a form with a file input field and a button
+ * to submit the form. When the user submits the form, the component sends
+ * a PATCH request to the server to update the user's profile picture.
+ * The component also checks if the user has already uploaded a profile
+ * picture, and if so, it displays the picture in the form.
+ * @returns {React.ReactElement} The JSX element representing the
+ * ImageSelect component.
+ */
 function ImageSelect() {
   let navigate = useNavigate();
   const [profilePic, setProfilePic] = useState(null)

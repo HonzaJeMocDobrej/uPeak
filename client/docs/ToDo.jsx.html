@@ -1,4 +1,32 @@
-/* eslint-disable react/prop-types */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: ToDo.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ToDo.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import LeftMenu from "../components/LeftMenu";
 import TopMenu from "../components/TopMenu";
@@ -227,22 +255,22 @@ function ToDo(props) {
 
   if (!isLoaded) {
     return (
-      <>
-        <LoadingPage />
-      </>
+      &lt;>
+        &lt;LoadingPage />
+      &lt;/>
     );
   }
 
   return (
-    <>
-      <div className={`menuCont ${isBlack ? "menuBlack" : null}`}>
-        <LeftMenu
+    &lt;>
+      &lt;div className={`menuCont ${isBlack ? "menuBlack" : null}`}>
+        &lt;LeftMenu
           active={active}
           isEnglish={isEnglish}
           setIsEnglish={setIsEnglish}
           isBlack={isBlack}
         />
-        <TopMenu
+        &lt;TopMenu
           isEnglish={isEnglish}
           setIsEnglish={setIsEnglish}
           isBlack={isBlack}
@@ -252,16 +280,16 @@ function ToDo(props) {
           setIsNotificationRead={setIsNotificationRead}
           isNotificationRead={isNotificationRead}
         />
-        <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
-          <div className="todoConts">
-          <InfoCircle
+        &lt;main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
+          &lt;div className="todoConts">
+          &lt;InfoCircle
             isBlack={isBlack}
             isEnglish={isEnglish}
             textEn={'Welcome to the To-Do Page. Here, you can manage all your daily tasks, so you won’t forget to do them. You can customise them and set them a priority. You can also group them into different categories to your own needs.'}
             textCz={'Vítejte na stránce To-Do. Zde si můžete uspořádat všechny své denní úkoly tak, abyste na ně později nezapomněli. Můžete je upravovat a nastavit jim prioritu. Také je můžete seskupit do různých kategorií, dle potřeby.'}
           />
-            <div className="topCont">
-              <Calendar
+            &lt;div className="topCont">
+              &lt;Calendar
                 style={
                   isCalendarOpen ? { display: "block" } : { display: "none" }
                 }
@@ -292,34 +320,34 @@ function ToDo(props) {
                   new Date(now.getFullYear() + 1, now.getMonth(), now.getDate())
                 }
               />
-              <div className="dayTimeCont">
-                <div
+              &lt;div className="dayTimeCont">
+                &lt;div
                   className={`h2Cont ${isCalendarOpen ? "rotate" : "goBack"}`}
                   onClick={() => univToggle(setIsCalendarOpen)}
                 >
-                  <h2>
-                    {selectedDate.dayNum === now.getDate() + 1 &&
+                  &lt;h2>
+                    {selectedDate.dayNum === now.getDate() + 1 &amp;&amp;
                     selectedDate.monthNum === now.getMonth() + 1
                       ? "Tommorrow"
-                      : selectedDate.dayNum === now.getDate() &&
+                      : selectedDate.dayNum === now.getDate() &amp;&amp;
                         selectedDate.monthNum === now.getMonth() + 1
                       ? "Today"
                       : selectedDate.dayName}
-                  </h2>
-                </div>
-                <h4>
+                  &lt;/h2>
+                &lt;/div>
+                &lt;h4>
                   {selectedDate.dayNum} {selectedDate.monthName}.{" "}
                   {selectedDate.year}
-                </h4>
-              </div>
-              <div className="ctaCont" style={{ position: "relative" }}>
-                <p
+                &lt;/h4>
+              &lt;/div>
+              &lt;div className="ctaCont" style={{ position: "relative" }}>
+                &lt;p
                   onClick={() => univToggle(setIsCreateGroupOpen)}
                   className="ctaGroupTodo"
                 >
                   {isEnglish ? 'Create Group' : 'Nová Skupina'}
-                </p>
-                <div
+                &lt;/p>
+                &lt;div
                   // style={
                   //   isCreateGroupOpen
                   //     ? { display: "block" }
@@ -332,14 +360,14 @@ function ToDo(props) {
                   
                   className="createToDo createToDo2 createGroup"
                 >
-                  <div className="topInputCont">
-                    <div className="imgAndInputCont">
-                      <img
+                  &lt;div className="topInputCont">
+                    &lt;div className="imgAndInputCont">
+                      &lt;img
                         onClick={() => univToggle(setIsPalletteGroupOpen)}
                         src={pallette}
                         alt=""
                       />
-                      <input
+                      &lt;input
                         value={groupData.name}
                         onChange={updateHeadlineGroupVal}
                         style={{color: isBlack ? convertToHSL(groupData.color, false) : convertToHSL(groupData.color, true)}}
@@ -348,39 +376,39 @@ function ToDo(props) {
                         type="text"
                         maxLength={15}
                       />
-                    </div>
-                    <ChromePicker
+                    &lt;/div>
+                    &lt;ChromePicker
                       color={groupData.color}
                       onChange={changeGroupColor}
                       className={`${
                         isPalletteGroupOpen ? "palletteOpen" : "palletteClose"
                       } groupChromePicker`}
                     />
-                  </div>
-                  <div className="bottomBtnCont">
-                    <div className="rightBtnCont">
-                      <div onClick={closeCreateGroup} className="closeBtn">
+                  &lt;/div>
+                  &lt;div className="bottomBtnCont">
+                    &lt;div className="rightBtnCont">
+                      &lt;div onClick={closeCreateGroup} className="closeBtn">
                         Close
-                      </div>
-                      <div onClick={allGroupsOnClick} className="submitBtn">
+                      &lt;/div>
+                      &lt;div onClick={allGroupsOnClick} className="submitBtn">
                         Submit
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
+                      &lt;/div>
+                    &lt;/div>
+                  &lt;/div>
+                &lt;/div>
+              &lt;/div>
+            &lt;/div>
+            &lt;div
               className="ctaCont secondCtaCont"
               style={{ position: "relative" }}
             >
-              <div
+              &lt;div
                 onClick={() => univToggle(setIsGroupAddOpen)}
                 className="ctaGroupTodo leftCtaGroupTodo"
               >
                 {isEnglish ? 'Add Group' : 'Přidat Skupinu'}
-              </div>
-              <ul
+              &lt;/div>
+              &lt;ul
                 className="dropdownGroup"
                 style={{ 
                   display: isGroupAddOpen ? "block" : "none",
@@ -389,7 +417,7 @@ function ToDo(props) {
               >
                 {groups.map((group) => {
                   return (
-                    <li
+                    &lt;li
                       key={group.id}
                       style={{
                         color: isBlack ? convertToHSL(group.color, false) : convertToHSL(group.color, true),
@@ -399,7 +427,7 @@ function ToDo(props) {
                         height: '3rem'
                       }}
                     >
-                      <div
+                      &lt;div
                         className="leftCont"
                         onClick={() => selectGroup(group)}
                         style={{
@@ -411,18 +439,18 @@ function ToDo(props) {
                           paddingLeft: '1.5rem'
                         }}
                       >
-                        {group.isSelected && (
-                          <img
+                        {group.isSelected &amp;&amp; (
+                          &lt;img
                             style={{ height: "1.25rem" }}
                             src={greenCheckFill}
                             alt=""
                           />
                         )}
-                        <p className={isBlack ? 'blackHover' : ''}>
+                        &lt;p className={isBlack ? 'blackHover' : ''}>
                           {group.name}
-                          </p>
-                      </div>
-                      <div
+                          &lt;/p>
+                      &lt;/div>
+                      &lt;div
                         className="rightCont"
                         style={{
                           height: "100%",
@@ -433,23 +461,23 @@ function ToDo(props) {
                         }}
                         onClick={() => deletedGroup(group.id)}
                         >
-                        <img
+                        &lt;img
                           src={bin}
                           alt=""
                           style={{ height: "1.25rem" }}
                           className="bin"
                         />
-                      </div>
-                    </li>
+                      &lt;/div>
+                    &lt;/li>
                   );
                 })}
-              </ul>
-            </div>
+              &lt;/ul>
+            &lt;/div>
 
             {groups.map((group) => {
               if (group.isSelected) {
                 return (
-                  <GroupCont
+                  &lt;GroupCont
                     univToggle={univToggle}
                     key={group.id}
                     id={group.id}
@@ -464,44 +492,67 @@ function ToDo(props) {
               }
             })}
 
-            {/* <GroupCont
+            {/* &lt;GroupCont
               univToggle={univToggle}
             />
             
-            <GroupCont
+            &lt;GroupCont
               univToggle={univToggle}
             /> */}
 
-            {/* <div className="groupCont">
-              <h2 className="groupHeadline">Banger</h2>
-              <div className="toDoListItemsCont">
-                <ToDoListItem
+            {/* &lt;div className="groupCont">
+              &lt;h2 className="groupHeadline">Banger&lt;/h2>
+              &lt;div className="toDoListItemsCont">
+                &lt;ToDoListItem
                   name="Do The Dishes asdfasfsdafsdasdfasdfasfdfsd"
                   priorityCircleSx={prioCircleStyles.prio4}
                   priorityCircleHoverClass="prio4"
                 />
-                <ToDoListItem
+                &lt;ToDoListItem
                   name="Meditate"
                   priorityCircleSx={prioCircleStyles.prio3}
                   priorityCircleHoverClass="prio3"
                 />
-                <ToDoListItem
+                &lt;ToDoListItem
                   name="Meditate"
                   priorityCircleSx={prioCircleStyles.prio2}
                   priorityCircleHoverClass="prio2"
                 />
-                <ToDoListItem
+                &lt;ToDoListItem
                   name="Meditate"
                   priorityCircleSx={prioCircleStyles.prio1}
                   priorityCircleHoverClass="prio1"
                 />
-              </div>
-            </div> */}
-          </div>
-        </main>
-      </div>
-    </>
+              &lt;/div>
+            &lt;/div> */}
+          &lt;/div>
+        &lt;/main>
+      &lt;/div>
+    &lt;/>
   );
 }
 
 export default ToDo;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ForgotPassword">ForgotPassword</a></li><li><a href="global.html#ImageSelect">ImageSelect</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#Notes">Notes</a></li><li><a href="global.html#Pomodoro">Pomodoro</a></li><li><a href="global.html#Profile">Profile</a></li><li><a href="global.html#Progress">Progress</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#ToDo">ToDo</a></li><li><a href="global.html#Validate">Validate</a></li><li><a href="global.html#ValidateForgotPassword">ValidateForgotPassword</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed Feb 26 2025 14:17:57 GMT+0100 (středoevropský standardní čas)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,4 +1,32 @@
-/* eslint-disable react/prop-types */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Profile.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Profile.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable react/prop-types */
 import LeftMenu from "../components/LeftMenu";
 import TopMenu from "../components/TopMenu";
 import "react-dropdown/style.css";
@@ -200,22 +228,22 @@ function Profile(props) {
 
   if (!isLoaded) {
     return (
-      <>
-        <LoadingPage />
-      </>
+      &lt;>
+        &lt;LoadingPage />
+      &lt;/>
     );
   }
 
   return (
-    <>
-      <div className={`menuCont ${isBlack ? "menuBlack" : null}`}>
-        <LeftMenu
+    &lt;>
+      &lt;div className={`menuCont ${isBlack ? "menuBlack" : null}`}>
+        &lt;LeftMenu
           active={active}
           isEnglish={isEnglish}
           setIsEnglish={setIsEnglish}
           isBlack={isBlack}
         />
-        <TopMenu
+        &lt;TopMenu
           isEnglish={isEnglish}
           setIsEnglish={setIsEnglish}
           isBlack={isBlack}
@@ -225,9 +253,9 @@ function Profile(props) {
           setIsNotificationRead={setIsNotificationRead}
           isNotificationRead={isNotificationRead}
         />
-        <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
-          <div className="profileMenuCont">
-          <InfoCircle
+        &lt;main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
+          &lt;div className="profileMenuCont">
+          &lt;InfoCircle
             isEmailOpen={isEmailOpen}
             isPasswordOpen={isPasswordOpen}
             isUsernameOpen={isUsernameOpen}
@@ -237,7 +265,7 @@ function Profile(props) {
             textEn={'Profile is really straightforward. You basically manage all your user information here including a profile picture. You can also log out and delete your account.'}
             textCz={'Stránka profil poměrně mluví sama za sebe. V podstatě zde upravujete veškeré své uživatelské informace, včetně změny obrázku. Můžete se zde také odhlásit, nebo smazat úcet.'}
           />
-            <div
+            &lt;div
               onClick={disableClick}
               className={`profileCont ${
                 isUsernameOpen || isEmailOpen || isPasswordOpen || isCodeOpen || isDeleteAccOpen
@@ -246,31 +274,31 @@ function Profile(props) {
               }`}
             >
           
-              <h2
+              &lt;h2
                 style={{
                   color: isBlack ? "#FFF" : "#333",
                 }}
                 className="profileHeadline"
               >
                 {isEnglish ? 'My Profile' : 'Můj Profil'}
-              </h2>
-              <div
+              &lt;/h2>
+              &lt;div
                 style={{
                   backgroundColor: isBlack ? "#333" : "#FFF",
                 }}
                 className="profileInfoCont"
               >
-                <img src={imgSrc} alt="" />
-                <p
+                &lt;img src={imgSrc} alt="" />
+                &lt;p
                   style={{
                     color: isBlack ? "#FFF" : "#333",
                   }}
                 >
                   {isEnglish ? "Hello" : "Ahoj"}
-                  <br />
-                  <span>{auth.username}</span>
-                </p>
-                <Files
+                  &lt;br />
+                  &lt;span>{auth.username}&lt;/span>
+                &lt;/p>
+                &lt;Files
                   className="uploadBtn"
                   accepts={["image/*"]}
                   maxFileSize={5000000}
@@ -279,36 +307,36 @@ function Profile(props) {
                   onChange={getImage}
                 >
                   {isEnglish ? 'Your Image' : 'Změnit Obrázek'}
-                </Files>
-              </div>
-              <h3
+                &lt;/Files>
+              &lt;/div>
+              &lt;h3
                 style={{
                   color: isBlack ? "#FFF" : "#333",
                 }}
               >
                 {isEnglish ? 'Account Settings' : 'Nastavení Účtu'}
-              </h3>
-              <div className="border"></div>
-              <div className="itemCont">
-                <div className="headlineValueCont">
-                  <p
+              &lt;/h3>
+              &lt;div className="border">&lt;/div>
+              &lt;div className="itemCont">
+                &lt;div className="headlineValueCont">
+                  &lt;p
                     style={{
                       color: isBlack ? "#FFF" : "#333",
                     }}
                   >
                     Username
-                  </p>
+                  &lt;/p>
 
-                  <p
+                  &lt;p
                     className="pValue"
                     style={{
                       color: isBlack ? "#CCC" : "#666",
                     }}
                   >
                     {auth.username}
-                  </p>
-                </div>
-                <button
+                  &lt;/p>
+                &lt;/div>
+                &lt;button
                   className={`changeBtn ${isBlack ? "changeBtnBlack" : ""}`}
                   style={{
                     color: isBlack ? "#CCC" : "#666",
@@ -317,28 +345,28 @@ function Profile(props) {
                   onClick={() => univHandler(setIsUsernameOpen)}
                 >
                   {isEnglish ? 'Change' : 'Změnit'} username
-                </button>
-              </div>
+                &lt;/button>
+              &lt;/div>
 
-              <div className="itemCont">
-                <div className="headlineValueCont">
-                  <p
+              &lt;div className="itemCont">
+                &lt;div className="headlineValueCont">
+                  &lt;p
                     style={{
                       color: isBlack ? "#FFF" : "#333",
                     }}
                   >
                     Email
-                  </p>
-                  <p
+                  &lt;/p>
+                  &lt;p
                     className="pValue"
                     style={{
                       color: isBlack ? "#CCC" : "#666",
                     }}
                   >
                     {auth.email}
-                  </p>
-                </div>
-                <button
+                  &lt;/p>
+                &lt;/div>
+                &lt;button
                   className={`changeBtn ${isBlack ? "changeBtnBlack" : ""}`}
                   style={{
                     color: isBlack ? "#CCC" : "#666",
@@ -347,35 +375,35 @@ function Profile(props) {
                   onClick={() => univHandler(setIsEmailOpen)}
                 >
                   {isEnglish ? 'Change' : 'Změnit'} email
-                </button>
-              </div>
-              {/* <input
+                &lt;/button>
+              &lt;/div>
+              {/* &lt;input
               style={{
                 color: isBlack ? "rgb(204, 204, 204)" : "#808080",
               }}
               maxLength={32}
               className="emailInput"
               placeholder="Your Email"
-            ></input> */}
-              <div className="itemCont">
-                <div className="headlineValueCont">
-                  <p
+            >&lt;/input> */}
+              &lt;div className="itemCont">
+                &lt;div className="headlineValueCont">
+                  &lt;p
                     style={{
                       color: isBlack ? "#FFF" : "#333",
                     }}
                   >
                     {isEnglish ? 'Password' : 'Heslo'}
-                  </p>
-                  <div
+                  &lt;/p>
+                  &lt;div
                     className="pValue"
                     style={{
                       color: isBlack ? "#CCC" : "#666",
                     }}
                   >
                     ******
-                  </div>
-                </div>
-                <button
+                  &lt;/div>
+                &lt;/div>
+                &lt;button
                   className={`changeBtn ${isBlack ? "changeBtnBlack" : ""}`}
                   style={{
                     color: isBlack ? "#CCC" : "#666",
@@ -384,56 +412,56 @@ function Profile(props) {
                   onClick={() => univHandler(setIsPasswordOpen)}
                 >
                   {isEnglish ? 'Change password' : 'Změnit heslo'}
-                </button>
-              </div>
-              <div onClick={() => {
+                &lt;/button>
+              &lt;/div>
+              &lt;div onClick={() => {
                 signOut()
                 navigate('/signin')
               }} className="logoutBtn" style={{
                 pointerEvents: isEmailOpen || isPasswordOpen || isUsernameOpen || isCodeOpen || isDeleteAccOpen ? 'none' : null
               }}>
-                <img src={exit} alt="" />
-                <p className="logoutP">{isEnglish ? 'Sign out' : 'Odhlásit se'}</p>
-            </div>
-            <div className="border"></div>
-            <div onClick={() => {
+                &lt;img src={exit} alt="" />
+                &lt;p className="logoutP">{isEnglish ? 'Sign out' : 'Odhlásit se'}&lt;/p>
+            &lt;/div>
+            &lt;div className="border">&lt;/div>
+            &lt;div onClick={() => {
                 setIsDeleteAccOpen(prev => !prev)
               }} className="logoutBtn" style={{
                 pointerEvents: isEmailOpen || isPasswordOpen || isUsernameOpen || isCodeOpen || isDeleteAccOpen ? 'none' : null
               }}>
-                <img src={deleteAccount} alt="" />
-                <p className="logoutP">{isEnglish ? 'Delete Account' : 'Smazat Účet'}</p>
-            </div>
-            </div>
-            <div style={{display: isDeleteAccOpen ? 'block' : 'none'}} className="profileDeletePopup">
-              <h3>Delete Account?</h3>
-              <div className="buttonCont">
-                <button onClick={sendCode} className="buttonDelete">Delete</button>
-                <button onClick={disableClick} className="buttonCancel">Cancel</button>
-              </div>
-            </div>
-            <div className="profileValidate">
-            <div style={{display: isCodeOpen ? 'block' : 'none'}} className="signUp">
-                <h2>Enter your code</h2>
-                <AuthCode ref={authInputRef} onChange={(res) => setCodeInput(res)} containerClassName='authCodeCont' allowedCharacters='numeric' />
-                <div className="bottomCodeDivs">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <button onClick={submit}>Submit</button>
-              <p className='profileAccountInfo'>Didn&apos;t get the code? <pre onClick={resendCode}> Resend it</pre></p>
-                <p className="err" style={{
+                &lt;img src={deleteAccount} alt="" />
+                &lt;p className="logoutP">{isEnglish ? 'Delete Account' : 'Smazat Účet'}&lt;/p>
+            &lt;/div>
+            &lt;/div>
+            &lt;div style={{display: isDeleteAccOpen ? 'block' : 'none'}} className="profileDeletePopup">
+              &lt;h3>Delete Account?&lt;/h3>
+              &lt;div className="buttonCont">
+                &lt;button onClick={sendCode} className="buttonDelete">Delete&lt;/button>
+                &lt;button onClick={disableClick} className="buttonCancel">Cancel&lt;/button>
+              &lt;/div>
+            &lt;/div>
+            &lt;div className="profileValidate">
+            &lt;div style={{display: isCodeOpen ? 'block' : 'none'}} className="signUp">
+                &lt;h2>Enter your code&lt;/h2>
+                &lt;AuthCode ref={authInputRef} onChange={(res) => setCodeInput(res)} containerClassName='authCodeCont' allowedCharacters='numeric' />
+                &lt;div className="bottomCodeDivs">
+                    &lt;div>&lt;/div>
+                    &lt;div>&lt;/div>
+                    &lt;div>&lt;/div>
+                    &lt;div>&lt;/div>
+                    &lt;div>&lt;/div>
+                    &lt;div>&lt;/div>
+                &lt;/div>
+                &lt;button onClick={submit}>Submit&lt;/button>
+              &lt;p className='profileAccountInfo'>Didn&amp;apos;t get the code? &lt;pre onClick={resendCode}> Resend it&lt;/pre>&lt;/p>
+                &lt;p className="err" style={{
                   color: '#FF3D00'
                 }}>
                   {info}
-                </p>
-            </div>
-            </div>
-            <ProfilePopup
+                &lt;/p>
+            &lt;/div>
+            &lt;/div>
+            &lt;ProfilePopup
               isBlack={isBlack}
               toggle={isUsernameOpen}
               setToggle={setIsUsernameOpen}
@@ -443,8 +471,8 @@ function Profile(props) {
               setTypePassword={setTypePassword}
               typePassword={typePassword}
               isEnglish={isEnglish}
-            ></ProfilePopup>
-            <ProfilePopup
+            >&lt;/ProfilePopup>
+            &lt;ProfilePopup
               isBlack={isBlack}
               toggle={isEmailOpen}
               setToggle={setIsEmailOpen}
@@ -454,8 +482,8 @@ function Profile(props) {
               setTypePassword={setTypePassword}
               typePassword={typePassword}
               isEnglish={isEnglish}
-            ></ProfilePopup>
-            <ProfilePopup
+            >&lt;/ProfilePopup>
+            &lt;ProfilePopup
               isBlack={isBlack}
               toggle={isPasswordOpen}
               setToggle={setIsPasswordOpen}
@@ -465,12 +493,35 @@ function Profile(props) {
               setTypePassword={setTypePassword}
               typePassword={typePassword}
               isEnglish={isEnglish}
-            ></ProfilePopup>
-          </div>
-        </main>
-      </div>
-    </>
+            >&lt;/ProfilePopup>
+          &lt;/div>
+        &lt;/main>
+      &lt;/div>
+    &lt;/>
   );
 }
 
 export default Profile;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ForgotPassword">ForgotPassword</a></li><li><a href="global.html#ImageSelect">ImageSelect</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#Notes">Notes</a></li><li><a href="global.html#Pomodoro">Pomodoro</a></li><li><a href="global.html#Profile">Profile</a></li><li><a href="global.html#Progress">Progress</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#ToDo">ToDo</a></li><li><a href="global.html#Validate">Validate</a></li><li><a href="global.html#ValidateForgotPassword">ValidateForgotPassword</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed Feb 26 2025 14:17:57 GMT+0100 (středoevropský standardní čas)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: ImageSelect.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ImageSelect.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useNavigate } from "react-router-dom";
+import Files from 'react-files'
+import { useEffect, useState } from "react";
+import { patchImage } from "../models/user";
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
+import useSignIn from 'react-auth-kit/hooks/useSignIn'
+import { checkIfImgExists } from "../functions/functions";
+import basicProfPic from '../assets/img/userPicBasic.svg'
+
+/**
+ * The ImageSelect component is a page that allows the user to upload a
+ * profile picture. It renders a form with a file input field and a button
+ * to submit the form. When the user submits the form, the component sends
+ * a PATCH request to the server to update the user's profile picture.
+ * The component also checks if the user has already uploaded a profile
+ * picture, and if so, it displays the picture in the form.
+ * @returns {React.ReactElement} The JSX element representing the
+ * ImageSelect component.
+ */
+function ImageSelect() {
+  let navigate = useNavigate();
+  const [profilePic, setProfilePic] = useState(null)
+  const [imgSrc, setImgSrc] = useState()
+
+  const auth = useAuthUser()
+  const signIn = useSignIn()
+
+  const submit = async () => {
+    
+    const data = new FormData
+    data.append('profilePic', profilePic)
+    
+    const img = await patchImage(auth.email, data)
+    // .catch(err => {
+    //   console.log(err.response.data.msg)
+    // })
+    // console.log(img);
+    signIn({
+      auth: {
+        token: img.token,
+        type: 'Bearer',
+      },
+      userState: {
+        id: img.data.id,
+        email: img.data.email,
+        username: img.data.username,
+        profilePic: img.profilePic
+      }
+    })
+    navigate(`/progress`);
+  };
+
+  const getImage = async (file) => {
+    const fileObj = file[0]
+    const img = URL.createObjectURL(fileObj)
+    // console.log(img)
+    setProfilePic(fileObj)
+  }
+
+  useEffect(() => {
+    checkIfImgExists(setImgSrc, auth.profilePic, basicProfPic)
+}, [auth])
+
+  return (
+    &lt;>
+      &lt;div className="login">
+        &lt;div className="lLogin imgSelBg">
+          &lt;h1 className="fullHeading">
+            u
+            &lt;span className="blackSpan">
+              Peak&lt;div className="underline">&lt;/div>
+            &lt;/span>
+          &lt;/h1>
+        &lt;/div>
+        &lt;div className="media1300">
+          &lt;h1 className="fullHeading">
+            u
+            &lt;span className="blackSpan">
+              Peak&lt;div className="underline">&lt;/div>
+            &lt;/span>
+          &lt;/h1>
+        &lt;/div>
+        &lt;div className="rLogin">
+          &lt;div className="centerD">
+            &lt;div className="signUp signIn uploadImg">
+              &lt;h2>Upload a profile picture&lt;/h2>
+              &lt;div className="profilePicCont">
+              &lt;div className="profile">
+                &lt;img src={profilePic ? URL.createObjectURL(profilePic) :  imgSrc} alt="" />
+                &lt;p>
+                  Hello
+                  &lt;br />
+                  &lt;span>{auth.username}&lt;/span>
+                &lt;/p>
+              &lt;/div>
+              &lt;Files
+                    className='filesReader'
+                    accepts={['image/*']}
+                    maxFileSize={5000000}
+                    minFileSize={0}
+                    name='profilePic'
+                    onChange={getImage}
+                  >
+                    Your Image
+                  &lt;/Files>
+              &lt;/div>
+              &lt;button onClick={submit} className="signInB">
+                Save
+              &lt;/button>
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
+      &lt;/div>
+    &lt;/>
+  );
+}
+
+export default ImageSelect;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ForgotPassword">ForgotPassword</a></li><li><a href="global.html#ImageSelect">ImageSelect</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#Notes">Notes</a></li><li><a href="global.html#Pomodoro">Pomodoro</a></li><li><a href="global.html#Profile">Profile</a></li><li><a href="global.html#Progress">Progress</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#ToDo">ToDo</a></li><li><a href="global.html#Validate">Validate</a></li><li><a href="global.html#ValidateForgotPassword">ValidateForgotPassword</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed Feb 26 2025 14:17:57 GMT+0100 (středoevropský standardní čas)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

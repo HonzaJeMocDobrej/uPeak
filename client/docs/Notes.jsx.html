@@ -1,4 +1,32 @@
-/* eslint-disable react/prop-types */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Notes.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Notes.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable react/prop-types */
 import LeftMenu from "../components/LeftMenu";
 import TopMenu from "../components/TopMenu";
 import NotesRightMenu from "../components/NotesRightMenu";
@@ -192,15 +220,15 @@ function Notes(props) {
   useEffect(() => {
     function handleKeyDown(e) {
       // if (e.keyCode === 13) {
-      //   if (!headlineFocused && !notesFocused) {
+      //   if (!headlineFocused &amp;&amp; !notesFocused) {
       //     setHeadlineFocused(true);
       //     headlineRef.current.focus();
       //     e.preventDefault();
       //   }
 
       //   if (
-      //     (headlineFocused && !notesFocused) ||
-      //     (headlineFocused && notesFocused)
+      //     (headlineFocused &amp;&amp; !notesFocused) ||
+      //     (headlineFocused &amp;&amp; notesFocused)
       //   ) {
       //     setNotesFocused(true);
       //     notesRef.current.focus();
@@ -208,15 +236,15 @@ function Notes(props) {
       // }
 
       // if (e.keyCode === 40) {
-      //   if (!headlineFocused && !notesFocused) {
+      //   if (!headlineFocused &amp;&amp; !notesFocused) {
       //     setHeadlineFocused(true);
       //     headlineRef.current.focus();
       //     e.preventDefault();
       //   }
 
       //   if (
-      //     (headlineFocused && !notesFocused) ||
-      //     (headlineFocused && notesFocused)
+      //     (headlineFocused &amp;&amp; !notesFocused) ||
+      //     (headlineFocused &amp;&amp; notesFocused)
       //   ) {
       //     setNotesFocused(true);
       //     notesRef.current.focus();
@@ -224,7 +252,7 @@ function Notes(props) {
       // }
 
       // if (e.keyCode === 38) {
-      //   if (!headlineFocused && !notesFocused) {
+      //   if (!headlineFocused &amp;&amp; !notesFocused) {
       //     setHeadlineFocused(true);
       //     notesRef.current.focus();
       //     e.preventDefault();
@@ -232,14 +260,14 @@ function Notes(props) {
       // }
 
       // 1 key
-      if (e.keyCode === 49 && e.ctrlKey) {
+      if (e.keyCode === 49 &amp;&amp; e.ctrlKey) {
         setHeadlineFocused(true);
         headlineRef.current.focus();
         e.preventDefault();
       }
 
       // 2 key
-      if (e.keyCode === 50 && e.ctrlKey) {
+      if (e.keyCode === 50 &amp;&amp; e.ctrlKey) {
         setHeadlineFocused(true);
         notesRef.current.focus();
         e.preventDefault();
@@ -274,7 +302,7 @@ function Notes(props) {
   }, [heading, id]);
 
   const editor = useMemo(() => {
-    if (initialContent === "loading" && !isLoaded) {
+    if (initialContent === "loading" &amp;&amp; !isLoaded) {
       return undefined
     }
     return BlockNoteEditor.create({ initialContent });
@@ -282,30 +310,30 @@ function Notes(props) {
 
   if (editor === undefined) {
     return (
-          <>
-            <LoadingPage/>
-          </>
+          &lt;>
+            &lt;LoadingPage/>
+          &lt;/>
         );
   }
 
   if (!isLoaded) {
     return (
-      <>
-        <LoadingPage/>
-      </>
+      &lt;>
+        &lt;LoadingPage/>
+      &lt;/>
     );
   }
 
   return (
-    <>
-      <div className="menuCont">
-        <LeftMenu
+    &lt;>
+      &lt;div className="menuCont">
+        &lt;LeftMenu
           active={active}
           isEnglish={isEnglish}
           setIsEnglish={setIsEnglish}
           isBlack={isBlack}
         />
-        <TopMenu
+        &lt;TopMenu
           isEnglish={isEnglish}
           setIsEnglish={setIsEnglish}
           isBlack={isBlack}
@@ -315,8 +343,8 @@ function Notes(props) {
           setIsNotificationRead={setIsNotificationRead}
           isNotificationRead={isNotificationRead}
         />
-        <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
-          <NotesRightMenu
+        &lt;main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
+          &lt;NotesRightMenu
             virtualHeading={virtualHeading}
             setVirtualHeading={setVirtualHeading}
             paramsId={id}
@@ -331,15 +359,15 @@ function Notes(props) {
             setIsNotificationRead={setIsNotificationRead}
             isNotificationRead={isNotificationRead}
           />
-          <div className={`notesCont ${isBlack ? 'notesContBlack' : null}`}>
-            <InfoCircle
+          &lt;div className={`notesCont ${isBlack ? 'notesContBlack' : null}`}>
+            &lt;InfoCircle
               isBlack={isBlack}
               pageClass={'notesPopup'}
               isEnglish={isEnglish}
               textEn={'Now, you are at the Notes page. Manage them on the right side, write into them on the left side. If you select a text, you can apply different styles to it. If you have a lot of notes, you can search them by the headline on the right side.'}
               textCz={'Nyní se nacházíte na stránce s Poznámkami. Na pravé straně s nimi můžete provádět různé operace, na levé straně do nich můžete psát. Pokud označíte text, můžete ho stylovat. Máte-li velké množství poznámek, můžete je pomocí nadpisu hledat v pravém menu.'}
             />
-            <h2
+            &lt;h2
               onClick={() => handleCusorPostion(1, headlineRef)}
               onInput={handleHealdine}
               ref={headlineRef}
@@ -352,13 +380,36 @@ function Notes(props) {
               }}
             >
               {!heading ? '' : heading}
-            </h2>
-            <BlockNoteView style={{marginTop: '1rem'}} editor={editor} theme={isBlack ? lightDarkTheme.dark : lightDarkTheme.light} onChange={save} />
-          </div>
-        </main>
-      </div>
-    </>
+            &lt;/h2>
+            &lt;BlockNoteView style={{marginTop: '1rem'}} editor={editor} theme={isBlack ? lightDarkTheme.dark : lightDarkTheme.light} onChange={save} />
+          &lt;/div>
+        &lt;/main>
+      &lt;/div>
+    &lt;/>
   );
 }
 
 export default Notes;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ForgotPassword">ForgotPassword</a></li><li><a href="global.html#ImageSelect">ImageSelect</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#Notes">Notes</a></li><li><a href="global.html#Pomodoro">Pomodoro</a></li><li><a href="global.html#Profile">Profile</a></li><li><a href="global.html#Progress">Progress</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#ToDo">ToDo</a></li><li><a href="global.html#Validate">Validate</a></li><li><a href="global.html#ValidateForgotPassword">ValidateForgotPassword</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed Feb 26 2025 14:17:57 GMT+0100 (středoevropský standardní čas)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

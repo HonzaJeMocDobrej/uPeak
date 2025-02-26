@@ -1,4 +1,32 @@
-/* eslint-disable react/prop-types */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Validate.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Validate.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable react/prop-types */
 import AuthCode from 'react-auth-code-input'
 import { createUser, send2FA } from '../models/user'
 import { createStats } from '../models/stats'
@@ -86,7 +114,7 @@ function Validate(props) {
       .catch(err => setInfo(err.response.data.msg))
       const notes = await createNotes(user.data.id)
       // .catch(err => console.log(err.response.data.msg))
-      if (notes.status === 201 && notes) {
+      if (notes.status === 201 &amp;&amp; notes) {
         document.cookie = `${user.data.username}=${user.data.username}; SameSite=None; secure=false;`
         document.cookie = `${user.data.username}NoteId=${notes.notes[0].id}; SameSite=None; secure=false;`
       }
@@ -128,38 +156,60 @@ function Validate(props) {
 
 
   return (
-    <div className="login validate">
-        <div className="lLogin">
-            <h1 className='fullHeading'>u<span className='blackSpan'>Peak<div className="underline"></div></span></h1>
-        </div>
-        <div className="media1300">
-        <h1 className='fullHeading'>u<span className='blackSpan'>Peak<div className="underline"></div></span></h1>
-        </div>
-        <div className="rLogin">
-          <div className="centerD">
-            <div className="signUp">
-                <h2>Enter your code</h2>
-                <AuthCode ref={authInputRef} onChange={(res) => setCodeInput(res)} containerClassName='authCodeCont' allowedCharacters='numeric' />
-                <div className="bottomCodeDivs">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <button onClick={submit}>Submit</button>
-                <p className="err" style={{
+    &lt;div className="login validate">
+        &lt;div className="lLogin">
+            &lt;h1 className='fullHeading'>u&lt;span className='blackSpan'>Peak&lt;div className="underline">&lt;/div>&lt;/span>&lt;/h1>
+        &lt;/div>
+        &lt;div className="media1300">
+        &lt;h1 className='fullHeading'>u&lt;span className='blackSpan'>Peak&lt;div className="underline">&lt;/div>&lt;/span>&lt;/h1>
+        &lt;/div>
+        &lt;div className="rLogin">
+          &lt;div className="centerD">
+            &lt;div className="signUp">
+                &lt;h2>Enter your code&lt;/h2>
+                &lt;AuthCode ref={authInputRef} onChange={(res) => setCodeInput(res)} containerClassName='authCodeCont' allowedCharacters='numeric' />
+                &lt;div className="bottomCodeDivs">
+                    &lt;div>&lt;/div>
+                    &lt;div>&lt;/div>
+                    &lt;div>&lt;/div>
+                    &lt;div>&lt;/div>
+                    &lt;div>&lt;/div>
+                    &lt;div>&lt;/div>
+                &lt;/div>
+                &lt;button onClick={submit}>Submit&lt;/button>
+                &lt;p className="err" style={{
                   color: '#FF3D00'
                 }}>
                   {info}
-                </p>
-            </div>
-            <p className='accountInfo'>Didn&apos;t get the code? <pre onClick={resendCode}> Resend it</pre></p>
-          </div>
-        </div>
-    </div>
+                &lt;/p>
+            &lt;/div>
+            &lt;p className='accountInfo'>Didn&amp;apos;t get the code? &lt;pre onClick={resendCode}> Resend it&lt;/pre>&lt;/p>
+          &lt;/div>
+        &lt;/div>
+    &lt;/div>
   )
 }
 
-export default Validate
+export default Validate</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ForgotPassword">ForgotPassword</a></li><li><a href="global.html#ImageSelect">ImageSelect</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#Notes">Notes</a></li><li><a href="global.html#Pomodoro">Pomodoro</a></li><li><a href="global.html#Profile">Profile</a></li><li><a href="global.html#Progress">Progress</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#ToDo">ToDo</a></li><li><a href="global.html#Validate">Validate</a></li><li><a href="global.html#ValidateForgotPassword">ValidateForgotPassword</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed Feb 26 2025 14:17:57 GMT+0100 (středoevropský standardní čas)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

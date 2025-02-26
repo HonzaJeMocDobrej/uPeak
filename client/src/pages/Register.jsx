@@ -12,6 +12,22 @@ import { createTodoPage } from "../models/todoPage";
 import { createNotes } from "../models/notes";
 import { createAchievements } from "../models/achievements";
 
+/**
+ * 
+ * This component is responsible for rendering the registration page.
+ * It provides a form where users can input their username, email, and password.
+ * The component handles input changes, form submission, and displays error messages.
+ * Upon successful form submission, it checks for duplicate users and sends a 
+ * verification code to the user's email. The user is then navigated to
+ * the validation page.
+ * 
+ * @param {Object} props - The props object.
+ * @param {Object} props.regData - The registration data.
+ * @param {Function} props.setRegData - Function to update registration data.
+ * @param {Function} props.setVerificationCode - Function to set the verification code.
+ * @returns {JSX.Element} - The JSX element.
+ */
+
 function Register(props) {
 
   const {regData, setRegData, setVerificationCode} = props

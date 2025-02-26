@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Register.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Register.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable react/prop-types */
+import { useNavigate } from "react-router-dom"
+import 'react-dropdown/style.css';
+import { checkForDuplicateUsers, createUser, send2FA } from "../models/user";
+import { useEffect, useState } from "react";
+import LoadingPage from "../components/LoadingPage";
+import useSignIn from 'react-auth-kit/hooks/useSignIn'
+import { createStats } from "../models/stats";
+import { formatDate } from "../functions/functions";
+
+import { createTodoPage } from "../models/todoPage";
+import { createNotes } from "../models/notes";
+import { createAchievements } from "../models/achievements";
+
+/**
+ * 
+ * This component is responsible for rendering the registration page.
+ * It provides a form where users can input their username, email, and password.
+ * The component handles input changes, form submission, and displays error messages.
+ * Upon successful form submission, it checks for duplicate users and sends a 
+ * verification code to the user's email. The user is then navigated to
+ * the validation page.
+ * 
+ * @param {Object} props - The props object.
+ * @param {Object} props.regData - The registration data.
+ * @param {Function} props.setRegData - Function to update registration data.
+ * @param {Function} props.setVerificationCode - Function to set the verification code.
+ * @returns {JSX.Element} - The JSX element.
+ */
+
+function Register(props) {
+
+  const {regData, setRegData, setVerificationCode} = props
+
+  let navigate = useNavigate()
+  const [info, setInfo] = useState('')
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  const signIn = useSignIn()
+
+  const now = new Date
+
+  const groupPageDateHandler = () => {
+    const day = now.getDate()
+    const month = now.getMonth() + 1 
+    const year = now.getFullYear()
+    return formatDate(now.getDay(), day, month, year)
+  }
+
+  const signInClick = () => {
+    navigate('/signin')
+  }
+
+  const univInpChange = (e, obj) => {
+    const {value} = e.target
+    setRegData(prevState => {
+      return {
+        ...prevState, [obj]: value 
+      }
+    })
+  }
+
+  const submit = async () => {
+
+    if (regData.pass !== regData.repPass) {
+      setInfo('Passwords do not match')
+      setRegData(prev => {
+        return {
+          ...prev,
+          pass: '',
+          repPass: ''
+        }
+      })
+      return
+    }
+
+    if (!(regData.email.includes('@')) || !(regData.email.includes('.'))) {
+      setInfo('Invalid email')
+      setRegData(prev => {
+        return {
+          ...prev,
+          email: ''
+        }
+      })
+      return
+    }
+
+    groupPageDateHandler()
+
+    //get user and find similar
+
+    const user = await checkForDuplicateUsers({
+      email: regData.email
+    })
+    .catch(err => {
+      setInfo(err.response.data.msg)
+      setRegData(prev => {
+        return {
+          ...prev,
+          email: ''
+        }
+      })
+    })
+
+    if (user.status == 200) {
+      const sentCode = await send2FA({
+        email: regData.email
+      })
+      .catch(err => {
+        setInfo(err.response.data.msg)
+      })
+
+      if (sentCode.status == 200) {
+        setVerificationCode(sentCode.code)
+        navigate('/signup/validate')
+      }
+
+    }
+    
+    
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setInfo('')
+    }, 5000)
+
+    //cleanup
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [info])
+
+  useEffect(() => {
+      setIsLoaded(true)
+  }, [])
+
+  if (!isLoaded) {
+    return(
+      &lt;>
+        &lt;LoadingPage />
+      &lt;/>
+    )
+  }
+
+  return (
+    &lt;>
+    &lt;div className="login">
+        &lt;div className="lLogin">
+            &lt;h1 className='fullHeading'>u&lt;span className='blackSpan'>Peak&lt;div className="underline">&lt;/div>&lt;/span>&lt;/h1>
+        &lt;/div>
+        &lt;div className="media1300">
+        &lt;h1 className='fullHeading'>u&lt;span className='blackSpan'>Peak&lt;div className="underline">&lt;/div>&lt;/span>&lt;/h1>
+        &lt;/div>
+        &lt;div className="rLogin">
+          &lt;div className="centerD">
+            &lt;div className="signUp">
+                &lt;h2>Sign up&lt;/h2>
+                &lt;p className="inputH">Username&lt;/p>
+                &lt;input name="username" onChange={() => univInpChange(event, "user")} value={regData.user} placeholder='Your Username' type="text" />
+                &lt;p className="inputH">Email&lt;/p>
+                &lt;input name="email" onChange={() => univInpChange(event, "email")} value={regData.email} placeholder='Your Email' type='email' />
+                &lt;p className="inputH">Password&lt;/p>
+                &lt;input name="password" onChange={() => univInpChange(event, "pass")} value={regData.pass} placeholder='Your Password' type="password" />
+                &lt;p className="inputH">Repeat Password&lt;/p>
+                &lt;input onChange={() => univInpChange(event, "repPass")} value={regData.repPass} placeholder='Your Password Again' type="password" />
+                {/* &lt;input onChange={() => univInpChange(event, "country")} value={regData.country} placeholder='Country' type="text" /> */}
+                &lt;button onClick={submit}>Sign Up&lt;/button>
+                &lt;p className="err" style={{
+                  color: '#FF3D00'
+                }}>
+                  {info}
+                &lt;/p>
+            &lt;/div>
+            &lt;p className='accountInfo'>Already have an account? &lt;pre onClick={signInClick}> Sign in&lt;/pre>&lt;/p>
+          &lt;/div>
+        &lt;/div>
+    &lt;/div>
+    &lt;/>
+  )
+}
+
+export default Register</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ForgotPassword">ForgotPassword</a></li><li><a href="global.html#ImageSelect">ImageSelect</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#Notes">Notes</a></li><li><a href="global.html#Pomodoro">Pomodoro</a></li><li><a href="global.html#Profile">Profile</a></li><li><a href="global.html#Progress">Progress</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#ToDo">ToDo</a></li><li><a href="global.html#Validate">Validate</a></li><li><a href="global.html#ValidateForgotPassword">ValidateForgotPassword</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed Feb 26 2025 14:17:57 GMT+0100 (středoevropský standardní čas)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

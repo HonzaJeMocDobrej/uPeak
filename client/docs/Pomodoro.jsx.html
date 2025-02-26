@@ -1,4 +1,32 @@
-/* eslint-disable react/prop-types */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Pomodoro.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Pomodoro.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable react/prop-types */
 import LeftMenu from "../components/LeftMenu";
 import TopMenu from "../components/TopMenu";
 import stars_stage_one from "../assets/icons/stars_stage_one.svg";
@@ -67,10 +95,10 @@ function Pomodoro(props) {
 
   const playSuccessAudio = () => {
     let src
-    if (stage < 4 || stage == 4 && !isPause) {
+    if (stage &lt; 4 || stage == 4 &amp;&amp; !isPause) {
       src = successAudio
     }
-    if (stage == 4 && isPause) {
+    if (stage == 4 &amp;&amp; isPause) {
       src = sessionAudio
     }
     new Audio(src).play()
@@ -123,14 +151,14 @@ function Pomodoro(props) {
   };
 
   useEffect(() => {
-    if (time <= 0 && !isPause) {
+    if (time &lt;= 0 &amp;&amp; !isPause) {
       playSuccessAudio()
       setTime(300);
       setIsPause(true);
       return;
     }
 
-    if (time <= 0 && isPause) {
+    if (time &lt;= 0 &amp;&amp; isPause) {
       playSuccessAudio()
       setStage(prev => prev + 1)
       setTime(1500);
@@ -184,40 +212,40 @@ function Pomodoro(props) {
 
   if (!isLoaded) {
     return (
-      <>
-        <LoadingPage />
-      </>
+      &lt;>
+        &lt;LoadingPage />
+      &lt;/>
     );
   }
 
   if (isPause) {
     headline = (
-      <h2 style={{
+      &lt;h2 style={{
         color: isBlack ? '#FFF' : '#333'
       }}>
-        R<span className="blueLetter">ES</span>T
-      </h2>
+        R&lt;span className="blueLetter">ES&lt;/span>T
+      &lt;/h2>
     );
   } else if (!isPause) {
     headline = (
-      <h2 style={{
+      &lt;h2 style={{
         color: isBlack ? '#FFF' : '#333'
       }}>
-        FO<span className="blueLetter">C</span>US
-      </h2>
+        FO&lt;span className="blueLetter">C&lt;/span>US
+      &lt;/h2>
     );
   }
   
   return (
-    <>
-      <div className={`menuCont ${isBlack ? "menuBlack" : null}`}>
-        <LeftMenu
+    &lt;>
+      &lt;div className={`menuCont ${isBlack ? "menuBlack" : null}`}>
+        &lt;LeftMenu
           active={active}
           isEnglish={isEnglish}
           setIsEnglish={setIsEnglish}
           isBlack={isBlack}
         />
-        <TopMenu
+        &lt;TopMenu
           isEnglish={isEnglish}
           setIsEnglish={setIsEnglish}
           isBlack={isBlack}
@@ -227,55 +255,78 @@ function Pomodoro(props) {
           setIsNotificationRead={setIsNotificationRead}
           isNotificationRead={isNotificationRead}
         />
-        <main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
-          <div className="pomodoroCont">
+        &lt;main className={`mainStuff ${isBlack ? "mainBlack" : null}`}>
+          &lt;div className="pomodoroCont">
             {headline}
-            <div className="timeCont">
-              <img className="stars" src={stars} alt="" />
-              <h1 className="time">
+            &lt;div className="timeCont">
+              &lt;img className="stars" src={stars} alt="" />
+              &lt;h1 className="time">
                 {minutes > 9 ? minutes : `0${minutes}`}:
                 {seconds > 9 ? seconds : `0${seconds}`}
-              </h1>
-            </div>
-            <div className="bottomBtnsCont">
-              <div className="pauseBtnCont" onClick={pauseBtnClick}>
-                <div style={{
+              &lt;/h1>
+            &lt;/div>
+            &lt;div className="bottomBtnsCont">
+              &lt;div className="pauseBtnCont" onClick={pauseBtnClick}>
+                &lt;div style={{
                   borderColor: isBlack ? '#4D4D4D' : '#333',
                 }} className="pauseBtn">
-                  <img src={isBlack ? pauseBlack : pause} alt="" />
-                </div>
-                <div style={{
+                  &lt;img src={isBlack ? pauseBlack : pause} alt="" />
+                &lt;/div>
+                &lt;div style={{
                   backgroundColor: isBlack ? '#4D4D4D' : '#333'
-                }} className="border"></div>
-              </div>
-              <div className="playBtnCont">
-                <div className="playBtn" onClick={playBtnClick}>
-                  <img src={play} alt="" />
-                </div>
-                <div className="border"></div>
-              </div>
-              <div className="stopBtnCont" onClick={stopBtnClick}>
-                <div style={{
+                }} className="border">&lt;/div>
+              &lt;/div>
+              &lt;div className="playBtnCont">
+                &lt;div className="playBtn" onClick={playBtnClick}>
+                  &lt;img src={play} alt="" />
+                &lt;/div>
+                &lt;div className="border">&lt;/div>
+              &lt;/div>
+              &lt;div className="stopBtnCont" onClick={stopBtnClick}>
+                &lt;div style={{
                   borderColor: isBlack ? '#4D4D4D' : '#333'
                 }}  className="stopBtn">
-                  <img src={isBlack ? stopBlack : stop} alt="" />
-                </div>
-                <div style={{
+                  &lt;img src={isBlack ? stopBlack : stop} alt="" />
+                &lt;/div>
+                &lt;div style={{
                   backgroundColor: isBlack ? '#4D4D4D' : '#333'
-                }}  className="border" ></div>
-              </div>
-            </div>
-            <InfoCircle
+                }}  className="border" >&lt;/div>
+              &lt;/div>
+            &lt;/div>
+            &lt;InfoCircle
               isBlack={isBlack}
               isEnglish={isEnglish}
               textEn={"Pomodoro is a special timer, that divides your work into sessions. There are 4 sessions of working for 25 minutes each and 4 rests for 5 minutes each. You will be notified after every session so you don't miss out. "}
               textCz={'Pomodoro je speciální timer, který rozděluje vaši práci do úseků. Jsou zde 4 úseky po 25 minutách, po kterých pracujete a 4 úseky po 5 minutách, kdy můžete odpočívat. Po skončení úseků dostanete oznámení.'}
             />
-          </div>
-        </main>
-      </div>
-    </>
+          &lt;/div>
+        &lt;/main>
+      &lt;/div>
+    &lt;/>
   );
 }
 
 export default Pomodoro;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ForgotPassword">ForgotPassword</a></li><li><a href="global.html#ImageSelect">ImageSelect</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#Notes">Notes</a></li><li><a href="global.html#Pomodoro">Pomodoro</a></li><li><a href="global.html#Profile">Profile</a></li><li><a href="global.html#Progress">Progress</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#ToDo">ToDo</a></li><li><a href="global.html#Validate">Validate</a></li><li><a href="global.html#ValidateForgotPassword">ValidateForgotPassword</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed Feb 26 2025 14:17:57 GMT+0100 (středoevropský standardní čas)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

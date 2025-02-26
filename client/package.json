@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docs": "jsdoc -c jsdoc.conf.json"
   },
   "dependencies": {
     "@auth-kit/react-router": "^3.0.2-alpha.19",
@@ -15,8 +16,10 @@
     "@blocknote/mantine": "^0.15.3",
     "@blocknote/react": "^0.15.3",
     "axios": "^1.6.0",
+    "better-docs": "^2.7.3",
     "color-convert": "^2.0.1",
     "dayjs": "^1.11.13",
+    "jsdoc": "^4.0.4",
     "nanoid": "^5.0.3",
     "react": "^18.2.0",
     "react-auth-code-input": "^3.2.1",

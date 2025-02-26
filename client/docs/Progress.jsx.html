@@ -1,4 +1,32 @@
-/* eslint-disable react/prop-types */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Progress.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Progress.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react"
 import LeftMenu from "../components/LeftMenu"
 import TopMenu from "../components/TopMenu"
@@ -59,24 +87,24 @@ function Progress(props) {
 
 
   const counterFormatter = () => {
-    if (displayedNum < 7) {
+    if (displayedNum &lt; 7) {
       setCounterClass('counterYellow')
       setDisplayedTime('days')
       setFormattedNum(displayedNum)
     }
 
-    if (displayedNum >= 7 && displayedNum < 31) {
+    if (displayedNum >= 7 &amp;&amp; displayedNum &lt; 31) {
       setCounterClass('counterOrange')
       setDisplayedTime('days')
       setFormattedNum(displayedNum)
     }
 
-    if (displayedNum >= 31 && displayedNum < 91) {
+    if (displayedNum >= 31 &amp;&amp; displayedNum &lt; 91) {
       setFormattedNum(Math.floor(displayedNum / 31))
       setDisplayedTime('months')
       setCounterClass('counterRed')
     }
-    if (displayedNum >= 91 && displayedNum < 365) {
+    if (displayedNum >= 91 &amp;&amp; displayedNum &lt; 365) {
       setFormattedNum(Math.floor(displayedNum / 31))
       setDisplayedTime('months')
       setCounterClass('counterPurple')
@@ -111,7 +139,7 @@ function Progress(props) {
 
   useEffect(() => {
     const handleDisplayedNum = (pageVal, typeVal, num) => {
-      if (page == pageVal && type == typeVal) {
+      if (page == pageVal &amp;&amp; type == typeVal) {
         setDisplayedNum(num)
       }
     }
@@ -136,22 +164,22 @@ function Progress(props) {
 
   if (!isLoaded) {
     return(
-      <>
-        <LoadingPage />
-      </>
+      &lt;>
+        &lt;LoadingPage />
+      &lt;/>
     )
   }
 
 return (
-  <>
-  <div className={`menuCont ${isBlack ? 'menuBlack' : null}`}>
-      <LeftMenu
+  &lt;>
+  &lt;div className={`menuCont ${isBlack ? 'menuBlack' : null}`}>
+      &lt;LeftMenu
           active={active}
           isEnglish={isEnglish}
           setIsEnglish={setIsEnglish}
           isBlack={isBlack}
       />
-      <TopMenu
+      &lt;TopMenu
         isEnglish={isEnglish}
         setIsEnglish={setIsEnglish}
         isBlack={isBlack}
@@ -161,53 +189,76 @@ return (
         setIsNotificationRead={setIsNotificationRead}
         isNotificationRead={isNotificationRead}
       />
-      <main className={`mainStuff ${isBlack ? 'mainBlack' : null}`}>
-        <div className="progressConts">
-          <div className="selectPageCont">
-            <div onClick={toggleDropdownPage} className={`h2Cont ${isPageOpen ? 'rotate' : 'goBack'}`}>
-              <h2>{page}</h2>
-              <ul style={isPageOpen ? {display: "flex"} : {display: "none"}} className="dropdown">
-                <li onClick={() => selectPage('To-Do')} className={page === 'To-Do' ? 'selectedLi' : null}>To-Do</li>
-                <li onClick={() => selectPage('Notes')} className={page === 'Notes' ? 'selectedLi' : null}>Notes</li>
-                <li onClick={() => selectPage('Pomodoro')} className={page === 'Pomodoro' ? 'selectedLi' : null}>Pomodoro</li>
-              </ul>
-            </div>
-          </div>
-          <div className={`counterCont ${counterClass}`}>
-            <div className="counter">
-              <div style={isBlack ? {backgroundColor: '#333'} : {backgroundColor: '#FFF'}} className="counterInside">{formattedNum}</div>
-            </div>
-            {/* <h2>{displayedTime == 'days' ? isEnglish ? 'DAYS' : 'DNŮ' : isEnglish ? 'MONTHS' : 'MĚSÍCŮ'}</h2> */}
+      &lt;main className={`mainStuff ${isBlack ? 'mainBlack' : null}`}>
+        &lt;div className="progressConts">
+          &lt;div className="selectPageCont">
+            &lt;div onClick={toggleDropdownPage} className={`h2Cont ${isPageOpen ? 'rotate' : 'goBack'}`}>
+              &lt;h2>{page}&lt;/h2>
+              &lt;ul style={isPageOpen ? {display: "flex"} : {display: "none"}} className="dropdown">
+                &lt;li onClick={() => selectPage('To-Do')} className={page === 'To-Do' ? 'selectedLi' : null}>To-Do&lt;/li>
+                &lt;li onClick={() => selectPage('Notes')} className={page === 'Notes' ? 'selectedLi' : null}>Notes&lt;/li>
+                &lt;li onClick={() => selectPage('Pomodoro')} className={page === 'Pomodoro' ? 'selectedLi' : null}>Pomodoro&lt;/li>
+              &lt;/ul>
+            &lt;/div>
+          &lt;/div>
+          &lt;div className={`counterCont ${counterClass}`}>
+            &lt;div className="counter">
+              &lt;div style={isBlack ? {backgroundColor: '#333'} : {backgroundColor: '#FFF'}} className="counterInside">{formattedNum}&lt;/div>
+            &lt;/div>
+            {/* &lt;h2>{displayedTime == 'days' ? isEnglish ? 'DAYS' : 'DNŮ' : isEnglish ? 'MONTHS' : 'MĚSÍCŮ'}&lt;/h2> */}
             {
-              displayedTime == 'days' && <h2>{isEnglish ? formattedNum == 1 ? 'DAY' : 'DAYS' : formattedNum == 1 ? 'DEN' : formattedNum > 1 && formattedNum < 5 ? 'DNY' : 'DNŮ'}</h2>
+              displayedTime == 'days' &amp;&amp; &lt;h2>{isEnglish ? formattedNum == 1 ? 'DAY' : 'DAYS' : formattedNum == 1 ? 'DEN' : formattedNum > 1 &amp;&amp; formattedNum &lt; 5 ? 'DNY' : 'DNŮ'}&lt;/h2>
             }
             {
-              displayedTime == 'months' && <h2>{isEnglish ? formattedNum == 1 ? 'MONTH' : 'MONTHS' : formattedNum == 1 ? 'MĚSÍC' : formattedNum > 1 && formattedNum < 5 ? 'MĚSÍCE' : 'MĚSÍCŮ'}</h2>
+              displayedTime == 'months' &amp;&amp; &lt;h2>{isEnglish ? formattedNum == 1 ? 'MONTH' : 'MONTHS' : formattedNum == 1 ? 'MĚSÍC' : formattedNum > 1 &amp;&amp; formattedNum &lt; 5 ? 'MĚSÍCE' : 'MĚSÍCŮ'}&lt;/h2>
             }
             {
-              displayedTime == 'years' && <h2>{isEnglish ? formattedNum == 1 ? 'YEAR' : 'YEARS' : formattedNum == 1 ? 'ROK' : formattedNum > 1 && formattedNum < 5 ? 'ROKY' : 'ROKŮ'}</h2>
+              displayedTime == 'years' &amp;&amp; &lt;h2>{isEnglish ? formattedNum == 1 ? 'YEAR' : 'YEARS' : formattedNum == 1 ? 'ROK' : formattedNum > 1 &amp;&amp; formattedNum &lt; 5 ? 'ROKY' : 'ROKŮ'}&lt;/h2>
             }
-          </div>
-          <div className="selectTypeCont">
-            <div onClick={toggleDropdownType} className={`h3Cont ${isTypeOpen ? 'rotate' : 'goBack'}`}>
-              <h3>{type}</h3>
-              <ul style={isTypeOpen ? {display: "flex"} : {display: 'none'}} className="dropdown">
-                  <li onClick={() => selectType('Streak')} className={type === 'Streak' ? 'selectedLi' : null}>Streak</li>
-                  <li onClick={() => selectType('Total')} className={type === 'Total' ? 'selectedLi' : null}>Total</li>
-              </ul>
-            </div>
-          </div>
-          <InfoCircle
+          &lt;/div>
+          &lt;div className="selectTypeCont">
+            &lt;div onClick={toggleDropdownType} className={`h3Cont ${isTypeOpen ? 'rotate' : 'goBack'}`}>
+              &lt;h3>{type}&lt;/h3>
+              &lt;ul style={isTypeOpen ? {display: "flex"} : {display: 'none'}} className="dropdown">
+                  &lt;li onClick={() => selectType('Streak')} className={type === 'Streak' ? 'selectedLi' : null}>Streak&lt;/li>
+                  &lt;li onClick={() => selectType('Total')} className={type === 'Total' ? 'selectedLi' : null}>Total&lt;/li>
+              &lt;/ul>
+            &lt;/div>
+          &lt;/div>
+          &lt;InfoCircle
             isBlack={isBlack}
             isEnglish={isEnglish}
             textEn={'Progress page is where you see your daily usage of the applications. There are two modes, streak and total. Streak captures the days in a row you have been active on each page, Total just counts all your active days.'}
             textCz={'Progres je stránka, kde vidíte, jak dlouho aplikaci používáte. Nachází se zde dva módy, streak a total. Streak zachycuje po sobě jdoucí dny, kdy jste na každé stránce aktivní, Total počítá všechny dny, kdy jste byli aktivní'}
           />
-        </div>
-      </main>
-  </div>
-  </>
+        &lt;/div>
+      &lt;/main>
+  &lt;/div>
+  &lt;/>
 )
 }
 
 export default Progress
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ForgotPassword">ForgotPassword</a></li><li><a href="global.html#ImageSelect">ImageSelect</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#Notes">Notes</a></li><li><a href="global.html#Pomodoro">Pomodoro</a></li><li><a href="global.html#Profile">Profile</a></li><li><a href="global.html#Progress">Progress</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#ToDo">ToDo</a></li><li><a href="global.html#Validate">Validate</a></li><li><a href="global.html#ValidateForgotPassword">ValidateForgotPassword</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed Feb 26 2025 14:17:57 GMT+0100 (středoevropský standardní čas)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

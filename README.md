@@ -39,7 +39,6 @@
   npm i
   npm run dev
 ```
-- If npm i doesn`t work, try npm i --force
 #### In the folder structure click server and open index.ts
 #### Uncomment this line of code and wait a few seconds untill the changes apply to the database
 ![App Screenshot](https://i.ibb.co/PQTx8D5/vsc-snippet.png)
@@ -53,6 +52,7 @@
   npm i
   npm run dev
 ```
+- If npm i doesn`t work, try npm i --force
 #### In the terminal type `--host` or open the link below
 - http://localhost:5173
 

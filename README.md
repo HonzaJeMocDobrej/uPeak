@@ -31,7 +31,8 @@
 #### Go to the folder structure menu on the left and copy paste the `.env.template` to the root of the server dir
 #### Rename it from `.env.template` to `.env`
 #### Make sure you have the same values written as below
-![App Screenshot](https://i.ibb.co/KcXj78Fx/env.png)
+![env](https://github.com/user-attachments/assets/fc967e84-7914-4b28-836b-39a8acab2226)
+
 #### On the top menu go to `Terminal > New Terminal`
 #### In the terminal go to the server folder, install the modules and run the server
 ```bash

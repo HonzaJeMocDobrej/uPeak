@@ -31,7 +31,7 @@
 #### Go to the folder structure menu on the left and copy paste the `.env.template` to the root of the server dir
 #### Rename it from `.env.template` to `.env`
 #### Make sure you have the same values written as below
-![App Screenshot](https://i.ibb.co/cQKSRdr/xampp-screenshot.png)
+![App Screenshot](https://ibb.co/nqbsfKzM)
 #### On the top menu go to `Terminal > New Terminal`
 #### In the terminal go to the server folder, install the modules and run the server
 ```bash
@@ -52,7 +52,7 @@
   npm i
   npm run dev
 ```
-- If npm i doesn`t work, try npm i --force
+- If npm i doesn`t work, try npm i --force instead
 #### In the terminal type `--host` or open the link below
 - http://localhost:5173
 
